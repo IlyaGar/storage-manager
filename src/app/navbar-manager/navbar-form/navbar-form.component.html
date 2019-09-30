@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link" [routerLink]="['product-group']"> 
+                    Учет продукции по группам 
+                    <!-- <div class="text-two-column">
+                        <h6>Учет продукции <span> по группам </span></h6>
+                    </div> -->
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOrders" role="button" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="false">
+                    Внутрискладские процессы
+                    <!-- <div class="text-two-column">
+                        <h6> Внутрискладские <span> процессы </span></h6>
+                    </div> -->
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownOrders">
+                    <a class="dropdown-item" [routerLink]="['']"> Задания </a>
+                    <a class="dropdown-item" [routerLink]="['']"> Входящий поток </a>
+                    <a class="dropdown-item" [routerLink]="['']"> Исходящий поток </a>
+                    <a class="dropdown-item" [routerLink]="['']"> Внутренние процессы </a>
+                </div>                
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTerminal" role="button" data-toggle="dropdown" 
+                        aria-haspopup="true" aria-expanded="false">
+                    Топология склада
+                    <!-- <div class="text-two-column">
+                        <h6> Топология <span> склада </span></h6>
+                    </div> -->
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownTerminal">
+                    <a class="dropdown-item" [routerLink]="['map']"> Управление складом </a>
+                    <a class="dropdown-item" [routerLink]="['map-edit']"> Редактирование склада </a>
+                </div>                
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownStore" role="button" data-toggle="dropdown"
+                             aria-haspopup="true" aria-expanded="false">
+                    Управление ресрсами и персоналом
+                    <!-- <div class="text-two-column">
+                        <h6> Управление ресрсам <span> и персоналом </span></h6>
+                    </div> -->
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownStore">
+                    <a class="dropdown-item" [routerLink]="['']"> Управление персоналом </a>
+                    <a class="dropdown-item" [routerLink]="['']"> Управление штабелерами </a>
+                    <a class="dropdown-item" [routerLink]="['']">Складской учет в разрезах </a>
+                </div>                
+            </li>
+        </ul>
+        <form class="my-2 my-lg-0" *ngIf="!isLogin">
+            <button type="button" id="login" class="btn btn-secondary" [routerLink]="['login']">Войти</button>
+        </form>
+        <form class="form-inline my-2 my-lg-0" *ngIf="isLogin">
+            <span id="hello-name">Здравствуйте, {{loginResponse.cn}}</span>
+        </form>
+        <form class="my-2 my-lg-0" *ngIf="isLogin">
+            <button type="button" id="login" class="btn btn-secondary" (click)="onLogOut()">Выйти</button>
+        </form>
+    </div>
+</nav>

@@ -1,0 +1,280 @@
+<div class="block">
+    <mat-accordion>
+
+        <mat-expansion-panel    [expanded]="isSelectInventory" 
+                                (opened)="isSelectInventory = true"
+                                (closed)="isSelectInventory = false; 
+                                        isChoiceRow = false; 
+                                        isChoiceCell = false;
+                                        clearListInventory();
+                                        selectedInventory = 'undefined'">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                   Инвентаризация
+                </mat-panel-title>
+                <mat-panel-description>
+                    <label *ngIf="isSelectInventory && !isChoiceRow && !isChoiceCell"> Выберите действие </label>
+                    <label *ngIf="isChoiceRow"> Выделить ряд целиком </label>
+                    <label *ngIf="isChoiceCell"> Выделить стеллаж </label>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedInventory">
+
+                <mat-button-toggle value="choice-row" (click)="isChoiceRow = true; isChoiceCell = false;" 
+                    data-toggle="tooltip" data-placement="bottom" title="Выделить ряд целиком">
+                    <mat-icon id="icon-delete" aria-hidden="false" aria-label="Example home icon">zoom_out_map</mat-icon>
+                </mat-button-toggle>
+
+                <mat-button-toggle value="choice-cell" (click)="isChoiceRow = false; isChoiceCell = true;" 
+                    data-toggle="tooltip" data-placement="bottom" title="Выделить стеллаж">
+                    <mat-icon id="icon-delete" aria-hidden="false" aria-label="Example home icon">code</mat-icon>
+                </mat-button-toggle>
+
+            </mat-button-toggle-group>
+            <br>
+            <br>
+            <button mat-raised-button (click)="onOkInventory()" data-toggle="tooltip" data-placement="bottom" title="Оформить инвентаризацию">Оформить</button>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel    [expanded]="isSelectRotation" 
+                                (opened)="isSelectRotation = true"
+                                (closed)="isSelectRotation = false; 
+                                        isChoiceFrom = false; 
+                                        isChoiceTo = false;
+                                        isFromTo = false;
+                                        onClickClearFrom();
+                                        onClickClearTo();
+                                        clearSelectStillage();
+                                        selectedRotation = 'undefined'">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                   Ротация
+                </mat-panel-title>
+                <mat-panel-description>
+                    <label *ngIf="isSelectRotation && !isChoiceFrom && !isChoiceTo"> Укажите ячейки </label>
+                    <label *ngIf="isChoiceFrom"> Ячейка <b>откуда</b> переносить </label>
+                    <label *ngIf="isChoiceTo"> Ячейка <b>куда</b> переносить </label>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-card id="input-from-to">
+
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Откуда" [(ngModel)]="cellFrom">
+                    <img id="img-clear" src="../../assets/outline_cancel_black_24dp.png" (click)="onClickClearFrom()"/>
+                </mat-form-field>
+                    
+                <img id="img-from-to" src="../../assets/arrow-from-to.ico" width="26" height="26" />
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Куда" [(ngModel)]="cellTo">
+                    <img id="img-clear" src="../../assets/outline_cancel_black_24dp.png" (click)="onClickClearTo()"/>                    
+                </mat-form-field>
+
+                <button mat-raised-button data-toggle="tooltip" data-placement="bottom" title="Перенести товар">Перенос</button>
+                <div class="form-inline">
+                    <mat-nav-list>
+                        <mat-list-item data-placement="bottom" data-toggle="tooltip" title="{{cellFrom}}" > Pepper 36 </mat-list-item>
+                        <mat-list-item data-placement="bottom" data-toggle="tooltip" title="{{cellFrom}}" > Salt 7 </mat-list-item>
+                        <mat-list-item data-placement="bottom" data-toggle="tooltip" title="{{cellFrom}}" > Paprika 99 </mat-list-item>
+                    </mat-nav-list>
+
+                    <mat-nav-list>
+                        <mat-list-item> Pepper </mat-list-item>
+                        <mat-list-item> Salt </mat-list-item>
+                        <mat-list-item> Paprika </mat-list-item>
+                    </mat-nav-list>
+
+                <!-- <mat-nav-list>
+                        <mat-list-item *ngFor="let link of links">
+                            <a matLine href="...">{{ link }}</a>
+                        </mat-list-item>
+                    </mat-nav-list> -->
+                </div>
+            </mat-card>                      
+
+        </mat-expansion-panel>    
+        
+        <mat-expansion-panel    [expanded]="isSelectView" 
+                                (opened)="isSelectView = true"
+                                (closed)="isSelectView = false">
+
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Просмотр ячейки
+                </mat-panel-title>
+                <mat-panel-description>
+                    <label *ngIf="isSelectView"> Выберите ячейку </label>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+        </mat-expansion-panel>
+
+    </mat-accordion>   
+
+</div>
+
+<pinch-zoom *ngIf="isSelectInventory" class="block1">
+    <table class="table-bord">
+        <tr class="tr-bord" *ngFor="let row of tab_map">
+            <td class="td-bord" *ngFor="let cell of row" (click)="onSelectCell(cell)"
+                [ngClass]="{
+                    'stillage-row-with-out-name': cell.isStillageRowWithOutNameHor || cell.isStillageRowWithOutNameVer,
+                    'stillage-cell-with-out-name': cell.isStillageOneWithOutName,
+                    'stillage-select-cell': cell.isSelectCellStillage,
+                    'road': cell.isRoad,
+                    'office': cell.element === 'office',
+                    'zone_unload': cell.element === 'zone_unload',
+                    'zone_send': cell.element === 'zone_send'
+                }">
+                {{cell.cellName}}
+                <div>
+                    <p id="row-name-ver" *ngIf="cell.isBraceVer"> 
+                        {{cell.rowName}} 
+                    </p>
+                    <img id="img-ver1" [src]="cell.imageUrl" *ngIf="cell.isBraceVer"/>
+                </div>
+                <div id="name-row-hor" class="form-inline">
+                    <p id="row-name-hor" *ngIf="cell.isBraceHor">
+                        {{cell.rowName}}
+                    </p>
+                    <img id="img-hor1" [src]="cell.imageUrl" *ngIf="cell.isBraceHor"/>
+                </div>
+                <app-vertvertical-three-four *ngIf="cell.isVer"></app-vertvertical-three-four>
+                <app-horizontal-three-four *ngIf="cell.isHor"></app-horizontal-three-four>
+            </td>
+        </tr>
+    </table>
+</pinch-zoom>
+
+<pinch-zoom *ngIf="!isSelectInventory && isSelectRotation" class="block1">
+    <table class="table-bord">
+        <tr class="tr-bord" *ngFor="let row of tab_map">
+            <td class="td-bord" *ngFor="let cell of row"
+                [ngClass]="{
+                    'stillage-row-with-out-name': cell.isStillageRowWithOutNameHor || cell.isStillageRowWithOutNameVer,
+                    'stillage-cell-with-out-name': cell.isStillageOneWithOutName,
+                    'stillage-select-cell': cell.isSelectCellStillage && !isFromTo,
+                    'road': cell.element === 'road',
+                    'office': cell.element === 'office',
+                    'zone_unload': cell.element === 'zone_unload',
+                    'zone_send': cell.element === 'zone_send'
+                }">
+                {{cell.cellName}}
+                <div>
+                    <p id="row-name-ver" *ngIf="cell.isBraceVer"> 
+                        {{cell.rowName}} 
+                    </p>
+                    <img id="img-ver1" [src]="cell.imageUrl" *ngIf="cell.isBraceVer"/>
+                </div>
+                <div id="name-row-hor" class="form-inline">
+                    <p id="row-name-hor" *ngIf="cell.isBraceHor">
+                        {{cell.rowName}}
+                    </p>
+                    <img id="img-hor1" [src]="cell.imageUrl" *ngIf="cell.isBraceHor"/>
+                </div>
+   
+                <table id="st-ver" *ngIf="cell.isVer">
+                    <tr>
+                        <td [ngClass]="{'select-cell-from': cell.element === '11-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '11-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '1', '1')">11</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '12-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '12-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '1', '2')">12</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '13-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '13-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '1', '3')">13</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '14-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '14-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '1', '4')">14</td>
+                    </tr>
+                    <tr>
+                        <td [ngClass]="{'select-cell-from': cell.element === '21-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '21-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '2', '1')">21</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '22-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '22-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '2', '2')">22</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '23-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '23-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '2', '3')">23</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '24-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '24-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '2', '4')">24</td>
+                    </tr>
+                    <tr>
+                        <td [ngClass]="{'select-cell-from': cell.element === '31-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '31-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '3', '1')">31</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '32-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '32-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '3', '2')">32</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '33-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '33-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '3', '3')">33</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '34-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '34-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '3', '4')">34</td>
+                    </tr>
+                </table>  
+                    
+                <table id="st-hor" *ngIf="cell.isHor">
+                    <tr>
+                        <td [ngClass]="{'select-cell-from': cell.element === '14-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '14-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '1', '4')">14</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '24-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '24-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '2', '4')">24</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '34-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '34-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '3', '4')">34</td>
+                    </tr>
+                    <tr>
+                        <td [ngClass]="{'select-cell-from': cell.element === '13-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '13-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '1', '3')">13</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '23-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '23-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '2', '3')">23</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '33-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '33-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '3', '3')">33</td>
+                    </tr>
+                    <tr>
+                        <td [ngClass]="{'select-cell-from': cell.element === '12-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '12-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '1', '2')">12</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '22-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '22-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '2', '2')">22</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '32-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '32-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '3', '2')">32</td>        
+                    </tr>
+                    <tr>
+                        <td [ngClass]="{'select-cell-from': cell.element === '11-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '11-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '1', '1')">11</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '21-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '21-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '2', '1')">21</td>
+                        <td [ngClass]="{'select-cell-from': cell.element === '31-from' && cell.isSelectCellStillage,
+                                        'select-cell-to': cell.element === '31-to' && cell.isSelectCellStillage }" (click)="onClickCell(cell, '3', '1')">31</td>
+                    </tr>
+                </table> 
+            </td>
+        </tr>
+    </table>
+</pinch-zoom>
+<pinch-zoom *ngIf="!isSelectInventory && !isSelectRotation" class="block1">
+        <table class="table-bord">
+            <tr class="tr-bord" *ngFor="let row of tab_map">
+                <td class="td-bord" *ngFor="let cell of row"
+                    [ngClass]="{
+                        'stillage-row-with-out-name': cell.isStillageRowWithOutNameHor || cell.isStillageRowWithOutNameVer,
+                        'stillage-cell-with-out-name': cell.isStillageOneWithOutName,
+                        'stillage-select-cell': cell.isSelectCellStillage,
+                        'road': cell.element === 'road',
+                        'office': cell.element === 'office',
+                        'zone_unload': cell.element === 'zone_unload',
+                        'zone_send': cell.element === 'zone_send'
+                    }">
+                    {{cell.cellName}}
+                    <div>
+                        <p id="row-name-ver" *ngIf="cell.isBraceVer"> 
+                            {{cell.rowName}} 
+                        </p>
+                        <img id="img-ver1" [src]="cell.imageUrl" *ngIf="cell.isBraceVer"/>
+                    </div>
+                    <div id="name-row-hor" class="form-inline">
+                        <p id="row-name-hor" *ngIf="cell.isBraceHor">
+                            {{cell.rowName}}
+                        </p>
+                        <img id="img-hor1" [src]="cell.imageUrl" *ngIf="cell.isBraceHor"/>
+                    </div>
+                    <app-vertvertical-three-four-action *ngIf="cell.isVer" [data]="cell"></app-vertvertical-three-four-action>
+                    <app-horizontal-three-four-action *ngIf="cell.isHor" [data]="cell"></app-horizontal-three-four-action>
+                </td>
+            </tr>
+        </table>
+    </pinch-zoom>
+<!-- <app-vertvertical-three-four-action *ngIf="cell.isVer" [data]="rotationItem" (onChanged)="onChanged($event)"></app-vertvertical-three-four-action> -->

@@ -1,0 +1,342 @@
+<div class="block">
+    <mat-accordion>
+
+        <mat-expansion-panel    [expanded]="isSelectSize" 
+                                (opened)= "isSelectSize = true"
+                                (closed)= "isSelectSize = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Размер сетки
+                </mat-panel-title>
+                <mat-panel-description>
+                    <label *ngIf="isSelectSize"> {{x_width}} x {{y_height}} </label>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+      
+            <mat-form-field id="yx">
+                <input type="number" matInput placeholder="Ширина" [(ngModel)]="x_width">
+            </mat-form-field>
+            <mat-form-field id="yx">
+                <input type="number" matInput placeholder="Высота" [(ngModel)]="y_height">
+            </mat-form-field>
+            <button mat-raised-button (click)="onChangeSize()">Изменить</button>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="isSelectTypeRowStillage" 
+                             (opened)= "isSelectTypeRowStillage = true"
+                             (closed)= "isSelectTypeRowStillage = false; 
+                                        isHor1Stillage = false; 
+                                        isHor2Stillage = false; 
+                                        isVer1Stillage = false; 
+                                        isVer2Stillage = false;
+                                        selectedRow = 'undefined'">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Ряд
+                </mat-panel-title>
+                <mat-panel-description>
+                    <label *ngIf="!isHor1Stillage && !isVer1Stillage && isSelectTypeRowStillage"> Выберите тип ряда </label>
+                    <label *ngIf="isHor1Stillage"> Горизонтальный </label>
+                    <label *ngIf="isVer1Stillage"> Вертикальный </label>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedRow">
+                <mat-button-toggle value="hor1Stillage" (click)="isHor1Stillage = true; isVer1Stillage = false"
+                    data-toggle="tooltip" data-placement="bottom" title="Горизонтальный ряд">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">text_rotation_none</mat-icon>
+                </mat-button-toggle>
+                <mat-button-toggle value="ver1Stillage" (click)="isHor1Stillage = false; isVer1Stillage = true"
+                    data-toggle="tooltip" data-placement="bottom" title="Вертикальный ряд">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">text_rotate_vertical</mat-icon>
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="isPanelOpenStillage" 
+                             (opened)= "isPanelOpenStillage = true"
+                             (closed)= "isPanelOpenStillage = false; 
+                                        isChoiceStillage = false; 
+                                        isChoiceRoad = false; 
+                                        firstCell = null;
+                                        selectedElement = 'undefined';
+                                        selectedElement2 = 'undefined'">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Новый элемент
+                </mat-panel-title>
+                <mat-panel-description>
+                    <!-- {{panelOpenStillage ? 'open' : 'closed'}} -->
+                <label *ngIf="isPanelOpenStillage && !isChoiceStillage && !isChoiceRoad">Выберите элемент</label>
+                <label *ngIf="isChoiceStillage"> Стеллаж 3 x 4 </label>
+                <label *ngIf="isChoiceRoad"> Дорога </label>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            
+            <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement">
+                <mat-button-toggle value="stellage34" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement2 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x4">
+                    Стеллаж 3x4
+                </mat-button-toggle>
+                <mat-button-toggle value="road" (click)="isChoiceStillage = false; isChoiceRoad = true; isChoiceZoneUnloade = false; selectedElement2 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Дорога">
+                    Дорога
+                </mat-button-toggle>
+                <mat-button-toggle value="zone_unload" (click)="isChoiceZoneUnloade = true; isChoiceRoad = false; selectedElement2 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Зона разгрузки">
+                    Зона разгрузки
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+            <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement2">
+                <mat-button-toggle value="zone_send" (click)="isChoiceZonaSend = true; isChoiceOffice = false; isChoiceContinueRow = false; selectedElement = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Зона отправки">
+                    Зона отправки
+                </mat-button-toggle>
+                <mat-button-toggle value="office" (click)="isChoiceOffice = true; isChoiceZonaSend = false; isChoiceContinueRow = false; selectedElement = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Офис">
+                    Офис
+                </mat-button-toggle>
+                <mat-button-toggle value="continueRow" (click)="isChoiceContinueRow = true; isChoiceOffice = false; isChoiceZonaSend = false; selectedElement = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Продолжение ряда">
+                    Продолжение ряда
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel    [expanded]="isSelectEditor" 
+                                (opened)= "isSelectEditor = true"
+                                (closed)= "isSelectEditor = false; 
+                                           isChoiceDelete = false;
+                                           selectedEditor = 'undefined'">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Удалить
+                </mat-panel-title>
+                <mat-panel-description>
+                    <label *ngIf="isSelectEditor && !isChoiceDelete"> Выберите инструмент </label>
+                    <label *ngIf="isChoiceDelete"> Удалить элемент </label>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+      
+
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedEditor">
+                <mat-button-toggle value="delete-element" (click)="isChoiceDelete = true">
+                    <mat-icon id="icon-delete" aria-hidden="false" aria-label="Example home icon" >delete_forever</mat-icon>
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+
+        </mat-expansion-panel>
+
+    </mat-accordion>
+    <div [ngClass]="{ 'property-class': isChoiceProperties || isSelectEditor }">
+        <mat-accordion>
+            <mat-expansion-panel [expanded]="isChoiceProperties" 
+                                 (opened)=" isChoiceProperties = true"
+                                 (closed)=" isChoiceProperties = false;
+                                            isSelectedRowStillages = false;
+                                            isSelectedStillage = false;
+                                            isSelectedStillage = false;
+                                            isSelectedElement = false;
+                                            onCanselPropertyZone()">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Свойства
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <label *ngIf="isChoiceProperties && !isSelectedRowStillages && !isSelectedStillage && !isSelectedElement"> Выберите элемент </label>
+                        <label *ngIf="isChoiceProperties && isSelectedRowStillages && !isSelectedStillage && !isSelectedElement"> Ряд стеллажей </label>
+                        <label *ngIf="isChoiceProperties && !isSelectedRowStillages && isSelectedStillage && !isSelectedElement"> Стеллаж </label>
+                        <label *ngIf="isChoiceProperties && !isSelectedRowStillages && !isSelectedStillage && isSelectedElement && currentCell.element === 'road'"> Дорога </label>
+                        <label *ngIf="isChoiceProperties && !isSelectedRowStillages && !isSelectedStillage && isSelectedElement && currentCell.element === 'office'"> Офис </label>
+                        <label *ngIf="isChoiceProperties && !isSelectedRowStillages && !isSelectedStillage && isSelectedElement && currentCell.element === 'zone_send'"> Зона отправки </label>
+                        <label *ngIf="isChoiceProperties && !isSelectedRowStillages && !isSelectedStillage && isSelectedElement && currentCell.element === 'zone_unload'"> Зона разгрузки </label>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div *ngIf="isSelectedRowStillages && !isSelectedStillage && !isSelectedElement">
+                    <mat-form-field id="nameSt">
+                            <input  type="text" matInput placeholder="Ряд стеллажей" [(ngModel)]="stillageRowName">
+                    </mat-form-field>
+                    <br>
+                    <button mat-raised-button (click)="onSaveProperty()">Сохранить</button>
+                </div>
+
+                <div *ngIf="!isSelectedRowStillages && isSelectedStillage && !isSelectedElement">
+                    <div  *ngIf="isSelectCellWithRowName">
+                        <mat-form-field id="nameSt">
+                            <input  type="text" matInput placeholder="Ряд стеллажей" [(ngModel)]="stillageRowName" readonly>
+                        </mat-form-field>
+
+                        <mat-form-field id="nameSt">
+                            <input type="text" matInput placeholder="Имя стеллажа" [(ngModel)]="stillageName">
+                        </mat-form-field>
+                        <br>
+                        <button mat-raised-button (click)="onSaveProperty()">Сохранить</button>
+                    </div>
+                    <div *ngIf="!isSelectCellWithRowName">
+                        <label> Назовите ряд стеллажей! </label>
+                    </div>
+                </div>
+
+                <div *ngIf="!isSelectedRowStillages && !isSelectedStillage && isSelectedElement">
+                    <div *ngIf="currentCell.element === 'zone_unload' || currentCell.element === 'zone_send' || currentCell.element === 'office'">
+                        <label> Выделите верхний левый и правый нижний углы </label>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="Имя зона разгрузки" [(ngModel)]="zoneName">
+                        </mat-form-field>
+                        <br>
+                        <button mat-raised-button (click)="onCanselPropertyZone()">Отмена</button>
+                        <button mat-raised-button (click)="onSavePropertyZone()">Сохранить</button>
+                    </div>
+                    <label *ngIf="currentCell.element === 'road'"> road </label>
+                </div>                  
+                
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <br>
+
+    <mat-card *ngIf="isChanged">
+        <div class="form-inline">
+            <label id="changed"> Карта склада была изменена </label>
+            <div mat-dialog-actions>
+            <button mat-raised-button id="butt-cancel"
+                class="btn btn-default"
+                mwlConfirmationPopover
+                [popoverMessage]="'Вы действительно хотите <b>отменить</b> внесенные изменения?'"
+                [confirmText]="confirmText"
+                [cancelText]="cancelText"
+                placement="right"
+                (confirm)="onCancel()"
+                (cancel)="cancelClicked = true"
+                title="Отменить все изменения">
+                Отмена
+            </button> 
+            <button mat-raised-button
+                class="btn btn-default"
+                mwlConfirmationPopover
+                [popoverMessage]="'Вы действительно хотите <b>сохранить</b> внесенные изменения?'"
+                [confirmText]="confirmText"
+                confirmButtonType="success"
+                [cancelText]="cancelText"
+                placement="right"
+                (confirm)="onSave()"
+                (cancel)="cancelClicked = true"
+                title="Сохранить все изменения">
+                Сохранить
+            </button> 
+            </div>
+        </div>
+      </mat-card>
+</div>    
+
+<!-- element stillage panel -->
+<pinch-zoom class="block1" *ngIf="!isSelectTypeRowStillage && !isSelectEditor">
+    <table class="table-bord">
+        <tr class="tr-bord" *ngFor="let col of tab_map">
+            <td class="td-bord" *ngFor="let row of col" (click)="onSelectCell(row)"
+                [ngClass]="{
+                    'stillage-row-with-out-name': row.isStillageRowWithOutNameHor || row.isStillageRowWithOutNameVer,
+                    'stillage-cell-with-out-name': row.isStillageOneWithOutName,
+                    'stillage-select-cell': row.isSelectCellStillage,
+                    'stillage-select-cell-element': row.isSelectCellStillage && (row.element === 'office' || row.element === 'zone_send' || row.element === 'zone_unload'),
+                    'road': row.element === 'road',
+                    'office': row.element === 'office',
+                    'zone_send': row.element === 'zone_send',
+                    'zone_unload': row.element === 'zone_unload',
+                    's-left-bottom-top': row.style === 's-left-bottom-top',
+                    's-bottom-top': row.style === 's-bottom-top',
+                    's-right-bottom-top': row.style === 's-right-bottom-top',
+                    's-left-top-right': row.style === 's-left-top-right',
+                    's-left-right': row.style === 's-left-right',
+                    's-left-bottom-right': row.style === 's-left-bottom-right',
+                    's-left-top': row.style === 's-left-top',
+                    's-right-top': row.style === 's-right-top',
+                    's-right-bottom': row.style === 's-right-bottom',
+                    's-left-bottom': row.style === 's-left-bottom',
+                    's-left': row.style === 's-left',
+                    's-right': row.style === 's-right',
+                    's-bottom': row.style === 's-bottom',
+                    's-top': row.style === 's-top'
+                }">
+                {{row.cellName}}
+                <div>
+                    <p id="row-name-ver" *ngIf="row.isBraceVer">{{row.rowName}}</p>
+                    <img id="img-ver1" [src]="row.imageUrl" *ngIf="row.isBraceVer" (click)="onClickBrace(row)" />
+                </div>
+                <div id="name-row-hor" class="form-inline">
+                    <p id="row-name-hor" *ngIf="row.isBraceHor">{{row.rowName}}</p>
+                    <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" (click)="onClickBrace(row)" />
+                </div>
+                <app-vertvertical-three-four *ngIf="row.isVer"></app-vertvertical-three-four>
+                <app-horizontal-three-four *ngIf="row.isHor"></app-horizontal-three-four>
+            </td>
+        </tr>
+    </table>
+</pinch-zoom>
+
+<!-- select row type stillage -->
+<pinch-zoom class="block1" *ngIf="isSelectTypeRowStillage">
+    <table class="table-bord">
+        <tr class="tr-bord" *ngFor="let col of tab_map">
+            <td class="td-bord" *ngFor="let row of col" (click)="onSelectCell(row)"
+                [ngClass]="{
+                    'stillage-row-with-out-name': row.isStillageRowWithOutNameHor || row.isStillageRowWithOutNameVer,
+                    'stillage-cell-with-out-name': row.isStillageOneWithOutName,
+                    'stillage-select-cell': row.isSelectCellStillage,
+                    'busy': row.isBusy,
+                    'road': row.element === 'road',
+                    'office': row.element === 'office',
+                    'zone_send': row.element === 'zone_send',
+                    'zone_unload': row.element === 'zone_unload'
+                }">                                     
+                {{row.cellName}}
+                <div>
+                    <p id="row-name-ver" *ngIf="row.isBraceVer">{{row.rowName}}</p>
+                    <img id="img-ver1" [src]="row.imageUrl" *ngIf="row.isBraceVer" (click)="onClickBrace(row)" />
+                </div>
+                <div id="name-row-hor" class="form-inline">
+                    <p id="row-name-hor" *ngIf="row.isBraceHor">{{row.rowName}}</p>
+                    <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" (click)="onClickBrace(row)" />
+                </div>
+                <app-vertvertical-three-four *ngIf="row.isVer"></app-vertvertical-three-four>
+                <app-horizontal-three-four *ngIf="row.isHor"></app-horizontal-three-four>
+            </td>
+        </tr>
+    </table>
+</pinch-zoom>
+
+<!-- edit panel -->
+<pinch-zoom class="block1" *ngIf="isSelectEditor">
+    <table class="table-bord">
+        <tr class="tr-bord" *ngFor="let col of tab_map">
+            <td class="td-bord" *ngFor="let row of col" (click)="onSelectCell(row)"
+                [ngClass]="{
+                    'stillage-row-with-out-name': row.isStillageRowWithOutNameHor || row.isStillageRowWithOutNameVer,
+                    'stillage-cell-with-out-name': row.isStillageOneWithOutName,
+                    'stillage-select-cell': row.isSelectCellStillage,
+                    'busy-edit': row.isBusy,
+                    'road': row.element === 'road',
+                    'office': row.element === 'office',
+                    'zone_send': row.element === 'zone_send',
+                    'zone_unload': row.element === 'zone_unload'
+                }">                                     
+                {{row.cellName}}
+                <div>
+                    <p id="row-name-ver" *ngIf="row.isBraceVer">{{row.rowName}}</p>
+                    <img id="img-ver1" [src]="row.imageUrl" *ngIf="row.isBraceVer" (click)="onClickBrace(row)" />
+                </div>
+                <div id="name-row-hor" class="form-inline">
+                    <p id="row-name-hor" *ngIf="row.isBraceHor">{{row.rowName}}</p>
+                    <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" (click)="onClickBrace(row)" />
+                </div>
+                <app-vertvertical-three-four *ngIf="row.isVer"></app-vertvertical-three-four>
+                <app-horizontal-three-four *ngIf="row.isHor"></app-horizontal-three-four>
+            </td>
+        </tr>
+    </table>
+</pinch-zoom>
+<br>

@@ -1,0 +1,20 @@
+button#login {
+    min-width: 3em;
+    box-shadow: 1px 2px 5px #000000;   
+    margin-right: 0.4em;
+}
+span#hello-name {
+    text-align: right;
+    min-width: 15em;
+    padding-right: 5%;
+    color: aliceblue;
+} 
+.text-two-column {
+    float:left;
+}
+h6 {
+    text-align:center;
+}
+h6 span{
+    display: block;
+}
