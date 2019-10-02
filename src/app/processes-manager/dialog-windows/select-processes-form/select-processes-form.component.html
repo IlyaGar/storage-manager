@@ -1,0 +1,77 @@
+<div class="list-proc table-container">
+    <table mat-table [dataSource]="listProcesses" class="table-hover">
+
+        <ng-container matColumnDef="processe">
+            <th mat-header-cell *matHeaderCellDef> Процесс </th>
+            <td mat-cell *matCellDef="let element"> 
+                <ng-container *ngIf="element.name"> {{element.name}} </ng-container>
+                <ng-container *ngIf="!element.name">
+                    <mat-form-field id="proc">
+                        <input type="text" placeholder="Процесс" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of options" [value]="option">
+                                {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                </mat-form-field>
+                </ng-container>
+            </td>
+        </ng-container>      
+
+        <ng-container matColumnDef="zone">
+            <th mat-header-cell *matHeaderCellDef> Зона </th>
+            <td mat-cell *matCellDef="let element"> 
+                <ng-container *ngIf="element.name"> {{element.zone}} </ng-container>
+                <ng-container *ngIf="!element.name">
+                    <div class="bt-inline">
+                        <ng-container *ngIf="myControl.value && myControl.value !== 'Ротация'">
+                            <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedZone">
+                                <mat-button-toggle id="but" value="auto" data-toggle="tooltip" data-placement="bottom" title="Артикл">
+                                    Авто
+                                </mat-button-toggle>
+                                <mat-button-toggle value="hand" data-toggle="tooltip" data-placement="bottom" title="Зона" (click)="openSelectCell(element)">
+                                    Зона
+                                </mat-button-toggle>
+                            </mat-button-toggle-group>
+                        </ng-container>
+                        <ng-container *ngIf="myControl.value === 'Ротация'">
+                            <mat-form-field id="fromto">
+                                <input type="text" matInput placeholder="Откуда" [(ngModel)]="cellFrom">
+                                <img id="img-clear" src="../../assets/outline_cancel_black_24dp.png" (click)="onClickClearFrom()"/>
+                            </mat-form-field>
+                                
+                            <img id="img-from-to" src="../../assets/arrow-from-to.ico" width="26" height="26" />
+                            <mat-form-field id="fromto">
+                                <input type="text" matInput placeholder="Куда" [(ngModel)]="cellTo">
+                                <img id="img-clear" src="../../assets/outline_cancel_black_24dp.png" (click)="onClickClearTo()"/>                    
+                            </mat-form-field>
+                        </ng-container>
+                        <ng-container *ngIf="selectedZone === 'hand'">
+                            !!!!!!!!!!!!!!
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>  </th>
+                <td mat-cell *matCellDef="let element"> 
+                    <ng-container *ngIf="element.name">
+                        <button mat-mini-fab color="warn" cdkFocusInitial (click)="onDelete(element)">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon"> clear </mat-icon>
+                        </button>
+                    </ng-container>
+                    <ng-container *ngIf="!element.name">
+                        <button mat-mini-fab color="primary" cdkFocusInitial (click)="onAdd()">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon"> add </mat-icon>
+                        </button>
+                    </ng-container>
+                </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsProcesses; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsProcesses;"></tr>
+
+    </table>
+</div>

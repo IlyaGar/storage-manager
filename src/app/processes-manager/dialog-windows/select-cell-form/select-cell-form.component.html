@@ -1,0 +1,95 @@
+<div class="block">
+    <mat-list>
+        <mat-list-item *ngFor="let item of listSelected">
+            <h3 matLine> {{item}} </h3>
+            <button mat-mini-fab color="warn" cdkFocusInitial (click)="onDelete(item)">
+                <mat-icon aria-hidden="false" aria-label="Example home icon"> clear </mat-icon>
+            </button>
+        </mat-list-item>
+      </mat-list>
+</div>
+
+<pinch-zoom class="block1">
+    <table class="table-bord">
+        <tr class="tr-bord" *ngFor="let col of tab_map">
+            <td class="td-bord" *ngFor="let row of col" (click)="onClickCell(row)"
+                [ngClass]="{
+                    'stillage-row-with-out-name': row.isStillageRowWithOutNameHor || row.isStillageRowWithOutNameVer,
+                    'stillage-cell-with-out-name': row.isStillageOneWithOutName,
+                    'road': row.element === 'road',
+                    'office': row.element === 'office',
+                    'zone_send': row.element === 'zone_send',
+                    'zone_unload': row.element === 'zone_unload',
+                    's-left-bottom-top': row.style === 's-left-bottom-top',
+                    's-bottom-top': row.style === 's-bottom-top',
+                    's-right-bottom-top': row.style === 's-right-bottom-top',
+                    's-left-top-right': row.style === 's-left-top-right',
+                    's-left-right': row.style === 's-left-right',
+                    's-left-bottom-right': row.style === 's-left-bottom-right',
+                    's-left-top': row.style === 's-left-top',
+                    's-right-top': row.style === 's-right-top',
+                    's-right-bottom': row.style === 's-right-bottom',
+                    's-left-bottom': row.style === 's-left-bottom',
+                    's-left': row.style === 's-left',
+                    's-right': row.style === 's-right',
+                    's-bottom': row.style === 's-bottom',
+                    's-top': row.style === 's-top'
+                }">                                     
+                {{row.cellName}}
+                <div>
+                    <p id="row-name-ver" *ngIf="row.isBraceVer">{{row.rowName}}</p>
+                    <img id="img-ver1" [src]="row.imageUrl" *ngIf="row.isBraceVer"/>
+                </div>
+                <div id="name-row-hor" class="form-inline">
+                    <p id="row-name-hor" *ngIf="row.isBraceHor">{{row.rowName}}</p>
+                    <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" />
+                </div>
+                <app-vertvertical-three-four-action *ngIf="row.isVer" [data]="row" (listChange)="onListCange($event)"></app-vertvertical-three-four-action>
+                <app-horizontal-three-four-action *ngIf="row.isHor" [data]="row"></app-horizontal-three-four-action>
+                <!-- <table id="st-ver" *ngIf="row.isVer">
+                    <tr>
+                        <td [ngClass]="{ 'select-cell': row.element === '11' && row.isSelectCellStillage }" (click)="onClickCell(row, '1', '1')">11</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '12' && row.isSelectCellStillage }" (click)="onClickCell(row, '1', '2')">12</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '13' && row.isSelectCellStillage }" (click)="onClickCell(row, '1', '3')">13</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '14' && row.isSelectCellStillage }" (click)="onClickCell(row, '1', '4')">14</td>
+                    </tr>
+                    <tr>
+                        <td [ngClass]="{ 'select-cell': row.element === '21' && row.isSelectCellStillage }" (click)="onClickCell(row, '2', '1')">21</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '22' && row.isSelectCellStillage }" (click)="onClickCell(row, '2', '2')">22</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '23' && row.isSelectCellStillage }" (click)="onClickCell(row, '2', '3')">23</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '24' && row.isSelectCellStillage }" (click)="onClickCell(row, '2', '4')">24</td>
+                    </tr>
+                    <tr>
+                        <td [ngClass]="{ 'select-cell': row.element === '31' && row.isSelectCellStillage }" (click)="onClickCell(row, '3', '1')">31</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '32' && row.isSelectCellStillage }" (click)="onClickCell(row, '3', '2')">32</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '33' && row.isSelectCellStillage }" (click)="onClickCell(row, '3', '3')">33</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '34' && row.isSelectCellStillage }" (click)="onClickCell(row, '3', '4')">34</td>
+                    </tr>
+                </table>  
+                    
+                <table id="st-hor" *ngIf="row.isHor">
+                    <tr>
+                        <td [ngClass]="{ 'select-cell': row.element === '14' && row.isSelectCellStillage }" (click)="onClickCell(row, '1', '4')">14</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '24' && row.isSelectCellStillage }" (click)="onClickCell(row, '2', '4')">24</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '34' && row.isSelectCellStillage }" (click)="onClickCell(row, '3', '4')">34</td>
+                    </tr>
+                    <tr>
+                        <td [ngClass]="{ 'select-cell': row.element === '13' && row.isSelectCellStillage }" (click)="onClickCell(row, '1', '3')">13</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '23' && row.isSelectCellStillage }" (click)="onClickCell(row, '2', '3')">23</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '33' && row.isSelectCellStillage }" (click)="onClickCell(row, '3', '3')">33</td>
+                    </tr>
+                    <tr>
+                        <td [ngClass]="{ 'select-cell': row.element === '12' && row.isSelectCellStillage }" (click)="onClickCell(row, '1', '2')">12</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '22' && row.isSelectCellStillage }" (click)="onClickCell(row, '2', '2')">22</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '32' && row.isSelectCellStillage }" (click)="onClickCell(row, '3', '2')">32</td>        
+                    </tr>
+                    <tr>
+                        <td [ngClass]="{ 'select-cell': row.element === '11' && row.isSelectCellStillage }" (click)="onClickCell(row, '1', '1')">11</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '21' && row.isSelectCellStillage }" (click)="onClickCell(row, '2', '1')">21</td>
+                        <td [ngClass]="{ 'select-cell': row.element === '31' && row.isSelectCellStillage }" (click)="onClickCell(row, '3', '1')">31</td>
+                    </tr>
+                </table>  -->
+            </td>
+        </tr>
+    </table>
+</pinch-zoom>

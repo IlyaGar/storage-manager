@@ -67,7 +67,7 @@
                     </mat-button-toggle-group>
                 </div>
             </div>
-            {{countListProducts}}
+            <!-- {{countListProducts}} -->
             <label class="error-style" *ngIf="isEmptySearchValue"> Введите значение </label>
         </mat-card>
        
@@ -131,7 +131,7 @@
                                     <th mat-header-cell *matHeaderCellDef>  </th>
                                     <td mat-cell *matCellDef="let element"> 
                                     <button mat-button (click)="openStoragePlacesDialog(element)">
-                                        <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+                                        <mat-icon aria-hidden="false" aria-label="Example home icon"> edit </mat-icon>
                                     </button>
                                     </td>
                                 </ng-container>

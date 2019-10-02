@@ -5,11 +5,11 @@ import { AppComponent } from './app.component';
 import { NavbarFormComponent } from './navbar-manager/navbar-form/navbar-form.component';
 import { LoginFormComponent } from './login-manager/login-form/login-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DemoMaterialModule } from './models-common/material-module';
+import { DemoMaterialModule } from './common/models/material-module';
 import { CookieService } from 'ngx-cookie-service';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { AppBootstrapModule } from './models-common/app-bootstrap-module';
+import { AppBootstrapModule } from './common/models/app-bootstrap-module';
 import { AttentionFormComponent } from './dialog-windows/attention-dialog/attention-form/attention-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WmsMapEditFormComponent } from './wms-map/wms-map-edit-form/wms-map-edit-form.component';
@@ -24,6 +24,10 @@ import { HorizontalThreeFourActionComponent } from './stillages/horizontal-three
 import { VertverticalThreeFourActionComponent } from './stillages/vertvertical-three-four-action/vertvertical-three-four-action.component';
 import { ProductGroupAccountingFormComponent } from './product-manager/product-group-accounting-form/product-group-accounting-form.component';
 import { StoragePlacesComponent } from './dialog-windows/storage-places-manager/storage-places/storage-places.component';
+import { TaskComponent } from './processes-manager/task/task.component';
+import { ChipsNewTaskComponent } from './helpers/chips-new-task/chips-new-task.component';
+import { SelectProcessesFormComponent } from './processes-manager/dialog-windows/select-processes-form/select-processes-form.component';
+import { SelectCellFormComponent } from './processes-manager/dialog-windows/select-cell-form/select-cell-form.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +46,10 @@ import { StoragePlacesComponent } from './dialog-windows/storage-places-manager/
     VertverticalThreeFourActionComponent,
     ProductGroupAccountingFormComponent,
     StoragePlacesComponent,
+    TaskComponent,
+    ChipsNewTaskComponent,
+    SelectProcessesFormComponent,
+    SelectCellFormComponent,
   ],
   imports: [
     FormsModule,
@@ -66,7 +74,9 @@ import { StoragePlacesComponent } from './dialog-windows/storage-places-manager/
     DetailViewCellComponent,
     NavbarFormComponent,
     InventoryDialogFormComponent,
-    StoragePlacesComponent
+    StoragePlacesComponent,
+    SelectProcessesFormComponent,
+    SelectCellFormComponent,
   ],
   bootstrap: [AppComponent]
 })

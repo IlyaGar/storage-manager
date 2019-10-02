@@ -1,0 +1,48 @@
+@media (max-width: 1360px) { /* это будет показано при разрешении монитора до 930 пикселей */
+    .example-container {
+        width: 90vw; /* включает в себя полосу прокрутки от body */ 
+        height: 80vh;
+    }
+}
+@media (max-width: 1920px) { /* это будет показано при разрешении монитора до 930 пикселей */
+    .example-container {
+        width: 100vw; /* включает в себя полосу прокрутки от body */ 
+        height: 94vh;
+    }
+} 
+mat-drawer {
+    padding: 5px;
+    width: 25vw;
+}
+table {
+    width: 100%;
+}
+.table-container {
+    overflow: auto;
+}
+.list-proc {
+    height: 20vh;
+    border: 0.12em solid rgba(128, 128, 128, 0.4);
+    border-radius: 5px;
+}
+th button {
+    margin-right: 0%;
+    border: none;
+    outline: none;
+    float: right;
+}
+p {
+    color: rgba(128, 128, 128);
+}
+p#as-method {
+    display: inline;
+}
+div.bt-inline {
+    display: inline; 
+}
+div > button {
+    margin-left: 0.4em;
+}
+.br-pad {
+    margin-bottom: 1em;
+}

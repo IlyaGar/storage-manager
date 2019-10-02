@@ -3,7 +3,7 @@
 }
 .table-bord {
     border-collapse: collapse;
-    border: 2px solid black; /* Рамка вокруг таблицы */
+    border: 2px solid black; 
 } 
 .td-bord {
     border: 1px solid rgba(128, 128, 128, 0.25);
@@ -25,44 +25,31 @@ table:hover {
 .no-chose {
     border: 1px solid rgba(128, 128, 128, 0.25);
 }
-/* .stillage {
-    border: 1px double  chocolate;
-    border: 1px double  rgb(252, 252, 252);
-} */
 app-st-three-four {
     display: contents;
 }
 .block {
-    float: left;
-    width:450px; 
+    float: left; 
+    width:300px; 
     margin-top: 10px;
     margin-right: 10px;
     margin-left: 10px;
 }
 .block1 {
-    float: left;
+    float: left; 
     margin-top: 10px;
     margin-right: 10px;
-    text-align: center;
-}
-mat-form-field {
-    width: 5em;
-    margin-right: 0.4em;
+    text-align: center; 
 }
 button#but-size-out {
     margin-left: 0.4em;
 }
-.table-st {
-    border-collapse: collapse;
-    border: 2px solid black; 
-    font-size: 10px;
-} 
 .sel-tab {
     background-color: aquamarine;
     border: 3px solid rgb(88, 88, 88); 
 }
 .block-st {
-    float: left; 
+    float: left;
     width: 40px; 
     margin-top: 10px;
     margin-right: 10px;
@@ -70,7 +57,6 @@ button#but-size-out {
 }
 .block-stillage {
     padding: 0%;
-    /* width: 40px;  */
     margin-top: 0%;
     margin-right: 10px;
     margin-left: 10px;
@@ -92,6 +78,7 @@ img#img-ver1 {
     font-size: 100%; 
     padding: 0%;
     margin: 0%;
+    
 }
 .td-brace-hor {
     transform: rotate(180deg);
@@ -113,7 +100,7 @@ img#img-ver1 {
 #road {
     width: 49px;
     height: 49px;
-    background-color: rgb(110, 110, 110);
+    /* background-color: rgb(110, 110, 110); */
 }
 .stillage-row-with-out-name {
     background-color: rgba(102, 118, 207, 0.3); 
@@ -124,6 +111,10 @@ img#img-ver1 {
 .stillage-select-cell {
     background-color: aquamarine; 
 }
+.stillage-select-cell-element {
+    border-collapse: collapse;
+    border: 2px solid black; 
+}
 .property-class {
     margin-top: 1em;
 }
@@ -131,7 +122,12 @@ mat-icon#icon-delete:hover {
     cursor: pointer;
 }
 mat-form-field#nameSt {
-    width: 12em;
+    width: 7em;
+    margin-right: 1em;
+}
+mat-form-field#yx {
+    width: 4em;
+    margin-right: 1em;
 }
 .road {
     background-color: rgba(109, 109, 105, 0.2);
@@ -168,73 +164,13 @@ div#name-row-hor {
 .zone_send {
     background-color: rgba(0, 255, 215, 0.5);
 }
-mat-card#input-from-to {
-    padding: 0.7em 0em 0em 0.5em;
+#butt-cancel {
+    margin-right: 0.5em;
 }
-img#img-from-to {
-    margin: 0% 0.8em 0% 0.4em;
-}
-table#st-ver {
-    border-collapse: collapse;
-    border-left-width: 2px; /* Толщина линии внизу */
-    border-left-style: solid; /* Стиль линии внизу */
-    border-left-color: black; /* Цвет линии внизу */
-    border-right-width: 2px; /* Толщина линии внизу */
-    border-right-style: solid; /* Стиль линии внизу */
-    border-right-color: black; /* Цвет линии внизу */
-    width: 25px;
-    height: 20px;
-    font-size: 8px;
-    padding: 0%;
-    margin: 0%;
-    width: 49px;
-    height: 49px;
-} 
-table#st-ver td {
-    border: 1px solid rgba(128, 128, 128, 0.25);
-    padding: 0%;
-    margin: 0%;
-}
-table#st-hor {
-    border-collapse: collapse;
-    border-bottom-width: 2px; /* Толщина линии внизу */
-    border-bottom-style: solid; /* Стиль линии внизу */
-    border-bottom-color: black; /* Цвет линии внизу */
-    border-top-width: 2px; /* Толщина линии внизу */
-    border-top-style: solid; /* Стиль линии внизу */
-    border-top-color: black; /* Цвет линии внизу */
-    width: 25px;
-    height: 20px;
-    font-size: 8px;
-    padding: 0%;
-    margin: 0%;
-    width: 49px;
-    height: 49px;
-} 
-table#st-hor td {
-    border: 1px solid rgba(128, 128, 128, 0.25);
-    padding: 0%;
-    margin: 0%;
-}
-img#img-clear {
-    width: 18px;
-    height: 18px;  
-    position: absolute;
-    top: -0.4em;
-    right: -0.4em; 
-}
-img#img-clear:hover {
-    width: 20px;
-    height: 20px;  
-}
-.select-cell-from {
-    background-color: aquamarine;
-}
-.select-cell-to {
-    background-color: rgba(137, 43, 226, 0.6);
-}
-#input-from-to button {
-    margin-left: 2em;
+label#changed {
+    font-size: 0.8em;
+    color: rgba(170, 45, 45, 0.75);
+    margin-right: 1em;
 }
 .s-left-bottom-top {
     border-left-color: black; /* Цвет линии справа */
@@ -347,4 +283,57 @@ img#img-clear:hover {
     border-top-color: black; /* Цвет линии справа */
     border-top-style: double; /* Стиль линии */
     border-top-width: 2px; /* Толщина линии */
+}
+table#st-ver {
+    border-collapse: collapse;
+    border-left-width: 2px; /* Толщина линии внизу */
+    border-left-style: solid; /* Стиль линии внизу */
+    border-left-color: black; /* Цвет линии внизу */
+    border-right-width: 2px; /* Толщина линии внизу */
+    border-right-style: solid; /* Стиль линии внизу */
+    border-right-color: black; /* Цвет линии внизу */
+    width: 25px;
+    height: 20px;
+    font-size: 8px;
+    padding: 0%;
+    margin: 0%;
+    width: 49px;
+    height: 49px;
+} 
+table#st-ver td {
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    padding: 0%;
+    margin: 0%;
+}
+table#st-hor {
+    border-collapse: collapse;
+    border-bottom-width: 2px; /* Толщина линии внизу */
+    border-bottom-style: solid; /* Стиль линии внизу */
+    border-bottom-color: black; /* Цвет линии внизу */
+    border-top-width: 2px; /* Толщина линии внизу */
+    border-top-style: solid; /* Стиль линии внизу */
+    border-top-color: black; /* Цвет линии внизу */
+    width: 25px;
+    height: 20px;
+    font-size: 8px;
+    padding: 0%;
+    margin: 0%;
+    width: 49px;
+    height: 49px;
+} 
+table#st-hor td {
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    padding: 0%;
+    margin: 0%;
+}
+button {
+    border: none!important;
+    outline: none!important;
+}
+mat-list-item:hover {
+    background-color: rgba(128, 128, 128, 0.5);
+    border-radius: 5px;
+}
+.select-cell {
+    background-color: aquamarine;
 }

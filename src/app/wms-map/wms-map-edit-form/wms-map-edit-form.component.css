@@ -3,7 +3,7 @@
 }
 .table-bord {
     border-collapse: collapse;
-    border: 2px solid black; /* Рамка вокруг таблицы */
+    border: 2px solid black; 
 } 
 .td-bord {
     border: 1px solid rgba(128, 128, 128, 0.25);
@@ -25,100 +25,31 @@ table:hover {
 .no-chose {
     border: 1px solid rgba(128, 128, 128, 0.25);
 }
-.stillage {
-    border: 1px double  chocolate;
-    /* border: 1px double  rgb(252, 252, 252); */
-}
-.stillage-cell-left-right {
-    border-right-color: chocolate; /* Цвет линии справа */
-    border-right-style: double; /* Стиль линии */
-    border-right-width: 3px; /* Толщина линии */
-    border-left-color: chocolate; /* Цвет линии справа */
-    border-left-style: double; /* Стиль линии */
-    border-left-width: 3px; /* Толщина линии */
-}
-.stillage-cell-top-bottom {
-    border-top-color: chocolate; /* Цвет линии справа */
-    border-top-style: double; /* Стиль линии */
-    border-top-width: 1px; /* Толщина линии */
-    border-bottom-color: chocolate; /* Цвет линии справа */
-    border-bottom-style: double; /* Стиль линии */
-    border-bottom-width: 1px; /* Толщина линии */
-}
-.stillage-cell-left-empty {
-    border-top-color: chocolate; /* Цвет линии справа */
-    border-top-style: double; /* Стиль линии */
-    border-top-width: 1px; /* Толщина линии */
-    border-bottom-color: chocolate; /* Цвет линии справа */
-    border-bottom-style: double; /* Стиль линии */
-    border-bottom-width: 1px; /* Толщина линии */
-    border-right-color: chocolate; /* Цвет линии справа */
-    border-right-style: double; /* Стиль линии */
-    border-right-width: 1px; /* Толщина линии */
-}
-.stillage-cell-top-empty {
-    border-left-color: chocolate; /* Цвет линии справа */
-    border-left-style: double; /* Стиль линии */
-    border-left-width: 1px; /* Толщина линии */
-    border-bottom-color: chocolate; /* Цвет линии справа */
-    border-bottom-style: double; /* Стиль линии */
-    border-bottom-width: 1px; /* Толщина линии */
-    border-right-color: chocolate; /* Цвет линии справа */
-    border-right-style: double; /* Стиль линии */
-    border-right-width: 1px; /* Толщина линии */
-}
-.stillage-cell-right-empty {
-    border-left-color: chocolate; /* Цвет линии справа */
-    border-left-style: double; /* Стиль линии */
-    border-left-width: 1px; /* Толщина линии */
-    border-bottom-color: chocolate; /* Цвет линии справа */
-    border-bottom-style: double; /* Стиль линии */
-    border-bottom-width: 1px; /* Толщина линии */
-    border-top-color: chocolate; /* Цвет линии справа */
-    border-top-style: double; /* Стиль линии */
-    border-top-width: 1px; /* Толщина линии */
-}
-.stillage-cell-bottom-empty {
-    border-left-color: chocolate; /* Цвет линии справа */
-    border-left-style: double; /* Стиль линии */
-    border-left-width: 1px; /* Толщина линии */
-    border-right-color: chocolate; /* Цвет линии справа */
-    border-right-style: double; /* Стиль линии */
-    border-right-width: 1px; /* Толщина линии */
-    border-top-color: chocolate; /* Цвет линии справа */
-    border-top-style: double; /* Стиль линии */
-    border-top-width: 1px; /* Толщина линии */
-}
 app-st-three-four {
     display: contents;
 }
 .block {
-    float: left; /*Задаем обтекание*/ 
+    float: left; 
     width:450px; 
     margin-top: 10px;
     margin-right: 10px;
     margin-left: 10px;
 }
 .block1 {
-    float: left; /*Задаем обтекание*/
+    float: left; 
     margin-top: 10px;
     margin-right: 10px;
-    text-align: center; /*Центрируем текст по горизонтали*/
+    text-align: center; 
 }
 button#but-size-out {
     margin-left: 0.4em;
 }
-.table-st {
-    border-collapse: collapse;
-    border: 2px solid black; /* Рамка вокруг таблицы */
-    font-size: 10px;
-} 
 .sel-tab {
     background-color: aquamarine;
     border: 3px solid rgb(88, 88, 88); 
 }
 .block-st {
-    float: left; /*Задаем обтекание*/ 
+    float: left;
     width: 40px; 
     margin-top: 10px;
     margin-right: 10px;
@@ -129,32 +60,6 @@ button#but-size-out {
     margin-top: 0%;
     margin-right: 10px;
     margin-left: 10px;
-}
-.hor-1 {
-    width: 20px;
-    height: 20px;
-    border-left-color: chocolate; /* Цвет линии справа */
-    border-left-style: double; /* Стиль линии */
-    border-left-width: 1px; /* Толщина линии */
-    border-bottom-color: chocolate; /* Цвет линии справа */
-    border-bottom-style: double; /* Стиль линии */
-    border-bottom-width: 1px; /* Толщина линии */
-    border-top-color: chocolate; /* Цвет линии справа */
-    border-top-style: double; /* Стиль линии */
-    border-top-width: 1px; /* Толщина линии */
-}
-.ver-1 {
-    width: 20px;
-    height: 20px;
-    border-left-color: chocolate; /* Цвет линии справа */
-    border-left-style: double; /* Стиль линии */
-    border-left-width: 1px; /* Толщина линии */
-    border-right-color: chocolate; /* Цвет линии справа */
-    border-right-style: double; /* Стиль линии */
-    border-right-width: 1px; /* Толщина линии */
-    border-top-color: chocolate; /* Цвет линии справа */
-    border-top-style: double; /* Стиль линии */
-    border-top-width: 1px; /* Толщина линии */
 }
 .space {
     margin-right: 0.4em;
@@ -208,7 +113,7 @@ img#img-ver1 {
 }
 .stillage-select-cell-element {
     border-collapse: collapse;
-    border: 2px solid black; /* Рамка вокруг таблицы */
+    border: 2px solid black; 
 }
 .property-class {
     margin-top: 1em;

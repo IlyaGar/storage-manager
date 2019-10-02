@@ -122,10 +122,24 @@
                     'stillage-row-with-out-name': cell.isStillageRowWithOutNameHor || cell.isStillageRowWithOutNameVer,
                     'stillage-cell-with-out-name': cell.isStillageOneWithOutName,
                     'stillage-select-cell': cell.isSelectCellStillage,
-                    'road': cell.isRoad,
+                    'road': cell.element === 'road',
                     'office': cell.element === 'office',
                     'zone_unload': cell.element === 'zone_unload',
-                    'zone_send': cell.element === 'zone_send'
+                    'zone_send': cell.element === 'zone_send',
+                    's-left-bottom-top': row.style === 's-left-bottom-top',
+                    's-bottom-top': row.style === 's-bottom-top',
+                    's-right-bottom-top': row.style === 's-right-bottom-top',
+                    's-left-top-right': row.style === 's-left-top-right',
+                    's-left-right': row.style === 's-left-right',
+                    's-left-bottom-right': row.style === 's-left-bottom-right',
+                    's-left-top': row.style === 's-left-top',
+                    's-right-top': row.style === 's-right-top',
+                    's-right-bottom': row.style === 's-right-bottom',
+                    's-left-bottom': row.style === 's-left-bottom',
+                    's-left': row.style === 's-left',
+                    's-right': row.style === 's-right',
+                    's-bottom': row.style === 's-bottom',
+                    's-top': row.style === 's-top'
                 }">
                 {{cell.cellName}}
                 <div>
@@ -155,10 +169,24 @@
                     'stillage-row-with-out-name': cell.isStillageRowWithOutNameHor || cell.isStillageRowWithOutNameVer,
                     'stillage-cell-with-out-name': cell.isStillageOneWithOutName,
                     'stillage-select-cell': cell.isSelectCellStillage && !isFromTo,
-                    'road': cell.element === 'road',
-                    'office': cell.element === 'office',
-                    'zone_unload': cell.element === 'zone_unload',
-                    'zone_send': cell.element === 'zone_send'
+                    'road': row.element === 'road',
+                    'office': row.element === 'office',
+                    'zone_send': row.element === 'zone_send',
+                    'zone_unload': row.element === 'zone_unload',
+                    's-left-bottom-top': row.style === 's-left-bottom-top',
+                    's-bottom-top': row.style === 's-bottom-top',
+                    's-right-bottom-top': row.style === 's-right-bottom-top',
+                    's-left-top-right': row.style === 's-left-top-right',
+                    's-left-right': row.style === 's-left-right',
+                    's-left-bottom-right': row.style === 's-left-bottom-right',
+                    's-left-top': row.style === 's-left-top',
+                    's-right-top': row.style === 's-right-top',
+                    's-right-bottom': row.style === 's-right-bottom',
+                    's-left-bottom': row.style === 's-left-bottom',
+                    's-left': row.style === 's-left',
+                    's-right': row.style === 's-right',
+                    's-bottom': row.style === 's-bottom',
+                    's-top': row.style === 's-top'
                 }">
                 {{cell.cellName}}
                 <div>
@@ -256,7 +284,21 @@
                         'road': cell.element === 'road',
                         'office': cell.element === 'office',
                         'zone_unload': cell.element === 'zone_unload',
-                        'zone_send': cell.element === 'zone_send'
+                        'zone_send': cell.element === 'zone_send',
+                        's-left-bottom-top': row.style === 's-left-bottom-top',
+                        's-bottom-top': row.style === 's-bottom-top',
+                        's-right-bottom-top': row.style === 's-right-bottom-top',
+                        's-left-top-right': row.style === 's-left-top-right',
+                        's-left-right': row.style === 's-left-right',
+                        's-left-bottom-right': row.style === 's-left-bottom-right',
+                        's-left-top': row.style === 's-left-top',
+                        's-right-top': row.style === 's-right-top',
+                        's-right-bottom': row.style === 's-right-bottom',
+                        's-left-bottom': row.style === 's-left-bottom',
+                        's-left': row.style === 's-left',
+                        's-right': row.style === 's-right',
+                        's-bottom': row.style === 's-bottom',
+                        's-top': row.style === 's-top'
                     }">
                     {{cell.cellName}}
                     <div>
