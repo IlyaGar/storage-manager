@@ -3,6 +3,7 @@ import { StillageItem } from 'src/app/wms-map/models/stillage-item';
 import { MatDialog } from '@angular/material/dialog';
 import { DetailViewCellComponent } from 'src/app/dialog-windows/detail-view-cell-manager/detail-view-cell/detail-view-cell.component';
 import { InventoryItem } from 'src/app/wms-map/models/inventory-item';
+import { StillageService } from 'src/app/common/services/stillage.service';
 
 export class Item{
   constructor(
@@ -43,7 +44,13 @@ export class VertverticalThreeFourActionComponent implements OnInit {
   
   constructor(
     public dialog: MatDialog,
-  ) { }
+    private stillageService: StillageService,
+  ) { 
+      this.stillageService.events$.forEach(event => { 
+        console.log(event); 
+        this.listenEvent(event) 
+      });
+  }
 
   ngOnInit() {
     this.listSelected = [];
@@ -53,32 +60,7 @@ export class VertverticalThreeFourActionComponent implements OnInit {
 
   onClickCell(numberCell, floorCell) {
     if(this.stillageItem.stillageName) {
-    //   this.onOpenDetailWindow(numberCell, floorCell);
-      if(numberCell + floorCell === '11') 
-        this.selItem.c11 = !this.selItem.c11;
-      if(numberCell + floorCell === '12')
-        this.selItem.c12 = !this.selItem.c12 ;
-      if(numberCell + floorCell === '13')
-        this.selItem.c13 = !this.selItem.c13;
-      if(numberCell + floorCell === '14')
-        this.selItem.c14 = !this.selItem.c14;
-      if(numberCell + floorCell === '21')
-        this.selItem.c21 = !this.selItem.c21;
-      if(numberCell + floorCell === '22')
-        this.selItem.c22 = !this.selItem.c22;
-      if(numberCell + floorCell === '23')
-        this.selItem.c23 = !this.selItem.c23;
-      if(numberCell + floorCell === '24')
-        this.selItem.c24 = !this.selItem.c24;
-      if(numberCell + floorCell === '31')
-        this.selItem.c31 = !this.selItem.c31;
-      if(numberCell + floorCell === '32')
-        this.selItem.c32 = !this.selItem.c32;
-      if(numberCell + floorCell === '33')
-        this.selItem.c33 = !this.selItem.c33;
-      if(numberCell + floorCell === '34')
-        this.selItem.c34 = !this.selItem.c34;
-      // this.listSelected = this.listSelected.concat(this.stillageItem.stillageName + '-' + numberCell + '-' + floorCell);
+      this.getCellItem(numberCell, floorCell);
       this.listChange.emit(this.stillageItem.stillageName + '-' + numberCell + '-' + floorCell);
     }
   }
@@ -91,5 +73,38 @@ export class VertverticalThreeFourActionComponent implements OnInit {
       if(result)
         this.ngOnInit();
     });
+  }
+
+  listenEvent(event: Array<string>) {
+    if(this.stillageItem.stillageName === event[0]) {
+      this.getCellItem(event[1], event[2]);
+    }
+  }
+
+  getCellItem(numberCell, floorCell) {
+    if(numberCell + floorCell === '11') 
+      this.selItem.c11 = !this.selItem.c11;
+    if(numberCell + floorCell === '12')
+      this.selItem.c12 = !this.selItem.c12 ;
+    if(numberCell + floorCell === '13')
+      this.selItem.c13 = !this.selItem.c13;
+    if(numberCell + floorCell === '14')
+      this.selItem.c14 = !this.selItem.c14;
+    if(numberCell + floorCell === '21')
+      this.selItem.c21 = !this.selItem.c21;
+    if(numberCell + floorCell === '22')
+      this.selItem.c22 = !this.selItem.c22;
+    if(numberCell + floorCell === '23')
+      this.selItem.c23 = !this.selItem.c23;
+    if(numberCell + floorCell === '24')
+      this.selItem.c24 = !this.selItem.c24;
+    if(numberCell + floorCell === '31')
+      this.selItem.c31 = !this.selItem.c31;
+    if(numberCell + floorCell === '32')
+      this.selItem.c32 = !this.selItem.c32;
+    if(numberCell + floorCell === '33')
+      this.selItem.c33 = !this.selItem.c33;
+    if(numberCell + floorCell === '34')
+      this.selItem.c34 = !this.selItem.c34;
   }
 }
