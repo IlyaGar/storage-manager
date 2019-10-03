@@ -284,3 +284,6 @@ label#changed {
     border-top-style: double; /* Стиль линии */
     border-top-width: 2px; /* Толщина линии */
 }
+mat-card {
+    padding-bottom: 1em;
+}

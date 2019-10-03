@@ -124,7 +124,7 @@
 
             <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedEditor">
                 <mat-button-toggle value="delete-element" (click)="isChoiceDelete = true">
-                    <mat-icon id="icon-delete" aria-hidden="false" aria-label="Example home icon" >delete_forever</mat-icon>
+                    <mat-icon id="icon-delete" aria-hidden="false" aria-label="Example home icon"> delete_forever </mat-icon>
                 </mat-button-toggle>
             </mat-button-toggle-group>
 
@@ -161,7 +161,7 @@
                             <input  type="text" matInput placeholder="Ряд стеллажей" [(ngModel)]="stillageRowName">
                     </mat-form-field>
                     <br>
-                    <button mat-raised-button (click)="onSaveProperty()">Сохранить</button>
+                    <button id="but-size-out" mat-raised-button (click)="onSaveProperty()">Сохранить</button>
                 </div>
 
                 <div *ngIf="!isSelectedRowStillages && isSelectedStillage && !isSelectedElement">
@@ -174,7 +174,7 @@
                             <input type="text" matInput placeholder="Имя стеллажа" [(ngModel)]="stillageName">
                         </mat-form-field>
                         <br>
-                        <button mat-raised-button (click)="onSaveProperty()">Сохранить</button>
+                        <button id="but-size-out" mat-raised-button (click)="onSaveProperty()">Сохранить</button>
                     </div>
                     <div *ngIf="!isSelectCellWithRowName">
                         <label> Назовите ряд стеллажей! </label>
@@ -189,7 +189,7 @@
                         </mat-form-field>
                         <br>
                         <button mat-raised-button (click)="onCanselPropertyZone()">Отмена</button>
-                        <button mat-raised-button (click)="onSavePropertyZone()">Сохранить</button>
+                        <button id="but-size-out" mat-raised-button (click)="onSavePropertyZone()">Сохранить</button>
                     </div>
                     <label *ngIf="currentCell.element === 'road'"> road </label>
                 </div>                  

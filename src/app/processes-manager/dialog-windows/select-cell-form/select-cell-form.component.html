@@ -1,9 +1,16 @@
 <div>
 <div class="block">
     <mat-list>
-        <mat-form-field id="fromto">
-            <input type="text" matInput placeholder="Ячейка" [(ngModel)]="cellName">
-        </mat-form-field>        
+        <mat-form-field>
+            <input type="text" matInput placeholder="Ячейка" [(ngModel)]="cellName" (keyup.enter)="onEnterAdd()" (input)="isIncorrect = false">
+            <div *ngIf="isIncorrect" class="attention"> Такая ячейка ужу в списке! </div> 
+        </mat-form-field>   
+        <ng-container *ngIf="cellName">
+            <button mat-mini-fab color="primary" cdkFocusInitial (click)="onEnterAdd()">
+                <mat-icon aria-hidden="false" aria-label="Example home icon"> check </mat-icon>
+            </button>
+        </ng-container>    
+        
         <mat-list-item *ngFor="let item of listSelected">
             <h3 matLine> {{item}} </h3>
             <button mat-mini-fab color="warn" (click)="onDelete(item)">
@@ -22,7 +29,7 @@
         </div>
     </div>
 </div>
-
+<div class="block1-overflow">
 <pinch-zoom class="block1">
     <table class="table-bord">
         <tr class="tr-bord" *ngFor="let col of tab_map; let i = index">
@@ -64,4 +71,5 @@
         </tr>
     </table>
 </pinch-zoom>
+</div>
 </div>

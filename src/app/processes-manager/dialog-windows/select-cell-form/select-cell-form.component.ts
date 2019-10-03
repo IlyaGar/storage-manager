@@ -18,6 +18,7 @@ export class SelectCellFormComponent implements OnInit {
   x_width: number;
   cellSelected: string = '';
   cellName: string = '';
+  isIncorrect = false;
 
   constructor(
     private stillageService: StillageService,
@@ -44,12 +45,14 @@ export class SelectCellFormComponent implements OnInit {
   onClickCell(stillage: StillageItem, numberCell: string, floorCell: string) {
     if(stillage.element === 'office' || stillage.element === 'zone_send' || stillage.element === 'zone_unload') {
       if(stillage.cellName) {
-        this.listSelected = this.listSelected.concat(stillage.cellName);
+        // this.listSelected = this.listSelected.concat(stillage.cellName);
+        this.onListCange(stillage.cellName);
       }
       if(stillage.yxName) {
         var splited = stillage.yxName.split(';');
         if(splited.length == 2)
-          this.listSelected = this.listSelected.concat(this.tab_map[splited[0]][splited[1]].cellName);
+          // this.listSelected = this.listSelected.concat(this.tab_map[splited[0]][splited[1]].cellName);
+          this.onListCange(this.tab_map[splited[0]][splited[1]].cellName);
       }
     }
   }
@@ -75,6 +78,37 @@ export class SelectCellFormComponent implements OnInit {
       this.listSelected = this.listSelected.filter(item => item !== cell);
     else
       this.listSelected = this.listSelected.concat(cell);
+  }
+
+  onEnterAdd() {
+    if(!this.listSelected.includes(this.cellName)) {
+      var isExist = false;
+      if(this.cellName) {
+        var splited = this.cellName.split('-');
+        if(splited.length === 3) {
+          this.tab_map.forEach(element => {
+            element.forEach(element => {
+              if(element.stillageName === splited[0]) {
+                isExist = true;
+              }
+            });
+          });
+        }
+        if(splited.length === 1) {
+          this.tab_map.forEach(element => {
+            element.forEach(element => {
+              if(element.stillageName === splited[0]) {
+                if(element.element) 
+                  isExist = true;
+              }
+            });
+          });
+        }
+      }
+      if(isExist) {
+        this.listSelected = this.listSelected.concat(this.cellName);
+      }
+    } else this.isIncorrect = true;
   }
 
   onOkClick(): void {

@@ -41,6 +41,11 @@ app-st-three-four {
     margin-right: 10px;
     text-align: center; 
 }
+.block1-overflow {
+    overflow: auto;
+    height: 750px;
+    width: 750px;
+}
 button#but-size-out {
     margin-left: 0.4em;
 }
@@ -342,7 +347,7 @@ mat-list-item:hover {
 }
 mat-form-field {
     margin: 0% 1em;
-    width: 80%;
+    width: 70%;
 }
 .select-cell {
     background-color: aquamarine;
@@ -355,4 +360,8 @@ hr {
 }
 .empty {
     height: 1em;
+}
+.attention {
+    color: red;
+    font-size: 0.8em;
 }

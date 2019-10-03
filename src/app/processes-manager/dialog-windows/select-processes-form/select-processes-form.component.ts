@@ -45,8 +45,11 @@ export class SelectProcessesFormComponent implements OnInit {
       if(this.myControl.value !== 'Ротация') {
         if(this.selectedZone === 'auto') 
           this.listProcesses = this.listProcesses.concat({ name: this.myControl.value, zone: 'Авто' });
-        else
-          this.listProcesses = this.listProcesses.concat({ name: this.myControl.value, zone: this.listSelected.toString() });
+        else 
+          if(this.listSelected.length > 0)
+            this.listProcesses = this.listProcesses.concat({ name: this.myControl.value, zone: this.listSelected.toString() });
+          else 
+            this.listProcesses = this.listProcesses.concat({ name: this.myControl.value, zone: 'Авто' });
       } else {
         if(this.cellFrom && this.cellTo) {
           this.listProcesses = this.listProcesses.concat({ name: this.myControl.value, zone: this.cellFrom + '->' + this.cellTo  });

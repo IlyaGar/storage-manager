@@ -413,11 +413,13 @@ export class WmsMapEditFormComponent implements OnInit {
           cell.isHor = true;
           cell.isStillageOneWithOutName = true;
           cell.isBusy = true;
+          this.isChanged = true;
         }
         if(cell.isStillageRowWithOutNameVer) {
           cell.isVer = true;
           cell.isStillageOneWithOutName = true;
           cell.isBusy = true;
+          this.isChanged = true;
         }
       }
   }
