@@ -1,12 +1,26 @@
+<div>
 <div class="block">
     <mat-list>
+        <mat-form-field id="fromto">
+            <input type="text" matInput placeholder="Ячейка" [(ngModel)]="cellName">
+        </mat-form-field>        
         <mat-list-item *ngFor="let item of listSelected">
             <h3 matLine> {{item}} </h3>
-            <button mat-mini-fab color="warn" cdkFocusInitial (click)="onDelete(item)">
+            <button mat-mini-fab color="warn" (click)="onDelete(item)">
                 <mat-icon aria-hidden="false" aria-label="Example home icon"> clear </mat-icon>
             </button>
         </mat-list-item>
       </mat-list>
+      <div class="form-inline br-pad">
+        <div mat-dialog-actions>
+            <button mat-raised-button id="butt-cancel" color="primary"class="btn btn-default">
+                Очистить
+            </button> 
+            <button mat-raised-button cdkFocusInitial color="primary" class="btn btn-default" (click)="onOkClick()">
+                Ок
+            </button> 
+        </div>
+    </div>
 </div>
 
 <pinch-zoom class="block1">
@@ -45,7 +59,7 @@
                     <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" />
                 </div>
                 <app-vertvertical-three-four-action *ngIf="row.isVer" [data]="row" (listChange)="onListCange($event)"></app-vertvertical-three-four-action>
-                <app-horizontal-three-four-action *ngIf="row.isHor" [data]="row"></app-horizontal-three-four-action>
+                <app-horizontal-three-four-action *ngIf="row.isHor" [data]="row" (listChange)="onListCange($event)"></app-horizontal-three-four-action>
                 <!-- <table id="st-ver" *ngIf="row.isVer">
                     <tr>
                         <td [ngClass]="{ 'select-cell': row.element === '11' && row.isSelectCellStillage }" (click)="onClickCell(row, '1', '1')">11</td>
@@ -93,3 +107,4 @@
         </tr>
     </table>
 </pinch-zoom>
+</div>

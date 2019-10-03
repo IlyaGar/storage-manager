@@ -54,30 +54,30 @@ export class VertverticalThreeFourActionComponent implements OnInit {
   onClickCell(numberCell, floorCell) {
     if(this.stillageItem.stillageName) {
     //   this.onOpenDetailWindow(numberCell, floorCell);
-      if(numberCell + floorCell === '11')
-        this.selItem.c11 = true;
+      if(numberCell + floorCell === '11') 
+        this.selItem.c11 = !this.selItem.c11;
       if(numberCell + floorCell === '12')
-        this.selItem.c12 = true;
+        this.selItem.c12 = !this.selItem.c12 ;
       if(numberCell + floorCell === '13')
-        this.selItem.c13 = true;
+        this.selItem.c13 = !this.selItem.c13;
       if(numberCell + floorCell === '14')
-        this.selItem.c14 = true;
+        this.selItem.c14 = !this.selItem.c14;
       if(numberCell + floorCell === '21')
-        this.selItem.c21 = true;
+        this.selItem.c21 = !this.selItem.c21;
       if(numberCell + floorCell === '22')
-        this.selItem.c22 = true;
+        this.selItem.c22 = !this.selItem.c22;
       if(numberCell + floorCell === '23')
-        this.selItem.c23 = true;
+        this.selItem.c23 = !this.selItem.c23;
       if(numberCell + floorCell === '24')
-        this.selItem.c24 = true;
+        this.selItem.c24 = !this.selItem.c24;
       if(numberCell + floorCell === '31')
-        this.selItem.c31 = true;
+        this.selItem.c31 = !this.selItem.c31;
       if(numberCell + floorCell === '32')
-        this.selItem.c32 = true;
+        this.selItem.c32 = !this.selItem.c32;
       if(numberCell + floorCell === '33')
-        this.selItem.c33 = true;
+        this.selItem.c33 = !this.selItem.c33;
       if(numberCell + floorCell === '34')
-        this.selItem.c34 = true;
+        this.selItem.c34 = !this.selItem.c34;
       // this.listSelected = this.listSelected.concat(this.stillageItem.stillageName + '-' + numberCell + '-' + floorCell);
       this.listChange.emit(this.stillageItem.stillageName + '-' + numberCell + '-' + floorCell);
     }
@@ -92,8 +92,4 @@ export class VertverticalThreeFourActionComponent implements OnInit {
         this.ngOnInit();
     });
   }
-
-  // onClickCell(numberCell, floorCell) {
-  //   this.onChanged.emit(numberCell + '-' + floorCell);
-  // }
 }

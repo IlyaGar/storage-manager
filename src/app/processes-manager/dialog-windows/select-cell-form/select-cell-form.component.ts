@@ -3,6 +3,26 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { WmsMapService } from 'src/app/wms-map/services/wms-map.service';
 import { StillageItem } from 'src/app/wms-map/models/stillage-item';
 
+export class Item{
+  constructor(
+    public st: string,
+    public c11: boolean,
+    public c12: boolean,
+    public c13: boolean,
+    public c14: boolean,
+  
+    public c21: boolean,
+    public c22: boolean,
+    public c23: boolean,
+    public c24: boolean,
+   
+    public c31: boolean,
+    public c32: boolean,
+    public c33: boolean,
+    public c34: boolean,
+  ){}
+}
+
 @Component({
   selector: 'app-select-cell-form',
   templateUrl: './select-cell-form.component.html',
@@ -15,6 +35,9 @@ export class SelectCellFormComponent implements OnInit {
   listSelectedItems: Array<StillageItem> = [];
   y_height: number;
   x_width: number;
+  selItem: Item = new Item('', false, false, false, false, false, false, false, false, false, false, false, false);
+  cellSelected: string = '';
+  cellName: string = '';
 
   constructor(
     private wmsMapService: WmsMapService,
@@ -85,6 +108,13 @@ export class SelectCellFormComponent implements OnInit {
   }
 
   onListCange(cell: string) {
-    this.listSelected = this.listSelected.concat(cell);
+    if(this.listSelected.includes(cell))
+      this.listSelected = this.listSelected.filter(item => item !== cell);
+    else
+      this.listSelected = this.listSelected.concat(cell);
+  }
+
+  onOkClick(): void {
+    this.dialogRef.close(this.listSelected);
   }
 }

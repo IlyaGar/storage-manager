@@ -15,7 +15,8 @@ interface Processe {
 })
 export class SelectProcessesFormComponent implements OnInit {
 
-  listProcesses: Array<Processe> = [ { name: '', zone: ''} ];
+  listSelected: Array<string> = [];
+  listProcesses: Array<Processe> = [ { name: '', zone: '' } ];
   displayedColumnsProcesses = ['processe', 'zone', 'action'];
   cellFrom: string = '';
   cellTo: string = '';
@@ -26,15 +27,14 @@ export class SelectProcessesFormComponent implements OnInit {
     'Приемка',
     'Размешение',
     'Отборка',
-    'Отборка',
     'Ротация',
     'Инвентаризация'
   ];
   
   constructor(
     public dialog: MatDialog,
-    public dialogRef: MatDialogRef<SelectProcessesFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    // public dialogRef: MatDialogRef<SelectProcessesFormComponent>,
+    // @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
 
   ngOnInit() {
@@ -43,15 +43,20 @@ export class SelectProcessesFormComponent implements OnInit {
   onAdd() {
     if(this.myControl.value) {
       if(this.myControl.value !== 'Ротация') {
-        this.listProcesses = this.listProcesses.concat({ name: this.myControl.value, zone: this.selectedZone });
+        if(this.selectedZone === 'auto') 
+          this.listProcesses = this.listProcesses.concat({ name: this.myControl.value, zone: 'Авто' });
+        else
+          this.listProcesses = this.listProcesses.concat({ name: this.myControl.value, zone: this.listSelected.toString() });
       } else {
-        if(this.cellFrom && this.cellTo)
-          this.listProcesses = this.listProcesses.concat({ name: this.myControl.value, zone: this.cellFrom + '->' + this.cellTo });
+        if(this.cellFrom && this.cellTo) {
+          this.listProcesses = this.listProcesses.concat({ name: this.myControl.value, zone: this.cellFrom + '->' + this.cellTo  });
+        }
       }
       this.myControl.reset();
       this.selectedZone = 'auto';
       this.cellFrom = '';
       this.cellTo = '';
+      this.listSelected = [];
     }
   }
 
@@ -65,7 +70,7 @@ export class SelectProcessesFormComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
-
+        this.listSelected = this.listSelected.concat(result);
       }
     });
   }

@@ -24,7 +24,7 @@
                 <ng-container *ngIf="element.name"> {{element.zone}} </ng-container>
                 <ng-container *ngIf="!element.name">
                     <div class="bt-inline">
-                        <ng-container *ngIf="myControl.value && myControl.value !== 'Ротация'">
+                        <ng-container *ngIf="myControl.value && myControl.value !== 'Ротация' && listSelected.length == '0'">
                             <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedZone">
                                 <mat-button-toggle id="but" value="auto" data-toggle="tooltip" data-placement="bottom" title="Артикл">
                                     Авто
@@ -33,6 +33,9 @@
                                     Зона
                                 </mat-button-toggle>
                             </mat-button-toggle-group>
+                        </ng-container>
+                        <ng-container *ngIf="selectedZone === 'hand'">
+                            {{listSelected}}
                         </ng-container>
                         <ng-container *ngIf="myControl.value === 'Ротация'">
                             <mat-form-field id="fromto">
@@ -45,9 +48,6 @@
                                 <input type="text" matInput placeholder="Куда" [(ngModel)]="cellTo">
                                 <img id="img-clear" src="../../assets/outline_cancel_black_24dp.png" (click)="onClickClearTo()"/>                    
                             </mat-form-field>
-                        </ng-container>
-                        <ng-container *ngIf="selectedZone === 'hand'">
-                            !!!!!!!!!!!!!!
                         </ng-container>
                     </div>
                 </ng-container>
@@ -62,9 +62,14 @@
                             <mat-icon aria-hidden="false" aria-label="Example home icon"> clear </mat-icon>
                         </button>
                     </ng-container>
-                    <ng-container *ngIf="!element.name">
+                    <ng-container *ngIf="!element.name && myControl.value">
                         <button mat-mini-fab color="primary" cdkFocusInitial (click)="onAdd()">
-                            <mat-icon aria-hidden="false" aria-label="Example home icon"> add </mat-icon>
+                            <mat-icon aria-hidden="false" aria-label="Example home icon"> check </mat-icon>
+                            <!-- <img src="../../assets/checkmark_icon.ico" width="26" height="26" /> -->
+                        </button>
+                        <button mat-mini-fab color="warn" cdkFocusInitial (click)="onClear()">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon"> delete_outline </mat-icon>
+                                <!-- <img src="../../assets/checkmark_icon.ico" width="26" height="26" /> -->
                         </button>
                     </ng-container>
                 </td>
