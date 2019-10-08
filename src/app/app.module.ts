@@ -28,6 +28,7 @@ import { TaskComponent } from './processes-manager/task/task.component';
 import { ChipsNewTaskComponent } from './helpers/chips-new-task/chips-new-task.component';
 import { SelectProcessesFormComponent } from './processes-manager/dialog-windows/select-processes-form/select-processes-form.component';
 import { SelectCellFormComponent } from './processes-manager/dialog-windows/select-cell-form/select-cell-form.component';
+import { DocListComponent } from './processes-manager/dialog-windows/doc-list/doc-list.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { SelectCellFormComponent } from './processes-manager/dialog-windows/sele
     ChipsNewTaskComponent,
     SelectProcessesFormComponent,
     SelectCellFormComponent,
+    DocListComponent,
   ],
   imports: [
     FormsModule,
@@ -77,6 +79,7 @@ import { SelectCellFormComponent } from './processes-manager/dialog-windows/sele
     StoragePlacesComponent,
     SelectProcessesFormComponent,
     SelectCellFormComponent,
+    DocListComponent,
   ],
   bootstrap: [AppComponent]
 })

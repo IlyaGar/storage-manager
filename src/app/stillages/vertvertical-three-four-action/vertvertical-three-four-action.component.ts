@@ -41,6 +41,7 @@ export class VertverticalThreeFourActionComponent implements OnInit {
   selItem: Item = new Item(false, false, false, false, false, false, false, false, false, false, false, false);
   listSelected: Array<string> = [];
   cellSelected: string = '';
+  countClick: number;
   
   constructor(
     public dialog: MatDialog,
@@ -48,7 +49,11 @@ export class VertverticalThreeFourActionComponent implements OnInit {
   ) { 
       this.stillageService.events$.forEach(event => { 
         console.log(event); 
-        this.listenEvent(event) 
+        this.listenEvent(event);
+      });
+      this.stillageService.events_click$.forEach(event => { 
+        console.log(event + ' - rotation'); 
+        this.listenEventClick(event);
       });
   }
 
@@ -63,6 +68,13 @@ export class VertverticalThreeFourActionComponent implements OnInit {
       this.getCellItem(numberCell, floorCell);
       this.listChange.emit(this.stillageItem.stillageName + '-' + numberCell + '-' + floorCell);
     }
+      // if(this.countClick > 0) {
+      //   this.countClick--;   
+      //   if(this.stillageItem.stillageName) {
+      //     this.getCellItem(numberCell, floorCell);
+      //     this.listChange.emit(this.stillageItem.stillageName + '-' + numberCell + '-' + floorCell);
+      //   }
+      // }
   }
 
   onOpenDetailWindow(numberCell, floorCell) {
@@ -79,6 +91,11 @@ export class VertverticalThreeFourActionComponent implements OnInit {
     if(this.stillageItem.stillageName === event[0]) {
       this.getCellItem(event[1], event[2]);
     }
+  }
+
+  listenEventClick(event: number) {
+    this.countClick = event;
+    this.stillageItem.stillageName;
   }
 
   getCellItem(numberCell, floorCell) {

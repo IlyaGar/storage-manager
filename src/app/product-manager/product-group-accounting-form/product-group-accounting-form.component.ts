@@ -76,9 +76,6 @@ export class ProductGroupAccountingFormComponent implements OnInit {
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
   
-  // @ViewChild("productTable", {static: true}) productTable: MatTable<any>;
-  // @ViewChild("productTable", {static: true}) productTable1: ElementRef;
-  
   ngOnInit() {
     this.productService.getList(new DownList(this.getToken(this.nameCookie))).subscribe(response => {
       this.checkResponseList(response); 
@@ -211,7 +208,7 @@ export class ProductGroupAccountingFormComponent implements OnInit {
 
   onSelectRowClick(row: string) {
     if(row[0]) {
-      this.selectedRowIndex = row[0]
+      this.selectedRowIndex = row[0];
       this.productService.getProductProp(new ProductProp(this.getToken(this.nameCookie), row[0])).subscribe(response => {
         this.checkResponseProductProp(response); 
       }, 

@@ -51,8 +51,8 @@ export class SelectProcessesFormComponent implements OnInit {
           else 
             this.listProcesses = this.listProcesses.concat({ name: this.myControl.value, zone: 'Авто' });
       } else {
-        if(this.cellFrom && this.cellTo) {
-          this.listProcesses = this.listProcesses.concat({ name: this.myControl.value, zone: this.cellFrom + '->' + this.cellTo  });
+        if(this.listSelected) {
+          this.listProcesses = this.listProcesses.concat({ name: this.myControl.value, zone: this.listSelected.toString() });
         }
       }
       this.myControl.reset();
@@ -67,9 +67,15 @@ export class SelectProcessesFormComponent implements OnInit {
     this.listProcesses = this.listProcesses.filter(item => item !== element);
   }
 
+  onClear() {
+    this.myControl.reset();
+    this.listSelected = [];
+  }
+
   openSelectCell(element: Processe) {
     const dialogRef = this.dialog.open(SelectCellFormComponent, {
       // height: '700px',
+      data: { select: this.myControl.value },
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result) {

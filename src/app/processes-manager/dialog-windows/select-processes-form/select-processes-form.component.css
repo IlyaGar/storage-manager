@@ -91,18 +91,3 @@ table {
     -webkit-hyphens: auto;
     hyphens: auto;
 }  
-img#img-clear {
-    width: 18px;
-    height: 18px;  
-    position: absolute;
-    top: -0.4em;
-    right: -0.4em; 
-}
-img#img-clear:hover {
-    width: 20px;
-    height: 20px;  
-}
-mat-form-field#fromto {
-    width: 5em;
-    margin: 0% 0.4em;
-}

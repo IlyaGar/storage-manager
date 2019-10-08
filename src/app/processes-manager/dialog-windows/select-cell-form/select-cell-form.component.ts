@@ -4,6 +4,10 @@ import { WmsMapService } from 'src/app/wms-map/services/wms-map.service';
 import { StillageItem } from 'src/app/wms-map/models/stillage-item';
 import { StillageService } from 'src/app/common/services/stillage.service';
 
+export interface DialogData {
+  select: string;
+}
+
 @Component({
   selector: 'app-select-cell-form',
   templateUrl: './select-cell-form.component.html',
@@ -18,16 +22,22 @@ export class SelectCellFormComponent implements OnInit {
   x_width: number;
   cellSelected: string = '';
   cellName: string = '';
+  cellFrom: string = '';
+  cellTo: string = '';
   isIncorrect = false;
+  
 
   constructor(
     private stillageService: StillageService,
     private wmsMapService: WmsMapService,
     public dialogRef: MatDialogRef<SelectCellFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) { }
 
   ngOnInit() {
+    if(this.data.select === 'Ротация') {
+      this.stillageService.clickEvent(2);
+    }
     this.wmsMapService.getData().subscribe(response =>  { 
       if(response) {
         this.tab_map = response.stillageItem;
@@ -45,13 +55,11 @@ export class SelectCellFormComponent implements OnInit {
   onClickCell(stillage: StillageItem, numberCell: string, floorCell: string) {
     if(stillage.element === 'office' || stillage.element === 'zone_send' || stillage.element === 'zone_unload') {
       if(stillage.cellName) {
-        // this.listSelected = this.listSelected.concat(stillage.cellName);
         this.onListCange(stillage.cellName);
       }
       if(stillage.yxName) {
         var splited = stillage.yxName.split(';');
         if(splited.length == 2)
-          // this.listSelected = this.listSelected.concat(this.tab_map[splited[0]][splited[1]].cellName);
           this.onListCange(this.tab_map[splited[0]][splited[1]].cellName);
       }
     }
@@ -74,10 +82,18 @@ export class SelectCellFormComponent implements OnInit {
   }
 
   onListCange(cell: string) {
-    if(this.listSelected.includes(cell))
-      this.listSelected = this.listSelected.filter(item => item !== cell);
-    else
-      this.listSelected = this.listSelected.concat(cell);
+    if(this.data.select === 'Ротация') {
+      if(!this.cellFrom) 
+        this.cellFrom = cell;
+      else 
+        if(!this.cellTo)
+          this.cellTo = cell;    
+    } else {
+      if(this.listSelected.includes(cell))
+        this.listSelected = this.listSelected.filter(item => item !== cell);
+      else
+        this.listSelected = this.listSelected.concat(cell);
+      }
   }
 
   onEnterAdd() {
@@ -109,6 +125,30 @@ export class SelectCellFormComponent implements OnInit {
         this.listSelected = this.listSelected.concat(this.cellName);
       }
     } else this.isIncorrect = true;
+  }
+
+  onEnterAddRotation() {
+    if(this.cellFrom && this.cellTo) {
+      this.listSelected = this.listSelected.concat(this.cellFrom  + '->' + this.cellTo);
+      var splited = this.cellFrom.split('-');
+      if(splited.length === 3) {
+        this.stillageService.delEvent(splited);
+        this.cellFrom = '';
+      }
+      var splited = this.cellTo.split('-');
+      if(splited.length === 3) {
+        this.stillageService.delEvent(splited);
+        this.cellTo = '';
+      }
+    } 
+  }
+
+  onClickClearFrom() {
+    this.cellFrom = '';
+  }
+
+  onClickClearTo() {
+    this.cellTo = '';
   }
 
   onOkClick(): void {

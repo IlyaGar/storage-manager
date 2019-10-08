@@ -1,0 +1,78 @@
+table {
+    width: 95%;
+}
+table:hover {
+    cursor: pointer;
+}
+.example-container {   
+    width: 100%;
+    /* height: 100%; */
+    min-width: 200px;
+    overflow: auto;
+}
+mat-tab-group {
+    margin-right: 1em;
+    margin-left: 1em;
+    width: 100%; 
+    height: 100%;
+    border: 2px solid rgba(128, 128, 128, 0.25);
+    border-radius: 5px;
+}
+.title {
+    /* font-size: 0.9em !important; */
+    margin: 0.5em 1em !important;
+} 
+.tab-selected {
+    width: 100%; 
+    height: 100%;
+    border: 2px solid rgba(128, 128, 128, 0.25);
+    border-radius: 5px;
+    box-shadow: none;
+    margin-left: 1em;
+}
+hr#hr-select {
+    margin: 0%;
+}
+label#lab {
+    color: rgba(0, 0, 0, 0.5);
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+div#bt-group {
+    /* margin-left: auto;
+    margin-right: 0em; */
+    position: absolute;
+    right: 5px;
+    bottom: 25px;
+}
+
+body { 
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+}
+
+.basic-container {
+  padding: 5px;
+}
+
+.version-info {
+  font-size: 8pt;
+  float: right;
+}
+
+.mat-row.hovered {
+  background: #eee;
+}
+
+.mat-row.highlighted {
+  background: rgba(146, 77, 77, 0.5);
+}
+
+/*
+  This is a work around for checkbox bug in material row
+  https://github.com/angular/material2/issues/8600
+*/
+mat-cell.mat-cell, mat-header-cell.mat-header-cell {
+  overflow: visible; 
+}

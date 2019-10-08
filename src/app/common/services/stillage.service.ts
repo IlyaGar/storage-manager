@@ -7,12 +7,21 @@ import { Subject } from 'rxjs';
 export class StillageService {
 
   private _subject = new Subject<any>();
+  private _subject_click = new Subject<any>();
 
   delEvent(event) {
     this._subject.next(event);
   }
 
+  clickEvent(event) {
+    this._subject_click.next(event);
+  }
+
   get events$ () {
     return this._subject.asObservable();
+  }
+
+  get events_click$ () {
+    return this._subject_click.asObservable();
   }
 }
