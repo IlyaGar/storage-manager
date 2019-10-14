@@ -154,7 +154,7 @@
                     </p>
                     <img id="img-hor1" [src]="cell.imageUrl" *ngIf="cell.isBraceHor"/>
                 </div>
-                <app-vertvertical-three-four *ngIf="cell.isVer"></app-vertvertical-three-four>
+                <app-vertical-three-four *ngIf="cell.isVer"></app-vertical-three-four>
                 <app-horizontal-three-four *ngIf="cell.isHor"></app-horizontal-three-four>
             </td>
         </tr>
@@ -313,10 +313,10 @@
                         </p>
                         <img id="img-hor1" [src]="cell.imageUrl" *ngIf="cell.isBraceHor"/>
                     </div>
-                    <app-vertvertical-three-four-action *ngIf="cell.isVer" [data]="cell"></app-vertvertical-three-four-action>
+                    <app-vertical-three-four-action *ngIf="cell.isVer" [data]="cell"></app-vertical-three-four-action>
                     <app-horizontal-three-four-action *ngIf="cell.isHor" [data]="cell"></app-horizontal-three-four-action>
                 </td>
             </tr>
         </table>
     </pinch-zoom>
-<!-- <app-vertvertical-three-four-action *ngIf="cell.isVer" [data]="rotationItem" (onChanged)="onChanged($event)"></app-vertvertical-three-four-action> -->
+<!-- <app-vertical-three-four-action *ngIf="cell.isVer" [data]="rotationItem" (onChanged)="onChanged($event)"></app-vertical-three-four-action> -->

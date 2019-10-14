@@ -408,15 +408,33 @@ export class WmsMapEditFormComponent implements OnInit {
 
   drawingStillage(cell: StillageItem) {
     if(!cell.isHor && !cell.isVer && !cell.isBraceHor && !cell.isBraceVer)
-      if(this.isChoiceStillage) {
+      if(this.selectedElement === 'stellage34') {
         if(cell.isStillageRowWithOutNameHor) {
           cell.isHor = true;
+          cell.element = 'hor-3-4';
           cell.isStillageOneWithOutName = true;
           cell.isBusy = true;
           this.isChanged = true;
         }
         if(cell.isStillageRowWithOutNameVer) {
           cell.isVer = true;
+          cell.element = 'ver-3-4';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+      }
+      if(this.selectedElement === 'stellage33') {
+        if(cell.isStillageRowWithOutNameHor) {
+          cell.isHor = true;
+          cell.element = 'hor-3-3';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+        if(cell.isStillageRowWithOutNameVer) {
+          cell.isVer = true;
+          cell.element = 'ver-3-3';
           cell.isStillageOneWithOutName = true;
           cell.isBusy = true;
           this.isChanged = true;
@@ -748,34 +766,6 @@ export class WmsMapEditFormComponent implements OnInit {
   }
 
   drawingBoardZone(element: string) {
-    // if(this.temp_y_second - this.temp_y_first === 0) {
-    //   this.tab_map[this.temp_y_first][this.temp_x_first].style = 's-left-bottom-top';
-    //   for(var i = 1; i <= this.temp_x_second - this.temp_x_first; i++) {
-    //     if(this.temp_x_first + i + 1 < this.x_width) {
-    //       if(this.tab_map[this.temp_y_first][this.temp_x_first + i + 1].element) {
-    //         this.tab_map[this.temp_y_first][this.temp_x_first + i].style = 's-bottom-top';
-    //       } else {
-    //         this.tab_map[this.temp_y_first][this.temp_x_first + i].style = 's-right-bottom-top';
-    //       }
-    //     } else {
-    //       this.tab_map[this.temp_y_first][this.temp_x_first + i].style = 's-right-bottom-top';
-    //     }
-    //   }
-    // }
-    // if(this.temp_x_second - this.temp_x_first === 0) {
-    //   this.tab_map[this.temp_y_first][this.temp_x_first].style = 's-left-top-right';
-    //   for(var i = 1; i <= this.temp_y_second - this.temp_y_first; i++) {
-    //     if(this.temp_y_first + i + 1 < this.y_height) {
-    //       if(this.tab_map[this.temp_y_first + i + 1][this.temp_x_first].element) {
-    //         this.tab_map[this.temp_y_first + i][this.temp_x_first].style = 's-left-right';
-    //       } else {
-    //         this.tab_map[this.temp_y_first + i][this.temp_x_first].style = 's-left-bottom-right';
-    //       }
-    //     } else {
-    //       this.tab_map[this.temp_y_first + i][this.temp_x_first].style = 's-left-bottom-right';
-    //     }
-    //   }
-    // }
     for(var i = 1; i <= this.temp_x_second - this.temp_x_first; i++) {
       if(this.temp_x_first + i + 1 < this.x_width) {
         if(this.tab_map[this.temp_y_first][this.temp_x_first + i + 1].element) {

@@ -119,6 +119,7 @@ export class DocListComponent implements OnInit {
   }
 
   onClearClick(): void {
+    this.clearTable(this.list[0].title);
     this.list = [];
   }
 

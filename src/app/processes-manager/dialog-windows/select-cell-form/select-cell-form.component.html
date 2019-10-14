@@ -84,7 +84,7 @@
                             <p id="row-name-hor" *ngIf="row.isBraceHor">{{row.rowName}}</p>
                             <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" />
                         </div>
-                        <app-vertvertical-three-four-action *ngIf="row.isVer" [data]="row" (listChange)="onListCange($event)"></app-vertvertical-three-four-action>
+                        <app-vertical-three-four-action *ngIf="row.isVer" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-four-action>
                         <app-horizontal-three-four-action *ngIf="row.isHor" [data]="row" (listChange)="onListCange($event)"></app-horizontal-three-four-action>
                     </td>
                 </tr>

@@ -34,7 +34,7 @@ mat-tree-node button:hover {
     background: rgba(194, 121, 121, 0.5);
 }
 mat-form-field#input-search {
-    width: 20em;
+    width: 10em;
     margin-top: 0.4em;
     margin-right: 0%;
 }
@@ -107,7 +107,7 @@ table {
 }
 .list-prop {
     height: 21.5vh;
-    width: 20vw;
+    width: 17vw;
     border: 0.12em solid rgba(128, 128, 128, 0.4);
     border-radius: 5px;
 }
@@ -129,8 +129,8 @@ table {
 .mat-column-name {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 40% !important;
-    width: 40% !important;
+    flex: 0 0 38% !important;
+    width: 38% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -174,8 +174,8 @@ table {
 .mat-column-balancestore {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 7% !important;
-    width: 7% !important;
+    flex: 0 0 8% !important;
+    width: 8% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -189,8 +189,8 @@ table {
 .mat-column-balancedefect {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 7% !important;
-    width: 7% !important;
+    flex: 0 0 8% !important;
+    width: 8% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   

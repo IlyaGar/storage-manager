@@ -14,14 +14,14 @@ import { AttentionFormComponent } from './dialog-windows/attention-dialog/attent
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WmsMapEditFormComponent } from './wms-map/wms-map-edit-form/wms-map-edit-form.component';
 import { HorizontalThreeFourComponent } from './stillages/horizontal-three-four/horizontal-three-four.component';
-import { VertverticalThreeFourComponent } from './stillages/vertvertical-three-four/vertvertical-three-four.component';
+import { VerticalThreeFourComponent } from './stillages/vertical-three-four/vertical-three-four.component';
 import { DetailViewCellComponent } from './dialog-windows/detail-view-cell-manager/detail-view-cell/detail-view-cell.component';
 import { RoadFormComponent } from './other-items/road-form/road-form.component';
 import { WmsMapFormComponent } from './wms-map/wms-map-form/wms-map-form.component'; 
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { InventoryDialogFormComponent } from './dialog-windows/inventory-dialog-manager/inventory-dialog-form/inventory-dialog-form.component';
 import { HorizontalThreeFourActionComponent } from './stillages/horizontal-three-four-action/horizontal-three-four-action.component';
-import { VertverticalThreeFourActionComponent } from './stillages/vertvertical-three-four-action/vertvertical-three-four-action.component';
+import { VerticalThreeFourActionComponent } from './stillages/vertical-three-four-action/vertical-three-four-action.component';
 import { ProductGroupAccountingFormComponent } from './product-manager/product-group-accounting-form/product-group-accounting-form.component';
 import { StoragePlacesComponent } from './dialog-windows/storage-places-manager/storage-places/storage-places.component';
 import { TaskComponent } from './processes-manager/task/task.component';
@@ -29,6 +29,8 @@ import { ChipsNewTaskComponent } from './helpers/chips-new-task/chips-new-task.c
 import { SelectProcessesFormComponent } from './processes-manager/dialog-windows/select-processes-form/select-processes-form.component';
 import { SelectCellFormComponent } from './processes-manager/dialog-windows/select-cell-form/select-cell-form.component';
 import { DocListComponent } from './processes-manager/dialog-windows/doc-list/doc-list.component';
+import { VerticalThreeThreeComponent } from './stillages/vertical-three-three/vertical-three-three.component';
+import { HorizontalThreeThreeComponent } from './stillages/horizontal-three-three/horizontal-three-three.component';
 
 @NgModule({
   declarations: [
@@ -39,12 +41,12 @@ import { DocListComponent } from './processes-manager/dialog-windows/doc-list/do
     AttentionFormComponent,
     WmsMapEditFormComponent,
     HorizontalThreeFourComponent,
-    VertverticalThreeFourComponent,
+    VerticalThreeFourComponent,
     DetailViewCellComponent,
     RoadFormComponent,
     WmsMapFormComponent,
     HorizontalThreeFourActionComponent,
-    VertverticalThreeFourActionComponent,
+    VerticalThreeFourActionComponent,
     ProductGroupAccountingFormComponent,
     StoragePlacesComponent,
     TaskComponent,
@@ -52,6 +54,8 @@ import { DocListComponent } from './processes-manager/dialog-windows/doc-list/do
     SelectProcessesFormComponent,
     SelectCellFormComponent,
     DocListComponent,
+    VerticalThreeThreeComponent,
+    HorizontalThreeThreeComponent,
   ],
   imports: [
     FormsModule,

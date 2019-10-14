@@ -24,11 +24,11 @@ export class Item{
   ){}
 }
 @Component({
-  selector: 'app-vertvertical-three-four-action',
-  templateUrl: './vertvertical-three-four-action.component.html',
-  styleUrls: ['./vertvertical-three-four-action.component.css']
+  selector: 'app-vertical-three-four-action',
+  templateUrl: './vertical-three-four-action.component.html',
+  styleUrls: ['./vertical-three-four-action.component.css']
 })
-export class VertverticalThreeFourActionComponent implements OnInit {
+export class VerticalThreeFourActionComponent implements OnInit {
 
   @Input() data;
   @Output() listChange = new EventEmitter<string>(); 

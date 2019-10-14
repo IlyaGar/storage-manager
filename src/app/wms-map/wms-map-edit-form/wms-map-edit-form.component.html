@@ -80,6 +80,10 @@
                     data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x4">
                     Стеллаж 3x4
                 </mat-button-toggle>
+                <mat-button-toggle value="stellage33" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement2 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x3">
+                    Стеллаж 3x3
+                </mat-button-toggle>
                 <mat-button-toggle value="road" (click)="isChoiceStillage = false; isChoiceRoad = true; isChoiceZoneUnloade = false; selectedElement2 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Дорога">
                     Дорога
@@ -271,8 +275,10 @@
                     <p id="row-name-hor" *ngIf="row.isBraceHor">{{row.rowName}}</p>
                     <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" (click)="onClickBrace(row)" />
                 </div>
-                <app-vertvertical-three-four *ngIf="row.isVer"></app-vertvertical-three-four>
-                <app-horizontal-three-four *ngIf="row.isHor"></app-horizontal-three-four>
+                <app-vertical-three-four *ngIf="row.element === 'ver-3-4'"></app-vertical-three-four>
+                <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
+                <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
+                <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
             </td>
         </tr>
     </table>
@@ -316,8 +322,10 @@
                     <p id="row-name-hor" *ngIf="row.isBraceHor">{{row.rowName}}</p>
                     <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" (click)="onClickBrace(row)" />
                 </div>
-                <app-vertvertical-three-four *ngIf="row.isVer"></app-vertvertical-three-four>
-                <app-horizontal-three-four *ngIf="row.isHor"></app-horizontal-three-four>
+                <app-vertical-three-four *ngIf="row.element === 'ver-3-4'"></app-vertical-three-four>
+                <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
+                <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
+                <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
             </td>
         </tr>
     </table>
@@ -361,8 +369,10 @@
                     <p id="row-name-hor" *ngIf="row.isBraceHor">{{row.rowName}}</p>
                     <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" (click)="onClickBrace(row)" />
                 </div>
-                <app-vertvertical-three-four *ngIf="row.isVer"></app-vertvertical-three-four>
-                <app-horizontal-three-four *ngIf="row.isHor"></app-horizontal-three-four>
+                <app-vertical-three-four *ngIf="row.element === 'ver-3-4'"></app-vertical-three-four>
+                <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
+                <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
+                <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
             </td>
         </tr>
     </table>
