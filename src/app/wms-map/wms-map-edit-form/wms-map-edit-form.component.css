@@ -30,7 +30,7 @@ app-st-three-four {
 }
 .block {
     float: left; 
-    width:450px; 
+    width:470px; 
     margin-top: 10px;
     margin-right: 10px;
     margin-left: 10px;
@@ -163,6 +163,9 @@ div#name-row-hor {
 }
 .zone_send {
     background-color: rgba(0, 255, 215, 0.5);
+}
+.zone_storage {
+    background-color: rgba(139, 0, 139, 0.5);
 }
 #butt-cancel {
     margin-right: 0.5em;

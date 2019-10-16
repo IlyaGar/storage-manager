@@ -43,8 +43,8 @@ app-st-three-four {
 }
 .block1-overflow {
     overflow: auto;
-    height: 750px;
-    width: 750px;
+    height: 500px;
+    width: 650px;
 }
 button#but-size-out {
     margin-left: 0.4em;

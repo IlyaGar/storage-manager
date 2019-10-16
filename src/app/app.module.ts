@@ -31,6 +31,14 @@ import { SelectCellFormComponent } from './processes-manager/dialog-windows/sele
 import { DocListComponent } from './processes-manager/dialog-windows/doc-list/doc-list.component';
 import { VerticalThreeThreeComponent } from './stillages/vertical-three-three/vertical-three-three.component';
 import { HorizontalThreeThreeComponent } from './stillages/horizontal-three-three/horizontal-three-three.component';
+import { VerticalThreeTwoComponent } from './stillages/vertical-three-two/vertical-three-two.component';
+import { HorizontalThreeTwoComponent } from './stillages/horizontal-three-two/horizontal-three-two.component';
+import { VerticalThreeFiveComponent } from './stillages/vertical-three-five/vertical-three-five.component';
+import { HorizontalThreeFiveComponent } from './stillages/horizontal-three-five/horizontal-three-five.component';
+import { HorizontalTwoFiveComponent } from './stillages/horizontal-two-five/horizontal-two-five.component';
+import { VerticalTwoFiveComponent } from './stillages/vertical-two-five/vertical-two-five.component';
+import { VerticalTwoFourComponent } from './stillages/vertical-two-four/vertical-two-four.component';
+import { HorizontalTwoFourComponent } from './stillages/horizontal-two-four/horizontal-two-four.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +64,14 @@ import { HorizontalThreeThreeComponent } from './stillages/horizontal-three-thre
     DocListComponent,
     VerticalThreeThreeComponent,
     HorizontalThreeThreeComponent,
+    VerticalThreeTwoComponent,
+    HorizontalThreeTwoComponent,
+    VerticalThreeFiveComponent,
+    HorizontalThreeFiveComponent,
+    HorizontalTwoFiveComponent,
+    VerticalTwoFiveComponent,
+    VerticalTwoFourComponent,
+    HorizontalTwoFourComponent,
   ],
   imports: [
     FormsModule,

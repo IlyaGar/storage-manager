@@ -61,8 +61,9 @@
                                         isChoiceStillage = false; 
                                         isChoiceRoad = false; 
                                         firstCell = null;
-                                        selectedElement = 'undefined';
-                                        selectedElement2 = 'undefined'">
+                                        selectedElement1 = 'undefined';
+                                        selectedElement2 = 'undefined';
+                                        selectedElement3 = 'undefined'">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     Новый элемент
@@ -72,39 +73,63 @@
                 <label *ngIf="isPanelOpenStillage && !isChoiceStillage && !isChoiceRoad">Выберите элемент</label>
                 <label *ngIf="isChoiceStillage"> Стеллаж 3 x 4 </label>
                 <label *ngIf="isChoiceRoad"> Дорога </label>
+                <!-- <label *ngIf="selectedElement2"> {{selectedElement2}} </label>
+                <label *ngIf="!selectedElement"> {{selectedElement}} </label> -->
                 </mat-panel-description>
             </mat-expansion-panel-header>
             
-            <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement">
-                <mat-button-toggle value="stellage34" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement2 = 'undefined'"
-                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x4">
-                    Стеллаж 3x4
+            <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement1">
+                <mat-button-toggle value="stellage32" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x3">
+                    Стеллаж 3x2
                 </mat-button-toggle>
-                <mat-button-toggle value="stellage33" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement2 = 'undefined'"
+                <mat-button-toggle value="stellage33" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x3">
                     Стеллаж 3x3
                 </mat-button-toggle>
-                <mat-button-toggle value="road" (click)="isChoiceStillage = false; isChoiceRoad = true; isChoiceZoneUnloade = false; selectedElement2 = 'undefined'"
-                    data-toggle="tooltip" data-placement="bottom" title="Дорога">
-                    Дорога
+                <mat-button-toggle value="stellage34" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x4">
+                    Стеллаж 3x4
                 </mat-button-toggle>
-                <mat-button-toggle value="zone_unload" (click)="isChoiceZoneUnloade = true; isChoiceRoad = false; selectedElement2 = 'undefined'"
-                    data-toggle="tooltip" data-placement="bottom" title="Зона разгрузки">
-                    Зона разгрузки
+                <mat-button-toggle value="stellage35" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x3">
+                    Стеллаж 3x5
                 </mat-button-toggle>
             </mat-button-toggle-group>
             <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement2">
-                <mat-button-toggle value="zone_send" (click)="isChoiceZonaSend = true; isChoiceOffice = false; isChoiceContinueRow = false; selectedElement = 'undefined'"
+                <mat-button-toggle value="stellage24" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x4">
+                    Стеллаж 2x4
+                </mat-button-toggle>
+                <mat-button-toggle value="stellage25" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x4">
+                    Стеллаж 2x5
+                </mat-button-toggle>
+                <mat-button-toggle value="zone_storage" (click)="isChoiceStillage = false; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Зона хранения поддонов">
+                    Зона хранения
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+            <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement3">
+                <mat-button-toggle value="zone_send" (click)="isChoiceZonaSend = true; isChoiceOffice = false; isChoiceContinueRow = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Зона отправки">
                     Зона отправки
                 </mat-button-toggle>
-                <mat-button-toggle value="office" (click)="isChoiceOffice = true; isChoiceZonaSend = false; isChoiceContinueRow = false; selectedElement = 'undefined'"
+                <mat-button-toggle value="road" (click)="isChoiceStillage = false; isChoiceRoad = true; isChoiceZoneUnloade = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Дорога">
+                    Дорога
+                </mat-button-toggle>
+                <mat-button-toggle value="zone_unload" (click)="isChoiceZoneUnloade = true; isChoiceRoad = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Зона разгрузки">
+                    Зона разгрузки
+                </mat-button-toggle>
+                <mat-button-toggle value="office" (click)="isChoiceOffice = true; isChoiceZonaSend = false; isChoiceContinueRow = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Офис">
                     Офис
                 </mat-button-toggle>
-                <mat-button-toggle value="continueRow" (click)="isChoiceContinueRow = true; isChoiceOffice = false; isChoiceZonaSend = false; selectedElement = 'undefined'"
+                <mat-button-toggle value="continueRow" (click)="isChoiceContinueRow = true; isChoiceOffice = false; isChoiceZonaSend = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Продолжение ряда">
-                    Продолжение ряда
+                    Ряд
                 </mat-button-toggle>
             </mat-button-toggle-group>
 
@@ -157,6 +182,7 @@
                         <label *ngIf="isChoiceProperties && !isSelectedRowStillages && !isSelectedStillage && isSelectedElement && currentCell.element === 'office'"> Офис </label>
                         <label *ngIf="isChoiceProperties && !isSelectedRowStillages && !isSelectedStillage && isSelectedElement && currentCell.element === 'zone_send'"> Зона отправки </label>
                         <label *ngIf="isChoiceProperties && !isSelectedRowStillages && !isSelectedStillage && isSelectedElement && currentCell.element === 'zone_unload'"> Зона разгрузки </label>
+                        <label *ngIf="isChoiceProperties && !isSelectedRowStillages && !isSelectedStillage && isSelectedElement && currentCell.element === 'zone_storage'"> Зона хранения </label>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
@@ -186,7 +212,7 @@
                 </div>
 
                 <div *ngIf="!isSelectedRowStillages && !isSelectedStillage && isSelectedElement">
-                    <div *ngIf="currentCell.element === 'zone_unload' || currentCell.element === 'zone_send' || currentCell.element === 'office'">
+                    <div *ngIf="currentCell.element === 'zone_unload' || currentCell.element === 'zone_send' || currentCell.element === 'office' || currentCell.element === 'zone_storage'">
                         <label> Выделите верхний левый и правый нижний углы </label>
                         <mat-form-field>
                             <input type="text" matInput placeholder="Имя зона разгрузки" [(ngModel)]="zoneName">
@@ -246,11 +272,12 @@
                     'stillage-row-with-out-name': row.isStillageRowWithOutNameHor || row.isStillageRowWithOutNameVer,
                     'stillage-cell-with-out-name': row.isStillageOneWithOutName,
                     'stillage-select-cell': row.isSelectCellStillage,
-                    'stillage-select-cell-element': row.isSelectCellStillage && (row.element === 'office' || row.element === 'zone_send' || row.element === 'zone_unload'),
+                    'stillage-select-cell-element': row.isSelectCellStillage && (row.element === 'office' || row.element === 'zone_send' || row.element === 'zone_unload' || row.element === 'zone_storage'),
                     'road': row.element === 'road',
                     'office': row.element === 'office',
                     'zone_send': row.element === 'zone_send',
                     'zone_unload': row.element === 'zone_unload',
+                    'zone_storage': row.element === 'zone_storage',
                     's-left-bottom-top': row.style === 's-left-bottom-top',
                     's-bottom-top': row.style === 's-bottom-top',
                     's-right-bottom-top': row.style === 's-right-bottom-top',
@@ -279,6 +306,14 @@
                 <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
                 <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
                 <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
+                <app-vertical-three-two *ngIf="row.element === 'ver-3-2'"></app-vertical-three-two>
+                <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
+                <app-vertical-three-five *ngIf="row.element === 'ver-3-5'"></app-vertical-three-five>
+                <app-horizontal-three-five *ngIf="row.element === 'hor-3-5'"></app-horizontal-three-five>
+                <app-vertical-two-five *ngIf="row.element === 'ver-2-5'"></app-vertical-two-five>
+                <app-horizontal-two-five *ngIf="row.element === 'hor-2-5'"></app-horizontal-two-five>
+                <app-vertical-two-four *ngIf="row.element === 'ver-2-4'"></app-vertical-two-four>
+                <app-horizontal-two-four *ngIf="row.element === 'hor-2-4'"></app-horizontal-two-four>
             </td>
         </tr>
     </table>
@@ -298,6 +333,7 @@
                     'office': row.element === 'office',
                     'zone_send': row.element === 'zone_send',
                     'zone_unload': row.element === 'zone_unload',
+                    'zone_storage': row.element === 'zone_storage',
                     's-left-bottom-top': row.style === 's-left-bottom-top',
                     's-bottom-top': row.style === 's-bottom-top',
                     's-right-bottom-top': row.style === 's-right-bottom-top',
@@ -326,6 +362,14 @@
                 <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
                 <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
                 <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
+                <app-vertical-three-two *ngIf="row.element === 'ver-3-2'"></app-vertical-three-two>
+                <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
+                <app-vertical-three-five *ngIf="row.element === 'ver-3-5'"></app-vertical-three-five>
+                <app-horizontal-three-five *ngIf="row.element === 'hor-3-5'"></app-horizontal-three-five>
+                <app-vertical-two-five *ngIf="row.element === 'ver-2-5'"></app-vertical-two-five>
+                <app-horizontal-two-five *ngIf="row.element === 'hor-2-5'"></app-horizontal-two-five>
+                <app-vertical-two-four *ngIf="row.element === 'ver-2-4'"></app-vertical-two-four>
+                <app-horizontal-two-four *ngIf="row.element === 'hor-2-4'"></app-horizontal-two-four>
             </td>
         </tr>
     </table>
@@ -345,6 +389,7 @@
                     'office': row.element === 'office',
                     'zone_send': row.element === 'zone_send',
                     'zone_unload': row.element === 'zone_unload',
+                    'zone_storage': row.element === 'zone_storage',
                     's-left-bottom-top': row.style === 's-left-bottom-top',
                     's-bottom-top': row.style === 's-bottom-top',
                     's-right-bottom-top': row.style === 's-right-bottom-top',
@@ -373,6 +418,14 @@
                 <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
                 <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
                 <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
+                <app-vertical-three-two *ngIf="row.element === 'ver-3-2'"></app-vertical-three-two>
+                <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
+                <app-vertical-three-five *ngIf="row.element === 'ver-3-5'"></app-vertical-three-five>
+                <app-horizontal-three-five *ngIf="row.element === 'hor-3-5'"></app-horizontal-three-five>
+                <app-vertical-two-five *ngIf="row.element === 'ver-2-5'"></app-vertical-two-five>
+                <app-horizontal-two-five *ngIf="row.element === 'hor-2-5'"></app-horizontal-two-five>
+                <app-vertical-two-four *ngIf="row.element === 'ver-2-4'"></app-vertical-two-four>
+                <app-horizontal-two-four *ngIf="row.element === 'hor-2-4'"></app-horizontal-two-four>
             </td>
         </tr>
     </table>

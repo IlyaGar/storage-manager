@@ -5,10 +5,10 @@ table {
     border-left-color: black;
     border-right-width: 2px;
     border-right-style: solid;
-    border-right-color: black;
+    border-right-color: black; 
     width: 25px;
     height: 20px;
-    font-size: 8px;
+    font-size: 7px;
     padding: 0%;
     margin: 0%;
     width: 49px;

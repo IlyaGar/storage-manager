@@ -1,11 +1,11 @@
 table {
     border-collapse: collapse;
-    border-left-width: 2px;
-    border-left-style: solid;
-    border-left-color: black;
-    border-right-width: 2px;
-    border-right-style: solid;
-    border-right-color: black;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    border-top-width: 2px;
+    border-top-style: solid;
+    border-top-color: black;
     width: 25px;
     height: 20px;
     font-size: 8px;

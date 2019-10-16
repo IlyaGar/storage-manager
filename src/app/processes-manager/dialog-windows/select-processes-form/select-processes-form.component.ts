@@ -74,7 +74,8 @@ export class SelectProcessesFormComponent implements OnInit {
 
   openSelectCell(element: Processe) {
     const dialogRef = this.dialog.open(SelectCellFormComponent, {
-      // height: '700px',
+      width: '1200px',
+      // height: '1200px',
       data: { select: this.myControl.value },
     });
     dialogRef.afterClosed().subscribe(result => {
