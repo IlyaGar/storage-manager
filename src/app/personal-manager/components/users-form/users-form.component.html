@@ -1,0 +1,69 @@
+<div id="content">
+    <mat-form-field id="only" appearance="outline">
+        <mat-label> Имя пользователя </mat-label>
+        <input matInput placeholder="Введите имя" [(ngModel)]="name">
+        <mat-icon id="push" matSuffix data-toggle="tooltip" data-placement="bottom" title="Выбрать из списка" (click)="openPersonalListDialog()">list_alt</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field id="only" appearance="outline">
+        <mat-label>Группа</mat-label>
+        <mat-select  [(ngModel)]="group">
+            <mat-option *ngFor="let group of groups" [value]="group.value">
+                {{group.value}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button type="button" id="bt" class="btn btn-secondary" (click)="onCreateUser()"> Создать </button> 
+
+    <br>
+
+    <mat-form-field appearance="legacy">
+        <mat-label>Фильтр</mat-label>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Введите значение">
+        <mat-icon matSuffix>search</mat-icon>
+        <mat-hint> Поиск по всем столбцам </mat-hint>
+    </mat-form-field>
+
+    <div class="tab-container mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Логин </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+        
+            <!-- Group Column -->
+            <ng-container matColumnDef="group">
+                <th mat-header-cell *matHeaderCellDef> Группа </th>
+                <td mat-cell *matCellDef="let element"> {{element.group}} </td>
+            </ng-container>
+        
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element"> 
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                                <span> Редактировать </span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>delete_forever</mat-icon>
+                                <span> Удалить </span>
+                        </button>
+                    </mat-menu>
+                </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr id="row" mat-row *matRowDef="let row; columns: displayedColumns; let i = index"
+            (click)="onSelectRow(i)" 
+            [ngClass]="{ 'select-row': i === selectItem }"></tr>
+        </table>
+    </div>
+</div>

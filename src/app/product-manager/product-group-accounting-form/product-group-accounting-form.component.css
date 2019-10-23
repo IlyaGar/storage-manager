@@ -1,15 +1,40 @@
-@media (max-width: 1360px) { /* это будет показано при разрешении монитора до 930 пикселей */
-    .example-container {
-        width: 90vw; /* включает в себя полосу прокрутки от body */ 
-        height: 80vh;
-    }
-}
 @media (max-width: 1920px) { /* это будет показано при разрешении монитора до 930 пикселей */
     .example-container {
         width: 100vw; /* включает в себя полосу прокрутки от body */ 
         height: 94vh;
     }
+    .prod {
+        height: 56vh;
+    }
+    .mat-card-height {
+        height: 17em;
+    }
+    .list-prop {
+        height: 22vh;
+        width: 16vw;
+        border: 0.12em solid rgba(128, 128, 128, 0.4);
+        border-radius: 5px;
+    }
 } 
+@media (max-width: 1366px) { /* это будет показано при разрешении монитора до 930 пикселей */
+    .example-container {
+        width: 100vw; /* включает в себя полосу прокрутки от body */ 
+        height: 90vh;
+    }
+    .prod {
+        height: 45vh;
+    }
+    .mat-card-height {
+        height: 13em;
+    }
+    .list-prop {
+        height: 25em;
+        width: 16vw;
+        border: 0.12em solid rgba(128, 128, 128, 0.4);
+        border-radius: 5px;
+    }
+}
+
 mat-drawer {
     padding: 5px;
     width: 25vw;
@@ -102,12 +127,9 @@ mat-card  {
 table {
     width: 100%;
 }
-.prod {
-    height: 56vh;
-}
 .list-prop {
-    height: 21.5vh;
-    width: 17vw;
+    height: 22vh;
+    width: 16vw;
     border: 0.12em solid rgba(128, 128, 128, 0.4);
     border-radius: 5px;
 }

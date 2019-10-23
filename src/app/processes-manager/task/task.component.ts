@@ -34,4 +34,7 @@ export class TaskComponent implements OnInit {
       }
     });
   }
+
+  onSave() {
+  }
 }

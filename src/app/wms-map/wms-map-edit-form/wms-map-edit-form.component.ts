@@ -34,6 +34,7 @@ export class WmsMapEditFormComponent implements OnInit {
   selectedElement1: any = 'undefined';
   selectedElement2: any = 'undefined';
   selectedElement3: any = 'undefined';
+  selectedElement4: any = 'undefined';
   selectedRow: any = 'undefined';
   selectedEditor: any = 'undefined';
   confirmText: string = 'Да';
@@ -379,7 +380,7 @@ export class WmsMapEditFormComponent implements OnInit {
     if(cell.element === 'road' && !cell.imageUrl){
       this.isSelectedElement = true;
     }
-    if(cell.element === 'zone_unload' || cell.element === 'zone_send' || cell.element === 'office' || cell.element === 'zone_storage'){
+    if(cell.element === 'zone_unload' || cell.element === 'zone_send' || cell.element === 'office' || cell.element === 'zone_storage') {
       if(this.isChoiceProperties) {
         if(!cell.yxName) {
           if(cell.cellName) {
@@ -508,6 +509,30 @@ export class WmsMapEditFormComponent implements OnInit {
           this.isChanged = true;
         }
       }
+      if(this.selectedElement2 === 'stellagelong315') {
+        cell.element = 'long-3-1-5';
+        cell.isStillageOneWithOutName = true;
+        cell.isBusy = true;
+        this.isChanged = true;
+      }
+      if(this.selectedElement2 === 'stellagelong234') {
+        cell.element = 'long-2-3-4';
+        cell.isStillageOneWithOutName = true;
+        cell.isBusy = true;
+        this.isChanged = true;
+      }
+      if(this.selectedElement4 === 'stellagelong35') {
+        cell.element = 'long-3-5';
+        cell.isStillageOneWithOutName = true;
+        cell.isBusy = true;
+        this.isChanged = true;
+      }
+      if(this.selectedElement4 === 'stellagelong34') {
+        cell.element = 'long-3-4';
+        cell.isStillageOneWithOutName = true;
+        cell.isBusy = true;
+        this.isChanged = true;
+      }
   }
 
   drawingRoad(cell: StillageItem) {
@@ -553,12 +578,17 @@ export class WmsMapEditFormComponent implements OnInit {
   deleteElement(cell: StillageItem) {
     if(cell.element) {
       cell.element = '';
-      cell.isBusy = false;
+      cell.isSelectCellStillage = false;
       cell.isStillageOneWithName = false;
+      cell.isStillageOneWithOutName = false;
+      cell.isStillageOneWithOutName = false;
+      cell.isStillageRowWithOutNameVer = true;
+      cell.isVer = false;
+      cell.isHor = false;
+      this.deleteStillageName(cell);
     } else {
       cell.element = '';
       cell.style = '';
-      cell.stillageName = '';
       cell.rowName = '';
       cell.cellName = '';
       cell.yxName = '';
@@ -574,22 +604,30 @@ export class WmsMapEditFormComponent implements OnInit {
       cell.isStillageOneWithName = false;
       cell.isStillageOneWithOutName = false;
       cell.isSelectCellStillage = false;
-      
-      if(cell.yxName) {
+      this.deleteStillageName(cell);
+    }
+    this.isChanged = true;
+  }
+  
+  deleteStillageName(cell: StillageItem) {
+    if(cell.yxName) {
       var splitted = cell.yxName.split(";"); 
-        var nameStillage = this.tab_map[splitted[0]][splitted[1]].cellName;
-        if(nameStillage) {
+      var nameStillage = this.tab_map[splitted[0]][splitted[1]].cellName;
+      if(nameStillage) {
+        if(this.array_name) {
           if(this.array_name.includes(nameStillage)) {
             const index: number = this.array_name.indexOf(nameStillage);
             if (index !== -1) {
-                this.array_name.splice(index, 1);
-                this.tab_map[splitted[0]][splitted[1]].cellName = '';
+              this.array_name.splice(index, 1);
+              this.tab_map[splitted[0]][splitted[1]].cellName = '';
             } 
           }
         }
+        this.tab_map[splitted[0]][splitted[1]].cellName = '';
+        cell.stillageName = '';
+        cell.yxName = '';
       }
     }
-    this.isChanged = true;
   }
 
   onClickBrace(cell: StillageItem) {
@@ -670,6 +708,59 @@ export class WmsMapEditFormComponent implements OnInit {
     this.isChanged = true;
     this.zoneName = '';
     this.onCanselPropertyZone();
+  }
+
+  onSavePropertyLong() {
+    if(this.zoneName.length > 0) {
+      if(this.currentCell.element === 'long-3-1-5' || this.currentCell.element === 'long-2-3-4' || this.currentCell.element === 'long-3-5' || this.currentCell.element === 'long-3-4') {
+        if(this.currentCell.x + 1 < this.x_width) {
+          if( !this.tab_map[this.currentCell.y][this.currentCell.x + 1].isVer && 
+              !this.tab_map[this.currentCell.y][this.currentCell.x + 1].isHor && 
+              !this.tab_map[this.currentCell.y][this.currentCell.x + 1].isStillageRowWithOutNameVer &&
+              !this.tab_map[this.currentCell.y][this.currentCell.x + 1].isStillageRowWithOutNameHor) {
+            this.tab_map[this.currentCell.y][this.currentCell.x].yxName = (this.currentCell.y).toString() + ';' + (this.currentCell.x + 1).toString();
+            this.tab_map[this.currentCell.y][this.currentCell.x + 1].cellName = this.zoneName;
+            this.currentCell.isStillageOneWithOutName = false;
+          }
+          else {
+            if(this.currentCell.x - 1 >= 0) {
+              if( !this.tab_map[this.currentCell.y][this.currentCell.x - 1].isVer && 
+                  !this.tab_map[this.currentCell.y][this.currentCell.x - 1].isHor && 
+                  !this.tab_map[this.currentCell.y][this.currentCell.x - 1].isStillageRowWithOutNameVer &&
+                  !this.tab_map[this.currentCell.y][this.currentCell.x - 1].isStillageRowWithOutNameHor) {
+                this.tab_map[this.currentCell.y][this.currentCell.x].yxName = (this.currentCell.y).toString() + ';' + (this.currentCell.x - 1).toString();
+                this.tab_map[this.currentCell.y][this.currentCell.x - 1].cellName = this.zoneName;
+                this.currentCell.isStillageOneWithOutName = false;
+              }
+            }
+          }
+        } 
+        else {
+          if(this.currentCell.x - 1 >= 0) {
+            if( !this.tab_map[this.currentCell.y][this.currentCell.x - 1].isVer && 
+                !this.tab_map[this.currentCell.y][this.currentCell.x - 1].isHor && 
+                !this.tab_map[this.currentCell.y][this.currentCell.x - 1].isStillageRowWithOutNameVer &&
+                !this.tab_map[this.currentCell.y][this.currentCell.x - 1].isStillageRowWithOutNameHor) {
+              this.tab_map[this.currentCell.y][this.currentCell.x].yxName = (this.currentCell.y).toString() + ';' + (this.currentCell.x - 1).toString();
+              this.tab_map[this.currentCell.y][this.currentCell.x - 1].cellName = this.zoneName;
+              this.currentCell.isStillageOneWithOutName = false;
+            }
+            else {
+              if(this.currentCell.x + 1 < this.x_width) {
+                if( !this.tab_map[this.currentCell.y][this.currentCell.x + 1].isVer && 
+                    !this.tab_map[this.currentCell.y][this.currentCell.x + 1].isHor && 
+                    !this.tab_map[this.currentCell.y][this.currentCell.x + 1].isStillageRowWithOutNameVer &&
+                    !this.tab_map[this.currentCell.y][this.currentCell.x + 1].isStillageRowWithOutNameHor) {
+                  this.tab_map[this.currentCell.y][this.currentCell.x].yxName = (this.currentCell.y).toString() + ';' + (this.currentCell.x + 1).toString();
+                  this.tab_map[this.currentCell.y][this.currentCell.x + 1].cellName = this.zoneName;
+                  this.currentCell.isStillageOneWithOutName = false;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   onCanselPropertyZone() {

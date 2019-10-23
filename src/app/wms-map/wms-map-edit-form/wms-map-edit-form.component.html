@@ -63,7 +63,8 @@
                                         firstCell = null;
                                         selectedElement1 = 'undefined';
                                         selectedElement2 = 'undefined';
-                                        selectedElement3 = 'undefined'">
+                                        selectedElement3 = 'undefined';
+                                        selectedElement4 = 'undefined'">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     Новый элемент
@@ -79,51 +80,69 @@
             </mat-expansion-panel-header>
             
             <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement1">
-                <mat-button-toggle value="stellage32" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'"
+                <mat-button-toggle value="stellage32" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'; selectedElement4 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x3">
                     Стеллаж 3x2
                 </mat-button-toggle>
-                <mat-button-toggle value="stellage33" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'"
+                <mat-button-toggle value="stellage33" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'; selectedElement4 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x3">
                     Стеллаж 3x3
                 </mat-button-toggle>
-                <mat-button-toggle value="stellage34" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'"
+                <mat-button-toggle value="stellage34" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'; selectedElement4 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x4">
                     Стеллаж 3x4
                 </mat-button-toggle>
-                <mat-button-toggle value="stellage35" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'"
+                <mat-button-toggle value="stellage35" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'; selectedElement4 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x3">
                     Стеллаж 3x5
                 </mat-button-toggle>
             </mat-button-toggle-group>
             <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement2">
-                <mat-button-toggle value="stellage24" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'"
+                <mat-button-toggle value="stellage24" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement4 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x4">
                     Стеллаж 2x4
                 </mat-button-toggle>
-                <mat-button-toggle value="stellage25" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'"
+                <mat-button-toggle value="stellage25" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement4 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x4">
                     Стеллаж 2x5
                 </mat-button-toggle>
-                <mat-button-toggle value="zone_storage" (click)="isChoiceStillage = false; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'"
+                <mat-button-toggle value="stellagelong315" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement4 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж удлененный 3/1x5">
+                    Удл 1x4/3x1
+                </mat-button-toggle>
+                <mat-button-toggle value="stellagelong234" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement4 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж удлененный 3/1x5">
+                    Удл 1x2/3x2
+                </mat-button-toggle>
+                <mat-button-toggle value="zone_storage" (click)="isChoiceStillage = false; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement4 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Зона хранения поддонов">
-                    Зона хранения
+                    Зона отправки
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+            <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement4">
+                <mat-button-toggle value="stellagelong35" (click)="isChoiceStillage = true; isChoiceZonaSend = false; isChoiceOffice = false; isChoiceContinueRow = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'; selectedElement3 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Зона отправки">
+                    Удл 3x5 
+                </mat-button-toggle>
+                <mat-button-toggle value="stellagelong34" (click)="isChoiceStillage = true; isChoiceZonaSend = false; isChoiceOffice = false; isChoiceContinueRow = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'; selectedElement3 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Зона отправки">
+                    Удл 3x4 
                 </mat-button-toggle>
             </mat-button-toggle-group>
             <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement3">
-                <mat-button-toggle value="zone_send" (click)="isChoiceZonaSend = true; isChoiceOffice = false; isChoiceContinueRow = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'"
+                <mat-button-toggle value="zone_send" (click)="isChoiceZonaSend = true; isChoiceOffice = false; isChoiceContinueRow = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'; selectedElement4 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Зона отправки">
                     Зона отправки
                 </mat-button-toggle>
-                <mat-button-toggle value="road" (click)="isChoiceStillage = false; isChoiceRoad = true; isChoiceZoneUnloade = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'"
+                <mat-button-toggle value="road" (click)="isChoiceStillage = false; isChoiceRoad = true; isChoiceZoneUnloade = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'; selectedElement4 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Дорога">
                     Дорога
                 </mat-button-toggle>
-                <mat-button-toggle value="zone_unload" (click)="isChoiceZoneUnloade = true; isChoiceRoad = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'"
+                <mat-button-toggle value="zone_unload" (click)="isChoiceZoneUnloade = true; isChoiceRoad = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'; selectedElement4 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Зона разгрузки">
                     Зона разгрузки
                 </mat-button-toggle>
-                <mat-button-toggle value="office" (click)="isChoiceOffice = true; isChoiceZonaSend = false; isChoiceContinueRow = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'"
+                <mat-button-toggle value="office" (click)="isChoiceOffice = true; isChoiceZonaSend = false; isChoiceContinueRow = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'; selectedElement4 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Офис">
                     Офис
                 </mat-button-toggle>
@@ -211,8 +230,8 @@
                     </div>
                 </div>
 
-                <div *ngIf="!isSelectedRowStillages && !isSelectedStillage && isSelectedElement">
-                    <div *ngIf="currentCell.element === 'zone_unload' || currentCell.element === 'zone_send' || currentCell.element === 'office' || currentCell.element === 'zone_storage'">
+                <ng-container *ngIf="!isSelectedRowStillages && !isSelectedStillage && isSelectedElement">
+                    <ng-container *ngIf="currentCell.element === 'zone_unload' || currentCell.element === 'zone_send' || currentCell.element === 'office' || currentCell.element === 'zone_storage'">
                         <label> Выделите верхний левый и правый нижний углы </label>
                         <mat-form-field>
                             <input type="text" matInput placeholder="Имя зона разгрузки" [(ngModel)]="zoneName">
@@ -220,9 +239,19 @@
                         <br>
                         <button mat-raised-button (click)="onCanselPropertyZone()">Отмена</button>
                         <button id="but-size-out" mat-raised-button (click)="onSavePropertyZone()">Сохранить</button>
-                    </div>
+                    </ng-container>
                     <label *ngIf="currentCell.element === 'road'"> road </label>
-                </div>                  
+                </ng-container>  
+
+                <ng-container *ngIf="currentCell && (currentCell.element === 'long-3-1-5' || currentCell.element === 'long-2-3-4' || currentCell.element === 'long-3-5' || currentCell.element === 'long-3-4')">
+                    <label id="action"> Выделите имя стеллажа </label>
+                    <mat-form-field>
+                        <input type="text" matInput placeholder="Имя стеллажа" [(ngModel)]="zoneName">
+                    </mat-form-field>
+                    <br>
+                    <button mat-raised-button (click)="onCanselPropertyZone()">Отмена</button>
+                    <button id="but-size-out" mat-raised-button (click)="onSavePropertyLong()">Сохранить</button>
+                </ng-container>
                 
             </mat-expansion-panel>
         </mat-accordion>
@@ -314,6 +343,10 @@
                 <app-horizontal-two-five *ngIf="row.element === 'hor-2-5'"></app-horizontal-two-five>
                 <app-vertical-two-four *ngIf="row.element === 'ver-2-4'"></app-vertical-two-four>
                 <app-horizontal-two-four *ngIf="row.element === 'hor-2-4'"></app-horizontal-two-four>
+                <app-long-three-one-five *ngIf="row.element === 'long-3-1-5'"></app-long-three-one-five>
+                <app-long-two-three-four *ngIf="row.element === 'long-2-3-4'"></app-long-two-three-four>
+                <app-long-three-five *ngIf="row.element === 'long-3-5'"></app-long-three-five>
+                <app-long-three-four *ngIf="row.element === 'long-3-4'"></app-long-three-four>
             </td>
         </tr>
     </table>
@@ -370,6 +403,10 @@
                 <app-horizontal-two-five *ngIf="row.element === 'hor-2-5'"></app-horizontal-two-five>
                 <app-vertical-two-four *ngIf="row.element === 'ver-2-4'"></app-vertical-two-four>
                 <app-horizontal-two-four *ngIf="row.element === 'hor-2-4'"></app-horizontal-two-four>
+                <app-long-three-one-five *ngIf="row.element === 'long-3-1-5'"></app-long-three-one-five>
+                <app-long-two-three-four *ngIf="row.element === 'long-2-3-4'"></app-long-two-three-four>
+                <app-long-three-five *ngIf="row.element === 'long-3-5'"></app-long-three-five>
+                <app-long-three-four *ngIf="row.element === 'long-3-4'"></app-long-three-four>
             </td>
         </tr>
     </table>
@@ -426,6 +463,10 @@
                 <app-horizontal-two-five *ngIf="row.element === 'hor-2-5'"></app-horizontal-two-five>
                 <app-vertical-two-four *ngIf="row.element === 'ver-2-4'"></app-vertical-two-four>
                 <app-horizontal-two-four *ngIf="row.element === 'hor-2-4'"></app-horizontal-two-four>
+                <app-long-three-one-five *ngIf="row.element === 'long-3-1-5'"></app-long-three-one-five>
+                <app-long-two-three-four *ngIf="row.element === 'long-2-3-4'"></app-long-two-three-four>
+                <app-long-three-five *ngIf="row.element === 'long-3-5'"></app-long-three-five>
+                <app-long-three-four *ngIf="row.element === 'long-3-4'"></app-long-three-four>
             </td>
         </tr>
     </table>

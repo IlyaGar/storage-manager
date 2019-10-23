@@ -16,7 +16,7 @@ import { WmsMapEditFormComponent } from './wms-map/wms-map-edit-form/wms-map-edi
 import { HorizontalThreeFourComponent } from './stillages/horizontal-three-four/horizontal-three-four.component';
 import { VerticalThreeFourComponent } from './stillages/vertical-three-four/vertical-three-four.component';
 import { DetailViewCellComponent } from './dialog-windows/detail-view-cell-manager/detail-view-cell/detail-view-cell.component';
-import { RoadFormComponent } from './other-items/road-form/road-form.component';
+import { RoadFormComponent } from './stillages/road-form/road-form.component';
 import { WmsMapFormComponent } from './wms-map/wms-map-form/wms-map-form.component'; 
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { InventoryDialogFormComponent } from './dialog-windows/inventory-dialog-manager/inventory-dialog-form/inventory-dialog-form.component';
@@ -39,6 +39,14 @@ import { HorizontalTwoFiveComponent } from './stillages/horizontal-two-five/hori
 import { VerticalTwoFiveComponent } from './stillages/vertical-two-five/vertical-two-five.component';
 import { VerticalTwoFourComponent } from './stillages/vertical-two-four/vertical-two-four.component';
 import { HorizontalTwoFourComponent } from './stillages/horizontal-two-four/horizontal-two-four.component';
+import { LongThreeOneFiveComponent } from './stillages/long-three-one-five/long-three-one-five.component';
+import { LongTwoThreeFourComponent } from './stillages/long-two-three-four/long-two-three-four.component';
+import { LongThreeFiveComponent } from './stillages/long-three-five/long-three-five.component';
+import { LongThreeFourComponent } from './stillages/long-three-four/long-three-four.component';
+import { UsersFormComponent } from './personal-manager/components/users-form/users-form.component';
+import { PersonalManagementFormComponent } from './personal-manager/personal-management-form/personal-management-form.component';
+import { PersonalListFormComponent } from './personal-manager/dialog-windows/personal-list-form/personal-list-form.component';
+import { GroupsFormComponent } from './personal-manager/components/groups-form/groups-form.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +80,14 @@ import { HorizontalTwoFourComponent } from './stillages/horizontal-two-four/hori
     VerticalTwoFiveComponent,
     VerticalTwoFourComponent,
     HorizontalTwoFourComponent,
+    LongThreeOneFiveComponent,
+    LongTwoThreeFourComponent,
+    LongThreeFiveComponent,
+    LongThreeFourComponent,
+    PersonalManagementFormComponent,
+    UsersFormComponent,
+    PersonalListFormComponent,
+    GroupsFormComponent,
   ],
   imports: [
     FormsModule,
@@ -100,6 +116,7 @@ import { HorizontalTwoFourComponent } from './stillages/horizontal-two-four/hori
     SelectProcessesFormComponent,
     SelectCellFormComponent,
     DocListComponent,
+    PersonalListFormComponent,
   ],
   bootstrap: [AppComponent]
 })

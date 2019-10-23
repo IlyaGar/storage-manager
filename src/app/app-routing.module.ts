@@ -5,6 +5,7 @@ import { WmsMapEditFormComponent } from './wms-map/wms-map-edit-form/wms-map-edi
 import { WmsMapFormComponent } from './wms-map/wms-map-form/wms-map-form.component';
 import { ProductGroupAccountingFormComponent } from './product-manager/product-group-accounting-form/product-group-accounting-form.component';
 import { TaskComponent } from './processes-manager/task/task.component';
+import { PersonalManagementFormComponent } from './personal-manager/personal-management-form/personal-management-form.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'map', component: WmsMapFormComponent },
   { path: 'product-group', component: ProductGroupAccountingFormComponent },
   { path: 'tasks', component: TaskComponent },
+  { path: 'staff', component: PersonalManagementFormComponent },
 ];
 
 @NgModule({

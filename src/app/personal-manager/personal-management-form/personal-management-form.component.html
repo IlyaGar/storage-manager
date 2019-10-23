@@ -1,0 +1,22 @@
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+        <mat-list>      
+            <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === '1' }" 
+                (click)="onSelectTab(); selectValue = '1'"> 
+                Пользователи 
+            </mat-list-item>
+            <mat-list-item role="listitem" [ngClass]="{ 'list-item-selected': selectValue === '2' }" 
+                (click)="onSelectTab(); selectValue = '2'"> 
+                Группы 
+            </mat-list-item>
+        </mat-list>
+    </mat-drawer>
+    <mat-drawer-content>
+        <ng-container *ngIf="selectValue === '1'">
+            <app-users-form></app-users-form>
+        </ng-container>
+        <ng-container *ngIf="selectValue === '2'">
+            <app-groups-form></app-groups-form>
+        </ng-container>
+    </mat-drawer-content>  
+</mat-drawer-container>

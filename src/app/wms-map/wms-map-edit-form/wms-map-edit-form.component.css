@@ -175,6 +175,9 @@ label#changed {
     color: rgba(170, 45, 45, 0.75);
     margin-right: 1em;
 }
+label#action {
+    margin-right: 0.5em;
+}
 .s-left-bottom-top {
     border-left-color: black; /* Цвет линии справа */
     border-left-style: double; /* Стиль линии */
