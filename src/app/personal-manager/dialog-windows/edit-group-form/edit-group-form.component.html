@@ -1,0 +1,17 @@
+<mat-form-field appearance="outline">
+    <mat-label> Название группы </mat-label>
+    <input matInput placeholder="Введите название" [(ngModel)]="data.group.name">
+</mat-form-field>
+<!-- (click)="onClickRight(right)" -->
+<mat-selection-list #rights [(ngModel)]="data.group.rights">
+    <mat-list-option *ngFor="let right of listRights" [value]="right" >
+        {{right}}
+    </mat-list-option>
+</mat-selection-list>   
+
+
+
+<div mat-dialog-actions>
+    <button type="button" id="bt" class="btn" (click)="onNoClick()"> Отмена </button> 
+    <button type="button" id="bt" class="btn" [mat-dialog-close]="selectName" cdkFocusInitial> Ok </button> 
+</div>

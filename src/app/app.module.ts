@@ -47,6 +47,8 @@ import { UsersFormComponent } from './personal-manager/components/users-form/use
 import { PersonalManagementFormComponent } from './personal-manager/personal-management-form/personal-management-form.component';
 import { PersonalListFormComponent } from './personal-manager/dialog-windows/personal-list-form/personal-list-form.component';
 import { GroupsFormComponent } from './personal-manager/components/groups-form/groups-form.component';
+import { EditUserFormComponent } from './personal-manager/dialog-windows/edit-user-form/edit-user-form.component';
+import { EditGroupFormComponent } from './personal-manager/dialog-windows/edit-group-form/edit-group-form.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +90,8 @@ import { GroupsFormComponent } from './personal-manager/components/groups-form/g
     UsersFormComponent,
     PersonalListFormComponent,
     GroupsFormComponent,
+    EditUserFormComponent,
+    EditGroupFormComponent,
   ],
   imports: [
     FormsModule,
@@ -117,6 +121,8 @@ import { GroupsFormComponent } from './personal-manager/components/groups-form/g
     SelectCellFormComponent,
     DocListComponent,
     PersonalListFormComponent,
+    EditUserFormComponent,
+    EditGroupFormComponent,
   ],
   bootstrap: [AppComponent]
 })

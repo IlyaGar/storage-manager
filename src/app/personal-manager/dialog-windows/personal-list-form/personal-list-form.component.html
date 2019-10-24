@@ -21,9 +21,6 @@
     </ng-container>
 </div>
 <div mat-dialog-actions>
-    <!-- <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button [mat-dialog-close]="selectName" cdkFocusInitial>Ok</button> -->
-
     <button type="button" id="bt" class="btn btn-light" (click)="onNoClick()"> Отмена </button> 
-    <button type="button" id="bt" class="btn btn-primary" [mat-dialog-close]="selectName"> Ok </button> 
+    <button type="button" id="bt" class="btn btn-primary" [mat-dialog-close]="selectName" cdkFocusInitial> Ok </button> 
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PersonalListFormComponent } from '../../dialog-windows/personal-list-form/personal-list-form.component';
 import { MatTableDataSource } from '@angular/material/table';
+import { EditUserFormComponent } from '../../dialog-windows/edit-user-form/edit-user-form.component';
 
 export interface Group {
   value: string;
@@ -78,5 +79,19 @@ export class UsersFormComponent implements OnInit {
       this.selectItem = i;
     else
       this.selectItem = null;
+  }
+
+  onOpenEditUseForm(user: User) {
+    const dialogRef = this.dialog.open(EditUserFormComponent, {
+      data: {user: user},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+      }
+    });
+  }
+
+  onDeleteUser(user: User) {
+
   }
 }

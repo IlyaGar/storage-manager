@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { EditGroupFormComponent } from '../../dialog-windows/edit-group-form/edit-group-form.component';
 
 export interface Group {
   name: string;
@@ -8,24 +10,24 @@ export interface Group {
 }
 
 const ELEMENT_DATA: Group[] = [
-  { name: 'steak-0', rights: ['1', '2', '3'] },
-  { name: 'pizza-1', rights: ['2']  },
-  { name: 'tacos-2', rights: ['3']  },
-  { name: 'steak-0', rights: ['1', '2', '3'] },
-  { name: 'pizza-1', rights: ['2']  },
-  { name: 'tacos-2', rights: ['3']  },
-  { name: 'steak-0', rights: ['1', '2', '3'] },
-  { name: 'pizza-1', rights: ['2']  },
-  { name: 'tacos-2', rights: ['3']  },
-  { name: 'steak-0', rights: ['1', '2', '3'] },
-  { name: 'pizza-1', rights: ['2']  },
-  { name: 'tacos-2', rights: ['3']  },
-  { name: 'steak-0', rights: ['1', '2', '3'] },
-  { name: 'pizza-1', rights: ['2']  },
-  { name: 'tacos-2', rights: ['3']  },
-  { name: 'steak-0', rights: ['1', '2', '3'] },
-  { name: 'pizza-1', rights: ['2']  },
-  { name: 'tacos-2', rights: ['3']  }
+  { name: 'steak-0', rights: ['Добавление заказа', 'Редактирование склада', 'Управление персоналом'] },
+  { name: 'pizza-1', rights: ['Редактирование склада']  },
+  { name: 'tacos-2', rights: ['Управление персоналом']  },
+  { name: 'steak-1', rights: ['Добавление заказа', 'Редактирование склада', 'Управление персоналом'] },
+  { name: 'pizza-2', rights: ['Добавление заказа', 'Редактирование склада']  },
+  { name: 'tacos-3', rights: ['Управление персоналом']  },
+  { name: 'steak-4', rights: ['Добавление заказа', 'Редактирование склада', 'Управление персоналом'] },
+  { name: 'pizza-5', rights: ['Редактирование склада']  },
+  { name: 'tacos-6', rights: ['Управление персоналом']  },
+  { name: 'steak-7', rights: ['Добавление заказа', 'Редактирование склада', 'Управление персоналом'] },
+  { name: 'pizza-8', rights: ['Редактирование склада']  },
+  { name: 'tacos-9', rights: ['Управление персоналом']  },
+  { name: 'steak-10', rights: ['Добавление заказа', 'Редактирование склада', 'Управление персоналом'] },
+  { name: 'pizza-11', rights: ['Редактирование склада']  },
+  { name: 'tacos-12', rights: ['Добавление заказа', 'Управление персоналом']  },
+  { name: 'steak-13', rights: ['Добавление заказа', 'Редактирование склада', 'Управление персоналом'] },
+  { name: 'pizza-14', rights: ['Редактирование склада']  },
+  { name: 'tacos-15', rights: ['Управление персоналом']  }
 ];
 
 export interface User {
@@ -67,7 +69,9 @@ export class GroupsFormComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    public dialog: MatDialog,
+    private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -103,5 +107,15 @@ export class GroupsFormComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.groups.filter = filterValue.trim().toLowerCase();
+  }
+
+  onOpenEditGroupForm(group: Group) {
+    const dialogRef = this.dialog.open(EditGroupFormComponent, {
+      data: { group: group },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+      }
+    });
   }
 }

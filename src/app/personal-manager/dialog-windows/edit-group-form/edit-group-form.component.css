@@ -1,0 +1,27 @@
+::ng-deep .mat-form-field-flex > .mat-form-field-infix { 
+    padding: 0.4em 0px !important;
+}
+::ng-deep .mat-form-field-label-wrapper{ 
+    top: -1.5em; 
+}
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-1.1em) scale(.75);
+    width: 133.33333%;
+}
+::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0.2em;
+}
+button#bt {
+    position: relative;
+    bottom: 0.4em;
+
+    min-width: 5em;
+    padding: 0.5em;
+    font-size: 0.9em;
+
+    box-shadow: 1px 2px 3px #00000091;   
+
+    margin-right: 0.4em;
+
+    background-color: rgba(211, 211, 211, 0.5);
+}

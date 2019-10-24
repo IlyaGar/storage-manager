@@ -18,7 +18,7 @@
 
     <br>
 
-    <mat-form-field appearance="legacy">
+    <mat-form-field id="no" appearance="legacy">
         <mat-label>Фильтр</mat-label>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Введите значение">
         <mat-icon matSuffix>search</mat-icon>
@@ -48,13 +48,13 @@
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item>
+                        <button mat-menu-item (click)="onOpenEditUseForm(element)">
                             <mat-icon>edit</mat-icon>
-                                <span> Редактировать </span>
+                            <span> Редактировать </span>
                         </button>
-                        <button mat-menu-item>
+                        <button mat-menu-item (click)="onDeleteUser(element)">
                             <mat-icon>delete_forever</mat-icon>
-                                <span> Удалить </span>
+                            <span> Удалить </span>
                         </button>
                     </mat-menu>
                 </td>
