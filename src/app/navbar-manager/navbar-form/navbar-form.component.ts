@@ -17,6 +17,10 @@ export class NavbarFormComponent implements OnInit {
   isLogin = false;
   loginResponse = new LoginResponse("", "", "", "", "", "");
   logoutStatus: LogoutStatus;
+
+  isPersonal = false; 
+  isMap = false; 
+  isOrder = false;
   
   constructor(
     private router: Router,
@@ -44,4 +48,11 @@ export class NavbarFormComponent implements OnInit {
     this.tokenService.deleteCookie();
     this.router.navigate(['/login']); 
   }
+
+  getClass(path) {
+    let t = (path().substr(0, path.length) === path) ? 'active' : '';
+    return (path().substr(0, path.length) === path) ? 'active' : '';
+  }
+
+
 }

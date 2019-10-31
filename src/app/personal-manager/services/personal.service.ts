@@ -22,7 +22,7 @@ export class PersonalService {
   private url_get_users_group = environment.apiUrl + "wms/usergroup/";
   private url_get_users_without_group = environment.apiUrl + "wms/notgroup/";
   private url_add_user_in_group = environment.apiUrl + "wms/addusergroup/";
-  private url_delete_user_in_group = environment.apiUrl + "wms/removeusergroup/";
+  private url_delete_group_by_user= environment.apiUrl + "wms/removeusergroup/";
 
   constructor(private http: HttpClient) { }
 
@@ -54,7 +54,7 @@ export class PersonalService {
     return this.http.post<any>(`${this.url_add_user_in_group}`, data);
   }
 
-  deleteUserInGroup(data: ActionUser): Observable<any> {
-    return this.http.post<any>(`${this.url_delete_user_in_group}`, data);
+  deleteGroupByUser(data: ActionUser): Observable<any> {
+    return this.http.post<any>(`${this.url_delete_group_by_user}`, data);
   }
 }

@@ -12,9 +12,9 @@ export class PersonalManagementFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.selectValue  = '1';
   }
 
   onSelectTab(value) {
-
   }
 }

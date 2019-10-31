@@ -18,3 +18,13 @@ h6 {
 h6 span{
     display: block;
 }
+.select-item-menu {
+    color: #fff;
+}
+label {
+    margin: 0% !important;
+}
+label:hover {
+    margin: 0% !important;
+    cursor: pointer;
+}

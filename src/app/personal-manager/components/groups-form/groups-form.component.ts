@@ -27,6 +27,10 @@ export class GroupsFormComponent implements OnInit {
   secondFormGroup: FormGroup;
   isGroupCreated: boolean = false;
 
+  messageNoConnect = 'Нет соединения, попробуйте позже.';
+  action = 'Ok';
+  styleNoConnect = 'red-snackbar';
+
   constructor(
     public dialog: MatDialog,
     private _formBuilder: FormBuilder,
@@ -52,7 +56,7 @@ export class GroupsFormComponent implements OnInit {
     }, 
     error => { 
       console.log(error);
-      this.snackbarService.openSnackBar('Нет соединения, попробуйте позже', 'Ok');
+      this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
     });
   }
 
@@ -74,11 +78,11 @@ export class GroupsFormComponent implements OnInit {
     }, 
     error => { 
       console.log(error);
-      this.snackbarService.openSnackBar('Нет соединения, попробуйте позже', 'Ok');
+      this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
     });
   }
   
-  checkResponseActionGroup(response) {
+  checkResponseAction(response) {
     if(response.status === 'True') {
       this.loadGroup();
     }
@@ -107,11 +111,11 @@ export class GroupsFormComponent implements OnInit {
           result.root_order, 
           result.root_sklad, 
           result.root_user)).subscribe(response => {
-            this.checkResponseActionGroup(response);
+            this.checkResponseAction(response);
         }, 
         error => { 
           console.log(error);
-          this.snackbarService.openSnackBar('Нет соединения, попробуйте позже', 'Ok');
+          this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
         });
       }
     });
@@ -119,11 +123,11 @@ export class GroupsFormComponent implements OnInit {
 
   onDelete(group) {
     this.personalService.deletGroup(new DSkladGroup(this.tokenService.getToken(), group.id)).subscribe(response => {
-      this.checkResponseActionGroup(response);
+      this.checkResponseAction(response);
     }, 
     error => { 
       console.log(error);
-      this.snackbarService.openSnackBar('Нет соединения, попробуйте позже', 'Ok');
+      this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
     });
   }
 

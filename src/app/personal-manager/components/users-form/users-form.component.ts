@@ -24,6 +24,10 @@ export class UsersFormComponent implements OnInit {
   groupid: string;
   groups: Array<GroupList>;
 
+  messageNoConnect = 'Нет соединения, попробуйте позже.';
+  action = 'Ok';
+  styleNoConnect = 'red-snackbar';
+
   constructor(
     public dialog: MatDialog,
     private tokenService: TokenService,
@@ -42,7 +46,7 @@ export class UsersFormComponent implements OnInit {
     }, 
     error => { 
       console.log(error);
-      this.snackbarService.openSnackBar('Нет соединения, попробуйте позже', 'Ok');
+      this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
     });
   }
 
@@ -52,9 +56,12 @@ export class UsersFormComponent implements OnInit {
 
   checkResponseAction(response) {
     if(response.status === 'user in group error') {
-      this.snackbarService.openSnackBar('Пользователь уже в группе!', 'Ok');
+      this.snackbarService.openSnackBar('Пользователь уже в группе!', this.action, this.styleNoConnect);
     }
     if(response.status === 'True') {
+      this.loadUsers();
+    }
+    if(response.status === 'False') {
       this.loadUsers();
     }
   }
@@ -97,17 +104,17 @@ export class UsersFormComponent implements OnInit {
     });
   }
 
-  onDeleteUser(user: UGroup) {
-    this.personalService.deleteUserInGroup(new ActionUser(this.tokenService.getToken(), user.login, user.groupid)).subscribe(response => {
+  onRemoveGroup(user: UGroup) {
+    this.personalService.deleteGroupByUser(new ActionUser(this.tokenService.getToken(), user.login, user.groupid)).subscribe(response => {
       this.checkResponseAction(response); 
     }, 
     error => { 
       console.log(error);
-      this.snackbarService.openSnackBar('Нет соединения, попробуйте позже', 'Ok');
+      this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
     });
   }
 
-  onRemoveGroup(element) {
+  onDeleteUser(element) {
 
   }
 }

@@ -5,41 +5,47 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" [routerLinkActive]="['active']">
-                <a class="nav-link" [routerLink]="['product-group']"> 
+                <a class="nav-link" [routerLink]="['product-group']" (click)="isPersonal = false; isMap = false; isOrder = false;"> 
                     Учет продукции по группам 
                 </a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOrders" role="button" data-toggle="dropdown" 
-                            aria-haspopup="true" aria-expanded="false">
-                    Внутрискладские процессы
+            <li class="nav-item dropdown" (click)="isPersonal = false; isMap = false; isOrder = true;">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOrders" 
+                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <label [ngClass]="{'select-item-menu': isOrder }" > Внутрискладские процессы </label>
+                   <!-- Внутрискладские процессы -->
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownOrders">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownOrders" >
                     <a class="dropdown-item" [routerLink]="['tasks']"> Задания </a>
                     <a class="dropdown-item" [routerLink]="['']"> Входящий поток </a>
                     <a class="dropdown-item" [routerLink]="['']"> Исходящий поток </a>
                     <a class="dropdown-item" [routerLink]="['']"> Внутренние процессы </a>
                 </div>                
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" (click)="isPersonal = false; isMap = true; isOrder = false;">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTerminal" role="button" data-toggle="dropdown" 
-                        aria-haspopup="true" aria-expanded="false">
-                    Топология склада
+                aria-haspopup="true" aria-expanded="false">
+                    <label [ngClass]="{'select-item-menu': isMap }" > Топология склада </label>
+                    <!-- Топология склада -->
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownTerminal">
                     <a class="dropdown-item" [routerLink]="['map']"> Управление складом </a>
                     <a class="dropdown-item" [routerLink]="['map-edit']"> Редактирование склада </a>
                 </div>                
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" (click)="isPersonal = true; isMap = false; isOrder = false;">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownStore" role="button" data-toggle="dropdown"
-                             aria-haspopup="true" aria-expanded="false">
-                    Управление ресрсами и персоналом
+                aria-haspopup="true" aria-expanded="false">
+                <!-- <ng-container *ngIf="isActive('/staff')">
+                    <label class="select-item-menu" > Управление ресрсами и персоналом </label>
+                </ng-container> -->
+                    <label [ngClass]="{'select-item-menu': isPersonal }" > Управление ресрсами и персоналом </label>
+                    <!-- Управление ресрсами и персоналом  -->
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownStore">
                     <a class="dropdown-item" [routerLink]="['staff']"> Управление персоналом </a>
                     <a class="dropdown-item" [routerLink]="['']"> Управление штабелерами </a>
-                    <a class="dropdown-item" [routerLink]="['']">Складской учет в разрезах </a>
+                    <a class="dropdown-item" [routerLink]="['']"> Складской учет в разрезах </a>
                 </div>                
             </li>
         </ul>
