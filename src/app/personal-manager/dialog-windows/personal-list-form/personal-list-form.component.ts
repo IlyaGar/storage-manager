@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-export interface User {
-  name: string;
-  group: string;
-}
+import { TokenService } from 'src/app/common/services/token.service';
+import { PersonalService } from '../../services/personal.service';
+import { DownList } from 'src/app/product-manager/models/down-list';
+import { MatTableDataSource } from '@angular/material/table';
+import { UGroup } from '../../models/u-group';
+import { SnackbarService } from 'src/app/common/services/snackbar.service';
 
 @Component({
   selector: 'app-personal-list-form',
@@ -13,38 +14,41 @@ export interface User {
 })
 export class PersonalListFormComponent implements OnInit {
 
+  dataSource: MatTableDataSource<UGroup>;
   selectItem: number;
   selectName: string;
-  displayedColumns = ['name', 'group']
-  users: User[] = [
-    {name: 'steak-0', group: 'Steak'},
-    {name: 'pizza-1', group: 'Pizza'},
-    {name: 'tacos-2', group: 'Tacos'},
-    {name: 'steak-0', group: 'Steak'},
-    {name: 'pizza-1', group: 'Pizza'},
-    {name: 'tacos-2', group: 'Tacos'},
-    {name: 'steak-0', group: 'Steak'},
-    {name: 'pizza-1', group: 'Pizza'},
-    {name: 'tacos-2', group: 'Tacos'}
-  ];
+  displayedColumns = ['name'];
 
   constructor(
+    private tokenService: TokenService,
+    private snackbarService: SnackbarService,
+    private personalService: PersonalService,
     public dialogRef: MatDialogRef<PersonalListFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
 
   ngOnInit() {
+    this.personalService.getUsersWithoutGroup(new DownList(this.tokenService.getToken())).subscribe(response => {
+      this.checkResponse(response); 
+    }, 
+    error => { 
+      console.log(error);
+      this.snackbarService.openSnackBar('Нет соединения, попробуйте позже', 'Ok');
+    });
   }
 
-  onSelectRow(i: number, row: User) {
+  checkResponse(response: Array<UGroup>) {
+    this.dataSource = new MatTableDataSource(response);
+  }
+
+  onSelectRow(i: number, row: UGroup) {
     if(this.selectItem !== i) {
-      this.selectName = row.name;
+      this.selectName = row.login;
       this.selectItem = i;
     } else {
       this.selectName = '';
       this.selectItem = null;
     } 
-      
   }
 
   onNoClick(): void {

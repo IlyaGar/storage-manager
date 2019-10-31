@@ -362,7 +362,7 @@ export class WmsMapEditFormComponent implements OnInit {
     if(this.selectedElement3 === 'road') {
       this.drawingRoad(cell);
     }
-    if(this.selectedElement2 === 'zone_storage') {
+    if(this.selectedElement4 === 'zone_storage') {
       this.drawingZoneStorage(cell);
     }
     if(this.selectedElement3 === 'zone_unload'){
@@ -504,6 +504,22 @@ export class WmsMapEditFormComponent implements OnInit {
         if(cell.isStillageRowWithOutNameVer) {
           cell.isVer = true;
           cell.element = 'ver-2-4';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+      }
+      if(this.selectedElement4 === 'stellage23') {
+        if(cell.isStillageRowWithOutNameHor) {
+          cell.isHor = true;
+          cell.element = 'hor-2-3';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+        if(cell.isStillageRowWithOutNameVer) {
+          cell.isVer = true;
+          cell.element = 'ver-2-3';
           cell.isStillageOneWithOutName = true;
           cell.isBusy = true;
           this.isChanged = true;

@@ -111,3 +111,11 @@ ul {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
+
+.root-section {
+    display: flex;
+    flex-flow: column wrap;
+    /* align-content: center;
+    align-items: center; */
+    height: 60px;
+}

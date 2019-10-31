@@ -114,12 +114,13 @@
                     data-toggle="tooltip" data-placement="bottom" title="Стеллаж удлененный 3/1x5">
                     Удл 1x2/3x2
                 </mat-button-toggle>
-                <mat-button-toggle value="zone_storage" (click)="isChoiceStillage = false; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement4 = 'undefined'"
-                    data-toggle="tooltip" data-placement="bottom" title="Зона хранения поддонов">
-                    Зона отправки
-                </mat-button-toggle>
+
             </mat-button-toggle-group>
             <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement4">
+                <mat-button-toggle value="stellage23" (click)="isChoiceStillage = true; isChoiceZonaSend = false; isChoiceOffice = false; isChoiceContinueRow = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'; selectedElement3 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Зона отправки">
+                    Стеллаж 2x3
+                </mat-button-toggle>
                 <mat-button-toggle value="stellagelong35" (click)="isChoiceStillage = true; isChoiceZonaSend = false; isChoiceOffice = false; isChoiceContinueRow = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'; selectedElement3 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Зона отправки">
                     Удл 3x5 
@@ -127,6 +128,10 @@
                 <mat-button-toggle value="stellagelong34" (click)="isChoiceStillage = true; isChoiceZonaSend = false; isChoiceOffice = false; isChoiceContinueRow = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'; selectedElement3 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Зона отправки">
                     Удл 3x4 
+                </mat-button-toggle>
+                <mat-button-toggle value="zone_storage" (click)="isChoiceStillage = false; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Зона хранения поддонов">
+                    Зона хранения
                 </mat-button-toggle>
             </mat-button-toggle-group>
             <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement3">
@@ -347,6 +352,7 @@
                 <app-long-two-three-four *ngIf="row.element === 'long-2-3-4'"></app-long-two-three-four>
                 <app-long-three-five *ngIf="row.element === 'long-3-5'"></app-long-three-five>
                 <app-long-three-four *ngIf="row.element === 'long-3-4'"></app-long-three-four>
+                <app-vertical-two-three *ngIf="row.element === 'ver-2-3'"></app-vertical-two-three>
             </td>
         </tr>
     </table>
@@ -407,6 +413,7 @@
                 <app-long-two-three-four *ngIf="row.element === 'long-2-3-4'"></app-long-two-three-four>
                 <app-long-three-five *ngIf="row.element === 'long-3-5'"></app-long-three-five>
                 <app-long-three-four *ngIf="row.element === 'long-3-4'"></app-long-three-four>
+                <app-vertical-two-three *ngIf="row.element === 'ver-2-3'"></app-vertical-two-three>
             </td>
         </tr>
     </table>
@@ -467,6 +474,7 @@
                 <app-long-two-three-four *ngIf="row.element === 'long-2-3-4'"></app-long-two-three-four>
                 <app-long-three-five *ngIf="row.element === 'long-3-5'"></app-long-three-five>
                 <app-long-three-four *ngIf="row.element === 'long-3-4'"></app-long-three-four>
+                <app-vertical-two-three *ngIf="row.element === 'ver-2-3'"></app-vertical-two-three>
             </td>
         </tr>
     </table>

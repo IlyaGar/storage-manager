@@ -2,11 +2,15 @@ export class StillageItem{
     constructor(
         public y: number,
         public x: number,
+        // имя стеллажа
         public stillageName: string,
+        // имя ряда
         public rowName: string,
         public cellName: string,
+        // тип стеллажа
         public element: string,
         public style: string,
+        // начало ряда
         public imageUrl: string,
         public yxName: string,
         public isIt: boolean,

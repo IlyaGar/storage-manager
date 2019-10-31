@@ -2,29 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PersonalListFormComponent } from '../../dialog-windows/personal-list-form/personal-list-form.component';
 import { MatTableDataSource } from '@angular/material/table';
-import { EditUserFormComponent } from '../../dialog-windows/edit-user-form/edit-user-form.component';
-
-export interface Group {
-  value: string;
-}
-
-export interface User {
-  name: string;
-  group: string;
-}
-
-const ELEMENT_DATA: User[] = [
-  { name: 'Hydrogen', group: 'Gas' },
-  { name: 'Helium', group: 'Gas' },
-  { name: 'Lithium', group: 'Metal' },
-  { name: 'Beryllium', group: 'Сrystal' },
-  { name: 'Boron', group: 'Сrystal' },
-  { name: 'Carbon', group: 'Сrystal' },
-  { name: 'Nitrogen', group: 'Сrystal' },
-  { name: 'Oxygen', group: 'Gas' },
-  { name: 'Fluorine', group: 'Сrystal' },
-  { name: 'Neon', group: 'Gas' },
-];
+import { PersonalService } from '../../services/personal.service';
+import { TokenService } from 'src/app/common/services/token.service';
+import { DownList } from 'src/app/product-manager/models/down-list';
+import { UGroup } from '../../models/u-group';
+import { ActionUser } from '../../models/action-user';
+import { GroupList } from '../../models/group-list';
+import { SnackbarService } from 'src/app/common/services/snackbar.service';
 
 @Component({
   selector: 'app-users-form',
@@ -34,35 +18,58 @@ const ELEMENT_DATA: User[] = [
 export class UsersFormComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'group', 'action'];
-  dataSource: any;
+  dataSource: MatTableDataSource<UGroup>;
   selectItem: number;
-  
-  groups: Group[] = [
-    { value: 'steak-0' },
-    { value: 'pizza-1' },
-    { value: 'tacos-2' }
-  ];
-
   name: string;
-  group: string;
+  groupid: string;
+  groups: Array<GroupList>;
 
   constructor(
     public dialog: MatDialog,
+    private tokenService: TokenService,
+    private snackbarService: SnackbarService,
+    private personalService: PersonalService,
   ) { }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+    this.loadUsers();
+    this.loadGroups();
+  }
+
+  loadUsers() {
+    this.personalService.getAllUsers(new DownList(this.tokenService.getToken())).subscribe(response => {
+      this.checkResponse(response); 
+    }, 
+    error => { 
+      console.log(error);
+      this.snackbarService.openSnackBar('Нет соединения, попробуйте позже', 'Ok');
+    });
+  }
+
+  checkResponse(response: Array<UGroup>) {
+    this.dataSource = new MatTableDataSource(response);
+  }
+
+  checkResponseAction(response) {
+    if(response.status === 'user in group error') {
+      this.snackbarService.openSnackBar('Пользователь уже в группе!', 'Ok');
+    }
+    if(response.status === 'True') {
+      this.loadUsers();
+    }
   }
 
   onCreateUser() {
-    this.name;
-    this.group;
+    this.personalService.addUserInGroup(new ActionUser(this.tokenService.getToken(), this.name, this.groupid)).subscribe(response => {
+      this.checkResponseAction(response); 
+    }, 
+    error => { 
+      console.log(error);
+    });
   }
 
-  openPersonalListDialog(element: string) {
-    const dialogRef = this.dialog.open(PersonalListFormComponent, {
-      // data: {status: status},
-    });
+  openPersonalListDialog() {
+    const dialogRef = this.dialog.open(PersonalListFormComponent, { });
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
         this.name = result;
@@ -81,17 +88,26 @@ export class UsersFormComponent implements OnInit {
       this.selectItem = null;
   }
 
-  onOpenEditUseForm(user: User) {
-    const dialogRef = this.dialog.open(EditUserFormComponent, {
-      data: {user: user},
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-      }
+  loadGroups() {
+    this.personalService.getGroups(new DownList(this.tokenService.getToken())).subscribe(response => {
+      this.groups = response; 
+    }, 
+    error => { 
+      console.log(error);
     });
   }
 
-  onDeleteUser(user: User) {
+  onDeleteUser(user: UGroup) {
+    this.personalService.deleteUserInGroup(new ActionUser(this.tokenService.getToken(), user.login, user.groupid)).subscribe(response => {
+      this.checkResponseAction(response); 
+    }, 
+    error => { 
+      console.log(error);
+      this.snackbarService.openSnackBar('Нет соединения, попробуйте позже', 'Ok');
+    });
+  }
+
+  onRemoveGroup(element) {
 
   }
 }

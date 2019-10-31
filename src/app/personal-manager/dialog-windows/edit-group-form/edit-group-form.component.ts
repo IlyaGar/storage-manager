@@ -1,10 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-export interface Group {
-  name: string;
-  rights: Array<string>;
-}
+import { GroupList } from '../../models/group-list';
 
 @Component({
   selector: 'app-edit-group-form',
@@ -17,11 +13,9 @@ export class EditGroupFormComponent implements OnInit {
   
   constructor(
     public dialogRef: MatDialogRef<EditGroupFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Group,
+    @Inject(MAT_DIALOG_DATA) public data: GroupList,
   ) { }
 
   ngOnInit() {
-
   }
-
 }

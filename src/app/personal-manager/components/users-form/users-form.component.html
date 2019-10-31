@@ -7,9 +7,9 @@
 
     <mat-form-field id="only" appearance="outline">
         <mat-label>Группа</mat-label>
-        <mat-select  [(ngModel)]="group">
-            <mat-option *ngFor="let group of groups" [value]="group.value">
-                {{group.value}}
+        <mat-select  [(ngModel)]="groupid">
+            <mat-option *ngFor="let group of groups" [value]="group.id">
+                {{group.name}}
             </mat-option>
         </mat-select>
     </mat-form-field>
@@ -25,19 +25,19 @@
         <mat-hint> Поиск по всем столбцам </mat-hint>
     </mat-form-field>
 
-    <div class="tab-container mat-elevation-z8">
+    <div class="tab-container">
         <table mat-table [dataSource]="dataSource">
         
             <!-- Name Column -->
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef> Логин </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.login}} </td>
             </ng-container>
         
             <!-- Group Column -->
             <ng-container matColumnDef="group">
                 <th mat-header-cell *matHeaderCellDef> Группа </th>
-                <td mat-cell *matCellDef="let element"> {{element.group}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.groupname}} </td>
             </ng-container>
         
             <!-- Action Column -->
@@ -48,13 +48,13 @@
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item (click)="onOpenEditUseForm(element)">
+                        <button mat-menu-item (click)="onRemoveGroup(element)">
                             <mat-icon>edit</mat-icon>
-                            <span> Редактировать </span>
+                            <span> Убрать из группы </span>
                         </button>
                         <button mat-menu-item (click)="onDeleteUser(element)">
                             <mat-icon>delete_forever</mat-icon>
-                            <span> Удалить </span>
+                            <span> Удалить пользователя </span>
                         </button>
                     </mat-menu>
                 </td>

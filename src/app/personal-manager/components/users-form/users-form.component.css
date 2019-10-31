@@ -94,7 +94,7 @@ div#content {
 } 
 @media (max-width: 1366px) { 
     .tab-container {
-        max-height: 55vh;
+        max-height: 65vh;
         overflow: auto;
     }
 }

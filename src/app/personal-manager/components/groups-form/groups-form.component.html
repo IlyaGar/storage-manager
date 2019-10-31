@@ -1,6 +1,6 @@
 <div id="content">
 
-    <mat-tab-group>
+    <mat-tab-group  (selectedTabChange)="onClickGroup($event)">
         <mat-tab label="Группы"> 
 
             <mat-form-field id="no" appearance="legacy">
@@ -11,7 +11,7 @@
             </mat-form-field>
 
             <div class="tab-container">
-                <table mat-table [dataSource]="groups">
+                <table mat-table [dataSource]="dataSource">
 
                     <ng-container matColumnDef="name">
                         <th mat-header-cell *matHeaderCellDef> Группы </th>
@@ -21,11 +21,10 @@
                     <ng-container matColumnDef="rights">
                         <th mat-header-cell *matHeaderCellDef> Права </th>
                         <td mat-cell *matCellDef="let element"> 
-                            <!-- {{element.rights}}  -->
                             <ul>
-                                <li *ngFor="let right of element.rights">
-                                    {{ right }}
-                                </li>
+                                <li *ngIf="element.root_order"> Добавление заказа </li>
+                                <li *ngIf="element.root_sklad"> Редактирование склада </li>
+                                <li *ngIf="element.root_user"> Управление персоналом </li>
                             </ul>
                         </td>
                     </ng-container>   
@@ -41,7 +40,7 @@
                                     <mat-icon>edit</mat-icon>
                                     <span> Редактировать </span>
                                 </button>
-                                <button mat-menu-item>
+                                <button mat-menu-item (click)="onDelete(element)">
                                     <mat-icon>delete_forever</mat-icon>
                                     <span> Удалить </span>
                                 </button>
@@ -65,7 +64,7 @@
                     <ng-template matStepLabel> Название новой группы </ng-template>
                     <mat-form-field id="only" appearance="outline">
                         <mat-label> Введите название </mat-label>
-                        <input matInput placeholder="Название" [(ngModel)]="nameGroup" formControlName="firstCtrl" required>
+                        <input matInput placeholder="Название" [(ngModel)]="skladGroup.name" formControlName="firstCtrl" required>
                     </mat-form-field>
                     <hr>
                     <div>
@@ -76,13 +75,13 @@
             <mat-step [stepControl]="secondFormGroup">
                 <form [formGroup]="secondFormGroup">
                     <ng-template matStepLabel> Права </ng-template>
-                    <div class="list-container">
-                        <mat-selection-list #rights formControlName="secondCtrl" required>
-                            <mat-list-option *ngFor="let right of listRights"  (click)="onClickRight(right)">
-                                {{right}}
-                            </mat-list-option>
-                        </mat-selection-list>   
-                    </div>
+
+                    <section class="root-section">
+                        <mat-checkbox [(ngModel)]="skladGroup.root_order" formControlName="secondCtrl" required> Добавление заказа </mat-checkbox>
+                        <mat-checkbox [(ngModel)]="skladGroup.root_sklad" formControlName="secondCtrl" required> Редактирование склада </mat-checkbox>
+                        <mat-checkbox [(ngModel)]="skladGroup.root_user" formControlName="secondCtrl" required> Управление персоналом </mat-checkbox>
+                    </section>
+
                     <hr>
                     <div>
                         <button type="button" id="bt" class="btn btn-light"  matStepperPrevious> Назад </button> 
@@ -91,29 +90,17 @@
                 </form>
             </mat-step>
             <mat-step>
-                <ng-template matStepLabel> Пользователи </ng-template>
-                <div class="list-container">
-                    <mat-selection-list #users>
-                        <mat-list-option *ngFor="let user of listUsers"  (click)="onClickUser(right)">
-                            {{user}}
-                        </mat-list-option>
-                    </mat-selection-list>  
-                </div>
-                <hr>
-                <div>
-                    <button type="button" id="bt" class="btn btn-light"  matStepperPrevious> Назад </button> 
-                    <button type="button" id="bt" class="btn btn-light"  matStepperNext> Дальше </button> 
-                </div>
-            </mat-step>
-            <mat-step>
                 <ng-template matStepLabel> Готово </ng-template>
-                Потвердите создание группы.
+                <ng-container *ngIf="isGroupCreated"> Группа создана! </ng-container>
+                <ng-container *ngIf="!isGroupCreated">  Потвердите создание группы. </ng-container>
+               
                 <hr>
-                <div>
+                <div *ngIf="!isGroupCreated">
                     <button type="button" id="bt" class="btn btn-light"  matStepperPrevious> Назад </button> 
                     <button type="button" id="bt" class="btn btn-warning"  (click)="stepper.reset()"> Сброс </button> 
                     <button type="button" id="bt" class="btn btn-primary"  (click)="onCreateGroup()"> Создать </button> 
                 </div>
+
             </mat-step>
             </mat-horizontal-stepper>
         </mat-tab>

@@ -3,50 +3,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { EditGroupFormComponent } from '../../dialog-windows/edit-group-form/edit-group-form.component';
-
-export interface Group {
-  name: string;
-  rights: Array<string>;
-}
-
-const ELEMENT_DATA: Group[] = [
-  { name: 'steak-0', rights: ['Добавление заказа', 'Редактирование склада', 'Управление персоналом'] },
-  { name: 'pizza-1', rights: ['Редактирование склада']  },
-  { name: 'tacos-2', rights: ['Управление персоналом']  },
-  { name: 'steak-1', rights: ['Добавление заказа', 'Редактирование склада', 'Управление персоналом'] },
-  { name: 'pizza-2', rights: ['Добавление заказа', 'Редактирование склада']  },
-  { name: 'tacos-3', rights: ['Управление персоналом']  },
-  { name: 'steak-4', rights: ['Добавление заказа', 'Редактирование склада', 'Управление персоналом'] },
-  { name: 'pizza-5', rights: ['Редактирование склада']  },
-  { name: 'tacos-6', rights: ['Управление персоналом']  },
-  { name: 'steak-7', rights: ['Добавление заказа', 'Редактирование склада', 'Управление персоналом'] },
-  { name: 'pizza-8', rights: ['Редактирование склада']  },
-  { name: 'tacos-9', rights: ['Управление персоналом']  },
-  { name: 'steak-10', rights: ['Добавление заказа', 'Редактирование склада', 'Управление персоналом'] },
-  { name: 'pizza-11', rights: ['Редактирование склада']  },
-  { name: 'tacos-12', rights: ['Добавление заказа', 'Управление персоналом']  },
-  { name: 'steak-13', rights: ['Добавление заказа', 'Редактирование склада', 'Управление персоналом'] },
-  { name: 'pizza-14', rights: ['Редактирование склада']  },
-  { name: 'tacos-15', rights: ['Управление персоналом']  }
-];
-
-export interface User {
-  name: string;
-  group: string;
-}
-
-const ELEMENT_DATA1: User[] = [
-  { name: 'Hydrogen', group: 'Gas' },
-  { name: 'Helium', group: 'Gas' },
-  { name: 'Lithium', group: 'Metal' },
-  { name: 'Beryllium', group: 'Сrystal' },
-  { name: 'Boron', group: 'Сrystal' },
-  { name: 'Carbon', group: 'Сrystal' },
-  { name: 'Nitrogen', group: 'Сrystal' },
-  { name: 'Oxygen', group: 'Gas' },
-  { name: 'Fluorine', group: 'Сrystal' },
-  { name: 'Neon', group: 'Gas' },
-];
+import { SkladGroup } from '../../models/sklad-group';
+import { PersonalService } from '../../services/personal.service';
+import { TokenService } from 'src/app/common/services/token.service';
+import { DownList } from 'src/app/product-manager/models/down-list';
+import { GroupList } from '../../models/group-list';
+import { ESkladGroup } from '../../models/e-sklad-group';
+import { DSkladGroup } from '../../models/d-sklad-group';
+import { SnackbarService } from 'src/app/common/services/snackbar.service';
 
 @Component({
   selector: 'app-groups-form',
@@ -55,23 +19,21 @@ const ELEMENT_DATA1: User[] = [
 })
 export class GroupsFormComponent implements OnInit {
 
-  nameGroup: string;
+  skladGroup: SkladGroup = new SkladGroup('', '', false, false, false);
   selectItem: number;
   displayedColumnsGrop = ['name', 'rights', 'menu'];
-  
-  listRights: Array<string> = ['Добавление заказа', 'Редактирование склада', 'Управление персоналом'];
-  selectRights: Array<string> = [];
-
-  groups: any;
-  listUsers: Array<string> = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];;
-
-  isLinear = false;
+  dataSource: MatTableDataSource<GroupList>;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  isGroupCreated: boolean = false;
 
   constructor(
     public dialog: MatDialog,
-    private _formBuilder: FormBuilder) {}
+    private _formBuilder: FormBuilder,
+    private tokenService: TokenService,
+    private snackbarService: SnackbarService,
+    private personalService: PersonalService,
+  ) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -80,7 +42,22 @@ export class GroupsFormComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
-    this.groups = new MatTableDataSource(ELEMENT_DATA);
+    this.loadGroup();
+  }
+
+  loadGroup() {
+    this.isGroupCreated = false;
+    this.personalService.getGroups(new DownList(this.tokenService.getToken())).subscribe(response => {
+      this.checkResponseList(response); 
+    }, 
+    error => { 
+      console.log(error);
+      this.snackbarService.openSnackBar('Нет соединения, попробуйте позже', 'Ok');
+    });
+  }
+
+  checkResponseList(response: Array<GroupList>) {
+    this.dataSource = new MatTableDataSource(response);
   }
 
   onSelectRow(i) {
@@ -91,31 +68,66 @@ export class GroupsFormComponent implements OnInit {
   }
 
   onCreateGroup() {
-    this.nameGroup;
-    this.selectRights;
+    this.skladGroup.token = this.tokenService.getToken();
+    this.personalService.createGroup(this.skladGroup).subscribe(response => {
+      this.checkResponseCreateGroup(response);
+    }, 
+    error => { 
+      console.log(error);
+      this.snackbarService.openSnackBar('Нет соединения, попробуйте позже', 'Ok');
+    });
+  }
+  
+  checkResponseActionGroup(response) {
+    if(response.status === 'True') {
+      this.loadGroup();
+    }
   }
 
-  onClickRight(right) {
-    const index: number = this.selectRights.indexOf(right);
-    if (index !== -1) {
-        this.selectRights.splice(index, 1);
-    } else {
-      this.selectRights.push(right);
+  checkResponseCreateGroup(response) {
+    if(response.status === 'True') {
+      this.isGroupCreated = true;
     }
-    console.log(this.selectRights);
   }
 
   applyFilter(filterValue: string) {
-    this.groups.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  onOpenEditGroupForm(group: Group) {
+  onOpenEditGroupForm(group) {
     const dialogRef = this.dialog.open(EditGroupFormComponent, {
       data: { group: group },
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
+        this.personalService.editGroup(new ESkladGroup(
+          this.tokenService.getToken(), 
+          result.id, 
+          result.name, 
+          result.root_order, 
+          result.root_sklad, 
+          result.root_user)).subscribe(response => {
+            this.checkResponseActionGroup(response);
+        }, 
+        error => { 
+          console.log(error);
+          this.snackbarService.openSnackBar('Нет соединения, попробуйте позже', 'Ok');
+        });
       }
     });
+  }
+
+  onDelete(group) {
+    this.personalService.deletGroup(new DSkladGroup(this.tokenService.getToken(), group.id)).subscribe(response => {
+      this.checkResponseActionGroup(response);
+    }, 
+    error => { 
+      console.log(error);
+      this.snackbarService.openSnackBar('Нет соединения, попробуйте позже', 'Ok');
+    });
+  }
+
+  onClickGroup(event) {
+    this.loadGroup();
   }
 }

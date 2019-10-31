@@ -4,6 +4,7 @@ import { LoginResponse } from 'src/app/login-manager/models/login-response';
 import { LogoutStatus } from 'src/app/login-manager/models/logout-status';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment.prod';
+import { TokenService } from 'src/app/common/services/token.service';
 
 @Component({
   selector: 'app-navbar-form',
@@ -19,6 +20,7 @@ export class NavbarFormComponent implements OnInit {
   
   constructor(
     private router: Router,
+    private tokenService: TokenService,
     private cookieService: CookieService,
   ) { }
 
@@ -31,7 +33,15 @@ export class NavbarFormComponent implements OnInit {
         this.isLogin = true;
       }
     }
-    else this.isLogin = false;
+    else {
+      this.isLogin = false;
+      this.router.navigate(['/login']);
+    }
   }
 
+  onLogOut() {
+    this.isLogin = false;
+    this.tokenService.deleteCookie();
+    this.router.navigate(['/login']); 
+  }
 }

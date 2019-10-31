@@ -49,6 +49,7 @@ import { PersonalListFormComponent } from './personal-manager/dialog-windows/per
 import { GroupsFormComponent } from './personal-manager/components/groups-form/groups-form.component';
 import { EditUserFormComponent } from './personal-manager/dialog-windows/edit-user-form/edit-user-form.component';
 import { EditGroupFormComponent } from './personal-manager/dialog-windows/edit-group-form/edit-group-form.component';
+import { VerticalTwoThreeComponent } from './stillages/vertical-two-three/vertical-two-three.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { EditGroupFormComponent } from './personal-manager/dialog-windows/edit-g
     GroupsFormComponent,
     EditUserFormComponent,
     EditGroupFormComponent,
+    VerticalTwoThreeComponent,
   ],
   imports: [
     FormsModule,
