@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { SelectProcessesFormComponent } from '../dialog-windows/select-processes-form/select-processes-form.component';
+import { SelectProcessesFormComponent } from '../components/select-processes-form/select-processes-form.component';
 
 @Component({
   selector: 'app-task',
@@ -12,7 +12,6 @@ export class TaskComponent implements OnInit {
   listProcesses: Array<string> = [];
   displayedColumnsProcesses = ['processe'];
   listWorkers: Array<string> = [];
-  displayedColumnsWorkers = ['worker'];
   selectedMethod: any = 'auto';
   confirmText: string = 'Да';
   cancelText: string = 'Нет';

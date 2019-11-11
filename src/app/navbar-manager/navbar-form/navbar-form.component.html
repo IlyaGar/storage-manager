@@ -9,11 +9,19 @@
                     Учет продукции по группам 
                 </a>
             </li>
-            <li class="nav-item dropdown" (click)="isPersonal = false; isMap = false; isOrder = true;">
+            <li class="nav-item dropdown" (click)="getPath(); isPersonal = false; isMap = false; isOrder = true;">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOrders" 
                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   <label [ngClass]="{'select-item-menu': isOrder }" > Внутрискладские процессы </label>
-                   <!-- Внутрискладские процессы -->
+                <ng-container *ngIf="(  isPathActiv('/product-group') || 
+                                        isPathActiv('/map') || 
+                                        isPathActiv('/map-edit') || 
+                                        isPathActiv('/staff')) && 
+                                        !isPathActiv('/tasks')">
+                    <label> Внутрискладские процессы </label>
+                </ng-container>
+                <ng-container *ngIf="isPathActiv('/tasks')">
+                    <label class="select-item-menu" > Задания </label>
+                </ng-container>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownOrders" >
                     <a class="dropdown-item" [routerLink]="['tasks']"> Задания </a>
@@ -22,25 +30,41 @@
                     <a class="dropdown-item" [routerLink]="['']"> Внутренние процессы </a>
                 </div>                
             </li>
-            <li class="nav-item dropdown" (click)="isPersonal = false; isMap = true; isOrder = false;">
+            <li class="nav-item dropdown" (click)="getPath(); isPersonal = false; isMap = true; isOrder = false;">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTerminal" role="button" data-toggle="dropdown" 
                 aria-haspopup="true" aria-expanded="false">
-                    <label [ngClass]="{'select-item-menu': isMap }" > Топология склада </label>
-                    <!-- Топология склада -->
+                <ng-container *ngIf="(  isPathActiv('/product-group') || 
+                                        isPathActiv('/tasks') || 
+                                        isPathActiv('/staff')) && 
+                                        (!isPathActiv('/map') || 
+                                        !isPathActiv('/map-edit'))">
+                    <label> Топология склада </label>
+                </ng-container>
+                <ng-container *ngIf="isPathActiv('/map')">
+                    <label class="select-item-menu" > Управление складом </label>
+                </ng-container>
+                <ng-container *ngIf="isPathActiv('/map-edit')">
+                    <label class="select-item-menu" > Редактирование склада </label>
+                </ng-container>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownTerminal">
                     <a class="dropdown-item" [routerLink]="['map']"> Управление складом </a>
                     <a class="dropdown-item" [routerLink]="['map-edit']"> Редактирование склада </a>
                 </div>                
             </li>
-            <li class="nav-item dropdown" (click)="isPersonal = true; isMap = false; isOrder = false;">
+            <li class="nav-item dropdown" (click)="getPath(); isPersonal = true; isMap = false; isOrder = false;">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownStore" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <!-- <ng-container *ngIf="isActive('/staff')">
-                    <label class="select-item-menu" > Управление ресрсами и персоналом </label>
-                </ng-container> -->
-                    <label [ngClass]="{'select-item-menu': isPersonal }" > Управление ресрсами и персоналом </label>
-                    <!-- Управление ресрсами и персоналом  -->
+                <ng-container *ngIf="(  isPathActiv('/product-group') || 
+                                        isPathActiv('/map') || 
+                                        isPathActiv('/map-edit') || 
+                                        isPathActiv('/tasks')) && 
+                                        !isPathActiv('/staff')">
+                    <label> Управление ресрсами и персоналом </label>
+                </ng-container>
+                <ng-container *ngIf="isPathActiv('/staff')">
+                    <label class="select-item-menu" > Управление персоналом </label>
+                </ng-container>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownStore">
                     <a class="dropdown-item" [routerLink]="['staff']"> Управление персоналом </a>

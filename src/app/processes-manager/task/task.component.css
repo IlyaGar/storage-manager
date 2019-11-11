@@ -1,18 +1,24 @@
-@media (max-width: 1360px) { /* это будет показано при разрешении монитора до 930 пикселей */
+@media (max-width: 1920px) {
     .example-container {
-        width: 90vw; /* включает в себя полосу прокрутки от body */ 
-        height: 80vh;
+        margin: 0%;
+        width: 100vw; 
+        height: calc(100vh - 4em);
     }
-}
-@media (max-width: 1920px) { /* это будет показано при разрешении монитора до 930 пикселей */
-    .example-container {
-        width: 100vw; /* включает в себя полосу прокрутки от body */ 
-        height: 94vh;
+    mat-drawer {
+        padding: 5px;
+        width: 30vw;
     }
 } 
-mat-drawer {
-    padding: 5px;
-    width: 30vw;
+@media (max-width: 1366px) { 
+    .example-container {
+        margin: 0%;
+        width: 100vw; 
+        height: calc(100vh - 4em);
+    }
+    mat-drawer {
+        padding: 5px;
+        width: 35vw;
+    }
 }
 table {
     width: 100%;
@@ -32,6 +38,7 @@ th button {
     float: right;
 }
 p {
+    margin-bottom: 0rem !important;
     color: rgba(128, 128, 128);
 }
 p#as-method {

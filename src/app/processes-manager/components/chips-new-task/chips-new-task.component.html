@@ -13,8 +13,8 @@
                 [matChipInputAddOnBlur]="addOnBlur"
                 (matChipInputTokenEnd)="add($event)">
         </mat-chip-list>
+        
     </mat-form-field>
-    <button mat-mini-fab color="primary" (click)="openDocList()">
-        <mat-icon aria-hidden="false" aria-label="Example home icon"> add </mat-icon>
-    </button> 
+    <mat-icon id="push" aria-hidden="false" aria-label="Example home icon" (click)="openDocList()"
+    matTooltip="Выбрать из списка"> add </mat-icon>
 </div>

@@ -25,8 +25,8 @@ import { VerticalThreeFourActionComponent } from './stillages/vertical-three-fou
 import { ProductGroupAccountingFormComponent } from './product-manager/product-group-accounting-form/product-group-accounting-form.component';
 import { StoragePlacesComponent } from './dialog-windows/storage-places-manager/storage-places/storage-places.component';
 import { TaskComponent } from './processes-manager/task/task.component';
-import { ChipsNewTaskComponent } from './helpers/chips-new-task/chips-new-task.component';
-import { SelectProcessesFormComponent } from './processes-manager/dialog-windows/select-processes-form/select-processes-form.component';
+import { ChipsNewTaskComponent } from './processes-manager/components/chips-new-task/chips-new-task.component';
+import { SelectProcessesFormComponent } from './processes-manager/components/select-processes-form/select-processes-form.component';
 import { SelectCellFormComponent } from './processes-manager/dialog-windows/select-cell-form/select-cell-form.component';
 import { DocListComponent } from './processes-manager/dialog-windows/doc-list/doc-list.component';
 import { VerticalThreeThreeComponent } from './stillages/vertical-three-three/vertical-three-three.component';
@@ -50,6 +50,12 @@ import { GroupsFormComponent } from './personal-manager/components/groups-form/g
 import { EditUserFormComponent } from './personal-manager/dialog-windows/edit-user-form/edit-user-form.component';
 import { EditGroupFormComponent } from './personal-manager/dialog-windows/edit-group-form/edit-group-form.component';
 import { VerticalTwoThreeComponent } from './stillages/vertical-two-three/vertical-two-three.component';
+import { ProcPersonalListFormComponent } from './processes-manager/components/proc-personal-list-form/proc-personal-list-form.component';
+import { SelectGroupFormComponent } from './processes-manager/dialog-windows/select-group-form/select-group-form.component';
+import { SelectUserFormComponent } from './processes-manager/dialog-windows/select-user-form/select-user-form.component';
+import { DetailDocFormComponent } from './processes-manager/dialog-windows/detail-doc-form/detail-doc-form.component';
+import { DocTableFormComponent } from './processes-manager/components/doc-table-form/doc-table-form.component';
+import { StillgeDialogFormComponent } from './wms-map/dialog-windows/stillge-dialog-form/stillge-dialog-form.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +100,12 @@ import { VerticalTwoThreeComponent } from './stillages/vertical-two-three/vertic
     EditUserFormComponent,
     EditGroupFormComponent,
     VerticalTwoThreeComponent,
+    ProcPersonalListFormComponent,
+    SelectGroupFormComponent,
+    SelectUserFormComponent,
+    DetailDocFormComponent,
+    DocTableFormComponent,
+    StillgeDialogFormComponent,
   ],
   imports: [
     FormsModule,
@@ -125,6 +137,10 @@ import { VerticalTwoThreeComponent } from './stillages/vertical-two-three/vertic
     PersonalListFormComponent,
     EditUserFormComponent,
     EditGroupFormComponent,
+    SelectGroupFormComponent,
+    SelectUserFormComponent,
+    DetailDocFormComponent,
+    StillgeDialogFormComponent,
   ],
   bootstrap: [AppComponent]
 })

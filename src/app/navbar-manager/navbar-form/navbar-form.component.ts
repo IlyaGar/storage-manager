@@ -5,6 +5,7 @@ import { LogoutStatus } from 'src/app/login-manager/models/logout-status';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment.prod';
 import { TokenService } from 'src/app/common/services/token.service';
+import { Location } from "@angular/common";
 
 @Component({
   selector: 'app-navbar-form',
@@ -24,6 +25,7 @@ export class NavbarFormComponent implements OnInit {
   
   constructor(
     private router: Router,
+    private location: Location,
     private tokenService: TokenService,
     private cookieService: CookieService,
   ) { }
@@ -49,10 +51,8 @@ export class NavbarFormComponent implements OnInit {
     this.router.navigate(['/login']); 
   }
 
-  getClass(path) {
-    let t = (path().substr(0, path.length) === path) ? 'active' : '';
-    return (path().substr(0, path.length) === path) ? 'active' : '';
+  isPathActiv(path: string) {
+    let v = (path === this.location.path()) ? true : false;
+    return (path === this.location.path()) ? true : false;
   }
-
-
 }

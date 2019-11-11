@@ -26,7 +26,6 @@ export class SelectCellFormComponent implements OnInit {
   cellTo: string = '';
   isIncorrect = false;
   
-
   constructor(
     private stillageService: StillageService,
     private wmsMapService: WmsMapService,

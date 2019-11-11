@@ -1,5 +1,17 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { DetailDocFormComponent } from '../detail-doc-form/detail-doc-form.component';
+import { ProcService } from '../../services/proc.service';
+import { RequestDoc } from '../../models/request-doc';
+import { TokenService } from 'src/app/common/services/token.service';
+import { SnackbarService } from 'src/app/common/services/snackbar.service';
+import { AnswerDoc } from '../../models/answer-doc';
+import { htmlAstToRender3Ast } from '@angular/compiler/src/render3/r3_template_transform';
+
+export interface EmitData {
+  doc: AnswerDoc;
+  type: string;
+}
 
 export interface PeriodicElement {
   name: string;
@@ -10,9 +22,11 @@ export interface PeriodicElement {
   hovered?: boolean;
 }
 
-export interface ListItem {
-  title: string;
-  item: string;
+export class ListItem{
+  constructor(       
+    public title: string,
+    public item: string,
+  ){}
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -71,24 +85,55 @@ const ELEMENT_DATA3: PeriodicElement[] = [
 })
 export class DocListComponent implements OnInit {
 
-  displayedColumns = ['doc', 'date', 'icon'];
+  displayedColumns = ['doc', 'date', 'store', 'icon'];
   displayedListColumns = ['title'];
-  dataSource: Array<PeriodicElement> = [];
+  dataSource: Array<AnswerDoc> = [];
   dataSource1: Array<PeriodicElement> = [];
   dataSource2: Array<PeriodicElement> = [];
   dataSource3: Array<PeriodicElement> = [];
   list: Array<ListItem> = [];
+  selectDoc: ListItem; 
+
+  messageNoConnect = 'Нет соединения, попробуйте позже.';
+  action = 'Ok';
+  styleNoConnect = 'red-snackbar';
+
+  strPrihod: string = 'Приходные';
+  strZpc: string = 'Заявки';
+  strPerem: string = 'Перемещение';
+  strVozv: string = 'Возвраты';
+
+  matTab0: boolean = true;
+  matTab1: boolean = false;
+  matTab2: boolean = false;
+  matTab3: boolean = false;
 
   constructor(
+    public dialog: MatDialog,
+    private procService: ProcService,
+    private tokenService: TokenService,
+    private snackbarService: SnackbarService,
     public dialogRef: MatDialogRef<DocListComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
 
   ngOnInit() {
-    this.dataSource = ELEMENT_DATA;
+    // this.dataSource = ELEMENT_DATA;
     this.dataSource1 = ELEMENT_DATA1;
     this.dataSource2 = ELEMENT_DATA2;
     this.dataSource3 = ELEMENT_DATA3;
+
+    // this.procService.getDocsPerem(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
+    //   this.checkResponse(response); 
+    // }, 
+    // error => { 
+    //   console.log(error);
+    //   this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
+    // });
+  }
+
+  checkResponse(response: Array<AnswerDoc>) {
+    this.dataSource = response;
   }
 
   ngOnDestroy() {
@@ -127,26 +172,41 @@ export class DocListComponent implements OnInit {
     element.highlighted = !element.highlighted;
   }
 
-  onClickTabItem(element: PeriodicElement, title: string) {
-    element.highlighted = true;
-    if(this.list.length === 0) {
-      this.list.push({ title: title, item: element.name });
-    } else {
-      if(this.list[0].title === title) {
-        if(!this.list.find(item => item.item === element.name)) {
-          this.list = this.list.concat({ title: title, item: element.name });
-        }
+  onClickTabItem(element: AnswerDoc, title: string) {
+    element.highlighted = !element.highlighted;
+    this.selectDoc = new ListItem(title, element.docid);
+    let isIn = false;
+    this.list.forEach(element => {
+      if(JSON.stringify(element) === JSON.stringify(this.selectDoc))
+        isIn = true;
+    });
+    if(isIn)
+      this.list = this.list.filter(item => item.item !== this.selectDoc.item);
+    else 
+      if(this.list.length === 0) {
+        this.list.push(this.selectDoc);
       } else {
-        this.clearTable(this.list[0].title);
-        this.list = [];
-        this.list = this.list.concat({ title: title, item: element.name });
+        if(this.list[0].title === title) {
+          if(!this.list.find(item => item.item === element.docid)) {
+            this.list = this.list.concat(this.selectDoc);
+          }
+        } else {
+          this.clearTable(this.list[0].title);
+          this.list = [];
+          this.list = this.list.concat(this.selectDoc);
+        }
       }
-    }
   }
 
-  onClickListItem(element: any) {
-    if(this.list.includes(element)) {
-      this.list = this.list.filter(item => item !== element);
+  onClickListItem(selectItem: ListItem) {
+    if(this.list.includes(selectItem)) {
+      this.list = this.list.filter(item => item !== selectItem);
+
+      this.dataSource.forEach(element => {
+        if(element.docid === selectItem.item) {
+          element.highlighted = false;
+        }
+      });
     }
   }
 
@@ -161,10 +221,69 @@ export class DocListComponent implements OnInit {
       this.setHighlightedFalse(this.dataSource3);
   }
 
-  setHighlightedFalse(arr: Array<PeriodicElement>) {
+  setHighlightedFalse(arr: any) {
     arr.forEach(element => {
       if(element.highlighted)
         element.highlighted = !element.highlighted;
     });
+  }
+
+  openDeatilDocForm() {
+    const dialogRef = this.dialog.open(DetailDocFormComponent, {
+      width: "70vw",
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+
+      }
+    });
+  }
+
+  onChanged(data: EmitData){
+    data.doc.highlighted = !data.doc.highlighted;
+    this.selectDoc = new ListItem(data.type, data.doc.docid);
+    let isIn = false;
+    this.list.forEach(element => {
+      if(JSON.stringify(element) === JSON.stringify(this.selectDoc))
+        isIn = true;
+    });
+    if(isIn)
+      this.list = this.list.filter(item => item.item !== this.selectDoc.item);
+    else 
+      if(this.list.length === 0) {
+        this.list.push(this.selectDoc);
+      } else {
+        if(this.list[0].title === data.type) {
+          if(!this.list.find(item => item.item === data.doc.docid)) {
+            this.list = this.list.concat(this.selectDoc);
+          }
+        } else {
+          this.clearTable(this.list[0].title);
+          this.list = [];
+          this.list = this.list.concat(this.selectDoc);
+        }
+      }
+  }
+
+    
+  onClickTab($event) {
+    let e = $event.index;
+    switch($event.index) {
+      case 0:
+        this.matTab0 = true;
+        break;
+
+      case 0:
+        this.matTab1 = true;
+        break;
+
+      case 0:
+        this.matTab2 = true;
+        break;
+        
+      case 0:
+        this.matTab3 = true;
+        break;
+    }
   }
 } 

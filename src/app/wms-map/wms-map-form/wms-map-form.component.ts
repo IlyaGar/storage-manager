@@ -6,6 +6,7 @@ import { AttentionFormComponent } from 'src/app/dialog-windows/attention-dialog/
 import { MatDialog } from '@angular/material/dialog';
 import { InventoryDialogFormComponent } from 'src/app/dialog-windows/inventory-dialog-manager/inventory-dialog-form/inventory-dialog-form.component';
 import { InventoryItem } from '../models/inventory-item';
+import { StillgeDialogFormComponent } from '../dialog-windows/stillge-dialog-form/stillge-dialog-form.component';
 
 @Component({
   selector: 'app-wms-map-form',
@@ -63,6 +64,9 @@ export class WmsMapFormComponent implements OnInit {
   onSelectCell(cell: StillageItem) {
     if(this.isSelectInventory) {
       this.selectInventory(cell);
+    }
+    if(cell.cellName) {
+      this.openDetailStillageDialog();
     }
   }
 
@@ -270,6 +274,14 @@ export class WmsMapFormComponent implements OnInit {
         element.stillageItem.isSelectCellStillage = false;
       });
       this.listInventory = [];
+    });
+  }
+
+  openDetailStillageDialog() {
+    const dialogRef = this.dialog.open(StillgeDialogFormComponent, {
+    });
+    dialogRef.afterClosed().subscribe(result => {
+
     });
   }
 }

@@ -1,21 +1,10 @@
-.example-form {
-    width: 100%;
-}
 mat-form-field#proc {
     margin-right: 0.5em;
+    width: 10em;
 }
 mat-form-field#zone {
     padding: 0%;
     margin: 0%;
-}
-label#auto {
-    position: relative;
-    top: 15px;
-    height: 65.5px;
-    width: 100%;
-}
-div#auto {
-    height: 65.5px;
 }
 button {
     border: none!important;
@@ -30,19 +19,16 @@ mat-button-toggle {
     border: none!important;
     outline: none!important;
 }
-
 .mat-table {
     width: 100%;
-}
-table {
-    width: 300px;
 }
 .table-container {
     width: 100%;
     overflow: auto;
 }
 .list-proc {
-    height: 30vh;
+    /* height: 30vh; */
+    width: 95%;
     border: 0.12em solid rgba(128, 128, 128, 0.4);
     border-radius: 5px;
 }
@@ -91,3 +77,17 @@ table {
     -webkit-hyphens: auto;
     hyphens: auto;
 }  
+mat-icon#push {
+    padding: 4px 0px 0px 0px;
+    cursor: pointer;
+}
+mat-icon#push:hover {
+    font-size: 26px;
+    color: blueviolet;
+}
+tr.mat-header-row {
+    height: 38px;
+}
+tr.mat-row {
+    height: 38px !important;
+}

@@ -168,6 +168,9 @@ div#name-row-hor {
 .zone_send {
     background-color: rgba(0, 255, 215, 0.5);
 }
+.zone_storage {
+    background-color: rgba(139, 0, 139, 0.5);
+}
 mat-card#input-from-to {
     padding: 0.7em 0em 0em 0.5em;
 }

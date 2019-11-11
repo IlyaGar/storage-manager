@@ -118,29 +118,31 @@
     <table class="table-bord">
         <tr class="tr-bord" *ngFor="let row of tab_map">
             <td class="td-bord" *ngFor="let cell of row" (click)="onSelectCell(cell)"
-                [ngClass]="{
-                    'stillage-row-with-out-name': cell.isStillageRowWithOutNameHor || cell.isStillageRowWithOutNameVer,
-                    'stillage-cell-with-out-name': cell.isStillageOneWithOutName,
-                    'stillage-select-cell': cell.isSelectCellStillage,
-                    'road': cell.element === 'road',
-                    'office': cell.element === 'office',
-                    'zone_unload': cell.element === 'zone_unload',
-                    'zone_send': cell.element === 'zone_send',
-                    's-left-bottom-top': row.style === 's-left-bottom-top',
-                    's-bottom-top': row.style === 's-bottom-top',
-                    's-right-bottom-top': row.style === 's-right-bottom-top',
-                    's-left-top-right': row.style === 's-left-top-right',
-                    's-left-right': row.style === 's-left-right',
-                    's-left-bottom-right': row.style === 's-left-bottom-right',
-                    's-left-top': row.style === 's-left-top',
-                    's-right-top': row.style === 's-right-top',
-                    's-right-bottom': row.style === 's-right-bottom',
-                    's-left-bottom': row.style === 's-left-bottom',
-                    's-left': row.style === 's-left',
-                    's-right': row.style === 's-right',
-                    's-bottom': row.style === 's-bottom',
-                    's-top': row.style === 's-top'
-                }">
+            [ngClass]="{
+                'stillage-row-with-out-name': row.isStillageRowWithOutNameHor || row.isStillageRowWithOutNameVer,
+                'stillage-cell-with-out-name': row.isStillageOneWithOutName,
+                'stillage-select-cell': row.isSelectCellStillage,
+                'stillage-select-cell-element': row.isSelectCellStillage && (row.element === 'office' || row.element === 'zone_send' || row.element === 'zone_unload' || row.element === 'zone_storage'),
+                'road': row.element === 'road',
+                'office': row.element === 'office',
+                'zone_send': row.element === 'zone_send',
+                'zone_unload': row.element === 'zone_unload',
+                'zone_storage': row.element === 'zone_storage',
+                's-left-bottom-top': row.style === 's-left-bottom-top',
+                's-bottom-top': row.style === 's-bottom-top',
+                's-right-bottom-top': row.style === 's-right-bottom-top',
+                's-left-top-right': row.style === 's-left-top-right',
+                's-left-right': row.style === 's-left-right',
+                's-left-bottom-right': row.style === 's-left-bottom-right',
+                's-left-top': row.style === 's-left-top',
+                's-right-top': row.style === 's-right-top',
+                's-right-bottom': row.style === 's-right-bottom',
+                's-left-bottom': row.style === 's-left-bottom',
+                's-left': row.style === 's-left',
+                's-right': row.style === 's-right',
+                's-bottom': row.style === 's-bottom',
+                's-top': row.style === 's-top'
+            }">
                 {{cell.cellName}}
                 <div>
                     <p id="row-name-ver" *ngIf="cell.isBraceVer"> 
@@ -154,8 +156,23 @@
                     </p>
                     <img id="img-hor1" [src]="cell.imageUrl" *ngIf="cell.isBraceHor"/>
                 </div>
-                <app-vertical-three-four *ngIf="cell.isVer"></app-vertical-three-four>
-                <app-horizontal-three-four *ngIf="cell.isHor"></app-horizontal-three-four>
+                <app-vertical-three-four *ngIf="row.element === 'ver-3-4'"></app-vertical-three-four>
+                <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
+                <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
+                <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
+                <app-vertical-three-two *ngIf="row.element === 'ver-3-2'"></app-vertical-three-two>
+                <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
+                <app-vertical-three-five *ngIf="row.element === 'ver-3-5'"></app-vertical-three-five>
+                <app-horizontal-three-five *ngIf="row.element === 'hor-3-5'"></app-horizontal-three-five>
+                <app-vertical-two-five *ngIf="row.element === 'ver-2-5'"></app-vertical-two-five>
+                <app-horizontal-two-five *ngIf="row.element === 'hor-2-5'"></app-horizontal-two-five>
+                <app-vertical-two-four *ngIf="row.element === 'ver-2-4'"></app-vertical-two-four>
+                <app-horizontal-two-four *ngIf="row.element === 'hor-2-4'"></app-horizontal-two-four>
+                <app-long-three-one-five *ngIf="row.element === 'long-3-1-5'"></app-long-three-one-five>
+                <app-long-two-three-four *ngIf="row.element === 'long-2-3-4'"></app-long-two-three-four>
+                <app-long-three-five *ngIf="row.element === 'long-3-5'"></app-long-three-five>
+                <app-long-three-four *ngIf="row.element === 'long-3-4'"></app-long-three-four>
+                <app-vertical-two-three *ngIf="row.element === 'ver-2-3'"></app-vertical-two-three>
             </td>
         </tr>
     </table>
@@ -165,29 +182,31 @@
     <table class="table-bord">
         <tr class="tr-bord" *ngFor="let row of tab_map">
             <td class="td-bord" *ngFor="let cell of row"
-                [ngClass]="{
-                    'stillage-row-with-out-name': cell.isStillageRowWithOutNameHor || cell.isStillageRowWithOutNameVer,
-                    'stillage-cell-with-out-name': cell.isStillageOneWithOutName,
-                    'stillage-select-cell': cell.isSelectCellStillage && !isFromTo,
-                    'road': row.element === 'road',
-                    'office': row.element === 'office',
-                    'zone_send': row.element === 'zone_send',
-                    'zone_unload': row.element === 'zone_unload',
-                    's-left-bottom-top': row.style === 's-left-bottom-top',
-                    's-bottom-top': row.style === 's-bottom-top',
-                    's-right-bottom-top': row.style === 's-right-bottom-top',
-                    's-left-top-right': row.style === 's-left-top-right',
-                    's-left-right': row.style === 's-left-right',
-                    's-left-bottom-right': row.style === 's-left-bottom-right',
-                    's-left-top': row.style === 's-left-top',
-                    's-right-top': row.style === 's-right-top',
-                    's-right-bottom': row.style === 's-right-bottom',
-                    's-left-bottom': row.style === 's-left-bottom',
-                    's-left': row.style === 's-left',
-                    's-right': row.style === 's-right',
-                    's-bottom': row.style === 's-bottom',
-                    's-top': row.style === 's-top'
-                }">
+            [ngClass]="{
+                'stillage-row-with-out-name': row.isStillageRowWithOutNameHor || row.isStillageRowWithOutNameVer,
+                'stillage-cell-with-out-name': row.isStillageOneWithOutName,
+                'stillage-select-cell': row.isSelectCellStillage,
+                'stillage-select-cell-element': row.isSelectCellStillage && (row.element === 'office' || row.element === 'zone_send' || row.element === 'zone_unload' || row.element === 'zone_storage'),
+                'road': row.element === 'road',
+                'office': row.element === 'office',
+                'zone_send': row.element === 'zone_send',
+                'zone_unload': row.element === 'zone_unload',
+                'zone_storage': row.element === 'zone_storage',
+                's-left-bottom-top': row.style === 's-left-bottom-top',
+                's-bottom-top': row.style === 's-bottom-top',
+                's-right-bottom-top': row.style === 's-right-bottom-top',
+                's-left-top-right': row.style === 's-left-top-right',
+                's-left-right': row.style === 's-left-right',
+                's-left-bottom-right': row.style === 's-left-bottom-right',
+                's-left-top': row.style === 's-left-top',
+                's-right-top': row.style === 's-right-top',
+                's-right-bottom': row.style === 's-right-bottom',
+                's-left-bottom': row.style === 's-left-bottom',
+                's-left': row.style === 's-left',
+                's-right': row.style === 's-right',
+                's-bottom': row.style === 's-bottom',
+                's-top': row.style === 's-top'
+            }">
                 {{cell.cellName}}
                 <div>
                     <p id="row-name-ver" *ngIf="cell.isBraceVer"> 
@@ -273,33 +292,35 @@
         </tr>
     </table>
 </pinch-zoom>
-<pinch-zoom *ngIf="!isSelectInventory && !isSelectRotation" class="block1">
+<!-- <pinch-zoom *ngIf="!isSelectInventory && !isSelectRotation" class="block1">
         <table class="table-bord">
             <tr class="tr-bord" *ngFor="let row of tab_map">
                 <td class="td-bord" *ngFor="let cell of row"
-                    [ngClass]="{
-                        'stillage-row-with-out-name': cell.isStillageRowWithOutNameHor || cell.isStillageRowWithOutNameVer,
-                        'stillage-cell-with-out-name': cell.isStillageOneWithOutName,
-                        'stillage-select-cell': cell.isSelectCellStillage,
-                        'road': cell.element === 'road',
-                        'office': cell.element === 'office',
-                        'zone_unload': cell.element === 'zone_unload',
-                        'zone_send': cell.element === 'zone_send',
-                        's-left-bottom-top': row.style === 's-left-bottom-top',
-                        's-bottom-top': row.style === 's-bottom-top',
-                        's-right-bottom-top': row.style === 's-right-bottom-top',
-                        's-left-top-right': row.style === 's-left-top-right',
-                        's-left-right': row.style === 's-left-right',
-                        's-left-bottom-right': row.style === 's-left-bottom-right',
-                        's-left-top': row.style === 's-left-top',
-                        's-right-top': row.style === 's-right-top',
-                        's-right-bottom': row.style === 's-right-bottom',
-                        's-left-bottom': row.style === 's-left-bottom',
-                        's-left': row.style === 's-left',
-                        's-right': row.style === 's-right',
-                        's-bottom': row.style === 's-bottom',
-                        's-top': row.style === 's-top'
-                    }">
+                [ngClass]="{
+                    'stillage-row-with-out-name': row.isStillageRowWithOutNameHor || row.isStillageRowWithOutNameVer,
+                    'stillage-cell-with-out-name': row.isStillageOneWithOutName,
+                    'stillage-select-cell': row.isSelectCellStillage,
+                    'stillage-select-cell-element': row.isSelectCellStillage && (row.element === 'office' || row.element === 'zone_send' || row.element === 'zone_unload' || row.element === 'zone_storage'),
+                    'road': row.element === 'road',
+                    'office': row.element === 'office',
+                    'zone_send': row.element === 'zone_send',
+                    'zone_unload': row.element === 'zone_unload',
+                    'zone_storage': row.element === 'zone_storage',
+                    's-left-bottom-top': row.style === 's-left-bottom-top',
+                    's-bottom-top': row.style === 's-bottom-top',
+                    's-right-bottom-top': row.style === 's-right-bottom-top',
+                    's-left-top-right': row.style === 's-left-top-right',
+                    's-left-right': row.style === 's-left-right',
+                    's-left-bottom-right': row.style === 's-left-bottom-right',
+                    's-left-top': row.style === 's-left-top',
+                    's-right-top': row.style === 's-right-top',
+                    's-right-bottom': row.style === 's-right-bottom',
+                    's-left-bottom': row.style === 's-left-bottom',
+                    's-left': row.style === 's-left',
+                    's-right': row.style === 's-right',
+                    's-bottom': row.style === 's-bottom',
+                    's-top': row.style === 's-top'
+                }">
                     {{cell.cellName}}
                     <div>
                         <p id="row-name-ver" *ngIf="cell.isBraceVer"> 
@@ -313,10 +334,83 @@
                         </p>
                         <img id="img-hor1" [src]="cell.imageUrl" *ngIf="cell.isBraceHor"/>
                     </div>
-                    <app-vertical-three-four-action *ngIf="cell.isVer" [data]="cell"></app-vertical-three-four-action>
-                    <app-horizontal-three-four-action *ngIf="cell.isHor" [data]="cell"></app-horizontal-three-four-action>
+                    <app-vertical-three-four *ngIf="row.element === 'ver-3-4'"></app-vertical-three-four>
+                    <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
+                    <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
+                    <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
+                    <app-vertical-three-two *ngIf="row.element === 'ver-3-2'"></app-vertical-three-two>
+                    <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
+                    <app-vertical-three-five *ngIf="row.element === 'ver-3-5'"></app-vertical-three-five>
+                    <app-horizontal-three-five *ngIf="row.element === 'hor-3-5'"></app-horizontal-three-five>
+                    <app-vertical-two-five *ngIf="row.element === 'ver-2-5'"></app-vertical-two-five>
+                    <app-horizontal-two-five *ngIf="row.element === 'hor-2-5'"></app-horizontal-two-five>
+                    <app-vertical-two-four *ngIf="row.element === 'ver-2-4'"></app-vertical-two-four>
+                    <app-horizontal-two-four *ngIf="row.element === 'hor-2-4'"></app-horizontal-two-four>
+                    <app-long-three-one-five *ngIf="row.element === 'long-3-1-5'"></app-long-three-one-five>
+                    <app-long-two-three-four *ngIf="row.element === 'long-2-3-4'"></app-long-two-three-four>
+                    <app-long-three-five *ngIf="row.element === 'long-3-5'"></app-long-three-five>
+                    <app-long-three-four *ngIf="row.element === 'long-3-4'"></app-long-three-four>
+                    <app-vertical-two-three *ngIf="row.element === 'ver-2-3'"></app-vertical-two-three>
                 </td>
             </tr>
         </table>
-    </pinch-zoom>
-<!-- <app-vertical-three-four-action *ngIf="cell.isVer" [data]="rotationItem" (onChanged)="onChanged($event)"></app-vertical-three-four-action> -->
+    </pinch-zoom> -->
+<pinch-zoom class="block1" *ngIf="!isSelectTypeRowStillage && !isSelectEditor">
+    <table class="table-bord">
+        <tr class="tr-bord" *ngFor="let col of tab_map">
+            <td class="td-bord" *ngFor="let row of col" (click)="onSelectCell(row)"
+                [ngClass]="{
+                    'stillage-row-with-out-name': row.isStillageRowWithOutNameHor || row.isStillageRowWithOutNameVer,
+                    'stillage-cell-with-out-name': row.isStillageOneWithOutName,
+                    'stillage-select-cell': row.isSelectCellStillage,
+                    'stillage-select-cell-element': row.isSelectCellStillage && (row.element === 'office' || row.element === 'zone_send' || row.element === 'zone_unload' || row.element === 'zone_storage'),
+                    'road': row.element === 'road',
+                    'office': row.element === 'office',
+                    'zone_send': row.element === 'zone_send',
+                    'zone_unload': row.element === 'zone_unload',
+                    'zone_storage': row.element === 'zone_storage',
+                    's-left-bottom-top': row.style === 's-left-bottom-top',
+                    's-bottom-top': row.style === 's-bottom-top',
+                    's-right-bottom-top': row.style === 's-right-bottom-top',
+                    's-left-top-right': row.style === 's-left-top-right',
+                    's-left-right': row.style === 's-left-right',
+                    's-left-bottom-right': row.style === 's-left-bottom-right',
+                    's-left-top': row.style === 's-left-top',
+                    's-right-top': row.style === 's-right-top',
+                    's-right-bottom': row.style === 's-right-bottom',
+                    's-left-bottom': row.style === 's-left-bottom',
+                    's-left': row.style === 's-left',
+                    's-right': row.style === 's-right',
+                    's-bottom': row.style === 's-bottom',
+                    's-top': row.style === 's-top'
+                }">
+                {{row.cellName}}
+                <div>
+                    <p id="row-name-ver" *ngIf="row.isBraceVer">{{row.rowName}}</p>
+                    <img id="img-ver1" [src]="row.imageUrl" *ngIf="row.isBraceVer" (click)="onClickBrace(row)" />
+                </div>
+                <div id="name-row-hor" class="form-inline">
+                    <p id="row-name-hor" *ngIf="row.isBraceHor">{{row.rowName}}</p>
+                    <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" (click)="onClickBrace(row)" />
+                </div>
+                <app-vertical-three-four *ngIf="row.element === 'ver-3-4'"></app-vertical-three-four>
+                <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
+                <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
+                <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
+                <app-vertical-three-two *ngIf="row.element === 'ver-3-2'"></app-vertical-three-two>
+                <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
+                <app-vertical-three-five *ngIf="row.element === 'ver-3-5'"></app-vertical-three-five>
+                <app-horizontal-three-five *ngIf="row.element === 'hor-3-5'"></app-horizontal-three-five>
+                <app-vertical-two-five *ngIf="row.element === 'ver-2-5'"></app-vertical-two-five>
+                <app-horizontal-two-five *ngIf="row.element === 'hor-2-5'"></app-horizontal-two-five>
+                <app-vertical-two-four *ngIf="row.element === 'ver-2-4'"></app-vertical-two-four>
+                <app-horizontal-two-four *ngIf="row.element === 'hor-2-4'"></app-horizontal-two-four>
+                <app-long-three-one-five *ngIf="row.element === 'long-3-1-5'"></app-long-three-one-five>
+                <app-long-two-three-four *ngIf="row.element === 'long-2-3-4'"></app-long-two-three-four>
+                <app-long-three-five *ngIf="row.element === 'long-3-5'"></app-long-three-five>
+                <app-long-three-four *ngIf="row.element === 'long-3-4'"></app-long-three-four>
+                <app-vertical-two-three *ngIf="row.element === 'ver-2-3'"></app-vertical-two-three>
+            </td>
+        </tr>
+    </table>
+</pinch-zoom>    

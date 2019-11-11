@@ -51,8 +51,8 @@ export class ChipsNewTaskComponent implements OnInit {
 
   openDocList() {
     const dialogRef = this.dialog.open(DocListComponent, {
-      width: '70vw',
-      height: '70vh',
+      width: '80vw',
+      height: '85vh',
       data: {  },
     });
     dialogRef.afterClosed().subscribe(result => {
