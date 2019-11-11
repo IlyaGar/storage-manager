@@ -6,7 +6,10 @@ import { RequestDoc } from '../../models/request-doc';
 import { TokenService } from 'src/app/common/services/token.service';
 import { SnackbarService } from 'src/app/common/services/snackbar.service';
 import { AnswerDoc } from '../../models/answer-doc';
-import { htmlAstToRender3Ast } from '@angular/compiler/src/render3/r3_template_transform';
+
+export interface DialogData {
+  list: Array<ListItem>;
+}
 
 export interface EmitData {
   doc: AnswerDoc;
@@ -29,54 +32,6 @@ export class ListItem{
   ){}
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: '20.02.2019', symbol: 'H'},
-  {position: 2, name: 'Helium', weight: '4.0026', symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: '6.941', symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: '9.0122', symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: '10.811', symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: '12.0107', symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: '14.0067', symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: '15.9994', symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: '18.9984', symbol: 'F'},
-  {position: 10, name: 'Neon', weight: '20.1797', symbol: 'Ne'},
-];
-const ELEMENT_DATA1: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: '20.02.2019', symbol: 'H'},
-  {position: 2, name: 'Helium', weight: '4.0026', symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: '6.941', symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: '9.0122', symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: '10.811', symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: '12.0107', symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: '14.0067', symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: '15.9994', symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: '18.9984', symbol: 'F'},
-  {position: 10, name: 'Neon', weight: '20.1797', symbol: 'Ne'},
-];
-const ELEMENT_DATA2: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: '20.02.2019', symbol: 'H'},
-  {position: 2, name: 'Helium', weight: '4.0026', symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: '6.941', symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: '9.0122', symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: '10.811', symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: '12.0107', symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: '14.0067', symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: '15.9994', symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: '18.9984', symbol: 'F'},
-  {position: 10, name: 'Neon', weight: '20.1797', symbol: 'Ne'},
-];
-const ELEMENT_DATA3: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: '20.02.2019', symbol: 'H'},
-  {position: 2, name: 'Helium', weight: '4.0026', symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: '6.941', symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: '9.0122', symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: '10.811', symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: '12.0107', symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: '14.0067', symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: '15.9994', symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: '18.9984', symbol: 'F'},
-  {position: 10, name: 'Neon', weight: '20.1797', symbol: 'Ne'},
-];
 
 @Component({
   selector: 'app-doc-list',
@@ -87,10 +42,12 @@ export class DocListComponent implements OnInit {
 
   displayedColumns = ['doc', 'date', 'store', 'icon'];
   displayedListColumns = ['title'];
-  dataSource: Array<AnswerDoc> = [];
-  dataSource1: Array<PeriodicElement> = [];
-  dataSource2: Array<PeriodicElement> = [];
-  dataSource3: Array<PeriodicElement> = [];
+
+  dataSourcePrihod: Array<AnswerDoc> = [];
+  dataSourceZpc: Array<AnswerDoc> = [];
+  dataSourcePerem: Array<AnswerDoc> = [];
+  dataSourceVozv: Array<AnswerDoc> = [];
+
   list: Array<ListItem> = [];
   selectDoc: ListItem; 
 
@@ -114,49 +71,31 @@ export class DocListComponent implements OnInit {
     private tokenService: TokenService,
     private snackbarService: SnackbarService,
     public dialogRef: MatDialogRef<DocListComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) { }
 
   ngOnInit() {
-    // this.dataSource = ELEMENT_DATA;
-    this.dataSource1 = ELEMENT_DATA1;
-    this.dataSource2 = ELEMENT_DATA2;
-    this.dataSource3 = ELEMENT_DATA3;
-
-    // this.procService.getDocsPerem(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
-    //   this.checkResponse(response); 
-    // }, 
-    // error => { 
-    //   console.log(error);
-    //   this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
-    // });
-  }
-
-  checkResponse(response: Array<AnswerDoc>) {
-    this.dataSource = response;
+    this.list = this.data.list;
+    this.getDataSourcePrihod();
   }
 
   ngOnDestroy() {
-    this.dataSource1.forEach(element => {
+    this.dataSourcePrihod.forEach(element => {
       element.highlighted = false;
     });
-    this.dataSource2.forEach(element => {
+    this.dataSourceZpc.forEach(element => {
       element.highlighted = false;
     });
-    this.dataSource3.forEach(element => {
+    this.dataSourcePerem.forEach(element => {
       element.highlighted = false;
     });
-    this.dataSource.forEach(element => {
+    this.dataSourceVozv.forEach(element => {
       element.highlighted = false;
     });
   }
 
   onOkClick(): void {
-    var list: Array<string> = [];
-    this.list.forEach(element => {
-      list = list.concat(element.item);
-    });
-    this.dialogRef.close(list);
+    this.dialogRef.close(this.list);
   }
 
   onCancelClick(): void {
@@ -202,23 +141,52 @@ export class DocListComponent implements OnInit {
     if(this.list.includes(selectItem)) {
       this.list = this.list.filter(item => item !== selectItem);
 
-      this.dataSource.forEach(element => {
-        if(element.docid === selectItem.item) {
-          element.highlighted = false;
-        }
-      });
+      switch(selectItem.title) {
+        case 'Приходные':
+          this.dataSourcePrihod.forEach(element => {
+            if(element.docid === selectItem.item) {
+              element.highlighted = false;
+            }
+          });
+        break;
+        
+        case 'Заявки':
+          this.dataSourceZpc.forEach(element => {
+            if(element.docid === selectItem.item) {
+              element.highlighted = false;
+            }
+          });           
+        break;
+            
+        case 'Перемещение':
+          this.dataSourcePerem.forEach(element => {
+            if(element.docid === selectItem.item) {
+              element.highlighted = false;
+            }
+          });                
+        break;
+                
+        case 'Возвраты':
+          this.dataSourceVozv.forEach(element => {
+            if(element.docid === selectItem.item) {
+              element.highlighted = false;
+            }
+          });                    
+        break;
+      }
+
     }
   }
 
   clearTable(title: string) {
     if(title === 'Приходные') 
-      this.setHighlightedFalse(this.dataSource);
+      this.setHighlightedFalse(this.dataSourcePrihod);
     if(title === 'Заявки') 
-      this.setHighlightedFalse(this.dataSource1);
+      this.setHighlightedFalse(this.dataSourceZpc);
     if(title === 'Перемещение') 
-      this.setHighlightedFalse(this.dataSource2);
+      this.setHighlightedFalse(this.dataSourcePerem);
     if(title === 'Возвраты') 
-      this.setHighlightedFalse(this.dataSource3);
+      this.setHighlightedFalse(this.dataSourceVozv);
   }
 
   setHighlightedFalse(arr: any) {
@@ -228,9 +196,11 @@ export class DocListComponent implements OnInit {
     });
   }
 
-  openDeatilDocForm() {
+  openDeatilDocForm(element: AnswerDoc) {
     const dialogRef = this.dialog.open(DetailDocFormComponent, {
       width: "70vw",
+      height: "80vh",
+      data: { token: this.tokenService.getToken(), docid: element.docid },
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
@@ -265,25 +235,79 @@ export class DocListComponent implements OnInit {
       }
   }
 
-    
   onClickTab($event) {
-    let e = $event.index;
     switch($event.index) {
       case 0:
-        this.matTab0 = true;
+        if(!this.matTab0) {
+          this.getDataSourcePerem();
+          this.matTab1 = true;
+        }
         break;
 
-      case 0:
-        this.matTab1 = true;
+      case 1:
+        if(!this.matTab1) {
+          this.getDataSourceZpc();
+          this.matTab1 = true;
+        }
         break;
 
-      case 0:
-        this.matTab2 = true;
+      case 2:
+        if(!this.matTab2) {
+          this.getDataSourcePerem();
+          this.matTab1 = true;
+        }      
         break;
         
-      case 0:
-        this.matTab3 = true;
+      case 3:
+        if(!this.matTab3) {
+          this.getDataSourceVozv();
+          this.matTab1 = true;
+        } 
         break;
     }
+  }
+
+  getDataSourcePrihod() {
+    this.procService.getDocsPrihod(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
+      this.dataSourcePrihod = response;
+    }, 
+    error => { 
+      console.log(error);
+      this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
+    });
+  }
+
+  getDataSourceZpc() {
+    this.procService.getDocsZpc(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
+      this.dataSourceZpc = response; 
+    }, 
+    error => { 
+      console.log(error);
+      this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
+    });
+  }
+
+  getDataSourcePerem() {
+    this.procService.getDocsPerem(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
+      this.dataSourcePerem = response;
+    }, 
+    error => { 
+      console.log(error);
+      this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
+    });
+  }
+
+  getDataSourceVozv() {
+    this.procService.getDocsVozv(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
+      this.dataSourceVozv = response;
+    }, 
+    error => { 
+      console.log(error);
+      this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
+    });
+  }
+
+  checkResponse(response: Array<AnswerDoc>) {
+    // this.dataSource = response;
   }
 } 

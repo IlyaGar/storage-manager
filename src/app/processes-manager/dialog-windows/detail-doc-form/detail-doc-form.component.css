@@ -103,6 +103,11 @@
     -webkit-hyphens: auto;
     hyphens: auto;
 }   
-/* .table-container {
-
-} */
+.table-container {   
+    width: 100%;
+    min-width: 200px;
+    overflow: auto;
+}
+img {
+    width: 20em;
+}

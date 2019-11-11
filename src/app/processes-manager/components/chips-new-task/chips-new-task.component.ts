@@ -4,6 +4,13 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatDialog } from '@angular/material/dialog';
 import { DocListComponent } from 'src/app/processes-manager/dialog-windows/doc-list/doc-list.component';
 
+export class ListItem{
+  constructor(       
+    public title: string,
+    public item: string,
+  ){}
+}
+
 @Component({
   selector: 'app-chips-new-task',
   templateUrl: './chips-new-task.component.html',
@@ -23,14 +30,13 @@ export class ChipsNewTaskComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  // list: Docs[] = [];
   list: Array<string> = [];
+  listItem: Array<ListItem> = [];
 
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
     if ((value || '').trim()) {
       this.list.push(value.trim());
     }
@@ -43,21 +49,25 @@ export class ChipsNewTaskComponent implements OnInit {
 
   remove(doc: string): void {
     const index = this.list.indexOf(doc);
-
     if (index >= 0) {
       this.list.splice(index, 1);
     }
+    this.listItem = this.listItem.filter(item => item.item !== doc);
   }
 
   openDocList() {
     const dialogRef = this.dialog.open(DocListComponent, {
       width: '80vw',
       height: '85vh',
-      data: {  },
+      data: { list: this.listItem },
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
-        this.list = this.list.concat(result);
+        this.listItem = result;
+        this.list = [];
+        result.forEach(element => {
+          this.list = this.list.concat(element.item);
+        });
       }
     });
   }
