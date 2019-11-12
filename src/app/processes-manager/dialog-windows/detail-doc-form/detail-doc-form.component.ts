@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProcService } from '../../services/proc.service';
 import { SnackbarService } from 'src/app/common/services/snackbar.service';
 import { WDocQuery } from '../../models/w-doc-query';
-import { WDocAnswer } from '../../models/w-doc-answer';
+import { WDocAnswer, Doctable } from '../../models/w-doc-answer';
 
 export interface DataDialog {
   token: string;

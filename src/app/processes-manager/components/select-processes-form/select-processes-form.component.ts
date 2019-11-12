@@ -55,8 +55,6 @@ export class SelectProcessesFormComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    // public dialogRef: MatDialogRef<SelectProcessesFormComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
 
   ngOnInit() {

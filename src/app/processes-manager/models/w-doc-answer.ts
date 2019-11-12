@@ -5,11 +5,11 @@ export class WDocAnswer{
         public docfrom: string,
         public docto: string,
         public docbarcode: string,
-        public docbody: Array<doctable>,
+        public docbody: Array<Doctable>,
     ){}
 }
 
-export class doctable{
+export class Doctable{
     constructor(  
         public num: string,
         public article: string,

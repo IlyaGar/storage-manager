@@ -199,7 +199,7 @@ export class DocListComponent implements OnInit {
   openDeatilDocForm(element: AnswerDoc) {
     const dialogRef = this.dialog.open(DetailDocFormComponent, {
       width: "70vw",
-      height: "80vh",
+      height: "85vh",
       data: { token: this.tokenService.getToken(), docid: element.docid },
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -270,6 +270,7 @@ export class DocListComponent implements OnInit {
   getDataSourcePrihod() {
     this.procService.getDocsPrihod(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
       this.dataSourcePrihod = response;
+      this.deleteZero(this.dataSourcePrihod);
     }, 
     error => { 
       console.log(error);
@@ -280,6 +281,7 @@ export class DocListComponent implements OnInit {
   getDataSourceZpc() {
     this.procService.getDocsZpc(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
       this.dataSourceZpc = response; 
+      this.deleteZero(this.dataSourceZpc);
     }, 
     error => { 
       console.log(error);
@@ -290,6 +292,7 @@ export class DocListComponent implements OnInit {
   getDataSourcePerem() {
     this.procService.getDocsPerem(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
       this.dataSourcePerem = response;
+      this.deleteZero(this.dataSourcePerem);
     }, 
     error => { 
       console.log(error);
@@ -300,6 +303,7 @@ export class DocListComponent implements OnInit {
   getDataSourceVozv() {
     this.procService.getDocsVozv(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
       this.dataSourceVozv = response;
+      this.deleteZero(this.dataSourceVozv);
     }, 
     error => { 
       console.log(error);
@@ -309,5 +313,11 @@ export class DocListComponent implements OnInit {
 
   checkResponse(response: Array<AnswerDoc>) {
     // this.dataSource = response;
+  }
+
+  deleteZero(list: Array<AnswerDoc>) {
+    list.forEach(element => {
+      element.docdate = element.docdate.split(' ')[0];
+    });
   }
 } 

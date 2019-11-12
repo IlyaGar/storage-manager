@@ -795,6 +795,7 @@ export class WmsMapEditFormComponent implements OnInit {
               !this.tab_map[this.currentCell.y][this.currentCell.x + 1].isStillageRowWithOutNameHor) {
             this.tab_map[this.currentCell.y][this.currentCell.x].yxName = (this.currentCell.y).toString() + ';' + (this.currentCell.x + 1).toString();
             this.tab_map[this.currentCell.y][this.currentCell.x + 1].cellName = this.zoneName;
+            this.tab_map[this.currentCell.y][this.currentCell.x].stillageName = this.zoneName;
             this.currentCell.isStillageOneWithOutName = false;
           }
           else {
@@ -805,6 +806,7 @@ export class WmsMapEditFormComponent implements OnInit {
                   !this.tab_map[this.currentCell.y][this.currentCell.x - 1].isStillageRowWithOutNameHor) {
                 this.tab_map[this.currentCell.y][this.currentCell.x].yxName = (this.currentCell.y).toString() + ';' + (this.currentCell.x - 1).toString();
                 this.tab_map[this.currentCell.y][this.currentCell.x - 1].cellName = this.zoneName;
+                this.tab_map[this.currentCell.y][this.currentCell.x].stillageName = this.zoneName;
                 this.currentCell.isStillageOneWithOutName = false;
               }
             }
@@ -818,6 +820,7 @@ export class WmsMapEditFormComponent implements OnInit {
                 !this.tab_map[this.currentCell.y][this.currentCell.x - 1].isStillageRowWithOutNameHor) {
               this.tab_map[this.currentCell.y][this.currentCell.x].yxName = (this.currentCell.y).toString() + ';' + (this.currentCell.x - 1).toString();
               this.tab_map[this.currentCell.y][this.currentCell.x - 1].cellName = this.zoneName;
+              this.tab_map[this.currentCell.y][this.currentCell.x].stillageName = this.zoneName;
               this.currentCell.isStillageOneWithOutName = false;
             }
             else {
@@ -828,6 +831,7 @@ export class WmsMapEditFormComponent implements OnInit {
                     !this.tab_map[this.currentCell.y][this.currentCell.x + 1].isStillageRowWithOutNameHor) {
                   this.tab_map[this.currentCell.y][this.currentCell.x].yxName = (this.currentCell.y).toString() + ';' + (this.currentCell.x + 1).toString();
                   this.tab_map[this.currentCell.y][this.currentCell.x + 1].cellName = this.zoneName;
+                  this.tab_map[this.currentCell.y][this.currentCell.x].stillageName = this.zoneName;
                   this.currentCell.isStillageOneWithOutName = false;
                 }
               }

@@ -25,16 +25,20 @@
                 </ng-container>  
             </ng-container>
             <ng-container *ngIf="cellName">
-                <button mat-mini-fab color="primary" cdkFocusInitial (click)="onEnterAdd()">
+                <!-- <button mat-mini-fab color="primary" cdkFocusInitial (click)="onEnterAdd()">
                     <mat-icon aria-hidden="false" aria-label="Example home icon"> check </mat-icon>
-                </button>
+                </button> -->
+                <mat-icon id="push" aria-hidden="false" aria-label="Example home icon" (click)="onEnterAdd()"
+                matTooltip="Очистить"> add </mat-icon>
             </ng-container>    
             
             <mat-list-item *ngFor="let item of listSelected">
                 <h3 matLine> {{item}} </h3>
-                <button mat-mini-fab color="warn" (click)="onDelete(item)">
+                <!-- <button mat-mini-fab color="warn" (click)="onDelete(item)">
                     <mat-icon aria-hidden="false" aria-label="Example home icon"> clear </mat-icon>
-                </button>
+                </button> -->
+                <mat-icon id="push" aria-hidden="false" aria-label="Example home icon" (click)="onDelete(item)"
+                matTooltip="Очистить"> clear </mat-icon>
             </mat-list-item>
         </mat-list>
         <div class="form-inline br-pad">

@@ -8,6 +8,7 @@
             <mat-icon matChipRemove *ngIf="removable"> cancel </mat-icon>
             </mat-chip>
             <input placeholder="№ документа"
+                matTooltip="Введите основание или выберите из списка"
                 [matChipInputFor]="chipList"
                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                 [matChipInputAddOnBlur]="addOnBlur"

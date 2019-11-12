@@ -28,6 +28,14 @@ table:hover {
 app-st-three-four {
     display: contents;
 }
+mat-icon#push {
+    padding: 4px 0px 0px 0px;
+    cursor: pointer;
+}
+mat-icon#push:hover {
+    font-size: 26px;
+    color: blueviolet;
+}
 .block {
     float: left; 
     width:300px; 

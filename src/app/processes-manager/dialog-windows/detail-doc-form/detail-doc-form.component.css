@@ -1,8 +1,8 @@
 .mat-column-n {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 5% !important;
-    width: 5% !important;
+    flex: 0 0 7% !important;
+    width: 7% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -16,8 +16,8 @@
 .mat-column-article {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 15% !important;
-    width: 15% !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -46,8 +46,8 @@
 .mat-column-count {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 10% !important;
-    width: 10% !important;
+    flex: 0 0 7% !important;
+    width: 7% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -61,8 +61,8 @@
 .mat-column-units {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 10% !important;
-    width: 10% !important;
+    flex: 0 0 7% !important;
+    width: 7% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -91,8 +91,8 @@
 .mat-column-place {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 10% !important;
-    width: 10% !important;
+    flex: 0 0 14% !important;
+    width: 14% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -105,9 +105,18 @@
 }   
 .table-container {   
     width: 100%;
+    height: 48vh;
     min-width: 200px;
     overflow: auto;
 }
 img {
     width: 20em;
+}
+.mat-grid-tile .mat-figure {
+    justify-content: flex-start !important ;
+    align-items: flex-start !important;
+}
+.print-td {
+    border: 1pt solid black;
+    border-collapse: collapse;
 }

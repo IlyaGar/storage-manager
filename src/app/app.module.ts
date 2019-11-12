@@ -56,6 +56,7 @@ import { SelectUserFormComponent } from './processes-manager/dialog-windows/sele
 import { DetailDocFormComponent } from './processes-manager/dialog-windows/detail-doc-form/detail-doc-form.component';
 import { DocTableFormComponent } from './processes-manager/components/doc-table-form/doc-table-form.component';
 import { StillgeDialogFormComponent } from './wms-map/dialog-windows/stillge-dialog-form/stillge-dialog-form.component';
+import { NgxPrintModule } from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -117,6 +118,7 @@ import { StillgeDialogFormComponent } from './wms-map/dialog-windows/stillge-dia
     AppBootstrapModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    NgxPrintModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger' // set defaults here
     })
