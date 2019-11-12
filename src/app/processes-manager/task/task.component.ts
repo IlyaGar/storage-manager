@@ -16,6 +16,8 @@ export class TaskComponent implements OnInit {
   confirmText: string = 'Да';
   cancelText: string = 'Нет';
 
+  cancelClicked = false;
+
   constructor(
     public dialog: MatDialog,
   ) { }
@@ -35,5 +37,9 @@ export class TaskComponent implements OnInit {
   }
 
   onSave() {
+  }
+
+  onCancel(){
+
   }
 }

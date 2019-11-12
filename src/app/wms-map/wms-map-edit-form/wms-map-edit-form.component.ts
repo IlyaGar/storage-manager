@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { StillageItem } from '../models/stillage-item';
 import { WmsMapService } from '../services/wms-map.service';
+import { SetSklad } from '../models/set-sclad';
+import { TokenService } from 'src/app/common/services/token.service';
+import { Stillages } from '../models/stillages';
+import { GetSkald } from '../models/get-sclad';
 
 const HEIGHT_MAP = 16;
 const WIDTH_MAP = 17;
@@ -48,7 +52,9 @@ export class WmsMapEditFormComponent implements OnInit {
   isChoiceProperties = false;
   isSelectTypeRowStillage = false;
   isHor1Stillage = false;
+  isHor2Stillage = false;
   isVer1Stillage = false;
+  isVer2Stillage = false;
   isChoiceDelete = false;
   isChoiceContinueRow = false;
   isSelectEditor = false; 
@@ -64,10 +70,28 @@ export class WmsMapEditFormComponent implements OnInit {
   temp_x_first = -1;
   temp_x_second = -1;
 
-  constructor(private wmsMapService: WmsMapService) { }
+  isSelectSize: boolean;
+
+  constructor(
+    private tokenService: TokenService,
+    private wmsMapService: WmsMapService
+    ) { }
 
   ngOnInit() {
-    this.wmsMapService.getData().subscribe(response =>  { 
+    // this.wmsMapService.getData().subscribe(response =>  { 
+    //   if(response) {
+    //     this.checkResponse(response);
+    //     if(this.isChanged)
+    //       this.isChanged = !this.isChanged;
+    //   }
+    // },
+    // error => {
+    //   console.log(error);
+    //   alert("Сервер не отвечает.");
+    //  }
+    // );
+
+    this.wmsMapService.getSclad(new GetSkald(this.tokenService.getToken())).subscribe(response =>  { 
       if(response) {
         this.checkResponse(response);
         if(this.isChanged)
@@ -1001,7 +1025,18 @@ export class WmsMapEditFormComponent implements OnInit {
   }
 
   onSave() {
-    this.wmsMapService.postData(this.tab_map).subscribe(response =>  { 
+    // this.wmsMapService.postData(this.tab_map).subscribe(response =>  { 
+    //   if(response) {
+    //     this.isChanged = false;
+    //    }
+    // },
+    // error => {
+    //   console.log(error);
+    //   alert("Сервер не отвечает.");
+    //  }
+    // );
+    var data = new Stillages(this.tab_map, this.tab_map.length, this.tab_map[0].length);
+    this.wmsMapService.postSclad(new SetSklad(this.tokenService.getToken(), data)).subscribe(response =>  { 
       if(response) {
         this.isChanged = false;
        }

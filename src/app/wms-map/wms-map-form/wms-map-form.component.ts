@@ -29,6 +29,15 @@ export class WmsMapFormComponent implements OnInit {
   cellTo = '';
   isSelectInventory = false;
   isFromTo = false;
+
+  isChoiceRow: any;
+  isChoiceCell: any;
+  isChoiceFrom: any;
+  isSelectRotation: any;
+  isChoiceTo: any;
+  isSelectView: any;
+  isSelectTypeRowStillage: any;
+  isSelectEditor: any;
   
   constructor(
     public dialog: MatDialog,

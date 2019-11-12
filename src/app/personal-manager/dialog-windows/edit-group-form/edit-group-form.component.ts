@@ -2,6 +2,10 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GroupList } from '../../models/group-list';
 
+interface DialogData {
+  group: GroupList;
+}
+
 @Component({
   selector: 'app-edit-group-form',
   templateUrl: './edit-group-form.component.html',
@@ -13,9 +17,13 @@ export class EditGroupFormComponent implements OnInit {
   
   constructor(
     public dialogRef: MatDialogRef<EditGroupFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: GroupList,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) { }
 
   ngOnInit() {
+  }
+
+  onNoClick() {
+    
   }
 }

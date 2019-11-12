@@ -52,6 +52,8 @@ export class ProductGroupAccountingFormComponent implements OnInit {
   scrollPosition = 8000;
   curentPositionTable = 200;
 
+  isLoading: any;
+
   private _transformer = (node: PoductNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
