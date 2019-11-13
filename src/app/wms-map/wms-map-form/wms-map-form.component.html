@@ -116,45 +116,41 @@
 
 <pinch-zoom *ngIf="isSelectInventory" class="block1">
     <table class="table-bord">
-        <tr class="tr-bord" *ngFor="let row of tab_map">
-            <td class="td-bord" *ngFor="let cell of row" (click)="onSelectCell(cell)"
-            [ngClass]="{
-                'stillage-row-with-out-name': row.isStillageRowWithOutNameHor || row.isStillageRowWithOutNameVer,
-                'stillage-cell-with-out-name': row.isStillageOneWithOutName,
-                'stillage-select-cell': row.isSelectCellStillage,
-                'stillage-select-cell-element': row.isSelectCellStillage && (row.element === 'office' || row.element === 'zone_send' || row.element === 'zone_unload' || row.element === 'zone_storage'),
-                'road': row.element === 'road',
-                'office': row.element === 'office',
-                'zone_send': row.element === 'zone_send',
-                'zone_unload': row.element === 'zone_unload',
-                'zone_storage': row.element === 'zone_storage',
-                's-left-bottom-top': row.style === 's-left-bottom-top',
-                's-bottom-top': row.style === 's-bottom-top',
-                's-right-bottom-top': row.style === 's-right-bottom-top',
-                's-left-top-right': row.style === 's-left-top-right',
-                's-left-right': row.style === 's-left-right',
-                's-left-bottom-right': row.style === 's-left-bottom-right',
-                's-left-top': row.style === 's-left-top',
-                's-right-top': row.style === 's-right-top',
-                's-right-bottom': row.style === 's-right-bottom',
-                's-left-bottom': row.style === 's-left-bottom',
-                's-left': row.style === 's-left',
-                's-right': row.style === 's-right',
-                's-bottom': row.style === 's-bottom',
-                's-top': row.style === 's-top'
-            }">
-                {{cell.cellName}}
+        <tr class="tr-bord" *ngFor="let col of tab_map">
+            <td class="td-bord" *ngFor="let row of col" (click)="onSelectCell(row)"
+                [ngClass]="{
+                    'stillage-row-with-out-name': row.isStillageRowWithOutNameHor || row.isStillageRowWithOutNameVer,
+                    'stillage-cell-with-out-name': row.isStillageOneWithOutName,
+                    'stillage-select-cell': row.isSelectCellStillage,
+                    'stillage-select-cell-element': row.isSelectCellStillage && (row.element === 'office' || row.element === 'zone_send' || row.element === 'zone_unload' || row.element === 'zone_storage'),
+                    'road': row.element === 'road',
+                    'office': row.element === 'office',
+                    'zone_send': row.element === 'zone_send',
+                    'zone_unload': row.element === 'zone_unload',
+                    'zone_storage': row.element === 'zone_storage',
+                    's-left-bottom-top': row.style === 's-left-bottom-top',
+                    's-bottom-top': row.style === 's-bottom-top',
+                    's-right-bottom-top': row.style === 's-right-bottom-top',
+                    's-left-top-right': row.style === 's-left-top-right',
+                    's-left-right': row.style === 's-left-right',
+                    's-left-bottom-right': row.style === 's-left-bottom-right',
+                    's-left-top': row.style === 's-left-top',
+                    's-right-top': row.style === 's-right-top',
+                    's-right-bottom': row.style === 's-right-bottom',
+                    's-left-bottom': row.style === 's-left-bottom',
+                    's-left': row.style === 's-left',
+                    's-right': row.style === 's-right',
+                    's-bottom': row.style === 's-bottom',
+                    's-top': row.style === 's-top'
+                }">
+                {{row.cellName}}
                 <div>
-                    <p id="row-name-ver" *ngIf="cell.isBraceVer"> 
-                        {{cell.rowName}} 
-                    </p>
-                    <img id="img-ver1" [src]="cell.imageUrl" *ngIf="cell.isBraceVer"/>
+                    <p id="row-name-ver" *ngIf="row.isBraceVer">{{row.rowName}}</p>
+                    <img id="img-ver1" [src]="row.imageUrl" *ngIf="row.isBraceVer" (click)="onClickBrace(row)" />
                 </div>
                 <div id="name-row-hor" class="form-inline">
-                    <p id="row-name-hor" *ngIf="cell.isBraceHor">
-                        {{cell.rowName}}
-                    </p>
-                    <img id="img-hor1" [src]="cell.imageUrl" *ngIf="cell.isBraceHor"/>
+                    <p id="row-name-hor" *ngIf="row.isBraceHor">{{row.rowName}}</p>
+                    <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" (click)="onClickBrace(row)" />
                 </div>
                 <app-vertical-three-four *ngIf="row.element === 'ver-3-4'"></app-vertical-three-four>
                 <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
@@ -178,7 +174,7 @@
     </table>
 </pinch-zoom>
 
-<pinch-zoom *ngIf="!isSelectInventory && isSelectRotation" class="block1">
+<pinch-zoom *ngIf="isSelectRotation" class="block1">
     <table class="table-bord">
         <tr class="tr-bord" *ngFor="let row of tab_map">
             <td class="td-bord" *ngFor="let cell of row"

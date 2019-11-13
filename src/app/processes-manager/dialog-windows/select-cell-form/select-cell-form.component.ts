@@ -3,6 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { WmsMapService } from 'src/app/wms-map/services/wms-map.service';
 import { StillageItem } from 'src/app/wms-map/models/stillage-item';
 import { StillageService } from 'src/app/common/services/stillage.service';
+import { TokenService } from 'src/app/common/services/token.service';
+import { GetSkald } from 'src/app/wms-map/models/get-sclad';
 
 export interface DialogData {
   select: string;
@@ -27,6 +29,7 @@ export class SelectCellFormComponent implements OnInit {
   isIncorrect = false;
   
   constructor(
+    private tokenService: TokenService,
     private stillageService: StillageService,
     private wmsMapService: WmsMapService,
     public dialogRef: MatDialogRef<SelectCellFormComponent>,
@@ -37,7 +40,7 @@ export class SelectCellFormComponent implements OnInit {
     if(this.data.select === 'Ротация') {
       this.stillageService.clickEvent(2);
     }
-    this.wmsMapService.getData().subscribe(response =>  { 
+    this.wmsMapService.getSclad(new GetSkald(this.tokenService.getToken())).subscribe(response =>  { 
       if(response) {
         this.tab_map = response.stillageItem;
         this.y_height = response.y;

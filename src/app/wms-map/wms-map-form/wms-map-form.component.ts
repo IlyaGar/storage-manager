@@ -7,6 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { InventoryDialogFormComponent } from 'src/app/dialog-windows/inventory-dialog-manager/inventory-dialog-form/inventory-dialog-form.component';
 import { InventoryItem } from '../models/inventory-item';
 import { StillgeDialogFormComponent } from '../dialog-windows/stillge-dialog-form/stillge-dialog-form.component';
+import { GetSkald } from '../models/get-sclad';
+import { TokenService } from 'src/app/common/services/token.service';
 
 @Component({
   selector: 'app-wms-map-form',
@@ -41,12 +43,13 @@ export class WmsMapFormComponent implements OnInit {
   
   constructor(
     public dialog: MatDialog,
+    private tokenService: TokenService,
     private wmsMapService: WmsMapService,
     private pingService: PingService,
   ) { }
 
   ngOnInit() {
-    this.wmsMapService.getData().subscribe(response =>  { 
+    this.wmsMapService.getSclad(new GetSkald(this.tokenService.getToken())).subscribe(response =>  { 
       if(response) {
         this.tab_map = response.stillageItem;
         this.y_height = response.y;
