@@ -206,24 +206,24 @@ export class WmsMapFormComponent implements OnInit {
       if(this.cellFrom === '') {
         if(this.previousStillageFrom) {
           this.tab_map[this.previousStillageFrom.y][this.previousStillageFrom.x].isSelectCellStillage = false;
-          this.tab_map[this.previousStillageFrom.y][this.previousStillageFrom.x].element = '';
+          // this.tab_map[this.previousStillageFrom.y][this.previousStillageFrom.x].element = '';
         }
         this.cellFrom = nameStillage + '-' + numberCell + '-' + floorCell;
-        stillage.element = numberCell + '' + floorCell + '-from';
-        stillage.isSelectCellStillage = true;
-        this.previousStillageFrom = stillage;
-        this.isFromTo = true;
+        // stillage.element = numberCell + '' + floorCell + '-from';
+        // stillage.isSelectCellStillage = true;
+        // this.previousStillageFrom = stillage;
+        // this.isFromTo = true;
       } else {
         if(this.cellTo === '') {
           if(this.previousStillageTo) {
             this.tab_map[this.previousStillageTo.y][this.previousStillageTo.x].isSelectCellStillage = false;
-            this.tab_map[this.previousStillageTo.y][this.previousStillageTo.x].element = '';
+            // this.tab_map[this.previousStillageTo.y][this.previousStillageTo.x].element = '';
           }
           this.cellTo = nameStillage + '-' + numberCell + '-' + floorCell;
-          stillage.element = numberCell + '' + floorCell + '-to';
-          stillage.isSelectCellStillage = true;
-          this.previousStillageTo = stillage;
-          this.isFromTo = true;
+          // stillage.element = numberCell + '' + floorCell + '-to';
+          // stillage.isSelectCellStillage = true;
+          // this.previousStillageTo = stillage;
+          // this.isFromTo = true;
         }
       }
     }
