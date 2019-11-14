@@ -7,6 +7,7 @@ import { LoginResponse } from '../models/login-response';
 import { environment } from 'src/environments/environment';
 import { AttentionFormComponent } from 'src/app/dialog-windows/attention-dialog/attention-form/attention-form.component';
 import { LoginService } from '../services/login.service';
+import { TokenService } from 'src/app/common/services/token.service';
 
 @Component({
   selector: 'app-login-form',
@@ -23,10 +24,11 @@ export class LoginFormComponent implements OnInit {
   loginResponse: LoginResponse;
   
   constructor(
+    private router: Router,
     public dialog: MatDialog,
+    private tokenService: TokenService,
     private loginService: LoginService,
     private cookieService: CookieService,
-    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -42,14 +44,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   onOkClick() {
-      // this.isCorectLogin = true;
-      // this.isLogin = true;
-      // this.loginResponse = new LoginResponse('login', 'token', 'username', 'title', '1', '11');
-      // this.setCookie(this.cookieName, this.loginResponse);
-      // // this.commonService.newEvent('login');
-      // this.router.navigate(['/inventory']);
-      
-    
     this.loginService.getLogin(this.loginQuery).subscribe(response => {
       this.checkResponse(response) 
     },
@@ -82,7 +76,8 @@ export class LoginFormComponent implements OnInit {
       this.isCorectLogin = true;
       this.setCookie(this.cookieName, this.loginResponse);
       this.isLogin = true;
-      // this.commonService.newEvent('login');
+      this.tokenService.logEvent(true);
+      // this.tokenService.doLogin(true);
       this.router.navigate(['/product-group']);
     }
     else {

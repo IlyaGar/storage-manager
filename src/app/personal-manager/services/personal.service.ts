@@ -19,7 +19,8 @@ export class PersonalService {
   private url_create_group = environment.apiUrl + "wms/groupadd/";
   private url_edit_group = environment.apiUrl + "wms/groupedit/";
   private url_delete_group = environment.apiUrl + "wms/groupdel/";
-  private url_get_users_group = environment.apiUrl + "wms/usergroup/";
+  private url_get_all_users_group = environment.apiUrl + "wms/usergroup/";
+  private url_get_users_in_group = environment.apiUrl + "wms/withgroup/";
   private url_get_users_without_group = environment.apiUrl + "wms/notgroup/";
   private url_add_user_in_group = environment.apiUrl + "wms/addusergroup/";
   private url_delete_group_by_user= environment.apiUrl + "wms/removeusergroup/";
@@ -42,12 +43,16 @@ export class PersonalService {
     return this.http.post<any>(`${this.url_delete_group}`, data);
   }
 
-  getAllUsers(data: DownList): Observable<any> {
-    return this.http.post<any>(`${this.url_get_users_group}`, data);
+  getAllUsers(data: DownList): Observable<Array<UGroup>> {
+    return this.http.post<Array<UGroup>>(`${this.url_get_all_users_group}`, data);
   }
 
-  getUsersWithoutGroup(data: DownList): Observable<any> {
-    return this.http.post<any>(`${this.url_get_users_without_group}`, data);
+  getUsersInGroup(data: DownList): Observable<Array<UGroup>> {
+    return this.http.post<Array<UGroup>>(`${this.url_get_users_in_group}`, data);
+  }
+
+  getUsersWithoutGroup(data: DownList): Observable<Array<UGroup>> {
+    return this.http.post<Array<UGroup>>(`${this.url_get_users_without_group}`, data);
   }
 
   addUserInGroup(data: ActionUser): Observable<any> {

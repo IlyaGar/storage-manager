@@ -9,19 +9,19 @@
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> 
                 <ng-container *ngIf="!isSelectedElement">
-                <div class="bt-inline">
-                    <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedMethod">
-                        <mat-button-toggle value="public" data-toggle="tooltip" data-placement="bottom" matTooltip="Общедоступный" (click)="onClickPublic()">
-                            Общедоступный
-                        </mat-button-toggle>
-                        <mat-button-toggle value="group" data-toggle="tooltip" data-placement="bottom" matTooltip="Группа" (click)="openSelectGroup()">
-                            Группа
-                        </mat-button-toggle>
-                        <mat-button-toggle value="user" data-toggle="tooltip" data-placement="bottom" matTooltip="Пользователь" (click)="openSelectUser()">
-                            Пользователь
-                        </mat-button-toggle>
-                    </mat-button-toggle-group>
-                </div>
+                    <div class="bt-inline">
+                        <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedMethod">
+                            <mat-button-toggle value="public" data-toggle="tooltip" data-placement="bottom" matTooltip="Общедоступный" (click)="onClickPublic()">
+                                Общедоступный
+                            </mat-button-toggle>
+                            <mat-button-toggle value="group" data-toggle="tooltip" data-placement="bottom" matTooltip="Группа" (click)="openSelectGroup()">
+                                Группа
+                            </mat-button-toggle>
+                            <mat-button-toggle value="user" data-toggle="tooltip" data-placement="bottom" matTooltip="Пользователь" (click)="openSelectUser()">
+                                Пользователь
+                            </mat-button-toggle>
+                        </mat-button-toggle-group>
+                    </div>
                 </ng-container>
                 <!-- <ng-container *ngIf="isSelectedElement">
                     

@@ -15,7 +15,7 @@ import { Location } from "@angular/common";
 export class NavbarFormComponent implements OnInit {
 
   cookieName = environment.cookieName;
-  isLogin = false;
+  isLogin: boolean = false;
   loginResponse = new LoginResponse("", "", "", "", "", "");
   logoutStatus: LogoutStatus;
 
@@ -28,7 +28,9 @@ export class NavbarFormComponent implements OnInit {
     private location: Location,
     private tokenService: TokenService,
     private cookieService: CookieService,
-  ) { }
+  ) { 
+     this.tokenService.events$.subscribe(value => { this.isLogin = value } );
+  }
 
   ngOnInit() {
     if(this.cookieService.check(this.cookieName)){
@@ -43,6 +45,10 @@ export class NavbarFormComponent implements OnInit {
       this.isLogin = false;
       this.router.navigate(['/login']);
     }
+  }
+
+  chh(value) {
+    this.isLogin = value;
   }
 
   onLogOut() {

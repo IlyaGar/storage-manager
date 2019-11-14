@@ -42,20 +42,24 @@ export class ProcPersonalListFormComponent implements OnInit {
 
   openSelectGroup() {
     const dialogRef = this.dialog.open(SelectGroupFormComponent, {
-      // width: '700px',
+      width: '700px',
+      height: '500px',
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
+        this.listWorkers = this.listWorkers.concat(result);
         this.isSelectedElement = true;
       }
     });
   }
   openSelectUser() {
     const dialogRef = this.dialog.open(SelectUserFormComponent, {
-      // width: '700px',
+      width: '700px',
+      height: '500px',
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
+        this.listWorkers = this.listWorkers.concat(result);
         this.isSelectedElement = true;
       }
     });

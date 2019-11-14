@@ -16,22 +16,12 @@ export interface EmitData {
   type: string;
 }
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: string;
-  symbol: string;
-  highlighted?: boolean;
-  hovered?: boolean;
-}
-
 export class ListItem{
   constructor(       
     public title: string,
     public item: string,
   ){}
 }
-
 
 @Component({
   selector: 'app-doc-list',
@@ -105,10 +95,6 @@ export class DocListComponent implements OnInit {
   onClearClick(): void {
     this.clearTable(this.list[0].title);
     this.list = [];
-  }
-
-  highlight(element: PeriodicElement) {
-    element.highlighted = !element.highlighted;
   }
 
   onClickTabItem(element: AnswerDoc, title: string) {
