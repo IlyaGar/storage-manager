@@ -14,6 +14,7 @@ export class ProcPersonalListFormComponent implements OnInit {
   listWorkers: Array<string> = [];
   displayedColumnsWorkers = ['worker', 'action'];
   isSelectedElement = false;
+  selectedMethod: any = '';
 
   constructor(
     public dialog: MatDialog,
@@ -25,6 +26,7 @@ export class ProcPersonalListFormComponent implements OnInit {
   onClickPublic() {
     this.listWorkers = this.listWorkers.concat("Все пользователи");
     this.isSelectedElement = true;
+    this.selectedMethod = '';
   }
 
   onClear() {
@@ -51,6 +53,7 @@ export class ProcPersonalListFormComponent implements OnInit {
         this.isSelectedElement = true;
       }
     });
+    this.selectedMethod = '';
   }
   openSelectUser() {
     const dialogRef = this.dialog.open(SelectUserFormComponent, {
@@ -63,5 +66,6 @@ export class ProcPersonalListFormComponent implements OnInit {
         this.isSelectedElement = true;
       }
     });
+    this.selectedMethod = '';
   }
 }

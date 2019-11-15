@@ -46,4 +46,8 @@ export class DetailDocFormComponent implements OnInit {
     this.wDocAnswer = response;
     this.imgSource = 'https://barcode.tec-it.com/barcode.ashx?data=' + this.wDocAnswer.docbarcode;
   }
+
+  onCancelClick(): void {
+    this.dialogRef.close();
+  }
 }

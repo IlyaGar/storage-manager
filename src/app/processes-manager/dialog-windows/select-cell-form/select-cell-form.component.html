@@ -1,13 +1,15 @@
 <div>
     <div class="block">
         <mat-list>
-            <ng-container *ngIf="data.select !== 'Ротация'">
+
+            <ng-container *ngIf="data.select !== 'Ротация' && data.select !== 'Инвентаризация'">
                 <mat-form-field>
                     <input type="text" matInput placeholder="Ячейка" [(ngModel)]="cellName" (keyup.enter)="onEnterAdd()" (input)="isIncorrect = false">
                     <div *ngIf="isIncorrect" class="attention"> Такая ячейка ужу в списке! </div> 
                 </mat-form-field>   
             </ng-container>
-            <ng-container *ngIf="data.select === 'Ротация'">
+
+            <ng-container *ngIf="data.select === 'Ротация' || data.select === 'Инвентаризация'">
                 <mat-form-field id="fromto">
                     <input type="text" matInput placeholder="Откуда" [(ngModel)]="cellFrom">
                     <img id="img-clear" src="../../assets/outline_cancel_black_24dp.png" (click)="onClickClearFrom()"/>
@@ -24,6 +26,7 @@
                     </button>
                 </ng-container>  
             </ng-container>
+            
             <ng-container *ngIf="cellName">
                 <!-- <button mat-mini-fab color="primary" cdkFocusInitial (click)="onEnterAdd()">
                     <mat-icon aria-hidden="false" aria-label="Example home icon"> check </mat-icon>

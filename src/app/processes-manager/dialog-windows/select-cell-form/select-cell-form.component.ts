@@ -37,7 +37,7 @@ export class SelectCellFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(this.data.select === 'Ротация') {
+    if(this.data.select === 'Ротация' || this.data.select === 'Инвентаризация') {
       this.stillageService.clickEvent(2);
     }
     this.wmsMapService.getSclad(new GetSkald(this.tokenService.getToken())).subscribe(response =>  { 
@@ -84,7 +84,7 @@ export class SelectCellFormComponent implements OnInit {
   }
 
   onListCange(cell: string) {
-    if(this.data.select === 'Ротация') {
+    if(this.data.select === 'Ротация' || this.data.select === 'Инвентаризация') {
       if(!this.cellFrom) 
         this.cellFrom = cell;
       else 

@@ -53,3 +53,13 @@ div > button {
 .br-pad {
     margin-bottom: 1em;
 }
+.container {
+    padding-left: 0% !important;
+    overflow: hidden;
+}
+.box { 
+    white-space: nowrap;
+}
+.box div {
+    display: inline-block;
+}

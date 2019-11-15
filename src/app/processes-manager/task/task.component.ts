@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { SelectProcessesFormComponent } from '../components/select-processes-form/select-processes-form.component';
+
+interface Processe {
+  id: number;
+  name: string;
+  zone: string;
+}
 
 @Component({
   selector: 'app-task',
@@ -9,7 +14,7 @@ import { SelectProcessesFormComponent } from '../components/select-processes-for
 })
 export class TaskComponent implements OnInit {
 
-  listProcesses: Array<string> = [];
+  listProcesses: Array<Processe> = [];
   displayedColumnsProcesses = ['processe'];
   listWorkers: Array<string> = [];
   selectedMethod: any = 'auto';
@@ -17,6 +22,8 @@ export class TaskComponent implements OnInit {
   cancelText: string = 'Нет';
 
   cancelClicked = false;
+  
+  isDisabled = true;
 
   constructor(
     public dialog: MatDialog,
@@ -25,21 +32,15 @@ export class TaskComponent implements OnInit {
   ngOnInit() {
   }
 
-  openSelectProcesses() {
-    const dialogRef = this.dialog.open(SelectProcessesFormComponent, {
-      width: '700px',
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-
-      }
-    });
-  }
-
   onSave() {
   }
 
-  onCancel(){
-
+  onClear(){
+   this.isDisabled = !this.isDisabled;
   }
+
+  addProcesses(data: Array<Processe>) : void {
+    this.listProcesses = data.splice(0, 1);
+    console.log('Selected dat: ', this.listProcesses);
+  }  
 }

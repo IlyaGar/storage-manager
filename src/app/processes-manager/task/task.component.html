@@ -4,7 +4,7 @@
 
         <h5> Новое задание </h5>
 
-        <app-select-processes-form></app-select-processes-form>
+        <app-select-processes-form (onDataSelected)="addProcesses($event)"></app-select-processes-form>
         <app-chips-new-task></app-chips-new-task>
         <app-proc-personal-list-form></app-proc-personal-list-form>
         <br>
@@ -24,35 +24,39 @@
         </div>
         <br>
         <br>
-        <div class="form-inline br-pad">
-            <div mat-dialog-actions>
-                <button mat-raised-button id="butt-cancel"
-                    color="primary"
-                    class="btn btn-default"
-                    mwlConfirmationPopover
-                    [popoverMessage]="'Вы действительно хотите <b>очистить</b> формы?'"
-                    [confirmText]="'Да'"
-                    [cancelText]="'Нет'"
-                    placement="right"
-                    (confirm)="onCancel()"
-                    (cancel)="cancelClicked = true"
-                    title="Отменить все изменения">
-                    Очистить
-                </button> 
-                <button mat-raised-button
-                    color="primary"
-                    class="btn btn-default"
-                    mwlConfirmationPopover
-                    [popoverMessage]="'Вы действительно хотите <b>создать</b> новое задание?'"
-                    [confirmText]="confirmText"
-                    confirmButtonType="success"
-                    [cancelText]="cancelText"
-                    placement="right"
-                    (confirm)="onSave()"
-                    (cancel)="cancelClicked = true"
-                    title="Сохранить все изменения">
-                    Создать
-                </button> 
+        <div class="br-pad container">
+            <div class="box">
+                <div matTooltip="Очистить все данные">
+                    <button mat-raised-button id="butt-cancel"
+                        color="primary"
+                        class="btn btn-default"
+                        mwlConfirmationPopover
+                        [popoverMessage]="'Вы действительно хотите <b>очистить</b> формы?'"
+                        [confirmText]="'Да'"
+                        [cancelText]="'Нет'"
+                        placement="right"
+                        (confirm)="onClear()"
+                        (cancel)="cancelClicked = true">
+                        Очистить
+                    </button> 
+                </div>
+                <div matTooltip="Сохранить все изменения">
+                    <button
+                        mat-raised-button 
+                        [disabled]="isDisabled"
+                        color="primary"
+                        class="btn btn-default"
+                        mwlConfirmationPopover
+                        [popoverMessage]="'Вы действительно хотите <b>создать</b> новое задание?'"
+                        [confirmText]="confirmText"
+                        confirmButtonType="success"
+                        [cancelText]="cancelText"
+                        placement="right"
+                        (confirm)="onSave()"
+                        (cancel)="cancelClicked = true">
+                        Создать
+                    </button> 
+                </div>
             </div>
         </div>
 
