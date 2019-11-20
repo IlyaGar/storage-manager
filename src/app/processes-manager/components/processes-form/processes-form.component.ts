@@ -10,11 +10,11 @@ interface IProcess {
 }
 
 @Component({
-  selector: 'app-select-processes-form',
-  templateUrl: './select-processes-form.component.html',
-  styleUrls: ['./select-processes-form.component.css']
+  selector: 'app-processes-form',
+  templateUrl: './processes-form.component.html',
+  styleUrls: ['./processes-form.component.css']
 })
-export class SelectProcessesFormComponent implements OnInit {
+export class ProcessesFormComponent implements OnInit {
 
   @Output() onDataSelected: EventEmitter<Array<Process>> = new EventEmitter<Array<Process>>();
 

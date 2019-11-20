@@ -4,8 +4,8 @@
 
         <h5> Новое задание </h5>
 
-        <app-select-processes-form (onDataSelected)="addProcesses($event)"></app-select-processes-form>
-        <app-chips-new-task (onDataSelected)="addBase($event)"></app-chips-new-task>
+        <app-processes-form (onDataSelected)="addProcesses($event)"></app-processes-form>
+        <app-base-form (onDataSelected)="addBase($event)"></app-base-form>
         <app-proc-personal-list-form (onDataSelected)="addUser($event)"></app-proc-personal-list-form>
         <br>
         <p id="as-method"> Способ сборки: </p>

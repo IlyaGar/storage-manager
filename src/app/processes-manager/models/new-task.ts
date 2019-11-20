@@ -5,7 +5,7 @@ export class NewTask{
     constructor(       
         public token: string,
         public process : Array<Process>,
-        public base : Array<string>,
+        public baselist: Array<string>,
         public executor: ExecutorTask,
         public method: string, 
     ){}

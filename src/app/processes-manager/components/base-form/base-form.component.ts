@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatDialog } from '@angular/material/dialog';
 import { DocListComponent } from 'src/app/processes-manager/dialog-windows/doc-list/doc-list.component';
 
@@ -12,11 +12,11 @@ export class ListItem{
 }
 
 @Component({
-  selector: 'app-chips-new-task',
-  templateUrl: './chips-new-task.component.html',
-  styleUrls: ['./chips-new-task.component.css']
+  selector: 'app-base-form',
+  templateUrl: './base-form.component.html',
+  styleUrls: ['./base-form.component.css']
 })
-export class ChipsNewTaskComponent implements OnInit {
+export class BaseFormComponent implements OnInit {
 
   @Output() onDataSelected: EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
   

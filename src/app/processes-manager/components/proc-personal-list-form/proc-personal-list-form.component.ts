@@ -18,7 +18,7 @@ export class ProcPersonalListFormComponent implements OnInit {
   displayedColumnsWorkers = ['worker', 'action'];
   isSelectedElement = false;
   selectedMethod: any = 'all';
-
+  
   constructor(
     public dialog: MatDialog,
   ) { }

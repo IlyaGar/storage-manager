@@ -25,8 +25,8 @@ import { VerticalThreeFourActionComponent } from './stillages/vertical-three-fou
 import { ProductGroupAccountingFormComponent } from './product-manager/product-group-accounting-form/product-group-accounting-form.component';
 import { StoragePlacesComponent } from './dialog-windows/storage-places-manager/storage-places/storage-places.component';
 import { TaskComponent } from './processes-manager/task/task.component';
-import { ChipsNewTaskComponent } from './processes-manager/components/chips-new-task/chips-new-task.component';
-import { SelectProcessesFormComponent } from './processes-manager/components/select-processes-form/select-processes-form.component';
+import { BaseFormComponent } from './processes-manager/components/base-form/base-form.component';
+import { ProcessesFormComponent } from './processes-manager/components/processes-form/processes-form.component';
 import { SelectCellFormComponent } from './processes-manager/dialog-windows/select-cell-form/select-cell-form.component';
 import { DocListComponent } from './processes-manager/dialog-windows/doc-list/doc-list.component';
 import { VerticalThreeThreeComponent } from './stillages/vertical-three-three/vertical-three-three.component';
@@ -78,8 +78,8 @@ import { ConfirmationNewTaskFormComponent } from './processes-manager/dialog-win
     ProductGroupAccountingFormComponent,
     StoragePlacesComponent,
     TaskComponent,
-    ChipsNewTaskComponent,
-    SelectProcessesFormComponent,
+    BaseFormComponent,
+    ProcessesFormComponent,
     SelectCellFormComponent,
     DocListComponent,
     VerticalThreeThreeComponent,
@@ -137,7 +137,7 @@ import { ConfirmationNewTaskFormComponent } from './processes-manager/dialog-win
     NavbarFormComponent,
     InventoryDialogFormComponent,
     StoragePlacesComponent,
-    SelectProcessesFormComponent,
+    ProcessesFormComponent,
     SelectCellFormComponent,
     DocListComponent,
     PersonalListFormComponent,
