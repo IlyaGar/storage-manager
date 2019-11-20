@@ -212,7 +212,15 @@
 
                 <div *ngIf="isSelectedRowStillages && !isSelectedStillage && !isSelectedElement">
                     <mat-form-field id="nameSt">
-                            <input  type="text" matInput placeholder="Ряд стеллажей" [(ngModel)]="stillageRowName">
+                        <ng-container *ngIf="currentCell.element !== 'long-3-1-5'">
+                            <ng-container *ngIf="currentCell.element !== 'long-2-3-4'">
+                                <ng-container *ngIf="currentCell.element !== 'long-3-5'">
+                                    <ng-container *ngIf="currentCell.element !== 'long-3-4'">
+                                        <input  type="text" matInput placeholder="Ряд стеллажей" [(ngModel)]="stillageRowName">
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
                     </mat-form-field>
                     <br>
                     <button id="but-size-out" mat-raised-button (click)="onSaveProperty()">Сохранить</button>
@@ -221,7 +229,15 @@
                 <div *ngIf="!isSelectedRowStillages && isSelectedStillage && !isSelectedElement">
                     <div  *ngIf="isSelectCellWithRowName">
                         <mat-form-field id="nameSt">
-                            <input  type="text" matInput placeholder="Ряд стеллажей" [(ngModel)]="stillageRowName" readonly>
+                            <ng-container *ngIf="currentCell.element !== 'long-3-1-5'">
+                                <ng-container *ngIf="currentCell.element !== 'long-2-3-4'">
+                                    <ng-container *ngIf="currentCell.element !== 'long-3-5'">
+                                        <ng-container *ngIf="currentCell.element !== 'long-3-4'">
+                                            <input  type="text" matInput placeholder="Ряд стеллажей" [(ngModel)]="stillageRowName" readonly>
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
                         </mat-form-field>
 
                         <mat-form-field id="nameSt">
@@ -230,9 +246,17 @@
                         <br>
                         <button id="but-size-out" mat-raised-button (click)="onSaveProperty()">Сохранить</button>
                     </div>
-                    <div *ngIf="!isSelectCellWithRowName">
-                        <label> Назовите ряд стеллажей! </label>
-                    </div>
+                    <ng-container *ngIf="!isSelectCellWithRowName">
+                        <ng-container *ngIf="currentCell.element !== 'long-3-1-5'">
+                            <ng-container *ngIf="currentCell.element !== 'long-2-3-4'">
+                                <ng-container *ngIf="currentCell.element !== 'long-3-5'">
+                                    <ng-container *ngIf="currentCell.element !== 'long-3-4'">
+                                        <label> Назовите ряд стеллажей! </label>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
                 </div>
 
                 <ng-container *ngIf="!isSelectedRowStillages && !isSelectedStillage && isSelectedElement">
@@ -249,9 +273,9 @@
                 </ng-container>  
 
                 <ng-container *ngIf="currentCell && (currentCell.element === 'long-3-1-5' || currentCell.element === 'long-2-3-4' || currentCell.element === 'long-3-5' || currentCell.element === 'long-3-4')">
-                    <label id="action"> Выделите имя стеллажа </label>
+                    <label id="action"> Введите имя стеллажа </label>
                     <mat-form-field>
-                        <input type="text" matInput placeholder="Имя стеллажа" [(ngModel)]="zoneName">
+                        <input type="text" matInput placeholder="Имя стеллажа" [(ngModel)]="longName">
                     </mat-form-field>
                     <br>
                     <button mat-raised-button (click)="onCanselPropertyZone()">Отмена</button>

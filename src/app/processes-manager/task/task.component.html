@@ -5,8 +5,8 @@
         <h5> Новое задание </h5>
 
         <app-select-processes-form (onDataSelected)="addProcesses($event)"></app-select-processes-form>
-        <app-chips-new-task></app-chips-new-task>
-        <app-proc-personal-list-form></app-proc-personal-list-form>
+        <app-chips-new-task (onDataSelected)="addBase($event)"></app-chips-new-task>
+        <app-proc-personal-list-form (onDataSelected)="addUser($event)"></app-proc-personal-list-form>
         <br>
         <p id="as-method"> Способ сборки: </p>
         <div class="bt-inline">
@@ -46,14 +46,7 @@
                         [disabled]="isDisabled"
                         color="primary"
                         class="btn btn-default"
-                        mwlConfirmationPopover
-                        [popoverMessage]="'Вы действительно хотите <b>создать</b> новое задание?'"
-                        [confirmText]="confirmText"
-                        confirmButtonType="success"
-                        [cancelText]="cancelText"
-                        placement="right"
-                        (confirm)="onSave()"
-                        (cancel)="cancelClicked = true">
+                        (click)="onOpenConfirmationForm()">           
                         Создать
                     </button> 
                 </div>

@@ -6,6 +6,7 @@ import { RequestDoc } from '../models/request-doc';
 import { AnswerDoc } from '../models/answer-doc';
 import { WDocQuery } from '../models/w-doc-query';
 import { WDocAnswer } from '../models/w-doc-answer';
+import { NewTask } from '../models/new-task';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class ProcService {
   private url_get_perem = environment.apiUrl + "/wms/getperem";
   private url_get_vozv = environment.apiUrl + "/wms/getvozv";
   private url_get_doc = environment.apiUrl + "/wms/getdoc";
+  private url_pst_new_task = environment.apiUrl + "/wms/1111111";
 
   constructor(private http: HttpClient) { }
 
@@ -36,7 +38,11 @@ export class ProcService {
     return this.http.post<Array<AnswerDoc>>(`${this.url_get_vozv}`, data);
   }
 
-  getDoc(data: WDocQuery): Observable<any> {
-    return this.http.post<any>(`${this.url_get_doc}`, data);
+  getDoc(data: WDocQuery): Observable<WDocAnswer> {
+    return this.http.post<WDocAnswer>(`${this.url_get_doc}`, data);
+  }
+
+  postNewTask(data: NewTask): Observable<any> {
+    return this.http.post<any>(`${this.url_pst_new_task}`, data);
   }
 }

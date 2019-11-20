@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatDialog } from '@angular/material/dialog';
@@ -18,6 +18,8 @@ export class ListItem{
 })
 export class ChipsNewTaskComponent implements OnInit {
 
+  @Output() onDataSelected: EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
+  
   constructor(
     public dialog: MatDialog,
   ) { }
@@ -45,6 +47,8 @@ export class ChipsNewTaskComponent implements OnInit {
     if (input) {
       input.value = '';
     }
+
+    this.onDataSelected.emit(this.list);
   }
 
   remove(doc: string): void {
@@ -68,6 +72,7 @@ export class ChipsNewTaskComponent implements OnInit {
         result.forEach(element => {
           this.list = this.list.concat(element.item);
         });
+        this.onDataSelected.emit(this.list);
       }
     });
   }

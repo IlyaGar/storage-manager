@@ -32,6 +32,7 @@ export class WmsMapEditFormComponent implements OnInit {
   stillageRowName: string = '';
   stillageName: string = '';
   zoneName: string = '';
+  longName: string = '';
   zoneSendName: string = '';
   imageUrlHor1: string = '../assets/brace-hor.png'
   imageUrlVer1: string = '../assets/brace-ver.png'
@@ -103,6 +104,30 @@ export class WmsMapEditFormComponent implements OnInit {
       alert("Сервер не отвечает.");
      }
     );
+  }
+
+  isItStillage(cell: StillageItem) {
+    if( cell.element === 'ver-3-4' || 
+        cell.element === 'hor-3-4' || 
+        cell.element === 'ver-3-3' || 
+        cell.element === 'hor-3-3' || 
+        cell.element === 'ver-3-2' || 
+        cell.element === 'hor-3-2' ||
+        cell.element === 'ver-3-5' || 
+        cell.element === 'hor-3-5' || 
+        cell.element === 'ver-2-5' || 
+        cell.element === 'hor-2-5' ||       
+        cell.element === 'ver-2-4' || 
+        cell.element === 'hor-2-4' || 
+        cell.element === 'long-3-1-5' || 
+        cell.element === 'long-2-3-4' ||
+        cell.element === 'long-3-5' || 
+        cell.element === 'long-3-4' || 
+        cell.element === 'ver-2-3') {
+          return true;
+        } else {
+          return false;
+        }
   }
 
   checkResponse(response) {
@@ -215,22 +240,23 @@ export class WmsMapEditFormComponent implements OnInit {
   }
 
   onSelectCell(cell: StillageItem) {
-    this.whatIsIt(cell);
-    if(cell.element) {
-      this.toNameZone(cell);
+    if(this.isItStillage(cell)) {
+      this.isPanelOpenStillage = false
+      this.isChoiceProperties = true;
     }
     if(this.previousCell) {
       this.tab_map[this.previousCell.y][this.previousCell.x].isSelectCellStillage = false;
       this.stillageName = '';
     }
+    this.whatIsIt(cell);
+    if(cell.element) {
+      this.toNameZone(cell);
+      this.toNameLong(cell);
+    }
     if(this.isSelectEditor && this.isChoiceDelete) {
       this.deleteElement(cell);
     }
-    if(cell.isHor || cell.isVer) {
-      this.isPanelOpenStillage = false
-      this.isChoiceProperties = true;
-    }
-    if(cell.isStillageOneWithOutName || cell.isStillageOneWithName) {
+    if(cell.isStillageOneWithOutName || cell.isStillageOneWithName || this.isItStillage(cell)) {
       this.selectCell(cell);
     }
     if(this.isPanelOpenStillage) {
@@ -261,7 +287,7 @@ export class WmsMapEditFormComponent implements OnInit {
       this.isSelectedRowStillages = true;
       this.isSelectedStillage = false;
     }
-    if(cell.isHor || cell.isVer) {
+    if(this.isItStillage(cell)) {
       this.currentCell = cell;
       this.isSelectedElement = false;
       this.isSelectedRowStillages = false;
@@ -488,6 +514,30 @@ export class WmsMapEditFormComponent implements OnInit {
               this.zoneName = nameStillage;
             }
           }
+        }
+      }
+      this.isSelectedElement = true;
+    }
+  }
+
+  toNameLong(cell: StillageItem) {
+    if(cell.element === 'long-3-1-5' || 
+        cell.element === 'long-2-3-4' ||
+        cell.element === 'long-3-5' || 
+        cell.element === 'long-3-4') {
+      if(this.isChoiceProperties) {
+        this.longName = cell.stillageName;
+        if(this.previousCell) {
+          if(this.previousCell.isSelectCellStillage) {
+            this.tab_map[this.previousCell.y][this.previousCell.x].isSelectCellStillage = false;
+          }
+          else {
+            this.previousCell = cell;
+            this.previousCell.isSelectCellStillage = true;
+          }
+        } else {
+          this.previousCell = cell;
+          this.previousCell.isSelectCellStillage = true;
         }
       }
       this.isSelectedElement = true;
@@ -810,7 +860,7 @@ export class WmsMapEditFormComponent implements OnInit {
   }
 
   onSavePropertyLong() {
-    if(this.zoneName.length > 0) {
+    if(this.longName.length > 0) {
       if(this.currentCell.element === 'long-3-1-5' || this.currentCell.element === 'long-2-3-4' || this.currentCell.element === 'long-3-5' || this.currentCell.element === 'long-3-4') {
         if(this.currentCell.x + 1 < this.x_width) {
           if( !this.tab_map[this.currentCell.y][this.currentCell.x + 1].isVer && 
@@ -818,8 +868,8 @@ export class WmsMapEditFormComponent implements OnInit {
               !this.tab_map[this.currentCell.y][this.currentCell.x + 1].isStillageRowWithOutNameVer &&
               !this.tab_map[this.currentCell.y][this.currentCell.x + 1].isStillageRowWithOutNameHor) {
             this.tab_map[this.currentCell.y][this.currentCell.x].yxName = (this.currentCell.y).toString() + ';' + (this.currentCell.x + 1).toString();
-            this.tab_map[this.currentCell.y][this.currentCell.x + 1].cellName = this.zoneName;
-            this.tab_map[this.currentCell.y][this.currentCell.x].stillageName = this.zoneName;
+            this.tab_map[this.currentCell.y][this.currentCell.x + 1].cellName = this.longName;
+            this.tab_map[this.currentCell.y][this.currentCell.x].stillageName = this.longName;
             this.currentCell.isStillageOneWithOutName = false;
           }
           else {
@@ -829,8 +879,8 @@ export class WmsMapEditFormComponent implements OnInit {
                   !this.tab_map[this.currentCell.y][this.currentCell.x - 1].isStillageRowWithOutNameVer &&
                   !this.tab_map[this.currentCell.y][this.currentCell.x - 1].isStillageRowWithOutNameHor) {
                 this.tab_map[this.currentCell.y][this.currentCell.x].yxName = (this.currentCell.y).toString() + ';' + (this.currentCell.x - 1).toString();
-                this.tab_map[this.currentCell.y][this.currentCell.x - 1].cellName = this.zoneName;
-                this.tab_map[this.currentCell.y][this.currentCell.x].stillageName = this.zoneName;
+                this.tab_map[this.currentCell.y][this.currentCell.x - 1].cellName = this.longName;
+                this.tab_map[this.currentCell.y][this.currentCell.x].stillageName = this.longName;
                 this.currentCell.isStillageOneWithOutName = false;
               }
             }
@@ -843,8 +893,8 @@ export class WmsMapEditFormComponent implements OnInit {
                 !this.tab_map[this.currentCell.y][this.currentCell.x - 1].isStillageRowWithOutNameVer &&
                 !this.tab_map[this.currentCell.y][this.currentCell.x - 1].isStillageRowWithOutNameHor) {
               this.tab_map[this.currentCell.y][this.currentCell.x].yxName = (this.currentCell.y).toString() + ';' + (this.currentCell.x - 1).toString();
-              this.tab_map[this.currentCell.y][this.currentCell.x - 1].cellName = this.zoneName;
-              this.tab_map[this.currentCell.y][this.currentCell.x].stillageName = this.zoneName;
+              this.tab_map[this.currentCell.y][this.currentCell.x - 1].cellName = this.longName;
+              this.tab_map[this.currentCell.y][this.currentCell.x].stillageName = this.longName;
               this.currentCell.isStillageOneWithOutName = false;
             }
             else {
@@ -854,8 +904,8 @@ export class WmsMapEditFormComponent implements OnInit {
                     !this.tab_map[this.currentCell.y][this.currentCell.x + 1].isStillageRowWithOutNameVer &&
                     !this.tab_map[this.currentCell.y][this.currentCell.x + 1].isStillageRowWithOutNameHor) {
                   this.tab_map[this.currentCell.y][this.currentCell.x].yxName = (this.currentCell.y).toString() + ';' + (this.currentCell.x + 1).toString();
-                  this.tab_map[this.currentCell.y][this.currentCell.x + 1].cellName = this.zoneName;
-                  this.tab_map[this.currentCell.y][this.currentCell.x].stillageName = this.zoneName;
+                  this.tab_map[this.currentCell.y][this.currentCell.x + 1].cellName = this.longName;
+                  this.tab_map[this.currentCell.y][this.currentCell.x].stillageName = this.longName;
                   this.currentCell.isStillageOneWithOutName = false;
                 }
               }
@@ -902,10 +952,19 @@ export class WmsMapEditFormComponent implements OnInit {
         }
       }
     }
+    // if( cell.element === 'long-3-1-5' || 
+    //     cell.element === 'long-2-3-4' ||
+    //     cell.element === 'long-3-5' || 
+    //     cell.element === 'long-3-4') {
+    //       if(cell.stillageName)
+    //         this.isSelectCellWithRowName = true;
+    //       else
+    //         this.isSelectCellWithRowName = false;
+    //     }
   }
 
   selectCell(cell: StillageItem) {
-    if(cell.isVer || cell.isHor) {
+    if(cell.isHor || cell.isVer) {
       if(this.previousCell) {
         this.tab_map[this.previousCell.y][this.previousCell.x].isSelectCellStillage = false;
       }

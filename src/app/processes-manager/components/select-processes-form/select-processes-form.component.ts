@@ -1,11 +1,11 @@
-import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { SelectCellFormComponent } from '../../dialog-windows/select-cell-form/select-cell-form.component';
+import { Process } from '../../models/process';
 
-interface Processe {
+interface IProcess {
   id: number;
-  name: string;
+  type: string;
   zone: string;
 }
 
@@ -16,13 +16,13 @@ interface Processe {
 })
 export class SelectProcessesFormComponent implements OnInit {
 
-  @Output() onDataSelected: EventEmitter<Array<Processe>> = new EventEmitter<Array<Processe>>();
-  
+  @Output() onDataSelected: EventEmitter<Array<Process>> = new EventEmitter<Array<Process>>();
+
   selectedDevice: any;
   isSllowedAdd: boolean = false;
   selectedProc: string = '';
   listSelected: Array<string> = [];
-  listProcesses: Array<Processe> = [ {id: 0, name: '', zone: '' } ];
+  listProcesses: Array<IProcess> = [ {id: 0, type: '', zone: '' } ];
   displayedColumnsProcesses = ['processe', 'zone', 'action'];
   cellFrom: string = '';
   cellTo: string = '';
@@ -67,29 +67,54 @@ export class SelectProcessesFormComponent implements OnInit {
       let lastId = +this.listProcesses[this.listProcesses.length - 1].id + 1;
       if(this.selectedProc !== 'Ротация') {
         if(this.selectedZone === 'auto') 
-          this.listProcesses = this.listProcesses.concat({ id: lastId, name: this.selectedProc, zone: 'Авто' });
+          this.listProcesses = this.listProcesses.concat({ id: lastId, type: this.selectedProc, zone: 'Авто' });
         else 
           if(this.listSelected.length > 0)
-            this.listProcesses = this.listProcesses.concat({ id: lastId, name: this.selectedProc, zone: this.listSelected.toString() });
+            this.listProcesses = this.listProcesses.concat({ id: lastId, type: this.selectedProc, zone: this.listSelected.toString() });
           else 
-            this.listProcesses = this.listProcesses.concat({ id: lastId, name: this.selectedProc, zone: 'Авто' });
+            this.listProcesses = this.listProcesses.concat({ id: lastId, type: this.selectedProc, zone: 'Авто' });
       } else {
         if(this.listSelected) {
-          this.listProcesses = this.listProcesses.concat({ id: lastId, name: this.selectedProc, zone: this.listSelected.toString() });
+          this.listProcesses = this.listProcesses.concat({ id: lastId, type: this.selectedProc, zone: this.listSelected.toString() });
         }
       }
-      this.onDataSelected.emit(this.listProcesses);
-      this.selectedProc = '';
-      this.selectedZone = 'auto';
-      this.cellFrom = '';
-      this.cellTo = '';
-      this.listSelected = []; 
+      this.onDataSelected.emit(this.getArrayProcesses(this.listProcesses));
+      this.initialState();
     }
   }
 
-  onDelete(element: Processe) {
+  initialState() {
+    this.selectedProc = '';
+    this.selectedZone = 'auto';
+    this.cellFrom = '';
+    this.cellTo = '';
+    this.listSelected = []; 
+  }
+
+  getArrayProcesses(array: Array<IProcess>) { 
+    let cloneRpocesses = this.cloneList(array);
+    let delFirstElement = cloneRpocesses.shift();
+    let copyList = [];
+    cloneRpocesses.forEach(element => {
+      copyList = copyList.concat(this.pick(element, "type", "zone") as Process);
+    });
+    return copyList;
+  }
+
+  cloneList(array: Array<IProcess>) { 
+    return JSON.parse(JSON.stringify(array)); 
+  } 
+
+  pick<T, K extends keyof T>(obj: T, ...keys: K[]): Pick<T, K> {
+    const copy = {} as Pick<T, K>;
+    keys.forEach(key => copy[key] = obj[key]);
+    return copy;
+  }
+
+  onDelete(element: IProcess) {
     this.listProcesses = this.listProcesses.filter(item => item !== element);
     this.fallOptions();
+    this.onDataSelected.emit(this.getArrayProcesses(this.listProcesses));
   }
 
   onClear() {
@@ -99,7 +124,7 @@ export class SelectProcessesFormComponent implements OnInit {
     this.isSllowedAdd = false;
   }
 
-  onOpenSelectCell(element: Processe) {
+  onOpenSelectCell(element: IProcess) {
     const dialogRef = this.dialog.open(SelectCellFormComponent, {
       width: '65em',
       height: '35em',

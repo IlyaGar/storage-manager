@@ -58,6 +58,7 @@ import { DocTableFormComponent } from './processes-manager/components/doc-table-
 import { StillgeDialogFormComponent } from './wms-map/dialog-windows/stillge-dialog-form/stillge-dialog-form.component';
 import { NgxPrintModule } from 'ngx-print';
 import { UsersInGroupFormComponent } from './processes-manager/dialog-windows/users-in-group-form/users-in-group-form.component';
+import { ConfirmationNewTaskFormComponent } from './processes-manager/dialog-windows/confirmation-new-task-form/confirmation-new-task-form.component';
 
 @NgModule({
   declarations: [
@@ -109,6 +110,7 @@ import { UsersInGroupFormComponent } from './processes-manager/dialog-windows/us
     DocTableFormComponent,
     StillgeDialogFormComponent,
     UsersInGroupFormComponent,
+    ConfirmationNewTaskFormComponent,
   ],
   imports: [
     FormsModule,
@@ -146,6 +148,7 @@ import { UsersInGroupFormComponent } from './processes-manager/dialog-windows/us
     DetailDocFormComponent,
     StillgeDialogFormComponent,
     UsersInGroupFormComponent,
+    ConfirmationNewTaskFormComponent,
   ],
   bootstrap: [AppComponent]
 })
