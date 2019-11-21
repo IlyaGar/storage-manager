@@ -55,7 +55,7 @@ mat-icon#push:hover {
     width: 650px;
 }
 button#but-size-out {
-    margin-left: 0.4em;
+    margin-left: 0.3em;
 }
 .sel-tab {
     background-color: aquamarine;
@@ -344,7 +344,7 @@ button {
     outline: none!important;
 }
 mat-list {
-    height: 400px;
+    height: 450px;
     border: 2px solid rgba(128, 128, 128, 0.25);
     border-radius: 5px;
     overflow: auto;

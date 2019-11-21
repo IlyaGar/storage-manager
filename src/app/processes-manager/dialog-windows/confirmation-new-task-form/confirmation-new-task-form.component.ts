@@ -32,7 +32,7 @@ export class ConfirmationNewTaskFormComponent implements OnInit {
     this.data.task;
   }
 
-    onCreate() {
+  onCreate() {
     this.procService.postNewTask(this.data.task).subscribe(response => {
       this.checkResponse(response); 
     }, 
@@ -43,7 +43,7 @@ export class ConfirmationNewTaskFormComponent implements OnInit {
   }
 
   checkResponse(response: Status){
-    if(response.status === 'True') {
+    if(response.status === 'true') {
       this.snackbarService.openSnackBar(this.messageTrue, this.action);
       this.dialogRef.close(true);
     }

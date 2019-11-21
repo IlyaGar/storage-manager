@@ -156,4 +156,8 @@ export class SelectCellFormComponent implements OnInit {
   onOkClick(): void {
     this.dialogRef.close(this.listSelected);
   }
+
+  onCancelClick(): void {
+    this.dialogRef.close();
+  }
 }

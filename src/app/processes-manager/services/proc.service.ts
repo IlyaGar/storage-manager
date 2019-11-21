@@ -18,7 +18,7 @@ export class ProcService {
   private url_get_perem = environment.apiUrl + "/wms/getperem";
   private url_get_vozv = environment.apiUrl + "/wms/getvozv";
   private url_get_doc = environment.apiUrl + "/wms/getdoc";
-  private url_pst_new_task = environment.apiUrl + "/wms/1111111";
+  private url_pst_new_task = environment.apiUrl + "/wms/settask";
 
   constructor(private http: HttpClient) { }
 

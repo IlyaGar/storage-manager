@@ -6,7 +6,7 @@ import { Process } from '../../models/process';
 interface IProcess {
   id: number;
   type: string;
-  zone: string;
+  zone: Array<string>;
 }
 
 @Component({
@@ -22,7 +22,7 @@ export class ProcessesFormComponent implements OnInit {
   isSllowedAdd: boolean = false;
   selectedProc: string = '';
   listSelected: Array<string> = [];
-  listProcesses: Array<IProcess> = [ {id: 0, type: '', zone: '' } ];
+  listProcesses: Array<IProcess> = [ {id: 0, type: '', zone: [] } ];
   displayedColumnsProcesses = ['processe', 'zone', 'action'];
   cellFrom: string = '';
   cellTo: string = '';
@@ -67,15 +67,15 @@ export class ProcessesFormComponent implements OnInit {
       let lastId = +this.listProcesses[this.listProcesses.length - 1].id + 1;
       if(this.selectedProc !== 'Ротация') {
         if(this.selectedZone === 'auto') 
-          this.listProcesses = this.listProcesses.concat({ id: lastId, type: this.selectedProc, zone: 'Авто' });
+          this.listProcesses = this.listProcesses.concat({ id: lastId, type: this.selectedProc, zone: ['Авто'] });
         else 
           if(this.listSelected.length > 0)
-            this.listProcesses = this.listProcesses.concat({ id: lastId, type: this.selectedProc, zone: this.listSelected.toString() });
+            this.listProcesses = this.listProcesses.concat({ id: lastId, type: this.selectedProc, zone: this.listSelected });
           else 
-            this.listProcesses = this.listProcesses.concat({ id: lastId, type: this.selectedProc, zone: 'Авто' });
+            this.listProcesses = this.listProcesses.concat({ id: lastId, type: this.selectedProc, zone: ['Авто'] });
       } else {
         if(this.listSelected) {
-          this.listProcesses = this.listProcesses.concat({ id: lastId, type: this.selectedProc, zone: this.listSelected.toString() });
+          this.listProcesses = this.listProcesses.concat({ id: lastId, type: this.selectedProc, zone: this.listSelected });
         }
       }
       this.onDataSelected.emit(this.getArrayProcesses(this.listProcesses));
@@ -145,7 +145,7 @@ export class ProcessesFormComponent implements OnInit {
     switch(this.selectedProc) {
       
       case 'Приемка':
-        this.options = this.optionsAcceptance;
+        this.options = this.optionsAccommodation;
         this.isSllowedAdd = true;
         break;
 

@@ -1,35 +1,16 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StillageItem } from 'src/app/wms-map/models/stillage-item';
+import { Item } from '../horizontal-three-four-action/horizontal-three-four-action.component';
 import { MatDialog } from '@angular/material/dialog';
-import { DetailViewCellComponent } from 'src/app/dialog-windows/detail-view-cell-manager/detail-view-cell/detail-view-cell.component';
-import { InventoryItem } from 'src/app/wms-map/models/inventory-item';
 import { StillageService } from 'src/app/common/services/stillage.service';
-
-export class Item{
-  constructor(
-    public c11: boolean,
-    public c12: boolean,
-    public c13: boolean,
-    public c14: boolean,
-  
-    public c21: boolean,
-    public c22: boolean,
-    public c23: boolean,
-    public c24: boolean,
-   
-    public c31: boolean,
-    public c32: boolean,
-    public c33: boolean,
-    public c34: boolean,
-  ){}
-}
+import { DetailViewCellComponent } from 'src/app/dialog-windows/detail-view-cell-manager/detail-view-cell/detail-view-cell.component';
 
 @Component({
-  selector: 'app-vertical-three-four-action',
-  templateUrl: './vertical-three-four-action.component.html',
-  styleUrls: ['./vertical-three-four-action.component.css']
+  selector: 'app-vertical-three-three-action',
+  templateUrl: './vertical-three-three-action.component.html',
+  styleUrls: ['./vertical-three-three-action.component.css']
 })
-export class VerticalThreeFourActionComponent implements OnInit {
+export class VerticalThreeThreeActionComponent implements OnInit {
 
   @Input() data;
   @Output() listChange = new EventEmitter<string>(); 

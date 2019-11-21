@@ -46,6 +46,9 @@
         </mat-list>
         <div class="form-inline br-pad">
             <div mat-dialog-actions>
+                <button mat-raised-button id="butt-cancel" color="primary"class="btn btn-default" (click)="onCancelClick()">
+                    Закрыть
+                </button> 
                 <button mat-raised-button id="butt-cancel" color="primary"class="btn btn-default">
                     Очистить
                 </button> 
@@ -91,8 +94,23 @@
                             <p id="row-name-hor" *ngIf="row.isBraceHor">{{row.rowName}}</p>
                             <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" />
                         </div>
-                        <app-vertical-three-four-action *ngIf="row.isVer" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-four-action>
-                        <app-horizontal-three-four-action *ngIf="row.isHor" [data]="row" (listChange)="onListCange($event)"></app-horizontal-three-four-action>
+                        <app-vertical-three-four-action *ngIf="row.element === 'ver-3-4'" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-four-action>
+                        <app-horizontal-three-four-action *ngIf="row.element === 'hor-3-4'" [data]="row" (listChange)="onListCange($event)"></app-horizontal-three-four-action>
+                        <app-vertical-three-three-action *ngIf="row.element === 'ver-3-3'" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-three-action>
+                        <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
+                        <app-vertical-three-two-action *ngIf="row.element === 'ver-3-2'" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-two-action>
+                        <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
+                        <app-vertical-three-five-action *ngIf="row.element === 'ver-3-5'" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-five-action>
+                        <app-horizontal-three-five *ngIf="row.element === 'hor-3-5'"></app-horizontal-three-five>
+                        <app-vertical-two-five-action *ngIf="row.element === 'ver-2-5'" [data]="row" (listChange)="onListCange($event)"></app-vertical-two-five-action>
+                        <app-horizontal-two-five *ngIf="row.element === 'hor-2-5'"></app-horizontal-two-five>
+                        <app-vertical-two-four-action *ngIf="row.element === 'ver-2-4'" [data]="row" (listChange)="onListCange($event)"></app-vertical-two-four-action>
+                        <app-horizontal-two-four *ngIf="row.element === 'hor-2-4'"></app-horizontal-two-four>
+                        <app-long-three-one-five-action *ngIf="row.element === 'long-3-1-5'" [data]="row" (listChange)="onListCange($event)"></app-long-three-one-five-action>
+                        <app-long-two-three-four-action *ngIf="row.element === 'long-2-3-4'" [data]="row" (listChange)="onListCange($event)"></app-long-two-three-four-action>
+                        <app-long-three-five-action *ngIf="row.element === 'long-3-5'" [data]="row" (listChange)="onListCange($event)"></app-long-three-five-action>
+                        <app-long-three-four-action *ngIf="row.element === 'long-3-4'" [data]="row" (listChange)="onListCange($event)"></app-long-three-four-action>
+                        <app-vertical-two-three-action *ngIf="row.element === 'ver-2-3'" [data]="row" (listChange)="onListCange($event)"></app-vertical-two-three-action>
                     </td>
                 </tr>
             </table>

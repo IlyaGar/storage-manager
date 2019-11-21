@@ -59,6 +59,16 @@ import { StillgeDialogFormComponent } from './wms-map/dialog-windows/stillge-dia
 import { NgxPrintModule } from 'ngx-print';
 import { UsersInGroupFormComponent } from './processes-manager/dialog-windows/users-in-group-form/users-in-group-form.component';
 import { ConfirmationNewTaskFormComponent } from './processes-manager/dialog-windows/confirmation-new-task-form/confirmation-new-task-form.component';
+import { VerticalThreeThreeActionComponent } from './stillages/vertical-three-three-action/vertical-three-three-action.component';
+import { VerticalThreeTwoActionComponent } from './stillages/vertical-three-two-action/vertical-three-two-action.component';
+import { VerticalThreeFiveActionComponent } from './stillages/vertical-three-five-action/vertical-three-five-action.component';
+import { VerticalTwoFiveActionComponent } from './stillages/vertical-two-five-action/vertical-two-five-action.component';
+import { VerticalTwoFourActionComponent } from './stillages/vertical-two-four-action/vertical-two-four-action.component';
+import { VerticalTwoThreeActionComponent } from './stillages/vertical-two-three-action/vertical-two-three-action.component';
+import { LongThreeOneFiveActionComponent } from './stillages/long-three-one-five-action/long-three-one-five-action.component';
+import { LongTwoThreeFourActionComponent } from './stillages/long-two-three-four-action/long-two-three-four-action.component';
+import { LongThreeFiveActionComponent } from './stillages/long-three-five-action/long-three-five-action.component';
+import { LongThreeFourActionComponent } from './stillages/long-three-four-action/long-three-four-action.component';
 
 @NgModule({
   declarations: [
@@ -111,6 +121,16 @@ import { ConfirmationNewTaskFormComponent } from './processes-manager/dialog-win
     StillgeDialogFormComponent,
     UsersInGroupFormComponent,
     ConfirmationNewTaskFormComponent,
+    VerticalThreeThreeActionComponent,
+    VerticalThreeTwoActionComponent,
+    VerticalThreeFiveActionComponent,
+    VerticalTwoFiveActionComponent,
+    VerticalTwoFourActionComponent,
+    VerticalTwoThreeActionComponent,
+    LongThreeOneFiveActionComponent,
+    LongTwoThreeFourActionComponent,
+    LongThreeFiveActionComponent,
+    LongThreeFourActionComponent,
   ],
   imports: [
     FormsModule,

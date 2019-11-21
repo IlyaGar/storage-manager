@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StillageItem } from 'src/app/wms-map/models/stillage-item';
 import { MatDialog } from '@angular/material/dialog';
-import { DetailViewCellComponent } from 'src/app/dialog-windows/detail-view-cell-manager/detail-view-cell/detail-view-cell.component';
-import { InventoryItem } from 'src/app/wms-map/models/inventory-item';
 import { StillageService } from 'src/app/common/services/stillage.service';
+import { DetailViewCellComponent } from 'src/app/dialog-windows/detail-view-cell-manager/detail-view-cell/detail-view-cell.component';
 
 export class Item{
   constructor(
@@ -11,25 +10,28 @@ export class Item{
     public c12: boolean,
     public c13: boolean,
     public c14: boolean,
+    public c15: boolean,
   
     public c21: boolean,
     public c22: boolean,
     public c23: boolean,
     public c24: boolean,
+    public c25: boolean,
    
     public c31: boolean,
     public c32: boolean,
     public c33: boolean,
     public c34: boolean,
+    public c35: boolean,
   ){}
 }
 
 @Component({
-  selector: 'app-vertical-three-four-action',
-  templateUrl: './vertical-three-four-action.component.html',
-  styleUrls: ['./vertical-three-four-action.component.css']
+  selector: 'app-vertical-three-five-action',
+  templateUrl: './vertical-three-five-action.component.html',
+  styleUrls: ['./vertical-three-five-action.component.css']
 })
-export class VerticalThreeFourActionComponent implements OnInit {
+export class VerticalThreeFiveActionComponent implements OnInit {
 
   @Input() data;
   @Output() listChange = new EventEmitter<string>(); 
@@ -39,7 +41,7 @@ export class VerticalThreeFourActionComponent implements OnInit {
   selectCellTo= '';
   isSelectCellFrom = false;
   isSelectCellTo= false;
-  selItem: Item = new Item(false, false, false, false, false, false, false, false, false, false, false, false);
+  selItem: Item = new Item(false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
   listSelected: Array<string> = [];
   cellSelected: string = '';
   countClick: number;
@@ -108,6 +110,8 @@ export class VerticalThreeFourActionComponent implements OnInit {
       this.selItem.c13 = !this.selItem.c13;
     if(numberCell + floorCell === '14')
       this.selItem.c14 = !this.selItem.c14;
+    if(numberCell + floorCell === '15')
+      this.selItem.c15 = !this.selItem.c15;
     if(numberCell + floorCell === '21')
       this.selItem.c21 = !this.selItem.c21;
     if(numberCell + floorCell === '22')
@@ -116,6 +120,8 @@ export class VerticalThreeFourActionComponent implements OnInit {
       this.selItem.c23 = !this.selItem.c23;
     if(numberCell + floorCell === '24')
       this.selItem.c24 = !this.selItem.c24;
+    if(numberCell + floorCell === '25')
+      this.selItem.c25 = !this.selItem.c25;
     if(numberCell + floorCell === '31')
       this.selItem.c31 = !this.selItem.c31;
     if(numberCell + floorCell === '32')
@@ -124,5 +130,7 @@ export class VerticalThreeFourActionComponent implements OnInit {
       this.selItem.c33 = !this.selItem.c33;
     if(numberCell + floorCell === '34')
       this.selItem.c34 = !this.selItem.c34;
+    if(numberCell + floorCell === '35')
+      this.selItem.c35 = !this.selItem.c35;
   }
 }
