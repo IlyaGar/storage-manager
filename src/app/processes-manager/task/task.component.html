@@ -55,7 +55,94 @@
 
     </mat-drawer>
     <mat-drawer-content>
-        
+        <div class="list-icon">
+                    
+                <img src="../../assets/pending_ico.ico" width="20" height="20" data-placement="bottom" matTooltip="Новое в очереди" /> 
+                <span id="status" class="mybadge-new"> Новое в очереди </span>
+
+                <img src="../../assets/favicon_arrows.ico" width="20" height="20" data-placement="bottom" matTooltip="Принято в исполнение"/> 
+                <span id="status" class="mybadge-just"> Принято в исполнение </span>
+
+                <img src="../../assets/favicon-red.ico" width="20" height="20" data-placement="bottom" matTooltip="Завершено частично"/> 
+                <span id="status" class="mybadge-notall"> Завершено частично </span>
+
+                <img src="../../assets/favicon-green.ico" width="20" height="20" data-placement="bottom" matTooltip="Завершено полностью"/>
+                <span id="status" class="mybadge-all"> Завершено полностью </span>
+
+        </div>
+
+        <table mat-table [dataSource]="dataSource" class="table-hover" multiTemplateDataRows >
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Статус </th>
+                <td mat-cell *matCellDef="let element"> 
+
+                    <ng-container *ngIf="element.status === 'Новое в очереди'">
+                        <img src="../../assets/pending_ico.ico" width="20" height="20" data-placement="bottom" matTooltip="Новое в очереди" /> 
+                    </ng-container>
+
+                    <ng-container *ngIf="element.status === 'Принято в исполнение'">
+                        <img src="../../assets/favicon_arrows.ico" width="20" height="20" data-placement="bottom" matTooltip="Принято в исполнение"/> 
+                    </ng-container>
+                        
+                    <ng-container *ngIf="element.status === 'Завершено частично'">
+                        <img src="../../assets/favicon-red.ico" width="20" height="20" data-placement="bottom" matTooltip="Завершено частично"/> 
+                    </ng-container>                       
+
+                    <ng-container *ngIf="element.status === 'Завершено полностью'">
+                        <img src="../../assets/favicon-green.ico" width="20" height="20" data-placement="bottom" matTooltip="Завершено полностью"/>
+                    </ng-container>
+
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="process">
+                <th mat-header-cell *matHeaderCellDef> Процесс </th>
+                <td mat-cell *matCellDef="let element" > {{element.process}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Наименование </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>     
+    
+            <ng-container matColumnDef="percent">
+                <th mat-header-cell *matHeaderCellDef> Прогресс </th>
+                <td mat-cell *matCellDef="let element"> 
+                    {{element.percent}} %
+                    <mat-progress-spinner
+                        [diameter]="20"
+                        class="example-margin"
+                        [color]="color"
+                        [mode]="mode"
+                        [value]="element.percent">
+                    </mat-progress-spinner>
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>  </th>
+                <td mat-cell *matCellDef="let element">  </td>
+            </ng-container> 
+                    
+            <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                    <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                        {{element.description}}
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+            <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+                class="example-element-row"
+                [class.example-expanded-row]="expandedElement === element"
+                (click)="expandedElement = expandedElement === element ? null : element">
+            </tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+        </table>
+
     </mat-drawer-content>
    
 </mat-drawer-container>

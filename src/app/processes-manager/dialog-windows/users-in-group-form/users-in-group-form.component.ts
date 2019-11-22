@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { TokenService } from 'src/app/common/services/token.service';
 import { SnackbarService } from 'src/app/common/services/snackbar.service';
 import { PersonalService } from 'src/app/personal-manager/services/personal.service';
 import { DownList } from 'src/app/product-manager/models/down-list';
@@ -27,7 +26,6 @@ export class UsersInGroupFormComponent implements OnInit {
   styleNoConnect = 'red-snackbar';
 
   constructor( 
-    private tokenService: TokenService,
     private snackbarService: SnackbarService,
     private personalService: PersonalService,
     public dialogRef: MatDialogRef<UsersInGroupFormComponent>,

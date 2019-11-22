@@ -63,3 +63,60 @@ div > button {
 .box div {
     display: inline-block;
 }
+tr.example-detail-row {
+    height: 0;
+}
+tr.example-element-row:not(.example-expanded-row):hover {
+    background: #777;
+}  
+tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+}  
+.example-element-row td {
+    border-bottom-width: 0;
+}  
+.example-element-detail {
+    overflow: hidden;
+    display: flex;
+}
+.example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+} 
+.example-element-description {
+    padding: 16px;
+}  
+.example-element-description-attribution {
+    opacity: 0.5;
+}
+.list-icon {
+    margin: 0.5em 0.4em;
+}
+span#status {
+    font-size: 0.8em;
+    padding: 0.2em 0.5em;
+    font-weight: 100;
+    margin-left: 1em;
+    margin-right: 2em;
+}
+.mybadge-new {
+  color: #cf7807;
+  border: 1px solid #cf7807;
+  border-radius: 10px;
+}
+.mybadge-just {
+  color: #0e0bdb;
+  border: 1px solid #0e0bdb;
+  border-radius: 10px;
+}
+.mybadge-notall {
+  color: red;
+  border: 1px solid red;
+  border-radius: 10px;
+}
+.mybadge-all {
+  color: green;
+  border: 1px solid green;
+  border-radius: 10px;
+}

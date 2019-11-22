@@ -55,7 +55,7 @@ export class SelectCellFormComponent implements OnInit {
   }
 
   onClickCell(stillage: StillageItem, numberCell: string, floorCell: string) {
-    if(stillage.element === 'office' || stillage.element === 'zone_send' || stillage.element === 'zone_unload') {
+    if(stillage.element === 'office' || stillage.element === 'zone_send' || stillage.element === 'zone_unload' || stillage.element === 'zone_storage') {
       if(stillage.cellName) {
         this.onListCange(stillage.cellName);
       }
