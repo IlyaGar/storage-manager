@@ -75,13 +75,13 @@ button#button-search {
     margin-right: 1em;
     box-shadow: 1px 2px 5px #000000;   
 }
-mat-button-toggle {
+/* mat-button-toggle {
     line-height: 0px !important;
     height: 2.5em;
     font-family: 'Nunito Semibold', sans-serif;
     font-size: 14px;
     font-style: bold;
-}
+} */
 .mat-button-toggle-checked {
     color: black;
     background-color: rgb(190, 190, 190);
@@ -263,4 +263,11 @@ div#link {
 }
 p#common-count {
    color: rgba(128, 128, 128);
+}
+
+.mat-button-toggle {
+    font-family: 'Nunito Semibold', sans-serif;
+    font-size: 14px;
+    font-style: bold;
+    padding: 0 4px !important;
 }

@@ -11,7 +11,7 @@
         <p id="as-method"> Способ сборки: </p>
         <div class="bt-inline">
             <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedMethod">
-                <mat-button-toggle id="but" value="auto" data-toggle="tooltip" data-placement="bottom" matTooltip="Авто">
+                <mat-button-toggle value="auto" data-toggle="tooltip" data-placement="bottom" matTooltip="Авто">
                     Авто
                 </mat-button-toggle>
                 <mat-button-toggle value="hand" data-toggle="tooltip" data-placement="bottom" matTooltip="Ручной">
@@ -57,17 +57,17 @@
     <mat-drawer-content>
         <div class="list-icon">
                     
-                <img src="../../assets/pending_ico.ico" width="20" height="20" data-placement="bottom" matTooltip="Новое в очереди" /> 
-                <span id="status" class="mybadge-new"> Новое в очереди </span>
+            <img src="../../assets/pending_ico.ico" width="20" height="20" data-placement="bottom" matTooltip="Новое в очереди" /> 
+            <span id="status" class="mybadge-new"> Новое в очереди </span>
 
-                <img src="../../assets/favicon_arrows.ico" width="20" height="20" data-placement="bottom" matTooltip="Принято в исполнение"/> 
-                <span id="status" class="mybadge-just"> Принято в исполнение </span>
+            <img src="../../assets/favicon_arrows.ico" width="20" height="20" data-placement="bottom" matTooltip="Принято в исполнение"/> 
+            <span id="status" class="mybadge-just"> Принято в исполнение </span>
 
-                <img src="../../assets/favicon-red.ico" width="20" height="20" data-placement="bottom" matTooltip="Завершено частично"/> 
-                <span id="status" class="mybadge-notall"> Завершено частично </span>
+            <img src="../../assets/favicon-red.ico" width="20" height="20" data-placement="bottom" matTooltip="Завершено частично"/> 
+            <span id="status" class="mybadge-notall"> Завершено частично </span>
 
-                <img src="../../assets/favicon-green.ico" width="20" height="20" data-placement="bottom" matTooltip="Завершено полностью"/>
-                <span id="status" class="mybadge-all"> Завершено полностью </span>
+            <img src="../../assets/favicon-green.ico" width="20" height="20" data-placement="bottom" matTooltip="Завершено полностью"/>
+            <span id="status" class="mybadge-all"> Завершено полностью </span>
 
         </div>
 

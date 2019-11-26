@@ -9,6 +9,7 @@ import { UGroup } from '../../models/u-group';
 import { ActionUser } from '../../models/action-user';
 import { GroupList } from '../../models/group-list';
 import { SnackbarService } from 'src/app/common/services/snackbar.service';
+import { PrintBadgeFormComponent } from '../../dialog-windows/print-badge-form/print-badge-form.component';
 
 @Component({
   selector: 'app-users-form',
@@ -114,7 +115,19 @@ export class UsersFormComponent implements OnInit {
     });
   }
 
-  onDeleteUser(element) {
+  onDeleteUser(element: UGroup) {
+ 
+  }
 
+  onPrintBadge(element: UGroup) {
+    const dialogRef = this.dialog.open(PrintBadgeFormComponent, {
+      data: { user: element.login, },
+      // width: "360px"
+     });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.name = result;
+      }
+    });
   }
 }

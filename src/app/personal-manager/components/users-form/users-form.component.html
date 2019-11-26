@@ -48,14 +48,22 @@
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
+
+                        <button mat-menu-item (click)="onPrintBadge(element)">
+                            <mat-icon>print</mat-icon>
+                            <span> Распечатать бейдж </span>
+                        </button>
+
                         <button mat-menu-item (click)="onRemoveGroup(element)">
                             <mat-icon>edit</mat-icon>
                             <span> Убрать из группы </span>
                         </button>
+
                         <button mat-menu-item (click)="onDeleteUser(element)">
                             <mat-icon>delete_forever</mat-icon>
                             <span> Удалить пользователя </span>
                         </button>
+ 
                     </mat-menu>
                 </td>
             </ng-container>

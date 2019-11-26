@@ -37,7 +37,7 @@ export class SelectCellFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(this.data.select === 'Ротация' || this.data.select === 'Инвентаризация') {
+    if(this.data.select === 'Ротация') {
       this.stillageService.clickEvent(2);
     }
     this.wmsMapService.getSclad(new GetSkald(this.tokenService.getToken())).subscribe(response =>  { 
@@ -55,14 +55,31 @@ export class SelectCellFormComponent implements OnInit {
   }
 
   onClickCell(stillage: StillageItem, numberCell: string, floorCell: string) {
-    if(stillage.element === 'office' || stillage.element === 'zone_send' || stillage.element === 'zone_unload' || stillage.element === 'zone_storage') {
-      if(stillage.cellName) {
-        this.onListCange(stillage.cellName);
+    if(this.data.select !== 'Инвентаризация') {
+      if(stillage.element === 'office' || stillage.element === 'zone_send' || stillage.element === 'zone_unload' || stillage.element === 'zone_storage') {
+        if(stillage.cellName) {
+          this.onListCange(stillage.cellName);
+        }
+        if(stillage.yxName) {
+          var splited = stillage.yxName.split(';');
+          if(splited.length == 2)
+            this.onListCange(this.tab_map[splited[0]][splited[1]].cellName);
+        }
       }
-      if(stillage.yxName) {
-        var splited = stillage.yxName.split(';');
-        if(splited.length == 2)
-          this.onListCange(this.tab_map[splited[0]][splited[1]].cellName);
+    }
+    if(this.data.select === 'Инвентаризация') {
+      stillage.isSelectCellStillage = !stillage.isSelectCellStillage;
+      if(stillage.element === 'office' || stillage.element === 'zone_send' || stillage.element === 'zone_unload' || stillage.element === 'zone_storage') {
+        if(stillage.cellName) {
+          this.onListCange(stillage.cellName);
+        }
+        if(stillage.yxName) {
+          var splited = stillage.yxName.split(';');
+          if(splited.length == 2)
+            this.onListCange(this.tab_map[splited[0]][splited[1]].cellName);
+        }
+      } else {
+        this.onListCange(stillage.stillageName);
       }
     }
   }
@@ -84,7 +101,7 @@ export class SelectCellFormComponent implements OnInit {
   }
 
   onListCange(cell: string) {
-    if(this.data.select === 'Ротация' || this.data.select === 'Инвентаризация') {
+    if(this.data.select === 'Ротация') {
       if(!this.cellFrom) 
         this.cellFrom = cell;
       else 

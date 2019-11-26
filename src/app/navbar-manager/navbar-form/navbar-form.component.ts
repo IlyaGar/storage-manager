@@ -47,10 +47,6 @@ export class NavbarFormComponent implements OnInit {
     }
   }
 
-  chh(value) {
-    this.isLogin = value;
-  }
-
   onLogOut() {
     this.isLogin = false;
     this.tokenService.deleteCookie();

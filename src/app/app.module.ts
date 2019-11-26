@@ -69,6 +69,7 @@ import { LongThreeOneFiveActionComponent } from './stillages/long-three-one-five
 import { LongTwoThreeFourActionComponent } from './stillages/long-two-three-four-action/long-two-three-four-action.component';
 import { LongThreeFiveActionComponent } from './stillages/long-three-five-action/long-three-five-action.component';
 import { LongThreeFourActionComponent } from './stillages/long-three-four-action/long-three-four-action.component';
+import { PrintBadgeFormComponent } from './personal-manager/dialog-windows/print-badge-form/print-badge-form.component';
 
 @NgModule({
   declarations: [
@@ -131,6 +132,7 @@ import { LongThreeFourActionComponent } from './stillages/long-three-four-action
     LongTwoThreeFourActionComponent,
     LongThreeFiveActionComponent,
     LongThreeFourActionComponent,
+    PrintBadgeFormComponent,
   ],
   imports: [
     FormsModule,
@@ -169,6 +171,7 @@ import { LongThreeFourActionComponent } from './stillages/long-three-four-action
     StillgeDialogFormComponent,
     UsersInGroupFormComponent,
     ConfirmationNewTaskFormComponent,
+    PrintBadgeFormComponent,
   ],
   bootstrap: [AppComponent]
 })
