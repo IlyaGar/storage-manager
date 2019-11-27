@@ -104,14 +104,14 @@ export class GroupsFormComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
-        this.personalService.editGroup(new ESkladGroup(
-          this.tokenService.getToken(), 
-          result.id, 
-          result.name, 
-          result.root_order, 
-          result.root_sklad, 
-          result.root_user)).subscribe(response => {
-            this.checkResponseAction(response);
+          this.personalService.editGroup(new ESkladGroup(
+            this.tokenService.getToken(), 
+            result.id, 
+            result.name, 
+            result.root_order, 
+            result.root_sklad, 
+            result.root_user)).subscribe(response => {
+              this.checkResponseAction(response);
         }, 
         error => { 
           console.log(error);

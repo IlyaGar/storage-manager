@@ -24,6 +24,6 @@ export class EditGroupFormComponent implements OnInit {
   }
 
   onNoClick() {
-    
+    this.dialogRef.close();
   }
 }

@@ -109,14 +109,12 @@
             <ng-container matColumnDef="percent">
                 <th mat-header-cell *matHeaderCellDef> Прогресс </th>
                 <td mat-cell *matCellDef="let element"> 
-                    {{element.percent}} %
-                    <mat-progress-spinner
-                        [diameter]="20"
-                        class="example-margin"
-                        [color]="color"
-                        [mode]="mode"
-                        [value]="element.percent">
-                    </mat-progress-spinner>
+                    <mat-grid-list cols="1" rowHeight="1em">
+                        <mat-grid-tile id="percent"> {{element.percent}}% </mat-grid-tile>
+                        <mat-grid-tile data-placement="bottom" matTooltip="{{element.percent}}%">
+                            <mat-progress-bar mode="determinate" [value]="element.percent"></mat-progress-bar>
+                        </mat-grid-tile>
+                    </mat-grid-list>
                 </td>
             </ng-container>
     
