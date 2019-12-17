@@ -11,6 +11,8 @@ import { ProductPropAnswer } from '../models/product-prop-answer';
 import { MatDialog } from '@angular/material/dialog';
 import { AttentionFormComponent } from 'src/app/dialog-windows/attention-dialog/attention-form/attention-form.component';
 import { StoragePlacesComponent } from 'src/app/dialog-windows/storage-places-manager/storage-places/storage-places.component';
+import { PrintLableFormComponent } from '../dialog-windows/print-lable-form/print-lable-form.component';
+import { SnackbarService } from 'src/app/common/services/snackbar.service';
 
 interface PoductNode {
   id: string;
@@ -38,7 +40,7 @@ export class ProductGroupAccountingFormComponent implements OnInit {
   searchValue: string = '';
   selectedSearchVar: any = 'article';
   productPropAnswer: ProductPropAnswer = new ProductPropAnswer('', '', '', '', '', '', '', '');
-  displayedColumnsProducts = ['article', 'name', 'status', 'barcode', 'balancestore', 'balancedefect'];
+  displayedColumnsProducts = ['article', 'name', 'status', 'barcode', 'balancestore', 'balancedefect', 'action'];
   displayedColumnsPlaces = ['place', 'bt'];
   displayedColumnsDelivers = ['delivers'];
   treeData: any;
@@ -51,8 +53,11 @@ export class ProductGroupAccountingFormComponent implements OnInit {
   countListProducts: number = 0;
   scrollPosition = 8000;
   curentPositionTable = 200;
-
   isLoading: any;
+  
+  messageNoConnect = 'Нет соединения, попробуйте позже.';
+  action = 'Ok';
+  styleNoConnect = 'red-snackbar';
 
   private _transformer = (node: PoductNode, level: number) => {
     return {
@@ -73,8 +78,9 @@ export class ProductGroupAccountingFormComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
+    private cookieService: CookieService,
     private productService: ProductService,
-    private cookieService: CookieService,) { }
+    private snackbarService: SnackbarService,) { }
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
   
@@ -84,6 +90,7 @@ export class ProductGroupAccountingFormComponent implements OnInit {
     }, 
     error => { 
       console.log(error);
+      this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
     });
   }
 
@@ -300,5 +307,16 @@ export class ProductGroupAccountingFormComponent implements OnInit {
       }
     }
     else return false;
+  }
+
+  onPrintLable(element) {
+    const dialogRef = this.dialog.open(PrintLableFormComponent, {
+      // data: { user: element.login, },
+      // width: "360px"
+     });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+      }
+    });
   }
 }
