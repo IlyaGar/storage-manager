@@ -24,5 +24,7 @@ export class StillageItem{
         public isStillageOneWithName: boolean,
         public isStillageOneWithOutName: boolean,
         public isSelectCellStillage: boolean,
+        // ячейки
+        public cells: Array<string>,
     ){}
 }
