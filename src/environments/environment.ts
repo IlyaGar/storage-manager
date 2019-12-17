@@ -5,7 +5,7 @@
 export const environment = {
   production: true,
   cookieName: 'user-store-mile',
-  apiUrl:'http://192.168.1.38:90/',
+  apiUrl:'http://192.168.77.251:90/',
 };
 
 /*
