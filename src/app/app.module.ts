@@ -70,6 +70,7 @@ import { LongTwoThreeFourActionComponent } from './stillages/long-two-three-four
 import { LongThreeFiveActionComponent } from './stillages/long-three-five-action/long-three-five-action.component';
 import { LongThreeFourActionComponent } from './stillages/long-three-four-action/long-three-four-action.component';
 import { PrintBadgeFormComponent } from './personal-manager/dialog-windows/print-badge-form/print-badge-form.component';
+import { PrintLableFormComponent } from './product-manager/dialog-windows/print-lable-form/print-lable-form.component';
 
 @NgModule({
   declarations: [
@@ -133,6 +134,7 @@ import { PrintBadgeFormComponent } from './personal-manager/dialog-windows/print
     LongThreeFiveActionComponent,
     LongThreeFourActionComponent,
     PrintBadgeFormComponent,
+    PrintLableFormComponent,
   ],
   imports: [
     FormsModule,
@@ -172,6 +174,7 @@ import { PrintBadgeFormComponent } from './personal-manager/dialog-windows/print
     UsersInGroupFormComponent,
     ConfirmationNewTaskFormComponent,
     PrintBadgeFormComponent,
+    PrintLableFormComponent,
   ],
   bootstrap: [AppComponent]
 })
