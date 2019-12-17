@@ -56,10 +56,6 @@ div.bt-inline {
     border: 1px solid rgba(128, 128, 128, 0.4);
     border-radius: 0.2em;
 }
-::ng-deep .mat-button-toggle-label-content {
-    padding: 0 0.5em !important;
-    line-height: 26px !important;
-}
 mat-button-toggle:hover {
     color: black;
 }

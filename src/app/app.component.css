@@ -1,0 +1,4 @@
+::ng-deep .mat-button-toggle-label-content {
+    padding: 0 0.5em !important;
+    line-height: 26px !important;
+}

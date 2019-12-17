@@ -18,8 +18,8 @@ import { TokenService } from 'src/app/common/services/token.service';
 export class WmsMapFormComponent implements OnInit {
 
   tab_map: Array<Array<StillageItem>> = [];
-  previousStillageFrom: StillageItem = new StillageItem(0, 0, '', '', '', '', '', '', '', false, false, false, false, false, false, false, false, false, false, false);
-  previousStillageTo: StillageItem = new StillageItem(0, 0, '', '', '', '', '', '', '', false, false, false, false, false, false, false, false, false, false, false);
+  previousStillageFrom: StillageItem = new StillageItem(0, 0, '', '', '', '', '', '', '', false, false, false, false, false, false, false, false, false, false, false, null);
+  previousStillageTo: StillageItem = new StillageItem(0, 0, '', '', '', '', '', '', '', false, false, false, false, false, false, false, false, false, false, false, null);
   listInventory: Array<InventoryItem> = [];
   rotationItem: InventoryItem = new InventoryItem(null, '');
   y_height: number;

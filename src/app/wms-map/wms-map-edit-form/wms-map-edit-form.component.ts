@@ -211,7 +211,7 @@ export class WmsMapEditFormComponent implements OnInit {
     for(var i: number = 0; i < this.y_height; i++) {
       this.tab_map[i] = [];
       for(var j: number = 0; j < this.x_width; j++) {
-          this.tab_map[i][j] = new StillageItem(i, j, '', '', '', '', '', '', '', false, false, false, false, false, false, false, false, false, false, false);
+          this.tab_map[i][j] = new StillageItem(i, j, '', '', '', '', '', '', '', false, false, false, false, false, false, false, false, false, false, false, null);
       }
     }
   }
@@ -226,7 +226,7 @@ export class WmsMapEditFormComponent implements OnInit {
     for(var i: number = 0; i < this.y_height; i++) {
       this.tab_map[i] = [];
       for(var j: number = 0; j < this.x_width; j++) {
-          this.tab_map[i][j] = new StillageItem(i, j, '', '', '', '', '', '', '', false, false, false, false, false, false, false, false, false, false, false);
+          this.tab_map[i][j] = new StillageItem(i, j, '', '', '', '', '', '', '', false, false, false, false, false, false, false, false, false, false, false, null);
       }
     }
     for(var i: number = 0; i < this.tab_map.length; i++) {
