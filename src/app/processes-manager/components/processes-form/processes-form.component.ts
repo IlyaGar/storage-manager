@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectCellFormComponent } from '../../dialog-windows/select-cell-form/select-cell-form.component';
 import { Process } from '../../models/process';
+import { TaskCommonService } from 'src/app/common/services/task-common.service';
 
 interface IProcess {
   id: number;
@@ -56,7 +57,15 @@ export class ProcessesFormComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-  ) { }
+    private taskCommonService: TaskCommonService,
+  )
+   {
+    this.taskCommonService.events$.forEach(event => { 
+      console.log(event);
+      if(event === 'clear')
+        this.onClear();
+    });
+   }
 
   ngOnInit() {
     this.options = this.optionsAll;

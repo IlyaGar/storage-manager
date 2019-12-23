@@ -3,6 +3,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatDialog } from '@angular/material/dialog';
 import { DocListComponent } from 'src/app/processes-manager/dialog-windows/doc-list/doc-list.component';
+import { TaskCommonService } from 'src/app/common/services/task-common.service';
 
 export class ListItem{
   constructor(       
@@ -22,7 +23,15 @@ export class BaseFormComponent implements OnInit {
   
   constructor(
     public dialog: MatDialog,
-  ) { }
+    private taskCommonService: TaskCommonService,
+  )   
+    {
+      this.taskCommonService.events$.forEach(event => { 
+        console.log(event);
+        if(event === 'clear')
+          this.onClear();
+      });
+    }
 
   ngOnInit() {
   }
@@ -75,5 +84,10 @@ export class BaseFormComponent implements OnInit {
         this.onDataSelected.emit(this.list);
       }
     });
+  }
+
+  onClear() {
+    this.listItem = [];
+    this.list = [];
   }
 }

@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SelectGroupFormComponent } from '../../dialog-windows/select-group-form/select-group-form.component';
 import { SelectUserFormComponent } from '../../dialog-windows/select-user-form/select-user-form.component';
 import { ExecutorTask } from '../../models/executor';
+import { TaskCommonService } from 'src/app/common/services/task-common.service';
 
 @Component({
   selector: 'app-proc-personal-list-form',
@@ -21,7 +22,15 @@ export class ProcPersonalListFormComponent implements OnInit {
   
   constructor(
     public dialog: MatDialog,
-  ) { }
+    private taskCommonService: TaskCommonService,
+  ) 
+    {
+      this.taskCommonService.events$.forEach(event => { 
+        console.log(event);
+        if(event === 'clear')
+          this.onClear();
+      });
+    }
 
   ngOnInit() {
   }
