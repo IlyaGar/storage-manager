@@ -174,8 +174,11 @@ export class TaskComponent implements OnInit {
     });
   }
 
-  checkResponse(response: Array<CurTask>) {
-    this.dataSource = response;
+  checkResponse(response: any) {
+    if(response.status === 'empty')
+      this.snackbarService.openSnackBar('Нет доступных заданий', this.action);
+    else if(response.length > 0) 
+        this.dataSource = response;
   }
 
   onClear(){

@@ -56,18 +56,21 @@
     <mat-drawer-content>
         <div class="list-icon">
                     
-            <img src="../../assets/pending_ico.ico" width="20" height="20" data-placement="bottom" matTooltip="Новое в очереди" /> 
-            <span id="status" class="mybadge-new"> Новое в очереди </span>
+            <img src="../../assets/pending_ico.ico" width="20" height="20" data-placement="bottom" matTooltip="Новая в очереди" /> 
+            <small><span id="status" class="mybadge-new"> Новая в очереди </span></small>
 
             <img src="../../assets/favicon_arrows.ico" width="20" height="20" data-placement="bottom" matTooltip="Принято в исполнение"/> 
-            <span id="status" class="mybadge-just"> Принято в исполнение </span>
+            <small><span id="status" class="mybadge-just"> Принято в исполнение </span></small>
 
             <img src="../../assets/favicon-red.ico" width="20" height="20" data-placement="bottom" matTooltip="Завершено частично"/> 
-            <span id="status" class="mybadge-notall"> Завершено частично </span>
+            <small><span id="status" class="mybadge-notall"> Завершено частично </span></small>
 
             <img src="../../assets/favicon-green.ico" width="20" height="20" data-placement="bottom" matTooltip="Завершено полностью"/>
-            <span id="status" class="mybadge-all"> Завершено полностью </span>
+            <small><span id="status" class="mybadge-all"> Завершено полностью </span></small>
 
+            <img src="../../assets/57-512.png" width="20" height="20" data-placement="bottom" matTooltip="Завершено полностью"/>
+            <small><span id="status" class="mybadge-notall"> Некоррестная заявка </span></small>
+            
         </div>
 
         <table mat-table [dataSource]="dataSource" class="table-hover" multiTemplateDataRows >
@@ -76,8 +79,8 @@
                 <th mat-header-cell *matHeaderCellDef> Статус </th>
                 <td mat-cell *matCellDef="let element"> 
 
-                    <ng-container *ngIf="element.order_status === 'Новое в очереди'">
-                        <img src="../../assets/pending_ico.ico" width="20" height="20" data-placement="bottom" matTooltip="Новое в очереди" /> 
+                    <ng-container *ngIf="element.order_status === 'Новая в очереди'">
+                        <img src="../../assets/pending_ico.ico" width="20" height="20" data-placement="bottom" matTooltip="Новая в очереди" /> 
                     </ng-container>
 
                     <ng-container *ngIf="element.order_status === 'Принято в исполнение'">
@@ -97,7 +100,12 @@
 
             <ng-container matColumnDef="nom">
                 <th mat-header-cell *matHeaderCellDef> № заявки </th>
-                <td mat-cell *matCellDef="let element" > {{element.iD}} </td>
+                <td mat-cell *matCellDef="let element" > 
+                    <mat-grid-list cols="1" rowHeight="50px">
+                        <mat-grid-tile> {{element.iD}} </mat-grid-tile>
+                        <mat-grid-tile> {{element.order_datetime}} </mat-grid-tile>
+                    </mat-grid-list>
+                </td>
             </ng-container>
 
             <ng-container matColumnDef="process">
