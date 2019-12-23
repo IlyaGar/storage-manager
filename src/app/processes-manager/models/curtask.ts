@@ -11,5 +11,6 @@ export class CurTask{
         public order_user : string,
         public order_start: string,
         public order_end: string,
+        public order_prog: number,
     ){}
 }
