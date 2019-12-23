@@ -135,3 +135,6 @@ mat-grid-tile#percent {
 ::ng-deep .mat-progress-bar {
     border-radius: 2px;
 }
+mat-divider {
+    margin: 1em 0;
+}

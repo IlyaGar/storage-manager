@@ -7,6 +7,8 @@ import { AnswerDoc } from '../models/answer-doc';
 import { WDocQuery } from '../models/w-doc-query';
 import { WDocAnswer } from '../models/w-doc-answer';
 import { NewTask } from '../models/new-task';
+import { GetSkald } from 'src/app/wms-map/models/get-sclad';
+import { CurTask } from '../models/curtask';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,7 @@ export class ProcService {
   private url_get_vozv = environment.apiUrl + "/wms/getvozv";
   private url_get_doc = environment.apiUrl + "/wms/getdoc";
   private url_pst_new_task = environment.apiUrl + "/wms/settask";
+  private url_get_tasks = environment.apiUrl + "/wms/currenttask/";
 
   constructor(private http: HttpClient) { }
 
@@ -44,5 +47,9 @@ export class ProcService {
 
   postNewTask(data: NewTask): Observable<any> {
     return this.http.post<any>(`${this.url_pst_new_task}`, data);
+  }
+
+  getTasks(data: GetSkald): Observable<Array<CurTask>> {
+    return this.http.post<Array<CurTask>>(`${this.url_get_tasks}`, data);
   }
 }

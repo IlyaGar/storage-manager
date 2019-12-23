@@ -9,6 +9,9 @@ import { ConfirmationNewTaskFormComponent } from '../dialog-windows/confirmation
 import { ExecutorTask } from '../models/executor';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Task } from '../models/task';
+import { TaskCommonService } from 'src/app/common/services/task-common.service';
+import { GetSkald } from 'src/app/wms-map/models/get-sclad';
+import { CurTask } from '../models/curtask';
 
 const ELEMENT_DATA: Task[] = [
   {
@@ -89,6 +92,30 @@ const ELEMENT_DATA: Task[] = [
     description: `Neon is a chemical element with symbol Ne and atomic number 10. It is a noble gas.
         Neon is a colorless, odorless, inert monatomic gas under standard conditions, with about
         two-thirds the density of air.`
+  },{
+    status: 'Завершено полностью',
+    name: '1326546',
+    process: 'Инвентаризация',
+    percent: 100,
+    description: `Oxygen is a chemical element with symbol O and atomic number 8. It is a member of
+         the chalcogen group on the periodic table, a highly reactive nonmetal, and an oxidizing
+         agent that readily forms oxides with most elements as well as with other compounds.`
+  }, {
+    status: 'Завершено частично',
+    name: '7897564',
+    process: 'Ротация',
+    percent: 90,
+    description: `Fluorine is a chemical element with symbol F and atomic number 9. It is the
+        lightest halogen and exists as a highly toxic pale yellow diatomic gas at standard
+        conditions.`
+  }, {
+    status: 'Завершено полностью',
+    name: '3216422',
+    process: 'Приемка',
+    percent: 100,
+    description: `Neon is a chemical element with symbol Ne and atomic number 10. It is a noble gas.
+        Neon is a colorless, odorless, inert monatomic gas under standard conditions, with about
+        two-thirds the density of air.`
   },
 ];
 
@@ -121,20 +148,38 @@ export class TaskComponent implements OnInit {
   mode = 'determinate';
   value = 50;
 
-  dataSource = ELEMENT_DATA;
-  columnsToDisplay = ['status', 'process', 'name', 'percent', 'action'];
+  dataSource: Array<CurTask>;
+  columnsToDisplay = ['status', 'nom', 'process', 'base', 'executor', 'type', 'place', 'percent', 'action'];
   expandedElement: Task | null;
+
+  messageNoConnect = 'Нет соединения, попробуйте позже.';
+  action = 'Ok';
+  styleNoConnect = 'red-snackbar';
 
   constructor(
     public dialog: MatDialog,
+    private procService: ProcService,
     private tokenService: TokenService,
+    private snackbarService: SnackbarService,
+    private taskCommonService: TaskCommonService,
   ) { }
 
   ngOnInit() {
+    this.procService.getTasks(new GetSkald(this.tokenService.getToken())).subscribe(response => {
+      this.checkResponse(response); 
+    }, 
+    error => { 
+      console.log(error);
+      this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
+    });
+  }
+
+  checkResponse(response: Array<CurTask>) {
+    this.dataSource = response;
   }
 
   onClear(){
-   this.isDisabled = !this.isDisabled;
+   this.taskCommonService.clearEvent('clear');
   }
 
   addProcesses(data: Array<Process>) : void {
