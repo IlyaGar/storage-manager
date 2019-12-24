@@ -12,6 +12,7 @@ import { Task } from '../models/task';
 import { TaskCommonService } from 'src/app/common/services/task-common.service';
 import { GetSkald } from 'src/app/wms-map/models/get-sclad';
 import { CurTask } from '../models/curtask';
+import { MainTask } from '../models/main-task';
 
 const ELEMENT_DATA: Task[] = [
   {
@@ -122,12 +123,17 @@ const ELEMENT_DATA: Task[] = [
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css'],
+  styleUrls: ['./task.component.scss'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({height: '0px', minHeight: '0'})),
       state('expanded', style({height: '*'})),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+    trigger('detailExpandWithout', [
+      state('collapsedWithout', style({height: '0px', minHeight: '0'})),
+      state('expandedWithout', style({height: '*'})),
+      transition('expandedWithout <=> collapsedWithout', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
 })
@@ -148,9 +154,15 @@ export class TaskComponent implements OnInit {
   mode = 'determinate';
   value = 50;
 
-  dataSource: Array<CurTask>;
-  columnsToDisplay = ['status', 'nom', 'process', 'base', 'executor', 'type', 'place', 'percent', 'action'];
-  expandedElement: Task | null;
+  dataSource: Array<MainTask>;
+  dataSourceWithout: Array<CurTask>;
+  columnsToDisplay = ['mainstatus', 'mainnom', 'maindate', 'mainbase', 'mainpercent', 'mainaction'];
+  expandedElement: any | null;
+
+  columnsToDisplayWithout = ['status', 'nom', 'process', 'base', 'executor', 'type', 'place', 'percent', 'action'];
+  expandedElementWithout: any | null;
+
+  columnsToDisplayItem = ['id', 'nom', 'article', 'count', 'place', 'need', 'prog', 'key'];
 
   messageNoConnect = 'Нет соединения, попробуйте позже.';
   action = 'Ok';
@@ -165,7 +177,7 @@ export class TaskComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.procService.getTasks(new GetSkald(this.tokenService.getToken())).subscribe(response => {
+    this.procService.getMainTasks(new GetSkald(this.tokenService.getToken())).subscribe(response => {
       this.checkResponse(response); 
     }, 
     error => { 
@@ -177,8 +189,15 @@ export class TaskComponent implements OnInit {
   checkResponse(response: any) {
     if(response.status === 'empty')
       this.snackbarService.openSnackBar('Нет доступных заданий', this.action);
-    else if(response.length > 0) 
-        this.dataSource = response;
+    else if(response.length > 0) {
+      this.dataSource = response;
+      this.dataSource.forEach(element => {
+        element.order_date = element.order_date.split(' ')[0];
+        element.curTaskList.forEach(el => {
+          el.order_datetime = el.order_datetime.split(' ')[0];
+        });
+      });
+    }
   }
 
   onClear(){
@@ -187,6 +206,7 @@ export class TaskComponent implements OnInit {
 
   addProcesses(data: Array<Process>) : void {
     this.listProcesses = data;
+    this.isDisabled = true ? this.listProcesses.length === 0 : this.listProcesses.length > 0;
     console.log('Selected proc: ', this.listProcesses);
     this.controlData();
   }  
@@ -250,6 +270,27 @@ export class TaskComponent implements OnInit {
           }
         });
       }
+    }
+  }
+
+  onWithoutBase() {
+    this.procService.getCurTasks(new GetSkald(this.tokenService.getToken())).subscribe(response => {
+      this.checkResponseWithout(response); 
+    }, 
+    error => { 
+      console.log(error);
+      this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
+    });
+  }
+
+  checkResponseWithout(response: any) {
+    if(response.status === 'empty')
+      this.snackbarService.openSnackBar('Нет доступных заданий', this.action);
+    else if(response.length > 0) {
+      this.dataSourceWithout = response;
+      this.dataSourceWithout.forEach(element => {
+        element.order_datetime = element.order_datetime.split(' ')[0];
+      });
     }
   }
 }

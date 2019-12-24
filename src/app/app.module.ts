@@ -17,7 +17,7 @@ import { HorizontalThreeFourComponent } from './stillages/horizontal-three-four/
 import { VerticalThreeFourComponent } from './stillages/vertical-three-four/vertical-three-four.component';
 import { DetailViewCellComponent } from './dialog-windows/detail-view-cell-manager/detail-view-cell/detail-view-cell.component';
 import { RoadFormComponent } from './stillages/road-form/road-form.component';
-import { WmsMapFormComponent } from './wms-map/wms-map-form/wms-map-form.component'; 
+import { WmsMapFormComponent } from './wms-map/wms-map-form/wms-map-form.component';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { InventoryDialogFormComponent } from './dialog-windows/inventory-dialog-manager/inventory-dialog-form/inventory-dialog-form.component';
 import { HorizontalThreeFourActionComponent } from './stillages/horizontal-three-four-action/horizontal-three-four-action.component';
@@ -178,4 +178,5 @@ import { PrintLableFormComponent } from './product-manager/dialog-windows/print-
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

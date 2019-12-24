@@ -39,14 +39,12 @@ export class ProcessesFormComponent implements OnInit {
   ];
   optionsAcceptance: string[] = [
     'Приемка',
-    'Размещение',
   ];
   optionsAccommodation: string[] = [
     'Размещение',
   ];
   optionsSelection: string[] = [
     'Отборка',
-    'Размещение',
   ];
   optionsRotation: string[] = [
     'Ротация',
@@ -93,6 +91,7 @@ export class ProcessesFormComponent implements OnInit {
   }
 
   initialState() {
+    this.options = [];
     this.selectedProc = '';
     this.selectedZone = 'auto';
     this.cellFrom = '';
@@ -154,7 +153,7 @@ export class ProcessesFormComponent implements OnInit {
     switch(this.selectedProc) {
       
       case 'Приемка':
-        this.options = this.optionsAccommodation;
+        this.options = this.optionsAcceptance;
         this.isSllowedAdd = true;
         break;
 

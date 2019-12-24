@@ -43,7 +43,7 @@ export class ConfirmationNewTaskFormComponent implements OnInit {
   }
 
   checkResponse(response: Status){
-    if(response.status === 'true') {
+    if(response.status === 'ok') {
       this.snackbarService.openSnackBar(this.messageTrue, this.action);
       this.dialogRef.close(true);
     }

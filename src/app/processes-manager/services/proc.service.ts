@@ -9,6 +9,7 @@ import { WDocAnswer } from '../models/w-doc-answer';
 import { NewTask } from '../models/new-task';
 import { GetSkald } from 'src/app/wms-map/models/get-sclad';
 import { CurTask } from '../models/curtask';
+import { MainTask } from '../models/main-task';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,7 @@ export class ProcService {
   private url_get_doc = environment.apiUrl + "/wms/getdoc";
   private url_pst_new_task = environment.apiUrl + "/wms/settask";
   private url_get_tasks = environment.apiUrl + "/wms/currenttask/";
+  private url_get_task_without = environment.apiUrl + "/wms/fcurrenttask/";
 
   constructor(private http: HttpClient) { }
 
@@ -49,7 +51,11 @@ export class ProcService {
     return this.http.post<any>(`${this.url_pst_new_task}`, data);
   }
 
-  getTasks(data: GetSkald): Observable<Array<CurTask>> {
-    return this.http.post<Array<CurTask>>(`${this.url_get_tasks}`, data);
+  getMainTasks(data: GetSkald): Observable<Array<MainTask>> {
+    return this.http.post<Array<MainTask>>(`${this.url_get_tasks}`, data);
+  }
+  
+  getCurTasks(data: GetSkald): Observable<Array<CurTask>> {
+    return this.http.post<Array<CurTask>>(`${this.url_get_task_without}`, data);
   }
 }

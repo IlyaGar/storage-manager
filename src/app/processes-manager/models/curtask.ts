@@ -1,3 +1,5 @@
+import { ItemCurTask } from './item-cur-task';
+
 export class CurTask{
     constructor(       
         public iD: string,
@@ -12,5 +14,7 @@ export class CurTask{
         public order_start: string,
         public order_end: string,
         public order_prog: number,
+        public order_main: string,
+        public items: Array<ItemCurTask>,
     ){}
 }
