@@ -59,24 +59,12 @@ export class ListDocFormComponent implements OnInit {
   }
 
   onSelectDoc(element: PrintAnsw) {
+    this.summ = 0;
     this.doc = element;
     this.dataSource = element.doc_bodys;
     this.docName = element.doc_name;
     this.dataSource.forEach(element => {
       this.summ = this.summ + +element.count_e;
-    });
-  }
-
-  onOpenPrintForm(element: PrintAnsw) {
-    const dialogRef = this.dialog.open(NameDocFormComponent, {
-      width: "70vw",
-      height: "85vh",
-      data: { element: element, summ: this.summ },
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-
-      }
     });
   }
 }
