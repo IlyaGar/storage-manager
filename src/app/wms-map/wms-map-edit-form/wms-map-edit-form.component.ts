@@ -114,6 +114,7 @@ export class WmsMapEditFormComponent implements OnInit {
         cell.element === 'ver-3-2' || 
         cell.element === 'hor-3-2' ||
         cell.element === 'ver-3-5' || 
+        cell.element === 'ver-3-5r' || 
         cell.element === 'hor-3-5' || 
         cell.element === 'ver-2-5' || 
         cell.element === 'hor-2-5' ||       
@@ -562,6 +563,22 @@ export class WmsMapEditFormComponent implements OnInit {
           this.isChanged = true;
         }
       }
+      if(this.selectedElement1 === 'stellage34r') {
+        if(cell.isStillageRowWithOutNameHor) {
+          cell.isHor = true;
+          cell.element = 'hor-3-4r';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+        if(cell.isStillageRowWithOutNameVer) {
+          cell.isVer = true;
+          cell.element = 'ver-3-4r';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+      }
       if(this.selectedElement1 === 'stellage33') {
         if(cell.isStillageRowWithOutNameHor) {
           cell.isHor = true;
@@ -605,6 +622,22 @@ export class WmsMapEditFormComponent implements OnInit {
         if(cell.isStillageRowWithOutNameVer) {
           cell.isVer = true;
           cell.element = 'ver-3-5';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+      }
+      if(this.selectedElement1 === 'stellage35r') {
+        if(cell.isStillageRowWithOutNameHor) {
+          cell.isHor = true;
+          cell.element = 'hor-3-5r';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+        if(cell.isStillageRowWithOutNameVer) {
+          cell.isVer = true;
+          cell.element = 'ver-3-5r';
           cell.isStillageOneWithOutName = true;
           cell.isBusy = true;
           this.isChanged = true;

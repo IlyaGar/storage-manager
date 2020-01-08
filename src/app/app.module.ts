@@ -71,6 +71,10 @@ import { LongThreeFiveActionComponent } from './stillages/long-three-five-action
 import { LongThreeFourActionComponent } from './stillages/long-three-four-action/long-three-four-action.component';
 import { PrintBadgeFormComponent } from './personal-manager/dialog-windows/print-badge-form/print-badge-form.component';
 import { PrintLableFormComponent } from './product-manager/dialog-windows/print-lable-form/print-lable-form.component';
+import { VerticalThreeFiveRightComponent } from './stillages/vertical-three-five-right/vertical-three-five-right.component';
+import { VerticalThreeFourRightComponent } from './stillages/vertical-three-four-right/vertical-three-four-right.component';
+import { NameDocFormComponent } from './processes-manager/components/name-doc-form/name-doc-form.component';
+import { ListDocFormComponent } from './processes-manager/components/list-doc-form/list-doc-form.component';
 
 @NgModule({
   declarations: [
@@ -135,6 +139,10 @@ import { PrintLableFormComponent } from './product-manager/dialog-windows/print-
     LongThreeFourActionComponent,
     PrintBadgeFormComponent,
     PrintLableFormComponent,
+    VerticalThreeFiveRightComponent,
+    VerticalThreeFourRightComponent,
+    NameDocFormComponent,
+    ListDocFormComponent,
   ],
   imports: [
     FormsModule,
@@ -175,6 +183,7 @@ import { PrintLableFormComponent } from './product-manager/dialog-windows/print-
     ConfirmationNewTaskFormComponent,
     PrintBadgeFormComponent,
     PrintLableFormComponent,
+    NameDocFormComponent,
   ],
   bootstrap: [AppComponent]
 })

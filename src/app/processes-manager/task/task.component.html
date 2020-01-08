@@ -152,7 +152,7 @@
                                             <th mat-header-cell *matHeaderCellDef> Статус </th>
                                             <td mat-cell *matCellDef="let element"> 
                             
-                                                <ng-container *ngIf="element.order_status === 'Новая в очереди'">
+                                                <ng-container *ngIf="element.order_status === 'Новое в очереди'">
                                                     <img src="../../assets/pending_ico.ico" width="20" height="20" data-placement="bottom" matTooltip="Новая в очереди" /> 
                                                 </ng-container>
                             
@@ -203,7 +203,24 @@
                                 
                                         <ng-container matColumnDef="type">
                                             <th mat-header-cell *matHeaderCellDef> Метод сборки </th>
-                                            <td mat-cell *matCellDef="let element"> {{element.order_method}} </td>
+                                            <td mat-cell *matCellDef="let element"> 
+                                                <!-- {{element.order_method}}  -->
+                                                <ng-container *ngIf="element.order_method === 'auto-hand'">
+                                                    Автоматически-ручной
+                                                </ng-container>
+                                                <ng-container *ngIf="element.order_method === 'auto-shtabel'">
+                                                    Автоматически-штабелер
+                                                </ng-container>
+                                                <ng-container *ngIf="element.order_method === 'auto-none'">
+                                                    Нет на складе
+                                                </ng-container>
+                                                <ng-container *ngIf="element.order_method === 'hand'">
+                                                    Ручной
+                                                </ng-container>
+                                                <ng-container *ngIf="element.order_method === 'shtabel'">
+                                                    Штабелер
+                                                </ng-container>
+                                            </td>
                                         </ng-container>     
                             
                                         <ng-container matColumnDef="place">
@@ -341,7 +358,7 @@
                             <th mat-header-cell *matHeaderCellDef> Статус </th>
                             <td mat-cell *matCellDef="let element"> 
             
-                                <ng-container *ngIf="element.order_status === 'Новая в очереди'">
+                                <ng-container *ngIf="element.order_status === 'Новое в очереди'">
                                     <img src="../../assets/pending_ico.ico" width="20" height="20" data-placement="bottom" matTooltip="Новая в очереди" /> 
                                 </ng-container>
             

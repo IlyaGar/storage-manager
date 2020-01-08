@@ -10,6 +10,8 @@ import { NewTask } from '../models/new-task';
 import { GetSkald } from 'src/app/wms-map/models/get-sclad';
 import { CurTask } from '../models/curtask';
 import { MainTask } from '../models/main-task';
+import { PrintTask } from '../models/print-task';
+import { PrintAnsw } from '../models/print-answ';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,7 @@ export class ProcService {
   private url_pst_new_task = environment.apiUrl + "/wms/settask";
   private url_get_tasks = environment.apiUrl + "/wms/currenttask/";
   private url_get_task_without = environment.apiUrl + "/wms/fcurrenttask/";
+  private url_get_print_answt = environment.apiUrl + "/wms/printcomplate/";
 
   constructor(private http: HttpClient) { }
 
@@ -57,5 +60,9 @@ export class ProcService {
   
   getCurTasks(data: GetSkald): Observable<Array<CurTask>> {
     return this.http.post<Array<CurTask>>(`${this.url_get_task_without}`, data);
+  }
+
+  getPrintAnsw(data: PrintTask): Observable<Array<PrintAnsw>> {
+    return this.http.post<Array<PrintAnsw>>(`${this.url_get_print_answt}`, data);
   }
 }

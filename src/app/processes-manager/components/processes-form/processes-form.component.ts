@@ -126,6 +126,7 @@ export class ProcessesFormComponent implements OnInit {
   }
 
   onClear() {
+    this.listProcesses = [ {id: 0, type: '', zone: [] } ];
     this.selectedProc = '';
     this.fallOptions();
     this.listSelected = [];

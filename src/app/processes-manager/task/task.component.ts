@@ -174,9 +174,22 @@ export class TaskComponent implements OnInit {
     private tokenService: TokenService,
     private snackbarService: SnackbarService,
     private taskCommonService: TaskCommonService,
-  ) { }
+  )
+   {
+    this.taskCommonService.events_update$.forEach(event => { 
+      console.log(event);
+      if(event === 'update') {
+        this.loadData();
+        this.onClear();
+      }
+    });
+   }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
     this.procService.getMainTasks(new GetSkald(this.tokenService.getToken())).subscribe(response => {
       this.checkResponse(response); 
     }, 
@@ -201,7 +214,7 @@ export class TaskComponent implements OnInit {
   }
 
   onClear(){
-   this.taskCommonService.clearEvent('clear');
+    this.taskCommonService.clearEvent('clear');
   }
 
   addProcesses(data: Array<Process>) : void {

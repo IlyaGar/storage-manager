@@ -96,6 +96,10 @@
                     data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x3">
                     Стеллаж 3x5
                 </mat-button-toggle>
+                <mat-button-toggle value="stellage35r" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'; selectedElement4 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x3">
+                    Стеллаж 3x5п
+                </mat-button-toggle>
             </mat-button-toggle-group>
             <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement2">
                 <mat-button-toggle value="stellage24" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement4 = 'undefined'"
@@ -113,6 +117,10 @@
                 <mat-button-toggle value="stellagelong234" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement4 = 'undefined'"
                     data-toggle="tooltip" data-placement="bottom" title="Стеллаж удлененный 3/1x5">
                     Удл 1x2/3x2
+                </mat-button-toggle>
+                <mat-button-toggle value="stellage34r" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement4 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x3">
+                    Стеллаж 3x4п
                 </mat-button-toggle>
 
             </mat-button-toggle-group>
@@ -361,12 +369,14 @@
                     <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" (click)="onClickBrace(row)" />
                 </div>
                 <app-vertical-three-four *ngIf="row.element === 'ver-3-4'"></app-vertical-three-four>
+                <app-vertical-three-four-right *ngIf="row.element === 'ver-3-4r'"></app-vertical-three-four-right>
                 <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
                 <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
                 <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
                 <app-vertical-three-two *ngIf="row.element === 'ver-3-2'"></app-vertical-three-two>
                 <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
                 <app-vertical-three-five *ngIf="row.element === 'ver-3-5'"></app-vertical-three-five>
+                <app-vertical-three-five-right *ngIf="row.element === 'ver-3-5r'"></app-vertical-three-five-right>
                 <app-horizontal-three-five *ngIf="row.element === 'hor-3-5'"></app-horizontal-three-five>
                 <app-vertical-two-five *ngIf="row.element === 'ver-2-5'"></app-vertical-two-five>
                 <app-horizontal-two-five *ngIf="row.element === 'hor-2-5'"></app-horizontal-two-five>
@@ -422,12 +432,14 @@
                     <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" (click)="onClickBrace(row)" />
                 </div>
                 <app-vertical-three-four *ngIf="row.element === 'ver-3-4'"></app-vertical-three-four>
+                <app-vertical-three-four-right *ngIf="row.element === 'ver-3-4r'"></app-vertical-three-four-right>
                 <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
                 <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
                 <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
                 <app-vertical-three-two *ngIf="row.element === 'ver-3-2'"></app-vertical-three-two>
                 <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
                 <app-vertical-three-five *ngIf="row.element === 'ver-3-5'"></app-vertical-three-five>
+                <app-vertical-three-five-right *ngIf="row.element === 'ver-3-5r'"></app-vertical-three-five-right>
                 <app-horizontal-three-five *ngIf="row.element === 'hor-3-5'"></app-horizontal-three-five>
                 <app-vertical-two-five *ngIf="row.element === 'ver-2-5'"></app-vertical-two-five>
                 <app-horizontal-two-five *ngIf="row.element === 'hor-2-5'"></app-horizontal-two-five>
@@ -483,12 +495,14 @@
                     <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" (click)="onClickBrace(row)" />
                 </div>
                 <app-vertical-three-four *ngIf="row.element === 'ver-3-4'"></app-vertical-three-four>
+                <app-vertical-three-four-right *ngIf="row.element === 'ver-3-4r'"></app-vertical-three-four-right>
                 <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
                 <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
                 <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
                 <app-vertical-three-two *ngIf="row.element === 'ver-3-2'"></app-vertical-three-two>
                 <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
                 <app-vertical-three-five *ngIf="row.element === 'ver-3-5'"></app-vertical-three-five>
+                <app-vertical-three-five-right *ngIf="row.element === 'ver-3-5r'"></app-vertical-three-five-right>
                 <app-horizontal-three-five *ngIf="row.element === 'hor-3-5'"></app-horizontal-three-five>
                 <app-vertical-two-five *ngIf="row.element === 'ver-2-5'"></app-vertical-two-five>
                 <app-horizontal-two-five *ngIf="row.element === 'hor-2-5'"></app-horizontal-two-five>

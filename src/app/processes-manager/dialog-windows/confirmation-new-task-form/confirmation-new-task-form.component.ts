@@ -4,6 +4,7 @@ import { NewTask } from '../../models/new-task';
 import { ProcService } from '../../services/proc.service';
 import { SnackbarService } from 'src/app/common/services/snackbar.service';
 import { Status } from 'src/app/common/models/status';
+import { TaskCommonService } from 'src/app/common/services/task-common.service';
 
 export interface DataDialog {
   task: NewTask,
@@ -24,6 +25,7 @@ export class ConfirmationNewTaskFormComponent implements OnInit {
   constructor(
     private procService: ProcService,
     private snackbarService: SnackbarService,
+    private taskCommonService: TaskCommonService,
     public dialogRef: MatDialogRef<ConfirmationNewTaskFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DataDialog,
   ) { }
@@ -44,6 +46,7 @@ export class ConfirmationNewTaskFormComponent implements OnInit {
 
   checkResponse(response: Status){
     if(response.status === 'ok') {
+      this.update();
       this.snackbarService.openSnackBar(this.messageTrue, this.action);
       this.dialogRef.close(true);
     }
@@ -51,5 +54,9 @@ export class ConfirmationNewTaskFormComponent implements OnInit {
   
   onCancelClick(): void {
     this.dialogRef.close();
+  }
+
+  update(){
+    this.taskCommonService.updateEvent('update');
   }
 }

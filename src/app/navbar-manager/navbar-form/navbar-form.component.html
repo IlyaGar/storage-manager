@@ -13,22 +13,27 @@
             <li class="nav-item dropdown" (click)="isPersonal = false; isMap = false; isOrder = true;">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOrders" 
                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <ng-container *ngIf="(  isPathActiv('/product-group') || 
-                                        isPathActiv('/map') || 
-                                        isPathActiv('/map-edit') || 
-                                        isPathActiv('/staff')) && 
-                                        !isPathActiv('/tasks')">
-                    <label> Внутрискладские процессы </label>
-                </ng-container>
-                <ng-container *ngIf="isPathActiv('/tasks')">
-                    <label class="select-item-menu" > Задания </label>
-                </ng-container>
+                    <ng-container *ngIf="(  isPathActiv('/product-group') || 
+                                            isPathActiv('/map') || 
+                                            isPathActiv('/map-edit') || 
+                                            isPathActiv('/staff')) && 
+                                            (!isPathActiv('/tasks') || 
+                                            isPathActiv('/list-doc'))">
+                        <label> Внутрискладские процессы </label>
+                    </ng-container>
+                    <ng-container *ngIf="isPathActiv('/tasks')">
+                        <label class="select-item-menu" > Задания </label>
+                    </ng-container>
+                    <ng-container *ngIf="isPathActiv('/list-doc')">
+                        <label class="select-item-menu" > Список документов </label>
+                    </ng-container>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownOrders" >
                     <a class="dropdown-item" [routerLink]="['tasks']"> Задания </a>
                     <a class="dropdown-item" [routerLink]="['']"> Входящий поток </a>
                     <a class="dropdown-item" [routerLink]="['']"> Исходящий поток </a>
                     <a class="dropdown-item" [routerLink]="['']"> Внутренние процессы </a>
+                    <a class="dropdown-item" [routerLink]="['list-doc']"> Список документов </a>
                 </div>                
             </li>
             <li class="nav-item dropdown" (click)="isPersonal = false; isMap = true; isOrder = false;">
@@ -36,6 +41,7 @@
                 aria-haspopup="true" aria-expanded="false">
                 <ng-container *ngIf="(  isPathActiv('/product-group') || 
                                         isPathActiv('/tasks') || 
+                                        isPathActiv('/list-doc') || 
                                         isPathActiv('/staff')) && 
                                         (!isPathActiv('/map') || 
                                         !isPathActiv('/map-edit'))">
@@ -59,6 +65,7 @@
                 <ng-container *ngIf="(  isPathActiv('/product-group') || 
                                         isPathActiv('/map') || 
                                         isPathActiv('/map-edit') || 
+                                        isPathActiv('/list-doc') || 
                                         isPathActiv('/tasks')) && 
                                         !isPathActiv('/staff')">
                     <label> Управление ресрсами и персоналом </label>
