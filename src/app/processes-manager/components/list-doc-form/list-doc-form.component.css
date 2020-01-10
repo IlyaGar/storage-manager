@@ -11,7 +11,7 @@
     .table-container {   
         width: 100%;
         height: 85vh;
-        min-width: 200px;
+        
         overflow: auto;
     }
 } 
@@ -27,8 +27,7 @@
     }
     .table-container {   
         width: 100%;
-        height: 80vh;
-        min-width: 200px;
+        height: 79.5vh;
         overflow: auto;
     }
 }
@@ -45,8 +44,8 @@ mat-list:hover {
     border-right-style: solid; 
     border-right-width: 5px;
 }
-.name {
-    font-size: 16px;
+.doc-name {
+    font-size: 18px;
 }
 .mat-column-number {
     word-wrap: break-word !important;

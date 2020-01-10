@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProcService } from '../../services/proc.service';
 import { TokenService } from 'src/app/common/services/token.service';
 import { SnackbarService } from 'src/app/common/services/snackbar.service';
@@ -6,7 +6,8 @@ import { PrintAnsw } from '../../models/print-answ';
 import { PrintTask } from '../../models/print-task';
 import { DocBody } from '../../models/doc-body';
 import { MatDialog } from '@angular/material/dialog';
-import { NameDocFormComponent } from '../name-doc-form/name-doc-form.component';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-list-doc-form',
@@ -15,14 +16,17 @@ import { NameDocFormComponent } from '../name-doc-form/name-doc-form.component';
 })
 export class ListDocFormComponent implements OnInit {
 
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  
   doc: PrintAnsw;
   list: Array<PrintAnsw> = [];
-  dataSource: Array<DocBody> = [];
+  docBodys: Array<DocBody> = [];
+  dataSource: MatTableDataSource<DocBody>;
   docName: string = '';
   docNameSelect: string = '';
   summ: number = 0;
 
-  displayedColumns = ['number', 'article', 'barcode', 'count', 'place'];
+  displayedColumns = ['numb', 'article', 'barcode', 'count_e', 'place'];
 
   messageNoConnect = 'Нет соединения, попробуйте позже.';
   action = 'Ok';
@@ -61,10 +65,10 @@ export class ListDocFormComponent implements OnInit {
   onSelectDoc(element: PrintAnsw) {
     this.summ = 0;
     this.doc = element;
-    this.dataSource = element.doc_bodys;
+    this.dataSource = new MatTableDataSource(element.doc_bodys);
+    this.docBodys = element.doc_bodys;
     this.docName = element.doc_name;
-    this.dataSource.forEach(element => {
-      this.summ = this.summ + +element.count_e;
-    });
+    this.docBodys.map(item => { this.summ += +item.count_e });
+    this.dataSource.sort = this.sort;
   }
 }

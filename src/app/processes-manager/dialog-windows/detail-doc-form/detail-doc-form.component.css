@@ -116,10 +116,6 @@ img {
     justify-content: flex-start !important ;
     align-items: flex-start !important;
 }
-.print-td {
-    border: 1pt solid black;
-    border-collapse: collapse;
-}
 .mat-dialog-actions {
     justify-content: flex-end;
 }
