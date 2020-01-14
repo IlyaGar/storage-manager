@@ -2,7 +2,7 @@
     <div class="cell"> Ячейка {{data.cell}}</div>
     <div class="info"> стеллаж - {{data.stillage}}, этаж - {{data.floor}}, ячейка - {{data.num}} </div>
     <div class="mat-elevation-z8 table-container">
-        <table mat-table [dataSource]="detailCell" class="table-hover" matSort>
+        <table mat-table [dataSource]="dataSource" class="table-hover" matSort>
 
             <ng-container matColumnDef="num">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> № </th>

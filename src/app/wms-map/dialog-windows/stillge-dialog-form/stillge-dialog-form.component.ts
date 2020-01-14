@@ -1,10 +1,12 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { WmsMapService } from '../../services/wms-map.service';
 import { CellRequest } from '../../models/cell-request';
 import { TokenService } from 'src/app/common/services/token.service';
 import { CellAnsw } from '../../models/cell-answ';
 import { SnackbarService } from 'src/app/common/services/snackbar.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 export interface DialogData {
   cell: string;
@@ -30,8 +32,11 @@ export class DetailCell{
 })
 export class StillgeDialogFormComponent implements OnInit {
 
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  
   dataCell: CellAnsw;
   detailCell: Array<DetailCell> = [];
+  dataSource: MatTableDataSource<DetailCell>;
   displayedColumns: Array<string> = ['num', 'article', 'barcode', 'name', 'count'];
 
   messageNoConnect = 'Нет соединения, попробуйте позже.';
@@ -53,14 +58,16 @@ export class StillgeDialogFormComponent implements OnInit {
         if(responce) {
           this.dataCell = responce;
           if(this.dataCell.cell === this.data.cell) {
-            let i = 0;
+            let i = 1;
             this.detailCell = this.dataCell.body.map(item => ({
               num: i++,
               article: item.article,
               barcode: item.barcode,
               name: item.name,
-              count: item.count + ' ' + item.mesabbrev,
+              count: item.count + ' ' + (item.mesabbrev != null ? item.mesabbrev: ''),
             }));
+            this.dataSource = new MatTableDataSource(this.detailCell);
+            this.dataSource.sort = this.sort;
           } else {
             this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.messageWrongCell);
             this.onNoClick();
