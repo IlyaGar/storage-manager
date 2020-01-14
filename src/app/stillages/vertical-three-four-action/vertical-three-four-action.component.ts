@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { StillageService } from 'src/app/common/services/stillage.service';
 import { Router } from '@angular/router';
 import { StillgeDialogFormComponent } from 'src/app/wms-map/dialog-windows/stillge-dialog-form/stillge-dialog-form.component';
+import { Celltem } from 'src/app/wms-map/models/cell-item';
 
 export class Item{
   constructor(
@@ -67,6 +68,7 @@ export class VerticalThreeFourActionComponent implements OnInit {
     this.listSelected = [];
     if(this.data)
       this.stillageItem = this.data;
+      // this.stillageItem.cells = new Celltem('','',;);
   }
 
   onClickCell(floor: string, number: string) {
