@@ -104,12 +104,15 @@
                             <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" />
                         </div>
                         <app-vertical-three-four-action *ngIf="row.element === 'ver-3-4'" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-four-action>
+                        <app-vertical-three-four-right-action *ngIf="row.element === 'ver-3-4r'" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-four-right-action>
                         <app-horizontal-three-four-action *ngIf="row.element === 'hor-3-4'" [data]="row" (listChange)="onListCange($event)"></app-horizontal-three-four-action>
                         <app-vertical-three-three-action *ngIf="row.element === 'ver-3-3'" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-three-action>
-                        <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
+                        <app-vertical-three-three-action [data]="row" *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three-action>
+                        <app-vertical-three-three-right-action [data]="row" *ngIf="row.element === 'ver-3-3r'"></app-vertical-three-three-right-action>
                         <app-vertical-three-two-action *ngIf="row.element === 'ver-3-2'" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-two-action>
                         <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
                         <app-vertical-three-five-action *ngIf="row.element === 'ver-3-5'" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-five-action>
+                        <app-vertical-three-five-right-action *ngIf="row.element === 'ver-3-5r'" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-five-right-action>
                         <app-horizontal-three-five *ngIf="row.element === 'hor-3-5'"></app-horizontal-three-five>
                         <app-vertical-two-five-action *ngIf="row.element === 'ver-2-5'" [data]="row" (listChange)="onListCange($event)"></app-vertical-two-five-action>
                         <app-horizontal-two-five *ngIf="row.element === 'hor-2-5'"></app-horizontal-two-five>
@@ -164,12 +167,14 @@
                             <img id="img-hor1" [src]="row.imageUrl" *ngIf="row.isBraceHor" />
                         </div>
                         <app-vertical-three-four *ngIf="row.element === 'ver-3-4'"></app-vertical-three-four>
+                        <app-vertical-three-four-right *ngIf="row.element === 'ver-3-4r'"></app-vertical-three-four-right>
                         <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
                         <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
                         <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
                         <app-vertical-three-two *ngIf="row.element === 'ver-3-2'"></app-vertical-three-two>
                         <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
                         <app-vertical-three-five *ngIf="row.element === 'ver-3-5'"></app-vertical-three-five>
+                        <app-vertical-three-five-right *ngIf="row.element === 'ver-3-5r'"></app-vertical-three-five-right>
                         <app-horizontal-three-five *ngIf="row.element === 'hor-3-5'"></app-horizontal-three-five>
                         <app-vertical-two-five *ngIf="row.element === 'ver-2-5'"></app-vertical-two-five>
                         <app-horizontal-two-five *ngIf="row.element === 'hor-2-5'"></app-horizontal-two-five>

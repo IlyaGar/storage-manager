@@ -3,6 +3,8 @@ import { StillageItem } from 'src/app/wms-map/models/stillage-item';
 import { MatDialog } from '@angular/material/dialog';
 import { StillageService } from 'src/app/common/services/stillage.service';
 import { DetailViewCellComponent } from 'src/app/dialog-windows/detail-view-cell-manager/detail-view-cell/detail-view-cell.component';
+import { StillgeDialogFormComponent } from 'src/app/wms-map/dialog-windows/stillge-dialog-form/stillge-dialog-form.component';
+import { Router } from '@angular/router';
 
 export class Item{
   constructor(
@@ -40,9 +42,11 @@ export class LongThreeFourActionComponent implements OnInit {
   listSelected: Array<string> = [];
   cellSelected: string = '';
   countClick: number;
+  nameCell: string = '';
   
   constructor(
     public dialog: MatDialog,
+    private router: Router,
     private stillageService: StillageService,
   ) { 
       this.stillageService.events$.forEach(event => { 
@@ -61,29 +65,27 @@ export class LongThreeFourActionComponent implements OnInit {
       this.stillageItem = this.data;
   }
 
-  onClickCell(numberCell, floorCell) {
+  onClickCell(floor: string, number: string) {
     if(this.stillageItem.stillageName) {
-      this.getCellItem(numberCell, floorCell);
-      this.listChange.emit(this.stillageItem.stillageName + '-' + numberCell + '-' + floorCell);
+      this.nameCell = this.stillageItem.stillageName + '-' + floor + '-' + number;
+      if(this.router.url === '/map') {
+        this.onOpenDetailWindow(this.nameCell, this.stillageItem.stillageName, floor, number)
+      } else {
+        this.getCellItem(number, floor);
+        this.listChange.emit(this.nameCell);
+      }
     }
-      // if(this.countClick > 0) {
-      //   this.countClick--;   
-      //   if(this.stillageItem.stillageName) {
-      //     this.getCellItem(numberCell, floorCell);
-      //     this.listChange.emit(this.stillageItem.stillageName + '-' + numberCell + '-' + floorCell);
-      //   }
-      // }
   }
 
-  onOpenDetailWindow(numberCell, floorCell) {
-    const dialogRef = this.dialog.open(DetailViewCellComponent, {
-      data: { stillageItem: this.stillageItem, num: numberCell, floor: floorCell },
+  onOpenDetailWindow(cell: string, stillage: string, floor: string, number: string,) {
+    const dialogRef = this.dialog.open(StillgeDialogFormComponent, {
+      data: { cell: cell, stillage: stillage, floor: floor, num: number },
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result)
-        this.ngOnInit();
+      if(result) {
+      }
     });
-  }
+  } 
 
   listenEvent(event: Array<string>) {
     if(this.stillageItem.stillageName === event[0]) {

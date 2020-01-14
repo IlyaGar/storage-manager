@@ -108,10 +108,12 @@ export class WmsMapEditFormComponent implements OnInit {
 
   isItStillage(cell: StillageItem) {
     if( cell.element === 'ver-3-4' || 
+        cell.element === 'ver-3-4r' || 
         cell.element === 'hor-3-4' || 
         cell.element === 'ver-3-3' || 
+        cell.element === 'ver-3-3r' || 
         cell.element === 'hor-3-3' || 
-        cell.element === 'ver-3-2' || 
+        cell.element === 'ver-3-2r' ||
         cell.element === 'hor-3-2' ||
         cell.element === 'ver-3-5' || 
         cell.element === 'ver-3-5r' || 
@@ -124,7 +126,7 @@ export class WmsMapEditFormComponent implements OnInit {
         cell.element === 'long-2-3-4' ||
         cell.element === 'long-3-5' || 
         cell.element === 'long-3-4' || 
-        cell.element === 'ver-2-3') {
+        cell.element === 'ver-2-3' ) {
           return true;
         } else {
           return false;
@@ -563,7 +565,7 @@ export class WmsMapEditFormComponent implements OnInit {
           this.isChanged = true;
         }
       }
-      if(this.selectedElement1 === 'stellage34r') {
+      if(this.selectedElement2 === 'stellage34r') {
         if(cell.isStillageRowWithOutNameHor) {
           cell.isHor = true;
           cell.element = 'hor-3-4r';
@@ -686,6 +688,40 @@ export class WmsMapEditFormComponent implements OnInit {
         if(cell.isStillageRowWithOutNameVer) {
           cell.isVer = true;
           cell.element = 'ver-2-3';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+      }
+
+      if(this.selectedElement4 === 'stellage32r') {
+        if(cell.isStillageRowWithOutNameHor) {
+          cell.isHor = true;
+          cell.element = 'hor-3-2r';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+        if(cell.isStillageRowWithOutNameVer) {
+          cell.isVer = true;
+          cell.element = 'ver-3-2r';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+      }
+      
+      if(this.selectedElement4 === 'stellage33r') {
+        if(cell.isStillageRowWithOutNameHor) {
+          cell.isHor = true;
+          cell.element = 'hor-3-3r';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+        if(cell.isStillageRowWithOutNameVer) {
+          cell.isVer = true;
+          cell.element = 'ver-3-3r';
           cell.isStillageOneWithOutName = true;
           cell.isBusy = true;
           this.isChanged = true;

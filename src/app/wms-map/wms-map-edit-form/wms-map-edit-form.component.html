@@ -81,7 +81,7 @@
             
             <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement1">
                 <mat-button-toggle value="stellage32" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'; selectedElement4 = 'undefined'"
-                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x3">
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x2">
                     Стеллаж 3x2
                 </mat-button-toggle>
                 <mat-button-toggle value="stellage33" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'; selectedElement4 = 'undefined'"
@@ -93,48 +93,56 @@
                     Стеллаж 3x4
                 </mat-button-toggle>
                 <mat-button-toggle value="stellage35" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'; selectedElement4 = 'undefined'"
-                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x3">
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x5">
                     Стеллаж 3x5
                 </mat-button-toggle>
                 <mat-button-toggle value="stellage35r" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'; selectedElement4 = 'undefined'"
-                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x3">
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x5п">
                     Стеллаж 3x5п
                 </mat-button-toggle>
             </mat-button-toggle-group>
             <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement2">
                 <mat-button-toggle value="stellage24" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement4 = 'undefined'"
-                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x4">
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 2x4">
                     Стеллаж 2x4
                 </mat-button-toggle>
                 <mat-button-toggle value="stellage25" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement4 = 'undefined'"
-                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x4">
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 2x5">
                     Стеллаж 2x5
                 </mat-button-toggle>
                 <mat-button-toggle value="stellagelong315" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement4 = 'undefined'"
-                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж удлененный 3/1x5">
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж Удл 1x4/3x1">
                     Удл 1x4/3x1
                 </mat-button-toggle>
                 <mat-button-toggle value="stellagelong234" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement4 = 'undefined'"
-                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж удлененный 3/1x5">
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж Удл 1x2/3x2">
                     Удл 1x2/3x2
                 </mat-button-toggle>
                 <mat-button-toggle value="stellage34r" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement4 = 'undefined'"
-                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x3">
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x4п">
                     Стеллаж 3x4п
                 </mat-button-toggle>
 
             </mat-button-toggle-group>
             <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement4">
+                <mat-button-toggle value="stellage32r" (click)="isChoiceStillage = true; isChoiceZonaSend = false; isChoiceOffice = false; isChoiceContinueRow = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'; selectedElement3 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x2п">
+                    Стеллаж 3x2п
+                </mat-button-toggle>
+                <mat-button-toggle value="stellage33r" (click)="isChoiceStillage = true; isChoiceZonaSend = false; isChoiceOffice = false; isChoiceContinueRow = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'; selectedElement3 = 'undefined'"
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 3x3п">
+                    Стеллаж 3x3п
+                </mat-button-toggle>
                 <mat-button-toggle value="stellage23" (click)="isChoiceStillage = true; isChoiceZonaSend = false; isChoiceOffice = false; isChoiceContinueRow = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'; selectedElement3 = 'undefined'"
-                    data-toggle="tooltip" data-placement="bottom" title="Зона отправки">
+                    data-toggle="tooltip" data-placement="bottom" title="Стеллаж 2x3">
                     Стеллаж 2x3
                 </mat-button-toggle>
                 <mat-button-toggle value="stellagelong35" (click)="isChoiceStillage = true; isChoiceZonaSend = false; isChoiceOffice = false; isChoiceContinueRow = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'; selectedElement3 = 'undefined'"
-                    data-toggle="tooltip" data-placement="bottom" title="Зона отправки">
+                    data-toggle="tooltip" data-placement="bottom" title="Удл 3x5 ">
                     Удл 3x5 
                 </mat-button-toggle>
                 <mat-button-toggle value="stellagelong34" (click)="isChoiceStillage = true; isChoiceZonaSend = false; isChoiceOffice = false; isChoiceContinueRow = false; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'; selectedElement3 = 'undefined'"
-                    data-toggle="tooltip" data-placement="bottom" title="Зона отправки">
+                    data-toggle="tooltip" data-placement="bottom" title="Удл 3x4 ">
                     Удл 3x4 
                 </mat-button-toggle>
                 <mat-button-toggle value="zone_storage" (click)="isChoiceStillage = false; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement2 = 'undefined'"
@@ -372,8 +380,10 @@
                 <app-vertical-three-four-right *ngIf="row.element === 'ver-3-4r'"></app-vertical-three-four-right>
                 <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
                 <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
+                <app-vertical-three-three-right *ngIf="row.element === 'ver-3-3r'"></app-vertical-three-three-right>
                 <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
                 <app-vertical-three-two *ngIf="row.element === 'ver-3-2'"></app-vertical-three-two>
+                <app-vertical-three-two-right *ngIf="row.element === 'ver-3-2r'"></app-vertical-three-two-right>
                 <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
                 <app-vertical-three-five *ngIf="row.element === 'ver-3-5'"></app-vertical-three-five>
                 <app-vertical-three-five-right *ngIf="row.element === 'ver-3-5r'"></app-vertical-three-five-right>
@@ -435,8 +445,10 @@
                 <app-vertical-three-four-right *ngIf="row.element === 'ver-3-4r'"></app-vertical-three-four-right>
                 <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
                 <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
+                <app-vertical-three-three-right *ngIf="row.element === 'ver-3-3r'"></app-vertical-three-three-right>
                 <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
                 <app-vertical-three-two *ngIf="row.element === 'ver-3-2'"></app-vertical-three-two>
+                <app-vertical-three-two-right *ngIf="row.element === 'ver-3-2r'"></app-vertical-three-two-right>
                 <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
                 <app-vertical-three-five *ngIf="row.element === 'ver-3-5'"></app-vertical-three-five>
                 <app-vertical-three-five-right *ngIf="row.element === 'ver-3-5r'"></app-vertical-three-five-right>
@@ -498,8 +510,10 @@
                 <app-vertical-three-four-right *ngIf="row.element === 'ver-3-4r'"></app-vertical-three-four-right>
                 <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
                 <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
+                <app-vertical-three-three-right *ngIf="row.element === 'ver-3-3r'"></app-vertical-three-three-right>
                 <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
                 <app-vertical-three-two *ngIf="row.element === 'ver-3-2'"></app-vertical-three-two>
+                <app-vertical-three-two-right *ngIf="row.element === 'ver-3-2r'"></app-vertical-three-two-right>
                 <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
                 <app-vertical-three-five *ngIf="row.element === 'ver-3-5'"></app-vertical-three-five>
                 <app-vertical-three-five-right *ngIf="row.element === 'ver-3-5r'"></app-vertical-three-five-right>

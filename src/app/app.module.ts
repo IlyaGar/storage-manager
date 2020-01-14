@@ -75,6 +75,12 @@ import { VerticalThreeFiveRightComponent } from './stillages/vertical-three-five
 import { VerticalThreeFourRightComponent } from './stillages/vertical-three-four-right/vertical-three-four-right.component';
 import { NameDocFormComponent } from './processes-manager/components/name-doc-form/name-doc-form.component';
 import { ListDocFormComponent } from './processes-manager/components/list-doc-form/list-doc-form.component';
+import { VerticalThreeFourRightActionComponent } from './stillages/vertical-three-four-right-action/vertical-three-four-right-action.component';
+import { VerticalThreeFiveRightActionComponent } from './stillages/vertical-three-five-right-action/vertical-three-five-right-action.component';
+import { VerticalThreeThreeRightActionComponent } from './stillages/vertical-three-three-right-action/vertical-three-three-right-action.component';
+import { VerticalThreeThreeRightComponent } from './stillages/vertical-three-three-right/vertical-three-three-right.component';
+import { VerticalThreeTwoRightComponent } from './stillages/vertical-three-two-right/vertical-three-two-right.component';
+import { VerticalThreeTwoRightActionComponent } from './stillages/vertical-three-two-right-action/vertical-three-two-right-action.component';
 
 @NgModule({
   declarations: [
@@ -143,6 +149,12 @@ import { ListDocFormComponent } from './processes-manager/components/list-doc-fo
     VerticalThreeFourRightComponent,
     NameDocFormComponent,
     ListDocFormComponent,
+    VerticalThreeFourRightActionComponent,
+    VerticalThreeFiveRightActionComponent,
+    VerticalThreeThreeRightActionComponent,
+    VerticalThreeThreeRightComponent,
+    VerticalThreeTwoRightComponent,
+    VerticalThreeTwoRightActionComponent,
   ],
   imports: [
     FormsModule,

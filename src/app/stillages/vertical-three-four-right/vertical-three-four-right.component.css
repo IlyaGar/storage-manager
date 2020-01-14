@@ -8,7 +8,7 @@ table {
     border-right-color: black;
     width: 25px;
     height: 20px;
-    font-size: 8px;
+    font-size: 7px;
     padding: 0%;
     margin: 0%;
     width: 49px;
@@ -18,4 +18,7 @@ td {
     border: 1px solid rgba(128, 128, 128, 0.25);
     padding: 0%;
     margin: 0%;
+}
+.select-cell {
+    background-color: aquamarine; 
 }

@@ -1,3 +1,5 @@
+import { Celltem } from './cell-item';
+
 export class StillageItem{
     constructor(
         public y: number,
@@ -25,6 +27,6 @@ export class StillageItem{
         public isStillageOneWithOutName: boolean,
         public isSelectCellStillage: boolean,
         // ячейки
-        public cells: Array<string>,
+        public cells: Celltem,
     ){}
 }

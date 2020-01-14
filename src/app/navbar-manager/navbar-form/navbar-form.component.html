@@ -48,14 +48,14 @@
                     <label> Топология склада </label>
                 </ng-container>
                 <ng-container *ngIf="isPathActiv('/map')">
-                    <label class="select-item-menu" > Управление складом </label>
+                    <label class="select-item-menu" > Карта склада </label>
                 </ng-container>
                 <ng-container *ngIf="isPathActiv('/map-edit')">
                     <label class="select-item-menu" > Редактирование склада </label>
                 </ng-container>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownTerminal">
-                    <a class="dropdown-item" [routerLink]="['map']"> Управление складом </a>
+                    <a class="dropdown-item" [routerLink]="['map']"> Карта склада </a>
                     <a class="dropdown-item" [routerLink]="['map-edit']"> Редактирование склада </a>
                 </div>                
             </li>

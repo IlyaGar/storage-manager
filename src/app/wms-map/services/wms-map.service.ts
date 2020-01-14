@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { Stillages } from '../models/stillages';
 import { GetSkald } from '../models/get-sclad';
 import { SetSklad } from '../models/set-sclad';
+import { CellRequest } from '../models/cell-request';
+import { CellAnsw } from '../models/cell-answ';
 
 
 @Injectable({
@@ -13,21 +15,11 @@ import { SetSklad } from '../models/set-sclad';
 })
 export class WmsMapService {
 
-  // url: string = environment.apiUrl + "storemap";
-  url: string = "http://localhost:63572/api/storemap";
   url_get_sclad: string = environment.apiUrl + "/wms/getstillages";
   url_set_sclad: string = environment.apiUrl + "/wms/setstillages";
+  url_get_cell: string = environment.apiUrl + "/wms/getcell";
 
   constructor(private http: HttpClient) { }
-
-  postData(arr: Array<Array<StillageItem>>): Observable<String> {
-    var data = new Stillages(arr, arr.length, arr[0].length);
-    return this.http.post<String>(this.url, data);
-  }
-
-  getData(): Observable<Stillages> {
-    return this.http.get<Stillages>(this.url);
-  }
 
   getSclad(data: GetSkald): Observable<Stillages> {
     return this.http.post<Stillages>(this.url_get_sclad, data);
@@ -35,5 +27,9 @@ export class WmsMapService {
 
   postSclad(data: SetSklad): Observable<any> {
     return this.http.post<any>(this.url_set_sclad, data);
+  }
+
+  getCell(data: CellRequest): Observable<CellAnsw> {
+    return this.http.post<CellAnsw>(this.url_get_cell, data);
   }
 }
