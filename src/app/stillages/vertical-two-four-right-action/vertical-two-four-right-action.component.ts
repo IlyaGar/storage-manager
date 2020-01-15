@@ -1,20 +1,19 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StillageItem } from 'src/app/wms-map/models/stillage-item';
-import { MatDialog } from '@angular/material/dialog';
-import { StillageService } from 'src/app/common/services/stillage.service';
-import { DetailViewCellComponent } from 'src/app/dialog-windows/detail-view-cell-manager/detail-view-cell/detail-view-cell.component';
-import { Router } from '@angular/router';
-import { StillgeDialogFormComponent } from 'src/app/wms-map/dialog-windows/stillge-dialog-form/stillge-dialog-form.component';
 import { CellItemBoolean } from 'src/app/wms-map/models/cell-item-boolean';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { StillageService } from 'src/app/common/services/stillage.service';
+import { StillgeDialogFormComponent } from 'src/app/wms-map/dialog-windows/stillge-dialog-form/stillge-dialog-form.component';
 
 @Component({
-  selector: 'app-vertical-two-five-action',
-  templateUrl: './vertical-two-five-action.component.html',
-  styleUrls: ['./vertical-two-five-action.component.css']
+  selector: 'app-vertical-two-four-right-action',
+  templateUrl: './vertical-two-four-right-action.component.html',
+  styleUrls: ['./vertical-two-four-right-action.component.css']
 })
-export class VerticalTwoFiveActionComponent implements OnInit {
-
-  @Input() data: StillageItem;
+export class VerticalTwoFourRightActionComponent implements OnInit {
+  
+  @Input() data;
   @Output() listChange = new EventEmitter<string>(); 
 
   stillageItem: StillageItem;
@@ -55,8 +54,8 @@ export class VerticalTwoFiveActionComponent implements OnInit {
       if(this.router.url === '/map') {
         this.onOpenDetailWindow(this.nameCell, this.stillageItem.stillageName, floor, number)
       } else {
-        this.getCellItem(floor, number);
-        this.listChange.emit(this.nameCell);
+        this.getCellItem(number, floor);
+        this.listChange.emit(this.stillageItem.stillageName + '-' + floor + '-' + number);
       }
     }
   }

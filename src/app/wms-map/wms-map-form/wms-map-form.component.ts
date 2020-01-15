@@ -77,8 +77,16 @@ export class WmsMapFormComponent implements OnInit {
     if(this.isSelectInventory) {
       this.selectInventory(cell);
     }
-    if(cell.cellName) {
-      this.openDetailStillageDialog();
+    if(cell.yxName && !cell.rowName && !cell.stillageName) {
+      var splitted = cell.yxName.split(";"); 
+      var nameStillage = this.tab_map[splitted[0]][splitted[1]].cellName;
+      if(nameStillage) {
+        if(nameStillage === 'I1') {
+          this.openDetailStillageDialog(nameStillage + '-1-1');
+        } else {
+          this.openDetailStillageDialog(nameStillage);
+        }
+      }
     }
   }
 
@@ -289,11 +297,14 @@ export class WmsMapFormComponent implements OnInit {
     });
   }
 
-  openDetailStillageDialog() {
+  openDetailStillageDialog(cell: string) {
     const dialogRef = this.dialog.open(StillgeDialogFormComponent, {
+      data: { cell: cell },
     });
     dialogRef.afterClosed().subscribe(result => {
+      if(result) {
 
+      }
     });
   }
 }

@@ -81,6 +81,10 @@ import { VerticalThreeThreeRightActionComponent } from './stillages/vertical-thr
 import { VerticalThreeThreeRightComponent } from './stillages/vertical-three-three-right/vertical-three-three-right.component';
 import { VerticalThreeTwoRightComponent } from './stillages/vertical-three-two-right/vertical-three-two-right.component';
 import { VerticalThreeTwoRightActionComponent } from './stillages/vertical-three-two-right-action/vertical-three-two-right-action.component';
+import { VerticalTwoFourRightActionComponent } from './stillages/vertical-two-four-right-action/vertical-two-four-right-action.component';
+import { VerticalTwoFourRightComponent } from './stillages/vertical-two-four-right/vertical-two-four-right.component';
+import { VerticalTwoFiveRightComponent } from './stillages/vertical-two-five-right/vertical-two-five-right.component';
+import { VerticalTwoFiveRightActionComponent } from './stillages/vertical-two-five-right-action/vertical-two-five-right-action.component';
 
 @NgModule({
   declarations: [
@@ -155,6 +159,10 @@ import { VerticalThreeTwoRightActionComponent } from './stillages/vertical-three
     VerticalThreeThreeRightComponent,
     VerticalThreeTwoRightComponent,
     VerticalThreeTwoRightActionComponent,
+    VerticalTwoFourRightActionComponent,
+    VerticalTwoFourRightComponent,
+    VerticalTwoFiveRightComponent,
+    VerticalTwoFiveRightActionComponent,
   ],
   imports: [
     FormsModule,

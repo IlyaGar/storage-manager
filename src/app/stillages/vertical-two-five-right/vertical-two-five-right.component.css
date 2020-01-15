@@ -5,7 +5,7 @@ table {
     border-left-color: black;
     border-right-width: 2px;
     border-right-style: solid;
-    border-right-color: black;
+    border-right-color: black; 
     width: 25px;
     height: 20px;
     font-size: 7px;
@@ -21,13 +21,4 @@ td {
 }
 .select-cell {
     background-color: aquamarine; 
-}
-.cell-red {
-    background-color: rgba(255, 0, 0, 0.5); 
-}
-.cell-yellow {
-    background-color: rgba(255, 255, 0, 0.5); 
-}
-.cell-green {
-    background-color: rgba(0, 128, 0, 0.5); 
 }

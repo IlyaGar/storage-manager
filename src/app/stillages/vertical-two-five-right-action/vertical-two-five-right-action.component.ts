@@ -1,18 +1,17 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StillageItem } from 'src/app/wms-map/models/stillage-item';
-import { MatDialog } from '@angular/material/dialog';
-import { StillageService } from 'src/app/common/services/stillage.service';
-import { DetailViewCellComponent } from 'src/app/dialog-windows/detail-view-cell-manager/detail-view-cell/detail-view-cell.component';
-import { Router } from '@angular/router';
-import { StillgeDialogFormComponent } from 'src/app/wms-map/dialog-windows/stillge-dialog-form/stillge-dialog-form.component';
 import { CellItemBoolean } from 'src/app/wms-map/models/cell-item-boolean';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { StillageService } from 'src/app/common/services/stillage.service';
+import { StillgeDialogFormComponent } from 'src/app/wms-map/dialog-windows/stillge-dialog-form/stillge-dialog-form.component';
 
 @Component({
-  selector: 'app-vertical-two-five-action',
-  templateUrl: './vertical-two-five-action.component.html',
-  styleUrls: ['./vertical-two-five-action.component.css']
+  selector: 'app-vertical-two-five-right-action',
+  templateUrl: './vertical-two-five-right-action.component.html',
+  styleUrls: ['./vertical-two-five-right-action.component.css']
 })
-export class VerticalTwoFiveActionComponent implements OnInit {
+export class VerticalTwoFiveRightActionComponent implements OnInit {
 
   @Input() data: StillageItem;
   @Output() listChange = new EventEmitter<string>(); 

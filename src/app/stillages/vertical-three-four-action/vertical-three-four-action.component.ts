@@ -68,7 +68,7 @@ export class VerticalThreeFourActionComponent implements OnInit {
     this.listSelected = [];
     if(this.data)
       this.stillageItem = this.data;
-      // this.stillageItem.cells = new Celltem('','',;);
+      // this.stillageItem.cells = new Celltem('green', 'yellow', 'red', 'yellow', 'red', 'green', 'green', 'yellow', '', '','', '', '', '', '');
   }
 
   onClickCell(floor: string, number: string) {

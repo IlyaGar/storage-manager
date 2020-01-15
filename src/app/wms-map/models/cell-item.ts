@@ -14,7 +14,7 @@ export class Celltem{
         
         public c13: string,
         public c23: string,
-        public c34: string,
+        public c33: string,
         public c43: string,
         public c53: string,
     ){}

@@ -22,3 +22,12 @@ td {
 .select-cell {
     background-color: aquamarine; 
 }
+.cell-red {
+    background-color: rgba(255, 0, 0, 0.5); 
+}
+.cell-yellow {
+    background-color: rgba(255, 255, 0, 0.5); 
+}
+.cell-green {
+    background-color: rgba(0, 128, 0, 0.5); 
+}

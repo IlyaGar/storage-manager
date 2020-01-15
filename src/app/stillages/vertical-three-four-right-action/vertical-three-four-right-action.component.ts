@@ -4,28 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { StillageService } from 'src/app/common/services/stillage.service';
 import { StillgeDialogFormComponent } from 'src/app/wms-map/dialog-windows/stillge-dialog-form/stillge-dialog-form.component';
-
-export class Item{
-  constructor(
-    public c11: boolean,
-    public c21: boolean,
-    public c31: boolean,
-    public c41: boolean,
-    public c51: boolean,
-    
-    public c12: boolean,
-    public c22: boolean,
-    public c32: boolean,
-    public c42: boolean,
-    public c52: boolean,
-    
-    public c13: boolean,
-    public c23: boolean,
-    public c33: boolean,
-    public c43: boolean,
-    public c53: boolean,
-  ){}
-}
+import { CellItemBoolean } from 'src/app/wms-map/models/cell-item-boolean';
 
 @Component({
   selector: 'app-vertical-three-four-right-action',
@@ -42,7 +21,7 @@ export class VerticalThreeFourRightActionComponent implements OnInit {
   selectCellTo= '';
   isSelectCellFrom = false;
   isSelectCellTo= false;
-  selItem: Item = new Item(false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
+  selItem: CellItemBoolean = new CellItemBoolean(false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
   listSelected: Array<string> = [];
   cellSelected: string = '';
   countClick: number;

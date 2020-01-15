@@ -5,6 +5,7 @@ import { SetSklad } from '../models/set-sclad';
 import { TokenService } from 'src/app/common/services/token.service';
 import { Stillages } from '../models/stillages';
 import { GetSkald } from '../models/get-sclad';
+import { Celltem } from '../models/cell-item';
 
 const HEIGHT_MAP = 16;
 const WIDTH_MAP = 17;
@@ -119,8 +120,10 @@ export class WmsMapEditFormComponent implements OnInit {
         cell.element === 'ver-3-5r' || 
         cell.element === 'hor-3-5' || 
         cell.element === 'ver-2-5' || 
+        cell.element === 'ver-2-5r' || 
         cell.element === 'hor-2-5' ||       
         cell.element === 'ver-2-4' || 
+        cell.element === 'ver-2-4r' || 
         cell.element === 'hor-2-4' || 
         cell.element === 'long-3-1-5' || 
         cell.element === 'long-2-3-4' ||
@@ -565,6 +568,22 @@ export class WmsMapEditFormComponent implements OnInit {
           this.isChanged = true;
         }
       }
+      if(this.selectedElement1 === 'stellage25r') {
+        if(cell.isStillageRowWithOutNameHor) {
+          cell.isHor = true;
+          cell.element = 'hor-2-5r';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+        if(cell.isStillageRowWithOutNameVer) {
+          cell.isVer = true;
+          cell.element = 'ver-2-5r';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+      }
       if(this.selectedElement2 === 'stellage34r') {
         if(cell.isStillageRowWithOutNameHor) {
           cell.isHor = true;
@@ -576,6 +595,22 @@ export class WmsMapEditFormComponent implements OnInit {
         if(cell.isStillageRowWithOutNameVer) {
           cell.isVer = true;
           cell.element = 'ver-3-4r';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+      }
+      if(this.selectedElement2 === 'stellage24r') {
+        if(cell.isStillageRowWithOutNameHor) {
+          cell.isHor = true;
+          cell.element = 'hor-2-4r';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+        if(cell.isStillageRowWithOutNameVer) {
+          cell.isVer = true;
+          cell.element = 'ver-2-4r';
           cell.isStillageOneWithOutName = true;
           cell.isBusy = true;
           this.isChanged = true;
@@ -1164,6 +1199,8 @@ export class WmsMapEditFormComponent implements OnInit {
     //  }
     // );
     var data = new Stillages(this.tab_map, this.tab_map.length, this.tab_map[0].length);
+    data.stillageItem.map(item1 => item1.map(item2 => 
+      item2.stillageName ? item2.cells = new Celltem('green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green') : null))
     this.wmsMapService.postSclad(new SetSklad(this.tokenService.getToken(), data)).subscribe(response =>  { 
       if(response) {
         this.isChanged = false;
