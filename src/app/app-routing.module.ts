@@ -7,6 +7,7 @@ import { ProductGroupAccountingFormComponent } from './product-manager/product-g
 import { TaskComponent } from './processes-manager/task/task.component';
 import { PersonalManagementFormComponent } from './personal-manager/personal-management-form/personal-management-form.component';
 import { ListDocFormComponent } from './processes-manager/components/list-doc-form/list-doc-form.component';
+import { ErrorLogFormComponent } from './wms-map/components/error-log-form/error-log-form.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'tasks', component: TaskComponent },
   { path: 'staff', component: PersonalManagementFormComponent },
   { path: 'list-doc', component: ListDocFormComponent },
+  { path: 'error-journal', component: ErrorLogFormComponent },
 ];
 
 @NgModule({

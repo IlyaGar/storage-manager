@@ -107,8 +107,7 @@
                         <app-vertical-three-four-right-action *ngIf="row.element === 'ver-3-4r'" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-four-right-action>
                         <app-horizontal-three-four-action *ngIf="row.element === 'hor-3-4'" [data]="row" (listChange)="onListCange($event)"></app-horizontal-three-four-action>
                         <app-vertical-three-three-action *ngIf="row.element === 'ver-3-3'" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-three-action>
-                        <app-vertical-three-three-action [data]="row" *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three-action>
-                        <app-vertical-three-three-right-action [data]="row" *ngIf="row.element === 'ver-3-3r'"></app-vertical-three-three-right-action>
+                        <app-vertical-three-three-right-action *ngIf="row.element === 'ver-3-3r'" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-three-right-action>
                         <app-vertical-three-two-action *ngIf="row.element === 'ver-3-2'" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-two-action>
                         <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
                         <app-vertical-three-five-action *ngIf="row.element === 'ver-3-5'" [data]="row" (listChange)="onListCange($event)"></app-vertical-three-five-action>
@@ -123,6 +122,7 @@
                         <app-long-three-five-action *ngIf="row.element === 'long-3-5'" [data]="row" (listChange)="onListCange($event)"></app-long-three-five-action>
                         <app-long-three-four-action *ngIf="row.element === 'long-3-4'" [data]="row" (listChange)="onListCange($event)"></app-long-three-four-action>
                         <app-vertical-two-three-action *ngIf="row.element === 'ver-2-3'" [data]="row" (listChange)="onListCange($event)"></app-vertical-two-three-action>
+                        <app-zona-storage-action *ngIf="row.element === 'zona-storage-pallet'" [data]="row" (listChange)="onListCange($event)"></app-zona-storage-action>
                     </td>
                 </tr>
             </table>
@@ -170,21 +170,26 @@
                         <app-vertical-three-four-right *ngIf="row.element === 'ver-3-4r'"></app-vertical-three-four-right>
                         <app-horizontal-three-four *ngIf="row.element === 'hor-3-4'"></app-horizontal-three-four>
                         <app-vertical-three-three *ngIf="row.element === 'ver-3-3'"></app-vertical-three-three>
+                        <app-vertical-three-three-right *ngIf="row.element === 'ver-3-3r'"></app-vertical-three-three-right>
                         <app-horizontal-three-three *ngIf="row.element === 'hor-3-3'"></app-horizontal-three-three>
                         <app-vertical-three-two *ngIf="row.element === 'ver-3-2'"></app-vertical-three-two>
+                        <app-vertical-three-two-right *ngIf="row.element === 'ver-3-2r'"></app-vertical-three-two-right>
                         <app-horizontal-three-two *ngIf="row.element === 'hor-3-2'"></app-horizontal-three-two>
                         <app-vertical-three-five *ngIf="row.element === 'ver-3-5'"></app-vertical-three-five>
                         <app-vertical-three-five-right *ngIf="row.element === 'ver-3-5r'"></app-vertical-three-five-right>
                         <app-horizontal-three-five *ngIf="row.element === 'hor-3-5'"></app-horizontal-three-five>
                         <app-vertical-two-five *ngIf="row.element === 'ver-2-5'"></app-vertical-two-five>
+                        <app-vertical-two-five-right *ngIf="row.element === 'ver-2-5r'"></app-vertical-two-five-right>
                         <app-horizontal-two-five *ngIf="row.element === 'hor-2-5'"></app-horizontal-two-five>
                         <app-vertical-two-four *ngIf="row.element === 'ver-2-4'"></app-vertical-two-four>
+                        <app-vertical-two-four-right *ngIf="row.element === 'ver-2-4r'"></app-vertical-two-four-right>
                         <app-horizontal-two-four *ngIf="row.element === 'hor-2-4'"></app-horizontal-two-four>
                         <app-long-three-one-five *ngIf="row.element === 'long-3-1-5'"></app-long-three-one-five>
                         <app-long-two-three-four *ngIf="row.element === 'long-2-3-4'"></app-long-two-three-four>
                         <app-long-three-five *ngIf="row.element === 'long-3-5'"></app-long-three-five>
                         <app-long-three-four *ngIf="row.element === 'long-3-4'"></app-long-three-four>
                         <app-vertical-two-three *ngIf="row.element === 'ver-2-3'"></app-vertical-two-three>
+                        <app-zona-storage *ngIf="row.element === 'zona-storage-pallet'"></app-zona-storage>
                     </td>
                 </tr>
             </table>

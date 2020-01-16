@@ -104,6 +104,10 @@
                     data-placement="bottom" matTooltip="Стеллаж 2x5 правый">
                     Ст 2x5п
                 </mat-button-toggle>
+                <mat-button-toggle value="zona-storage-pallet" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement2 = 'undefined'; selectedElement4 = 'undefined'"
+                    data-placement="bottom" matTooltip="Зона хранения поддонов">
+                    Зона хранения поддонов
+                </mat-button-toggle>
             </mat-button-toggle-group>
             <mat-button-toggle-group id="but-groupe" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedElement2">
                 <mat-button-toggle value="stellage24" (click)="isChoiceStillage = true; isChoiceRoad = false; isChoiceZoneUnloade = false; selectedElement3 = 'undefined'; selectedElement1 = 'undefined'; selectedElement4 = 'undefined'"
@@ -407,6 +411,8 @@
                 <app-long-three-five *ngIf="row.element === 'long-3-5'"></app-long-three-five>
                 <app-long-three-four *ngIf="row.element === 'long-3-4'"></app-long-three-four>
                 <app-vertical-two-three *ngIf="row.element === 'ver-2-3'"></app-vertical-two-three>
+
+                <app-zona-storage [data]="row" *ngIf="row.element === 'zona-storage-pallet'"></app-zona-storage>
             </td>
         </tr>
     </table>
@@ -474,6 +480,8 @@
                 <app-long-three-five *ngIf="row.element === 'long-3-5'"></app-long-three-five>
                 <app-long-three-four *ngIf="row.element === 'long-3-4'"></app-long-three-four>
                 <app-vertical-two-three *ngIf="row.element === 'ver-2-3'"></app-vertical-two-three>
+
+                <app-zona-storage [data]="row" *ngIf="row.element === 'zona-storage-pallet'"></app-zona-storage>
             </td>
         </tr>
     </table>
@@ -541,6 +549,8 @@
                 <app-long-three-five *ngIf="row.element === 'long-3-5'"></app-long-three-five>
                 <app-long-three-four *ngIf="row.element === 'long-3-4'"></app-long-three-four>
                 <app-vertical-two-three *ngIf="row.element === 'ver-2-3'"></app-vertical-two-three>
+
+                <app-zona-storage [data]="row" *ngIf="row.element === 'zona-storage-pallet'"></app-zona-storage>
             </td>
         </tr>
     </table>

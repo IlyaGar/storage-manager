@@ -108,7 +108,8 @@ export class WmsMapEditFormComponent implements OnInit {
   }
 
   isItStillage(cell: StillageItem) {
-    if( cell.element === 'ver-3-4' || 
+    if( cell.element === 'zona-storage-pallet' ||
+        cell.element === 'ver-3-4' || 
         cell.element === 'ver-3-4r' || 
         cell.element === 'hor-3-4' || 
         cell.element === 'ver-3-3' || 
@@ -489,6 +490,9 @@ export class WmsMapEditFormComponent implements OnInit {
     if(this.selectedElement3 === 'office'){
       this.drawingOffice(cell);
     }
+    if(this.selectedElement3 === 'continueRow'){
+      this.drawingContinueRow(cell);
+    }
   }
 
   toNameZone(cell: StillageItem) {
@@ -563,6 +567,22 @@ export class WmsMapEditFormComponent implements OnInit {
         if(cell.isStillageRowWithOutNameVer) {
           cell.isVer = true;
           cell.element = 'ver-3-4';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+      }
+      if(this.selectedElement1 === 'zona-storage-pallet') {
+        if(cell.isStillageRowWithOutNameHor) {
+          cell.isHor = true;
+          cell.element = 'zona-storage-pallet';
+          cell.isStillageOneWithOutName = true;
+          cell.isBusy = true;
+          this.isChanged = true;
+        }
+        if(cell.isStillageRowWithOutNameVer) {
+          cell.isVer = true;
+          cell.element = 'zona-storage-pallet';
           cell.isStillageOneWithOutName = true;
           cell.isBusy = true;
           this.isChanged = true;
@@ -828,6 +848,14 @@ export class WmsMapEditFormComponent implements OnInit {
     }
   }
 
+  drawingContinueRow(cell: StillageItem) {
+    if(!cell.isBusy)  {
+      cell.element = 'zone_storage';
+      cell.isBusy = true;
+      this.isChanged = true;
+    }
+  }
+
   deleteElement(cell: StillageItem) {
     if(cell.element) {
       cell.element = '';
@@ -880,6 +908,11 @@ export class WmsMapEditFormComponent implements OnInit {
         cell.stillageName = '';
         cell.yxName = '';
       }
+    } else {
+      cell.stillageName = '';
+      cell.element = '';
+      cell.rowName = '';
+      cell.cellName = '';
     }
   }
 
@@ -910,9 +943,16 @@ export class WmsMapEditFormComponent implements OnInit {
         if(this.currentCell.rowName.length > 0) {
           if(!this.array_name.includes(this.currentCell.rowName + this.stillageName)) {
             this.array_name.push(this.currentCell.rowName + this.stillageName);
-            this.drawingStillageName();
+            if(this.currentCell.element === 'zona-storage-pallet') {
+              if(!this.currentCell.stillageName)
+                this.tab_map[this.currentCell.y][this.currentCell.x].stillageName = this.currentCell.rowName + this.stillageName;
+              else 
+                this.tab_map[this.currentCell.y][this.currentCell.x].stillageName = this.currentCell.stillageName + ';' + this.currentCell.rowName + this.stillageName;
+            } else {
+              this.drawingStillageName();
+              this.tab_map[this.currentCell.y][this.currentCell.x].stillageName = this.currentCell.rowName + this.stillageName;
+            }
             this.currentCell.isStillageOneWithName = true;
-            this.tab_map[this.currentCell.y][this.currentCell.x].stillageName = this.currentCell.rowName + this.stillageName;
             this.currentCell.isStillageOneWithOutName = false;
             this.currentCell.isSelectCellStillage = false;
             this.stillageName = '';
@@ -923,7 +963,7 @@ export class WmsMapEditFormComponent implements OnInit {
         }
       }
     }
-    this.currentCell = null;
+    // this.currentCell = null;
   }
 
   onSavePropertyZone() {
@@ -1188,16 +1228,6 @@ export class WmsMapEditFormComponent implements OnInit {
   }
 
   onSave() {
-    // this.wmsMapService.postData(this.tab_map).subscribe(response =>  { 
-    //   if(response) {
-    //     this.isChanged = false;
-    //    }
-    // },
-    // error => {
-    //   console.log(error);
-    //   alert("Сервер не отвечает.");
-    //  }
-    // );
     var data = new Stillages(this.tab_map, this.tab_map.length, this.tab_map[0].length);
     data.stillageItem.map(item1 => item1.map(item2 => 
       item2.stillageName ? item2.cells = new Celltem('green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green', 'green') : null))

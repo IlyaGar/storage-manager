@@ -85,6 +85,10 @@ import { VerticalTwoFourRightActionComponent } from './stillages/vertical-two-fo
 import { VerticalTwoFourRightComponent } from './stillages/vertical-two-four-right/vertical-two-four-right.component';
 import { VerticalTwoFiveRightComponent } from './stillages/vertical-two-five-right/vertical-two-five-right.component';
 import { VerticalTwoFiveRightActionComponent } from './stillages/vertical-two-five-right-action/vertical-two-five-right-action.component';
+import { ZonaStorageComponent } from './stillages/zona-storage/zona-storage.component';
+import { ZonaStorageActionComponent } from './stillages/zona-storage-action/zona-storage-action.component';
+import { ErrorLogFormComponent } from './wms-map/components/error-log-form/error-log-form.component';
+import { CellHistoryFormComponent } from './wms-map/components/cell-history-form/cell-history-form.component';
 
 @NgModule({
   declarations: [
@@ -163,6 +167,10 @@ import { VerticalTwoFiveRightActionComponent } from './stillages/vertical-two-fi
     VerticalTwoFourRightComponent,
     VerticalTwoFiveRightComponent,
     VerticalTwoFiveRightActionComponent,
+    ZonaStorageComponent,
+    ZonaStorageActionComponent,
+    ErrorLogFormComponent,
+    CellHistoryFormComponent,
   ],
   imports: [
     FormsModule,

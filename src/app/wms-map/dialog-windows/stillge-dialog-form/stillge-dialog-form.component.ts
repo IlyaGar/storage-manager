@@ -65,6 +65,7 @@ export class StillgeDialogFormComponent implements OnInit {
               barcode: item.barcode,
               name: item.name,
               count: item.count + ' ' + (item.mesabbrev != null ? item.mesabbrev: ''),
+              // count: 12345678910 + ' ' + (item.mesabbrev != null ? item.mesabbrev: ''),
             }));
             this.dataSource = new MatTableDataSource(this.detailCell);
             this.dataSource.sort = this.sort;

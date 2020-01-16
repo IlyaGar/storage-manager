@@ -16,6 +16,7 @@
                     <ng-container *ngIf="(  isPathActiv('/product-group') || 
                                             isPathActiv('/map') || 
                                             isPathActiv('/map-edit') || 
+                                            isPathActiv('/error-journal') || 
                                             isPathActiv('/staff')) && 
                                             (!isPathActiv('/tasks') || 
                                             isPathActiv('/list-doc'))">
@@ -44,7 +45,8 @@
                                         isPathActiv('/list-doc') || 
                                         isPathActiv('/staff')) && 
                                         (!isPathActiv('/map') || 
-                                        !isPathActiv('/map-edit'))">
+                                        !isPathActiv('/map-edit') ||
+                                        !isPathActiv('/error-journal'))">
                     <label> Топология склада </label>
                 </ng-container>
                 <ng-container *ngIf="isPathActiv('/map')">
@@ -53,10 +55,14 @@
                 <ng-container *ngIf="isPathActiv('/map-edit')">
                     <label class="select-item-menu" > Редактирование склада </label>
                 </ng-container>
+                <ng-container *ngIf="isPathActiv('/error-journal')">
+                    <label class="select-item-menu" > Журнал </label>
+                </ng-container>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownTerminal">
                     <a class="dropdown-item" [routerLink]="['map']"> Карта склада </a>
                     <a class="dropdown-item" [routerLink]="['map-edit']"> Редактирование склада </a>
+                    <a class="dropdown-item" [routerLink]="['error-journal']"> Журнал </a>
                 </div>                
             </li>
             <li class="nav-item dropdown" (click)="isPersonal = true; isMap = false; isOrder = false;">
@@ -65,6 +71,7 @@
                 <ng-container *ngIf="(  isPathActiv('/product-group') || 
                                         isPathActiv('/map') || 
                                         isPathActiv('/map-edit') || 
+                                        isPathActiv('/error-journal') || 
                                         isPathActiv('/list-doc') || 
                                         isPathActiv('/tasks')) && 
                                         !isPathActiv('/staff')">

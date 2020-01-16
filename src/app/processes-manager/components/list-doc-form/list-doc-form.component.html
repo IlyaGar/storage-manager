@@ -5,7 +5,6 @@
         </mat-list>
     </mat-drawer>
     <mat-drawer-content>
-        <!-- <button mat-raised-button color="primary" class="btn btn-default" (click)="onOpenPrintForm(doc)"> Печать </button>  -->
         <ng-container *ngIf="docName">
             <button mat-raised-button color="primary" class="btn btn-default"
             [printStyle]="{ th: {'border': '1px solid black'}, td: {'border': '1px solid black'}, table: {'border-collapse': 'collapse', 'width': '100%'}}"
