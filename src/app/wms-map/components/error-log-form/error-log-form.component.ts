@@ -18,6 +18,8 @@ export class ErrorLogFormComponent implements OnInit {
   errorLogs: Array<ErrorLog> = [];
   dataSource: MatTableDataSource<ErrorLog>;
   displayedColumns: Array<string> = ['num', 'article', 'place', 'count', 'message'];
+  startDate: any;
+  finishDate: any;
 
   messageNoConnect = 'Нет соединения, попробуйте позже.';
   messageWrongCell= 'Ошибка сервера';
@@ -52,5 +54,13 @@ export class ErrorLogFormComponent implements OnInit {
       console.log(error);
       this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
     });
+  }
+
+  onClear() {
+
+  }
+
+  onSearch() {
+    
   }
 }

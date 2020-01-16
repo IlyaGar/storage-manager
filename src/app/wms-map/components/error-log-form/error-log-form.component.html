@@ -1,3 +1,15 @@
+<div class="form-inline date-filter">
+    <div class="form-inline date-start">
+        <label class="lable-s" for="startDate" id="dateStartLable">Дата с:</label>
+        <input type="date" name="startDate" id="startDate" class="form-control" [(ngModel)]="startDate"  aria-describedby="dateStartLable" />
+    </div>
+    <div class="form-inline">
+        <label class="lable-f" for="finishDate" id="dateFinishLable">по:</label>
+        <input type="date" name="finishDate" id="finishDate" class="form-control" [(ngModel)]="finishDate"  aria-describedby="dateFinishLable" />
+    </div>
+    <button type="button" mat-raised-button class="btn btn-secondary" (click)="onClear()"> Очистить </button> 
+    <button type="button" mat-raised-button color="primary" class="btn btn-primary" (click)="onSearch()"> Поиск </button> 
+</div>    
 <div class="mat-elevation-z8 table-container">
     <table mat-table [dataSource]="dataSource" class="table-hover" matSort>
 

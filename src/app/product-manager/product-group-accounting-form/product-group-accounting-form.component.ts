@@ -101,6 +101,7 @@ export class ProductGroupAccountingFormComponent implements OnInit {
   }
 
   onSelectNode(node) {
+    this.clearProp();
     this.selectedRowTree = node.id;
     this.group = node.name.split(" ")[0];
     if(this.group) {
@@ -126,6 +127,9 @@ export class ProductGroupAccountingFormComponent implements OnInit {
     if(response) {
       this.dataSourceProducts = response;
       this.countListProducts = this.dataSourceProducts.length;
+
+      let t = this.dataSourceProducts[0];
+      this.onSelectRowClick(this.dataSourceProducts[0]);
     }
   }
 
@@ -146,10 +150,17 @@ export class ProductGroupAccountingFormComponent implements OnInit {
           this.listDelivers.push(element);
         });
       }
+      if(this.listPlaces[this.listPlaces.length - 1].length == 0) {
+        this.listPlaces.pop();
+      }
+      if(this.listDelivers[this.listDelivers.length - 1].length == 0) {
+        this.listDelivers.pop();
+      }
     }
   }
 
   onSearch() {
+    this.clearProp();
     if(this.searchValue) {
       this.scrollPosition = 8000;
       this.group = '';
@@ -215,7 +226,7 @@ export class ProductGroupAccountingFormComponent implements OnInit {
     }
   }
 
-  onSelectRowClick(row: string) {
+  onSelectRowClick(row: Array<string>) {
     if(row[0]) {
       this.selectedRowIndex = row[0];
       this.productService.getProductProp(new ProductProp(this.getToken(this.nameCookie), row[0])).subscribe(response => {
@@ -318,5 +329,11 @@ export class ProductGroupAccountingFormComponent implements OnInit {
       if(result) {
       }
     });
+  }
+
+  clearProp() {
+    this.productPropAnswer = new ProductPropAnswer('', '', '', '', '', '', '', '');
+    this.listPlaces = [];
+    this.listDelivers = [];
   }
 }

@@ -1,0 +1,13 @@
+.date-filter {
+    margin: 0.5em;
+}
+.date-start {
+    margin-right: 2em;
+}
+input {
+    margin-left: 0.4em;
+}
+button {
+    width: 7em;
+    margin-left: 1em;
+}
