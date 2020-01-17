@@ -57,10 +57,14 @@ export class ErrorLogFormComponent implements OnInit {
   }
 
   onClear() {
-
+    this.startDate = "";
+    this.finishDate = "";
   }
 
   onSearch() {
-    
+    if(this.finishDate < this.startDate) 
+      this.snackbarService.openSnackBar('Некорректные даты', this.action, this.styleNoConnect);
+    else 
+      this.loadData();
   }
 }

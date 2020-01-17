@@ -70,7 +70,7 @@ export class StillgeDialogFormComponent implements OnInit {
             this.dataSource = new MatTableDataSource(this.detailCell);
             this.dataSource.sort = this.sort;
           } else {
-            this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.messageWrongCell);
+            this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
             this.onNoClick();
           }
         }

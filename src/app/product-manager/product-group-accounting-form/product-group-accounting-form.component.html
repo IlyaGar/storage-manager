@@ -169,9 +169,16 @@
                     </td>
                 </tr>
                 <tr> 
-                    <td><mat-form-field id="form-prop"><textarea matInput placeholder="Наименование" [(ngModel)]="productPropAnswer.name" readonly></textarea></mat-form-field></td>
-                    <td><mat-form-field id="form-prop"><input matInput placeholder="Единици измерения" [(ngModel)]="productPropAnswer.mesabbrev" readonly></mat-form-field></td>            
-                    <td><mat-form-field id="form-prop"><input matInput placeholder="Группа" [(ngModel)]="productPropAnswer.group" readonly></mat-form-field></td>
+                    <td colspan="2">
+                        <mat-form-field id="form-name">
+                            <textarea matInput placeholder="Наименование" [(ngModel)]="productPropAnswer.name" readonly></textarea>
+                        </mat-form-field>
+                    </td>
+                    <!-- <td><mat-form-field id="form-prop"><input matInput placeholder="Единици измерения" [(ngModel)]="productPropAnswer.mesabbrev" readonly></mat-form-field></td>             -->
+                    <td>
+                        <mat-form-field id="form-prop"><input matInput placeholder="Ед. измерения" [(ngModel)]="productPropAnswer.mesabbrev" readonly></mat-form-field>
+                        <mat-form-field id="form-prop"><input matInput placeholder="Группа" [(ngModel)]="productPropAnswer.group" readonly></mat-form-field>
+                    </td>
                 </tr>
             </table>
         

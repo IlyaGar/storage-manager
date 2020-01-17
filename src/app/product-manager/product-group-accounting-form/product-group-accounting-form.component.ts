@@ -10,9 +10,9 @@ import { ProductProp } from '../models/product-prop';
 import { ProductPropAnswer } from '../models/product-prop-answer';
 import { MatDialog } from '@angular/material/dialog';
 import { AttentionFormComponent } from 'src/app/dialog-windows/attention-dialog/attention-form/attention-form.component';
-import { StoragePlacesComponent } from 'src/app/dialog-windows/storage-places-manager/storage-places/storage-places.component';
 import { PrintLableFormComponent } from '../dialog-windows/print-lable-form/print-lable-form.component';
 import { SnackbarService } from 'src/app/common/services/snackbar.service';
+import { StoragePlacesEditorComponent } from '../dialog-windows/storage-places-editor/storage-places-editor.component';
 
 interface PoductNode {
   id: string;
@@ -137,7 +137,7 @@ export class ProductGroupAccountingFormComponent implements OnInit {
     if(response) {
       this.listPlaces = [];
       this.listDelivers = [];
-      this.productPropAnswer = response;    
+      this.productPropAnswer = response;  
       if(this.productPropAnswer.places) {
         var splitPlace = this.productPropAnswer.places.split("; ");
         splitPlace.forEach(element => {
@@ -297,16 +297,28 @@ export class ProductGroupAccountingFormComponent implements OnInit {
 
   openAttentionDialog(status: string) {
     const dialogRef = this.dialog.open(AttentionFormComponent, {
-      data: {status: status},
+      data: { status: status },
     });
     dialogRef.afterClosed().subscribe(result => {});
   }
 
   openStoragePlacesDialog(element: string) {
-    const dialogRef = this.dialog.open(StoragePlacesComponent, {
-      data: {status: status},
+    let str = element.split(' | ');
+    let place = str[0];
+    let count = str[1];
+    const dialogRef = this.dialog.open(StoragePlacesEditorComponent, {
+      width: "300px",
+      data: { article: this.productPropAnswer.article, place: place, count: count, units: this.productPropAnswer.mesabbrev },
     });
-    dialogRef.afterClosed().subscribe(result => {});
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        
+      // article:"1261632"
+      // count:"500"
+      // place:"B48-1-2"
+      // units:"шт"
+      }
+    });
   }
 
   getToken(nameCookie: string) {

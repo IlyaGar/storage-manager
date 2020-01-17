@@ -7,7 +7,7 @@
         <label class="lable-f" for="finishDate" id="dateFinishLable">по:</label>
         <input type="date" name="finishDate" id="finishDate" class="form-control" [(ngModel)]="finishDate"  aria-describedby="dateFinishLable" />
     </div>
-    <button type="button" mat-raised-button class="btn btn-secondary" (click)="onClear()"> Очистить </button> 
+    <button id="bt-def" mat-raised-button (click)="onClear()"> Очистить </button> 
     <button type="button" mat-raised-button color="primary" class="btn btn-primary" (click)="onSearch()"> Поиск </button> 
 </div>    
 <div class="mat-elevation-z8 table-container">

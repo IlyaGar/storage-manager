@@ -23,7 +23,6 @@ import { InventoryDialogFormComponent } from './dialog-windows/inventory-dialog-
 import { HorizontalThreeFourActionComponent } from './stillages/horizontal-three-four-action/horizontal-three-four-action.component';
 import { VerticalThreeFourActionComponent } from './stillages/vertical-three-four-action/vertical-three-four-action.component';
 import { ProductGroupAccountingFormComponent } from './product-manager/product-group-accounting-form/product-group-accounting-form.component';
-import { StoragePlacesComponent } from './dialog-windows/storage-places-manager/storage-places/storage-places.component';
 import { TaskComponent } from './processes-manager/task/task.component';
 import { BaseFormComponent } from './processes-manager/components/base-form/base-form.component';
 import { ProcessesFormComponent } from './processes-manager/components/processes-form/processes-form.component';
@@ -89,6 +88,7 @@ import { ZonaStorageComponent } from './stillages/zona-storage/zona-storage.comp
 import { ZonaStorageActionComponent } from './stillages/zona-storage-action/zona-storage-action.component';
 import { ErrorLogFormComponent } from './wms-map/components/error-log-form/error-log-form.component';
 import { CellHistoryFormComponent } from './wms-map/components/cell-history-form/cell-history-form.component';
+import { StoragePlacesEditorComponent } from './product-manager/dialog-windows/storage-places-editor/storage-places-editor.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +106,6 @@ import { CellHistoryFormComponent } from './wms-map/components/cell-history-form
     HorizontalThreeFourActionComponent,
     VerticalThreeFourActionComponent,
     ProductGroupAccountingFormComponent,
-    StoragePlacesComponent,
     TaskComponent,
     BaseFormComponent,
     ProcessesFormComponent,
@@ -171,6 +170,7 @@ import { CellHistoryFormComponent } from './wms-map/components/cell-history-form
     ZonaStorageActionComponent,
     ErrorLogFormComponent,
     CellHistoryFormComponent,
+    StoragePlacesEditorComponent,
   ],
   imports: [
     FormsModule,
@@ -196,7 +196,6 @@ import { CellHistoryFormComponent } from './wms-map/components/cell-history-form
     DetailViewCellComponent,
     NavbarFormComponent,
     InventoryDialogFormComponent,
-    StoragePlacesComponent,
     ProcessesFormComponent,
     SelectCellFormComponent,
     DocListComponent,
@@ -212,6 +211,7 @@ import { CellHistoryFormComponent } from './wms-map/components/cell-history-form
     PrintBadgeFormComponent,
     PrintLableFormComponent,
     NameDocFormComponent,
+    StoragePlacesEditorComponent,
   ],
   bootstrap: [AppComponent]
 })

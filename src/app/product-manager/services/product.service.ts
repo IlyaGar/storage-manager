@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { ProductQuery } from '../models/product-query';
 import { ProductProp } from '../models/product-prop';
 import { ProductPropAnswer } from '../models/product-prop-answer';
+import { StoreEditor } from '../models/store-editor';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class ProductService {
   private urlList = environment.apiUrl + "wms/tree/";
   private urlProduct = environment.apiUrl + "wms/product/";
   private urlProductProp = environment.apiUrl + "wms/product/prop/"
+  private urlPutCountProduct = environment.apiUrl + "wms/product/!!!!!!!!/"
 
   constructor(private http: HttpClient) { }
 
@@ -31,5 +33,9 @@ export class ProductService {
 
   getProductProp(data: ProductProp): Observable<ProductPropAnswer> {
     return this.http.post<ProductPropAnswer>(`${this.urlProductProp}`, data);
+  }
+
+  putCountProduct(data: StoreEditor): Observable<any> {
+    return this.http.post<any>(`${this.urlPutCountProduct}`, data);
   }
 }
