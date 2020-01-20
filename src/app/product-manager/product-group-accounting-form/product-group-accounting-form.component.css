@@ -312,3 +312,6 @@ input, textarea {
     font-weight: 400;
     font-size: 16px;
 }
+/* ::ng-deep .mat-header-cell .cdk-column-article .mat-column-article .mat-table-sticky .ng-star-inserted {
+    height: 50px;
+} */

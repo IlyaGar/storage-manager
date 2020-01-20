@@ -13,6 +13,7 @@ import { AttentionFormComponent } from 'src/app/dialog-windows/attention-dialog/
 import { PrintLableFormComponent } from '../dialog-windows/print-lable-form/print-lable-form.component';
 import { SnackbarService } from 'src/app/common/services/snackbar.service';
 import { StoragePlacesEditorComponent } from '../dialog-windows/storage-places-editor/storage-places-editor.component';
+import { PlaceListFormComponent } from '../dialog-windows/place-list-form/place-list-form.component';
 
 interface PoductNode {
   id: string;
@@ -36,7 +37,7 @@ export class ProductGroupAccountingFormComponent implements OnInit {
 
   group: string = '';
   selectedRowTree: string = '';
-  selectedRowIndex: string = '';
+  selectedRow: Array<string> = [];
   searchValue: string = '';
   selectedSearchVar: any = 'article';
   productPropAnswer: ProductPropAnswer = new ProductPropAnswer('', '', '', '', '', '', '', '');
@@ -228,7 +229,7 @@ export class ProductGroupAccountingFormComponent implements OnInit {
 
   onSelectRowClick(row: Array<string>) {
     if(row[0]) {
-      this.selectedRowIndex = row[0];
+      this.selectedRow = row;
       this.productService.getProductProp(new ProductProp(this.getToken(this.nameCookie), row[0])).subscribe(response => {
         this.checkResponseProductProp(response); 
       }, 
@@ -347,5 +348,16 @@ export class ProductGroupAccountingFormComponent implements OnInit {
     this.productPropAnswer = new ProductPropAnswer('', '', '', '', '', '', '', '');
     this.listPlaces = [];
     this.listDelivers = [];
+  }
+
+  openPlaceForm(listPlaces: Array<string>) {
+    let list = [this.selectedRow];
+    const dialogRef = this.dialog.open(PlaceListFormComponent, {
+      data: { productList: list, placeList: listPlaces  },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+      }
+    });
   }
 }

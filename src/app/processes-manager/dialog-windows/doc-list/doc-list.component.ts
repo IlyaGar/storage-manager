@@ -6,6 +6,7 @@ import { RequestDoc } from '../../models/request-doc';
 import { TokenService } from 'src/app/common/services/token.service';
 import { SnackbarService } from 'src/app/common/services/snackbar.service';
 import { AnswerDoc } from '../../models/answer-doc';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface DialogData {
   list: Array<ListItem>;
@@ -33,10 +34,10 @@ export class DocListComponent implements OnInit {
   displayedColumns = ['doc', 'date', 'store', 'icon'];
   displayedListColumns = ['title'];
 
-  dataSourcePrihod: Array<AnswerDoc> = [];
-  dataSourceZpc: Array<AnswerDoc> = [];
-  dataSourcePerem: Array<AnswerDoc> = [];
-  dataSourceVozv: Array<AnswerDoc> = [];
+  dataSourcePrihod: MatTableDataSource<AnswerDoc>;
+  dataSourceZpc: MatTableDataSource<AnswerDoc>;
+  dataSourcePerem: MatTableDataSource<AnswerDoc>;
+  dataSourceVozv: MatTableDataSource<AnswerDoc>;
 
   list: Array<ListItem> = [];
   selectDoc: ListItem; 
@@ -70,18 +71,26 @@ export class DocListComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.dataSourcePrihod.forEach(element => {
-      element.highlighted = false;
-    });
-    this.dataSourceZpc.forEach(element => {
-      element.highlighted = false;
-    });
-    this.dataSourcePerem.forEach(element => {
-      element.highlighted = false;
-    });
-    this.dataSourceVozv.forEach(element => {
-      element.highlighted = false;
-    });
+    if(this.dataSourcePrihod)
+      if(this.dataSourcePrihod.data.length > 0)
+        this.dataSourcePrihod.data.forEach(element => {
+          element.highlighted = false;
+        });
+    if(this.dataSourceZpc)
+      if(this.dataSourceZpc.data.length > 0)
+        this.dataSourceZpc.data.forEach(element => {
+          element.highlighted = false;
+        });
+    if(this.dataSourcePerem)
+      if(this.dataSourcePerem.data.length > 0)
+        this.dataSourcePerem.data.forEach(element => {
+          element.highlighted = false;
+        });
+    if(this.dataSourceVozv)
+      if(this.dataSourceVozv.data.length > 0)
+        this.dataSourceVozv.data.forEach(element => {
+          element.highlighted = false;
+        });
   }
 
   onOkClick(): void {
@@ -129,7 +138,8 @@ export class DocListComponent implements OnInit {
 
       switch(selectItem.title) {
         case 'Приходные':
-          this.dataSourcePrihod.forEach(element => {
+          if(this.dataSourcePrihod.data.length > 0)
+          this.dataSourcePrihod.data.forEach(element => {
             if(element.docid === selectItem.item) {
               element.highlighted = false;
             }
@@ -137,7 +147,8 @@ export class DocListComponent implements OnInit {
         break;
         
         case 'Заявки':
-          this.dataSourceZpc.forEach(element => {
+          if(this.dataSourceZpc.data.length > 0)
+          this.dataSourceZpc.data.forEach(element => {
             if(element.docid === selectItem.item) {
               element.highlighted = false;
             }
@@ -145,7 +156,8 @@ export class DocListComponent implements OnInit {
         break;
             
         case 'Перемещение':
-          this.dataSourcePerem.forEach(element => {
+          if(this.dataSourcePerem.data.length > 0)
+          this.dataSourcePerem.data.forEach(element => {
             if(element.docid === selectItem.item) {
               element.highlighted = false;
             }
@@ -153,7 +165,8 @@ export class DocListComponent implements OnInit {
         break;
                 
         case 'Возвраты':
-          this.dataSourceVozv.forEach(element => {
+          if(this.dataSourceVozv.data.length > 0)
+          this.dataSourceVozv.data.forEach(element => {
             if(element.docid === selectItem.item) {
               element.highlighted = false;
             }
@@ -175,11 +188,13 @@ export class DocListComponent implements OnInit {
       this.setHighlightedFalse(this.dataSourceVozv);
   }
 
-  setHighlightedFalse(arr: any) {
-    arr.forEach(element => {
-      if(element.highlighted)
-        element.highlighted = !element.highlighted;
-    });
+  setHighlightedFalse(dataSource: any) {
+    if(dataSource)
+      if(dataSource.data.length > 0)
+        dataSource.data.forEach(element => {
+          if(element.highlighted)
+            element.highlighted = !element.highlighted;
+        });
   }
 
   openDeatilDocForm(element: AnswerDoc) {
@@ -255,8 +270,8 @@ export class DocListComponent implements OnInit {
 
   getDataSourcePrihod() {
     this.procService.getDocsPrihod(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
-      this.dataSourcePrihod = response;
-      this.deleteZero(this.dataSourcePrihod);
+      this.dataSourcePrihod = new MatTableDataSource(response);
+      this.deleteZero(this.dataSourcePrihod.data);
     }, 
     error => { 
       console.log(error);
@@ -266,8 +281,8 @@ export class DocListComponent implements OnInit {
 
   getDataSourceZpc() {
     this.procService.getDocsZpc(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
-      this.dataSourceZpc = response; 
-      this.deleteZero(this.dataSourceZpc);
+      this.dataSourceZpc = new MatTableDataSource(response); 
+      this.deleteZero(this.dataSourceZpc.data);
     }, 
     error => { 
       console.log(error);
@@ -277,8 +292,8 @@ export class DocListComponent implements OnInit {
 
   getDataSourcePerem() {
     this.procService.getDocsPerem(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
-      this.dataSourcePerem = response;
-      this.deleteZero(this.dataSourcePerem);
+      this.dataSourcePerem = new MatTableDataSource(response);
+      this.deleteZero(this.dataSourcePerem.data);
     }, 
     error => { 
       console.log(error);
@@ -288,8 +303,8 @@ export class DocListComponent implements OnInit {
 
   getDataSourceVozv() {
     this.procService.getDocsVozv(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
-      this.dataSourceVozv = response;
-      this.deleteZero(this.dataSourceVozv);
+      this.dataSourceVozv = new MatTableDataSource(response);
+      this.deleteZero(this.dataSourceVozv.data);
     }, 
     error => { 
       console.log(error);
@@ -302,8 +317,41 @@ export class DocListComponent implements OnInit {
   }
 
   deleteZero(list: Array<AnswerDoc>) {
-    list.forEach(element => {
-      element.docdate = element.docdate.split(' ')[0];
-    });
+    if(list.length > 0)
+      list.forEach(element => {
+        element.docdate = element.docdate.split(' ')[0];
+      });
+  }
+
+  applyFilterPrihod(filterValue: string) {
+    this.dataSourcePrihod.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSourcePrihod.paginator) {
+      this.dataSourcePrihod.paginator.firstPage();
+    }
+  }
+
+  applyFilterZpc(filterValue: string) {
+    this.dataSourceZpc.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSourceZpc.paginator) {
+      this.dataSourceZpc.paginator.firstPage();
+    }
+  }
+
+  applyFilterPerem(filterValue: string) {
+    this.dataSourcePerem.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSourcePerem.paginator) {
+      this.dataSourcePerem.paginator.firstPage();
+    }
+  }
+
+  applyFilterVozv(filterValue: string) {
+    this.dataSourceVozv.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSourceVozv.paginator) {
+      this.dataSourceVozv.paginator.firstPage();
+    }
   }
 } 

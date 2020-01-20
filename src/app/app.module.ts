@@ -89,6 +89,7 @@ import { ZonaStorageActionComponent } from './stillages/zona-storage-action/zona
 import { ErrorLogFormComponent } from './wms-map/components/error-log-form/error-log-form.component';
 import { CellHistoryFormComponent } from './wms-map/components/cell-history-form/cell-history-form.component';
 import { StoragePlacesEditorComponent } from './product-manager/dialog-windows/storage-places-editor/storage-places-editor.component';
+import { PlaceListFormComponent } from './product-manager/dialog-windows/place-list-form/place-list-form.component';
 
 @NgModule({
   declarations: [
@@ -171,6 +172,7 @@ import { StoragePlacesEditorComponent } from './product-manager/dialog-windows/s
     ErrorLogFormComponent,
     CellHistoryFormComponent,
     StoragePlacesEditorComponent,
+    PlaceListFormComponent,
   ],
   imports: [
     FormsModule,
@@ -212,6 +214,7 @@ import { StoragePlacesEditorComponent } from './product-manager/dialog-windows/s
     PrintLableFormComponent,
     NameDocFormComponent,
     StoragePlacesEditorComponent,
+    PlaceListFormComponent,
   ],
   bootstrap: [AppComponent]
 })

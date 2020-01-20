@@ -17,7 +17,7 @@ export class ErrorLogFormComponent implements OnInit {
   
   errorLogs: Array<ErrorLog> = [];
   dataSource: MatTableDataSource<ErrorLog>;
-  displayedColumns: Array<string> = ['num', 'article', 'place', 'count', 'message'];
+  displayedColumns: Array<string> = ['num', 'article', 'date', 'place', 'count', 'message'];
   startDate: any;
   finishDate: any;
 
@@ -42,6 +42,7 @@ export class ErrorLogFormComponent implements OnInit {
         this.errorLogs = responce.map(item => ({
           num: i++,
           article: item.article,
+          date: item.date,
           place: item.place,
           count: item.count,
           message: item.message,

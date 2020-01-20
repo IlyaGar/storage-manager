@@ -1,47 +1,34 @@
-.date-filter {
-    margin: 0.5em;
-}
-.date-start {
-    margin-right: 2em;
-}
-input {
-    margin-left: 0.4em;
-}
-button {
-    width: 7em;
-    margin-left: 1em;
-}
-.mat-column-num {
+.mat-column-articl {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 5% !important;
-    width: 5% !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
-  
+   
     word-break: break-word;
-  
+   
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
 }   
-.mat-column-article {
+.mat-column-name {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 15% !important;
-    width: 15% !important;
+    flex: 0 0 35% !important;
+    width: 35% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
     word-break: break-word;
-  
+   
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
-}   
-.mat-column-article {
+}  
+.mat-column-status {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 10% !important;
@@ -56,11 +43,11 @@ button {
     -webkit-hyphens: auto;
     hyphens: auto;
 }   
-.mat-column-place {
+.mat-column-barcode {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 20% !important;
-    width: 20% !important;
+    flex: 0 0 25% !important;
+    width: 25% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -71,7 +58,7 @@ button {
     -webkit-hyphens: auto;
     hyphens: auto;
 }   
-.mat-column-count {
+.mat-column-balancestore {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 10% !important;
@@ -85,12 +72,12 @@ button {
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
-}   
-.mat-column-message {
+} 
+.mat-column-balancedefect {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 40% !important;
-    width: 40% !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -100,8 +87,13 @@ button {
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
-}   
-button#bt-def {
-    background-color: rgba(128, 128, 128, 0.5);
-    font-size: 16px;
+}
+.places {
+    width: 100%;
+}
+.marg {
+    padding: 0 1em;
+}
+.mat-dialog-actions {
+    justify-content: flex-end;
 }
