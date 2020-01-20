@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { DetailDocFormComponent } from '../detail-doc-form/detail-doc-form.component';
 import { ProcService } from '../../services/proc.service';
@@ -7,6 +7,7 @@ import { TokenService } from 'src/app/common/services/token.service';
 import { SnackbarService } from 'src/app/common/services/snackbar.service';
 import { AnswerDoc } from '../../models/answer-doc';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 export interface DialogData {
   list: Array<ListItem>;
@@ -31,7 +32,12 @@ export class ListItem{
 })
 export class DocListComponent implements OnInit {
 
-  displayedColumns = ['doc', 'date', 'store', 'icon'];
+  @ViewChild('sortPrihod', {static: true}) sortPrihod: MatSort;
+  @ViewChild('sortZpc', {static: true}) sortZpc: MatSort;
+  @ViewChild('sortPerem', {static: true}) sortPerem: MatSort;
+  @ViewChild('sortVozv', {static: true}) sortVozv: MatSort;
+  
+  displayedColumns = ['docid', 'docdate', 'docloc', 'icon'];
   displayedListColumns = ['title'];
 
   dataSourcePrihod: MatTableDataSource<AnswerDoc>;
@@ -272,6 +278,7 @@ export class DocListComponent implements OnInit {
     this.procService.getDocsPrihod(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
       this.dataSourcePrihod = new MatTableDataSource(response);
       this.deleteZero(this.dataSourcePrihod.data);
+      this.dataSourcePrihod.sort = this.sortPrihod;
     }, 
     error => { 
       console.log(error);
@@ -283,6 +290,8 @@ export class DocListComponent implements OnInit {
     this.procService.getDocsZpc(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
       this.dataSourceZpc = new MatTableDataSource(response); 
       this.deleteZero(this.dataSourceZpc.data);
+      // this.addSort();
+      this.dataSourceZpc.sort = this.sortZpc;
     }, 
     error => { 
       console.log(error);
@@ -294,6 +303,7 @@ export class DocListComponent implements OnInit {
     this.procService.getDocsPerem(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
       this.dataSourcePerem = new MatTableDataSource(response);
       this.deleteZero(this.dataSourcePerem.data);
+      this.dataSourcePerem.sort = this.sortPerem;
     }, 
     error => { 
       console.log(error);
@@ -305,15 +315,12 @@ export class DocListComponent implements OnInit {
     this.procService.getDocsVozv(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
       this.dataSourceVozv = new MatTableDataSource(response);
       this.deleteZero(this.dataSourceVozv.data);
+      this.dataSourceVozv.sort = this.sortVozv;
     }, 
     error => { 
       console.log(error);
       this.snackbarService.openSnackBar(this.messageNoConnect, this.action, this.styleNoConnect);
     });
-  }
-
-  checkResponse(response: Array<AnswerDoc>) {
-    // this.dataSource = response;
   }
 
   deleteZero(list: Array<AnswerDoc>) {

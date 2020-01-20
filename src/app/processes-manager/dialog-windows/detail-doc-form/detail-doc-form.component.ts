@@ -18,7 +18,7 @@ export interface DataDialog {
 export class DetailDocFormComponent implements OnInit {
 
   wDocAnswer: WDocAnswer;
-  displayedColumns = ['n', 'article', 'name', 'count', 'units', 'main', 'brak', 'place'];
+  displayedColumns = ['num', 'article', 'name', 'count', 'mes', 'main', 'brak', 'place'];
   imgSource: string = '';
 
   messageNoConnect = 'Нет соединения, попробуйте позже.';

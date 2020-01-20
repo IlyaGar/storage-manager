@@ -1,4 +1,4 @@
-.mat-column-n {
+.mat-column-num {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 5% !important;
@@ -58,7 +58,7 @@
     -webkit-hyphens: auto;
     hyphens: auto;
 }   
-.mat-column-units {
+.mat-column-mes {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 6% !important;
