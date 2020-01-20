@@ -4,6 +4,7 @@ import { ProcService } from '../../services/proc.service';
 import { SnackbarService } from 'src/app/common/services/snackbar.service';
 import { WDocQuery } from '../../models/w-doc-query';
 import { WDocAnswer, Doctable } from '../../models/w-doc-answer';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface DataDialog {
   token: string;
@@ -17,8 +18,10 @@ export interface DataDialog {
 })
 export class DetailDocFormComponent implements OnInit {
 
-  wDocAnswer: WDocAnswer;
-  displayedColumns = ['num', 'article', 'name', 'count', 'mes', 'main', 'brak', 'place'];
+  dataSource: MatTableDataSource<Doctable>;
+
+  wDocAnswer: WDocAnswer = new WDocAnswer('', '', '', '', '', []);
+  displayedColumns = ['num', 'article', 'name', 'count', 'mes', 'goods_main', 'brak', 'place'];
   imgSource: string = '';
 
   messageNoConnect = 'Нет соединения, попробуйте позже.';
@@ -44,6 +47,7 @@ export class DetailDocFormComponent implements OnInit {
 
   checkResponse(response: any) {
     this.wDocAnswer = response;
+    this.dataSource = new MatTableDataSource(this.wDocAnswer.docbody);
     this.imgSource = 'https://barcode.tec-it.com/barcode.ashx?data=' + this.wDocAnswer.docbarcode;
   }
 

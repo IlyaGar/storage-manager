@@ -104,6 +104,8 @@ export class DocListComponent implements OnInit {
   }
 
   onCancelClick(): void {
+    // this.ngOnDestroy();
+    this.list = [];
     this.dialogRef.close();
   }
 

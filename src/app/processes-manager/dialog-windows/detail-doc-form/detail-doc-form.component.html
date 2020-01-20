@@ -9,8 +9,9 @@
         <mat-grid-tile> Грузополучатель: </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1"> {{wDocAnswer.docto}} </mat-grid-tile>
     </mat-grid-list>
-    <div class="mat-elevation-z8 table-container" *ngIf="wDocAnswer.docbody.length > 0">
-        <table mat-table [dataSource]="wDocAnswer.docbody" class="table-hover">
+
+    <div class="mat-elevation-z8 table-container">
+        <table mat-table [dataSource]="dataSource" class="table-hover">
 
             <ng-container matColumnDef="num">
                 <th mat-header-cell *matHeaderCellDef> № </th>
@@ -57,6 +58,7 @@
 
         </table>
     </div>
+
 </div>
 <div mat-dialog-actions>
     <button mat-raised-button color="primary" class="btn btn-default" (click)="onCancelClick()">
