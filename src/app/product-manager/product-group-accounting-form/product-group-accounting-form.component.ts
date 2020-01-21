@@ -312,12 +312,8 @@ export class ProductGroupAccountingFormComponent implements OnInit {
       data: { article: this.productPropAnswer.article, place: place, count: count, units: this.productPropAnswer.mesabbrev },
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-        
-      // article:"1261632"
-      // count:"500"
-      // place:"B48-1-2"
-      // units:"шт"
+      if(result === 'true') {
+        this.onSelectRowClick(this.dataSourceProducts[0]);
       }
     });
   }

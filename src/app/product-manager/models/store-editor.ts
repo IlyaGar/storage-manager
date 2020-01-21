@@ -3,6 +3,6 @@ export class StoreEditor{
         public token: string,
         public article: string,
         public place: string,
-        public count: string,
+        public new_count: string,
     ){}
 }

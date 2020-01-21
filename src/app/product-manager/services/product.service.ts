@@ -7,6 +7,7 @@ import { ProductQuery } from '../models/product-query';
 import { ProductProp } from '../models/product-prop';
 import { ProductPropAnswer } from '../models/product-prop-answer';
 import { StoreEditor } from '../models/store-editor';
+import { Status } from 'src/app/common/models/status';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class ProductService {
   private urlList = environment.apiUrl + "wms/tree/";
   private urlProduct = environment.apiUrl + "wms/product/";
   private urlProductProp = environment.apiUrl + "wms/product/prop/"
-  private urlPutCountProduct = environment.apiUrl + "wms/product/!!!!!!!!/"
+  private urlPutCountProduct = environment.apiUrl + "wms/changecount/"
 
   constructor(private http: HttpClient) { }
 
@@ -35,7 +36,7 @@ export class ProductService {
     return this.http.post<ProductPropAnswer>(`${this.urlProductProp}`, data);
   }
 
-  putCountProduct(data: StoreEditor): Observable<any> {
-    return this.http.post<any>(`${this.urlPutCountProduct}`, data);
+  putCountProduct(data: StoreEditor): Observable<Status> {
+    return this.http.post<Status>(`${this.urlPutCountProduct}`, data);
   }
 }
