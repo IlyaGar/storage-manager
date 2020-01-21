@@ -154,3 +154,6 @@ mat-form-field {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+input {
+  width: 8em;
+}

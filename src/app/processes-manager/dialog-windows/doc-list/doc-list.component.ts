@@ -45,6 +45,9 @@ export class DocListComponent implements OnInit {
   dataSourcePerem: MatTableDataSource<AnswerDoc>;
   dataSourceVozv: MatTableDataSource<AnswerDoc>;
 
+  dataSource: Array<AnswerDoc> = [];
+  filterArray: Array<AnswerDoc> = [];
+
   list: Array<ListItem> = [];
   selectDoc: ListItem; 
 
@@ -72,11 +75,13 @@ export class DocListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.list = this.data.list;
+    this.list =JSON.parse(JSON.stringify(this.data.list))
     this.getDataSourcePrihod();
   }
 
   ngOnDestroy() {
+    this.list = [];
+    this.data.list = [];
     if(this.dataSourcePrihod)
       if(this.dataSourcePrihod.data.length > 0)
         this.dataSourcePrihod.data.forEach(element => {
@@ -104,8 +109,8 @@ export class DocListComponent implements OnInit {
   }
 
   onCancelClick(): void {
-    // this.ngOnDestroy();
     this.list = [];
+    this.data.list = [];
     this.dialogRef.close();
   }
 
@@ -292,7 +297,6 @@ export class DocListComponent implements OnInit {
     this.procService.getDocsZpc(new RequestDoc(this.tokenService.getToken())).subscribe(response => {
       this.dataSourceZpc = new MatTableDataSource(response); 
       this.deleteZero(this.dataSourceZpc.data);
-      // this.addSort();
       this.dataSourceZpc.sort = this.sortZpc;
     }, 
     error => { 
@@ -333,34 +337,85 @@ export class DocListComponent implements OnInit {
   }
 
   applyFilterPrihod(filterValue: string) {
-    this.dataSourcePrihod.filter = filterValue.trim().toLowerCase();
+    // if(this.dataSource.length < this.dataSourcePrihod.data.length)
+    //   this.dataSource = this.dataSourcePrihod.data;
 
-    if (this.dataSourcePrihod.paginator) {
-      this.dataSourcePrihod.paginator.firstPage();
-    }
+    // let arrStr = filterValue.split(' ');
+    // if(arrStr.length > 1) {
+    //   this.filterArray = this.dataSourcePrihod.data.filter(item => arrStr.includes(item.docid)).map(item => ({ docid: item.docid, docdate: item.docdate, docloc: item.docloc }));
+    //   this.dataSourcePrihod.data = this.filterArray;
+    // } else {
+      if(this.dataSource.length > this.dataSourcePrihod.data.length)
+        this.dataSourcePrihod.data = this.dataSource;
+
+      this.dataSourcePrihod.filter = filterValue.trim().toLowerCase();
+
+      if (this.dataSourcePrihod.paginator) {
+        this.dataSourcePrihod.paginator.firstPage();
+      }
+    // }
   }
 
   applyFilterZpc(filterValue: string) {
-    this.dataSourceZpc.filter = filterValue.trim().toLowerCase();
+    // if(this.dataSource.length < this.dataSourceZpc.data.length)
+    //   this.dataSource = this.dataSourceZpc.data;
 
-    if (this.dataSourceZpc.paginator) {
-      this.dataSourceZpc.paginator.firstPage();
-    }
+    // let arrStr = filterValue.split(' ');
+    // if(arrStr.length > 1) {
+    //   this.filterArray = this.dataSourceZpc.data.filter(item => arrStr.includes(item.docid)).map(item => ({ docid: item.docid, docdate: item.docdate, docloc: item.docloc }));
+
+    //   this.dataSourceZpc.data = this.filterArray;
+    // } else {
+      if(this.dataSource.length > this.dataSourceZpc.data.length)
+        this.dataSourceZpc.data = this.dataSource;
+
+      this.dataSourceZpc.filter = filterValue.trim().toLowerCase();
+
+      if (this.dataSourceZpc.paginator) {
+        this.dataSourceZpc.paginator.firstPage();
+      }
+    // }
   }
 
   applyFilterPerem(filterValue: string) {
-    this.dataSourcePerem.filter = filterValue.trim().toLowerCase();
+    // if(this.dataSource.length < this.dataSourcePerem.data.length)
+    //   this.dataSource = this.dataSourcePerem.data;
 
-    if (this.dataSourcePerem.paginator) {
-      this.dataSourcePerem.paginator.firstPage();
-    }
+    // let arrStr = filterValue.split(' ');
+    // if(arrStr.length > 1) {
+    //   this.filterArray = this.dataSourcePerem.data.filter(item => arrStr.includes(item.docid)).map(item => ({ docid: item.docid, docdate: item.docdate, docloc: item.docloc }));
+
+    //   this.dataSourcePerem.data = this.filterArray;
+    // } else {
+      if(this.dataSource.length > this.dataSourcePerem.data.length)
+        this.dataSourcePerem.data 
+
+      this.dataSourcePerem.filter = filterValue.trim().toLowerCase();
+
+      if (this.dataSourcePerem.paginator) {
+        this.dataSourcePerem.paginator.firstPage();
+      }
+    // }
   }
 
   applyFilterVozv(filterValue: string) {
-    this.dataSourceVozv.filter = filterValue.trim().toLowerCase();
+    // if(this.dataSource.length < this.dataSourceVozv.data.length)
+    //   this.dataSource = this.dataSourceVozv.data;
 
-    if (this.dataSourceVozv.paginator) {
-      this.dataSourceVozv.paginator.firstPage();
+    // let arrStr = filterValue.split(' ');
+    // if(arrStr.length > 1) {
+    //   this.filterArray = this.dataSourceVozv.data.filter(item => arrStr.includes(item.docid)).map(item => ({ docid: item.docid, docdate: item.docdate, docloc: item.docloc }));
+
+    //   this.dataSourceVozv.data = this.filterArray;
+    // } else {
+      if(this.dataSource.length > this.dataSourceVozv.data.length)
+        this.dataSourceVozv.data 
+
+      this.dataSourceVozv.filter = filterValue.trim().toLowerCase();
+
+      if (this.dataSourceVozv.paginator) {
+        this.dataSourceVozv.paginator.firstPage();
+      }
     }
-  }
+  // }
 } 
