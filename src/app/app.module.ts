@@ -90,6 +90,7 @@ import { ErrorLogFormComponent } from './wms-map/components/error-log-form/error
 import { CellHistoryFormComponent } from './wms-map/components/cell-history-form/cell-history-form.component';
 import { StoragePlacesEditorComponent } from './product-manager/dialog-windows/storage-places-editor/storage-places-editor.component';
 import { PlaceListFormComponent } from './product-manager/dialog-windows/place-list-form/place-list-form.component';
+import { MotivationComponent } from './personal-manager/components/motivation/motivation.component';
 
 @NgModule({
   declarations: [
@@ -173,6 +174,7 @@ import { PlaceListFormComponent } from './product-manager/dialog-windows/place-l
     CellHistoryFormComponent,
     StoragePlacesEditorComponent,
     PlaceListFormComponent,
+    MotivationComponent,
   ],
   imports: [
     FormsModule,

@@ -11,6 +11,14 @@ button {
     width: 7em;
     margin-left: 1em;
 }
+button#bt-clear {
+    background-color: rgba(128, 128, 128, 0.5);
+    font-size: 16px;
+}
+button#bt-search {
+    background-color: #673ab7;
+    font-size: 16px;
+}
 .mat-column-num {
     word-wrap: break-word !important;
     white-space: unset !important;
@@ -101,7 +109,3 @@ button {
     -webkit-hyphens: auto;
     hyphens: auto;
 }   
-button#bt-def {
-    background-color: rgba(128, 128, 128, 0.5);
-    font-size: 16px;
-}

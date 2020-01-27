@@ -8,6 +8,8 @@ import { TaskComponent } from './processes-manager/task/task.component';
 import { PersonalManagementFormComponent } from './personal-manager/personal-management-form/personal-management-form.component';
 import { ListDocFormComponent } from './processes-manager/components/list-doc-form/list-doc-form.component';
 import { ErrorLogFormComponent } from './wms-map/components/error-log-form/error-log-form.component';
+import { CellHistoryFormComponent } from './wms-map/components/cell-history-form/cell-history-form.component';
+import { MotivationComponent } from './personal-manager/components/motivation/motivation.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: 'staff', component: PersonalManagementFormComponent },
   { path: 'list-doc', component: ListDocFormComponent },
   { path: 'error-journal', component: ErrorLogFormComponent },
+  { path: 'history', component: CellHistoryFormComponent },
+  { path: 'motivation', component: MotivationComponent },
 ];
 
 @NgModule({

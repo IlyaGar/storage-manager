@@ -54,7 +54,6 @@ export class NavbarFormComponent implements OnInit {
   }
 
   isPathActiv(path: string) {
-    let v = (path === this.location.path()) ? true : false;
     return (path === this.location.path()) ? true : false;
   }
 }

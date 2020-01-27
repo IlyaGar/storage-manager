@@ -1,1 +1,75 @@
-<p>cell-history-form works!</p>
+<div class="form-inline content">
+    <div>
+        <mat-form-field id="only" appearance="outline">
+            <mat-label  *ngIf="selectedSearchParameter == 'article'"> Артикул </mat-label>
+            <mat-label *ngIf="selectedSearchParameter == 'barcode'"> Штрихкод </mat-label>
+            <mat-label *ngIf="selectedSearchParameter == 'name'"> Наименование </mat-label>
+            <mat-label *ngIf="selectedSearchParameter == 'place'"> Место хранения </mat-label>
+            <mat-label *ngIf="selectedSearchParameter == 'provider'"> Поставщик </mat-label>
+            <input matInput placeholder="Поиск" [(ngModel)]="searchValue" data-placement="bottom" matTooltip="Поле ввода">
+        </mat-form-field>
+    </div>
+    <div class="bt-tools">
+        <button id="bt-search" mat-raised-button color="primary" (click)="onSearch()" data-placement="bottom" matTooltip="Применить поиск"> Поиск </button> 
+        <button id="bt-clear" mat-raised-button (click)="onClear()" data-placement="bottom" matTooltip="Очистить поле ввода"> Очистить </button> 
+    </div>
+
+    <div class="button-group">
+        <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedSearchParameter">
+            <mat-button-toggle id="but" value="article" data-toggle="tooltip" data-placement="bottom" matTooltip="Артикул">
+                Артикул
+            </mat-button-toggle>
+            <mat-button-toggle value="barcode" data-toggle="tooltip" data-placement="bottom" matTooltip="Штрихкод">
+                Штрихкод
+            </mat-button-toggle>
+            <mat-button-toggle value="name" data-toggle="tooltip" data-placement="bottom" matTooltip="Наименование">
+                Наименование
+            </mat-button-toggle>
+            <mat-button-toggle value="place" data-toggle="tooltip" data-placement="bottom" matTooltip="Место хранения">
+                Место хранения
+            </mat-button-toggle>
+            <mat-button-toggle value="provider" data-toggle="tooltip" data-placement="bottom" matTooltip="Поставщик">
+                Поставщик
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div> 
+</div>
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="table-hover"> 
+                
+        <ng-container matColumnDef="article">
+            <th mat-header-cell *matHeaderCellDef> Артикул </th>
+            <td mat-cell *matCellDef="let element"> {{element.article}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="barcode">
+            <th mat-header-cell *matHeaderCellDef> Штрихкод </th>
+            <td mat-cell *matCellDef="let element"> {{element.barcode}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Наименование </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="count">
+            <th mat-header-cell *matHeaderCellDef> Количество </th>
+            <td mat-cell *matCellDef="let element"> {{element.count}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="place">
+            <th mat-header-cell *matHeaderCellDef> Место хранения </th>
+            <td mat-cell *matCellDef="let element"> {{element.place}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="history">
+            <th mat-header-cell *matHeaderCellDef> История </th>
+            <td mat-cell *matCellDef="let element"> {{element.history}} </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+</div>

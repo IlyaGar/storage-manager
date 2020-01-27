@@ -1,0 +1,25 @@
+<div class="form-inline date-filter">
+    <div class="form-inline date-start">
+        <label class="lable-s" for="startDate" id="dateStartLable">Дата с:</label>
+        <input type="date" name="startDate" id="startDate" class="form-control" [(ngModel)]="startDate"  aria-describedby="dateStartLable" />
+    </div>
+    <div class="form-inline">
+        <label class="lable-f" for="finishDate" id="dateFinishLable">по:</label>
+        <input type="date" name="finishDate" id="finishDate" class="form-control" [(ngModel)]="finishDate"  aria-describedby="dateFinishLable" />
+    </div>
+    <form class="name-form">
+        <mat-form-field appearance="outline">
+            <mat-label> Имя </mat-label>
+          <input type="text" placeholder="Поиск"  data-placement="bottom" matTooltip="Поле ввода" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of options" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+    </form>
+    
+    <button id="bt-search" mat-raised-button color="primary" (click)="onSearch()"> Поиск </button> 
+    <button id="bt-clear" mat-raised-button (click)="onClear()"> Очистить </button> 
+
+</div>    

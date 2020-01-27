@@ -44,8 +44,13 @@
                 <div mat-dialog-actions class="search-group">
                     <mat-spinner *ngIf="isLoading" strokeWidth="3" [diameter]="25"></mat-spinner>
                     <div *ngIf="!isLoading" style="margin-left: 3em;">&emsp;</div>
-                    <button mat-button id="button-search" (click)="onSearch()">Искать</button>
-                    <button mat-button id="button-search" (click)="onClear()">Очистить</button>
+
+                    <!-- <button mat-button id="button-search" (click)="onSearch()">Искать</button>
+                    <button mat-button id="button-search" (click)="onClear()">Очистить</button> -->
+
+                    <button id="bt-search" mat-raised-button color="primary" (click)="onSearch()" data-placement="bottom" matTooltip="Применить поиск"> Поиск </button> 
+                    <button id="bt-clear" mat-raised-button (click)="onClear()" data-placement="bottom" matTooltip="Очистить поле ввода"> Очистить </button> 
+
                 </div>
                 <div class="button-group">
                     <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style" [(ngModel)]="selectedSearchVar">

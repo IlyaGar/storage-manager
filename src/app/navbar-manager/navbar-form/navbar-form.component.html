@@ -17,6 +17,8 @@
                                             isPathActiv('/map') || 
                                             isPathActiv('/map-edit') || 
                                             isPathActiv('/error-journal') || 
+                                            isPathActiv('/history') ||
+                                            isPathActiv('/motivation') || 
                                             isPathActiv('/staff')) && 
                                             (!isPathActiv('/tasks') || 
                                             isPathActiv('/list-doc'))">
@@ -43,9 +45,11 @@
                 <ng-container *ngIf="(  isPathActiv('/product-group') || 
                                         isPathActiv('/tasks') || 
                                         isPathActiv('/list-doc') || 
+                                        isPathActiv('/motivation') || 
                                         isPathActiv('/staff')) && 
                                         (!isPathActiv('/map') || 
                                         !isPathActiv('/map-edit') ||
+                                        !isPathActiv('/history') ||
                                         !isPathActiv('/error-journal'))">
                     <label> Топология склада </label>
                 </ng-container>
@@ -58,11 +62,15 @@
                 <ng-container *ngIf="isPathActiv('/error-journal')">
                     <label class="select-item-menu" > Журнал </label>
                 </ng-container>
+                <ng-container *ngIf="isPathActiv('/history')">
+                    <label class="select-item-menu" > История </label>
+                </ng-container>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownTerminal">
                     <a class="dropdown-item" [routerLink]="['map']"> Карта склада </a>
                     <a class="dropdown-item" [routerLink]="['map-edit']"> Редактирование склада </a>
                     <a class="dropdown-item" [routerLink]="['error-journal']"> Журнал </a>
+                    <a class="dropdown-item" [routerLink]="['history']"> История </a>
                 </div>                
             </li>
             <li class="nav-item dropdown" (click)="isPersonal = true; isMap = false; isOrder = false;">
@@ -72,12 +80,17 @@
                                         isPathActiv('/map') || 
                                         isPathActiv('/map-edit') || 
                                         isPathActiv('/error-journal') || 
+                                        isPathActiv('/history') || 
                                         isPathActiv('/list-doc') || 
                                         isPathActiv('/tasks')) && 
-                                        !isPathActiv('/staff')">
+                                        (!isPathActiv('/staff') ||
+                                        !isPathActiv('/motivation'))">
                     <label> Управление ресрсами и персоналом </label>
                 </ng-container>
                 <ng-container *ngIf="isPathActiv('/staff')">
+                    <label class="select-item-menu" > Управление персоналом </label>
+                </ng-container>
+                <ng-container *ngIf="isPathActiv('/motivation')">
                     <label class="select-item-menu" > Управление персоналом </label>
                 </ng-container>
                 </a>
@@ -85,6 +98,7 @@
                     <a class="dropdown-item" [routerLink]="['staff']"> Управление персоналом </a>
                     <a class="dropdown-item" [routerLink]="['']"> Управление штабелерами </a>
                     <a class="dropdown-item" [routerLink]="['']"> Складской учет в разрезах </a>
+                    <a class="dropdown-item" [routerLink]="['motivation']"> Мотивация </a>
                 </div>                
             </li>
         </ul>

@@ -19,6 +19,7 @@ export class WmsMapService {
   url_set_sclad: string = environment.apiUrl + "/wms/setstillages";
   url_get_cell: string = environment.apiUrl + "/wms/getcell";
   url_get_error_log: string = environment.apiUrl + "/wms/!!!!!!!!!!!";
+  url_get_history: string = environment.apiUrl + "/wms/!!!!!!!!!!!";
 
   constructor(private http: HttpClient) { }
 
@@ -36,5 +37,9 @@ export class WmsMapService {
 
   getErrorLog(data: any): Observable<any> {
     return this.http.post<any>(this.url_get_error_log, data);
+  }
+
+  getHistory(data: any): Observable<any> {
+    return this.http.post<any>(this.url_get_history, data);
   }
 }

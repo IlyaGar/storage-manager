@@ -37,7 +37,7 @@ export class DocListComponent implements OnInit {
   @ViewChild('sortPerem', {static: true}) sortPerem: MatSort;
   @ViewChild('sortVozv', {static: true}) sortVozv: MatSort;
   
-  displayedColumns = ['docid', 'docdate', 'docloc', 'icon'];
+  displayedColumns = ['doclabel', 'docid', 'docdate', 'docloc', 'icon'];
   displayedListColumns = ['title'];
 
   dataSourcePrihod: MatTableDataSource<AnswerDoc>;
@@ -213,7 +213,7 @@ export class DocListComponent implements OnInit {
   openDeatilDocForm(element: AnswerDoc) {
     const dialogRef = this.dialog.open(DetailDocFormComponent, {
       width: "70vw",
-      height: "85vh",
+      height: "86vh",
       data: { token: this.tokenService.getToken(), docid: element.docid },
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -337,14 +337,18 @@ export class DocListComponent implements OnInit {
   }
 
   applyFilterPrihod(filterValue: string) {
-    // if(this.dataSource.length < this.dataSourcePrihod.data.length)
-    //   this.dataSource = this.dataSourcePrihod.data;
+    if(this.dataSource.length < this.dataSourcePrihod.data.length)
+      this.dataSource = this.dataSourcePrihod.data;
 
-    // let arrStr = filterValue.split(' ');
-    // if(arrStr.length > 1) {
-    //   this.filterArray = this.dataSourcePrihod.data.filter(item => arrStr.includes(item.docid)).map(item => ({ docid: item.docid, docdate: item.docdate, docloc: item.docloc }));
-    //   this.dataSourcePrihod.data = this.filterArray;
-    // } else {
+    let arrStr = filterValue.split(' ');
+    if(arrStr.length > 1) {
+      if(this.dataSource.length > this.dataSourcePrihod.data.length) {
+        this.filterArray = this.dataSource.filter(item => arrStr.includes(item.docid)).map(item => ({ docid: item.docid, docdate: item.docdate, docloc: item.docloc, doclabel: item.doclabel }));
+      } else {
+        this.filterArray = this.dataSourcePrihod.data.filter(item => arrStr.includes(item.docid)).map(item => ({ docid: item.docid, docdate: item.docdate, docloc: item.docloc, doclabel: item.doclabel }));
+      }
+      this.dataSourcePrihod.data = this.filterArray;
+    } else {
       if(this.dataSource.length > this.dataSourcePrihod.data.length)
         this.dataSourcePrihod.data = this.dataSource;
 
@@ -353,19 +357,22 @@ export class DocListComponent implements OnInit {
       if (this.dataSourcePrihod.paginator) {
         this.dataSourcePrihod.paginator.firstPage();
       }
-    // }
+    }
   }
 
   applyFilterZpc(filterValue: string) {
-    // if(this.dataSource.length < this.dataSourceZpc.data.length)
-    //   this.dataSource = this.dataSourceZpc.data;
+    if(this.dataSource.length < this.dataSourceZpc.data.length)
+      this.dataSource = this.dataSourceZpc.data;
 
-    // let arrStr = filterValue.split(' ');
-    // if(arrStr.length > 1) {
-    //   this.filterArray = this.dataSourceZpc.data.filter(item => arrStr.includes(item.docid)).map(item => ({ docid: item.docid, docdate: item.docdate, docloc: item.docloc }));
-
-    //   this.dataSourceZpc.data = this.filterArray;
-    // } else {
+    let arrStr = filterValue.split(' ');
+    if(arrStr.length > 1) {
+      if(this.dataSource.length > this.dataSourceZpc.data.length) {
+        this.filterArray = this.dataSource.filter(item => arrStr.includes(item.docid)).map(item => ({ docid: item.docid, docdate: item.docdate, docloc: item.docloc, doclabel: item.doclabel }));
+      } else {
+        this.filterArray = this.dataSourceZpc.data.filter(item => arrStr.includes(item.docid)).map(item => ({ docid: item.docid, docdate: item.docdate, docloc: item.docloc, doclabel: item.doclabel }));
+      }
+      this.dataSourceZpc.data = this.filterArray;
+    } else {
       if(this.dataSource.length > this.dataSourceZpc.data.length)
         this.dataSourceZpc.data = this.dataSource;
 
@@ -374,42 +381,45 @@ export class DocListComponent implements OnInit {
       if (this.dataSourceZpc.paginator) {
         this.dataSourceZpc.paginator.firstPage();
       }
-    // }
+    }
   }
 
   applyFilterPerem(filterValue: string) {
-    // if(this.dataSource.length < this.dataSourcePerem.data.length)
-    //   this.dataSource = this.dataSourcePerem.data;
+    if(this.dataSource.length < this.dataSourcePerem.data.length)
+      this.dataSource = this.dataSourcePerem.data;
 
-    // let arrStr = filterValue.split(' ');
-    // if(arrStr.length > 1) {
-    //   this.filterArray = this.dataSourcePerem.data.filter(item => arrStr.includes(item.docid)).map(item => ({ docid: item.docid, docdate: item.docdate, docloc: item.docloc }));
-
-    //   this.dataSourcePerem.data = this.filterArray;
-    // } else {
+    let arrStr = filterValue.split(' ');
+    if(arrStr.length > 1) {
+      if(this.dataSource.length > this.dataSourcePerem.data.length) {
+        this.filterArray = this.dataSource.filter(item => arrStr.includes(item.docid)).map(item => ({ docid: item.docid, docdate: item.docdate, docloc: item.docloc, doclabel: item.doclabel }));
+      } else {
+        this.filterArray = this.dataSourcePerem.data.filter(item => arrStr.includes(item.docid)).map(item => ({ docid: item.docid, docdate: item.docdate, docloc: item.docloc, doclabel: item.doclabel }));
+      }
+      this.dataSourcePerem.data = this.filterArray;
+    } else {
       if(this.dataSource.length > this.dataSourcePerem.data.length)
-        this.dataSourcePerem.data 
+        this.dataSourcePerem.data = this.dataSource;
 
       this.dataSourcePerem.filter = filterValue.trim().toLowerCase();
 
       if (this.dataSourcePerem.paginator) {
         this.dataSourcePerem.paginator.firstPage();
       }
-    // }
+    }
   }
 
   applyFilterVozv(filterValue: string) {
-    // if(this.dataSource.length < this.dataSourceVozv.data.length)
-    //   this.dataSource = this.dataSourceVozv.data;
+    if(this.dataSource.length < this.dataSourceVozv.data.length)
+      this.dataSource = this.dataSourceVozv.data;
 
-    // let arrStr = filterValue.split(' ');
-    // if(arrStr.length > 1) {
-    //   this.filterArray = this.dataSourceVozv.data.filter(item => arrStr.includes(item.docid)).map(item => ({ docid: item.docid, docdate: item.docdate, docloc: item.docloc }));
+    let arrStr = filterValue.split(' ');
+    if(arrStr.length > 1) {
+      this.filterArray = this.dataSourceVozv.data.filter(item => arrStr.includes(item.docid)).map(item => ({ docid: item.docid, docdate: item.docdate, docloc: item.docloc, doclabel: item.doclabel }));
 
-    //   this.dataSourceVozv.data = this.filterArray;
-    // } else {
+      this.dataSourceVozv.data = this.filterArray;
+    } else {
       if(this.dataSource.length > this.dataSourceVozv.data.length)
-        this.dataSourceVozv.data 
+        this.dataSourceVozv.data = this.dataSource;
 
       this.dataSourceVozv.filter = filterValue.trim().toLowerCase();
 
@@ -417,5 +427,5 @@ export class DocListComponent implements OnInit {
         this.dataSourceVozv.paginator.firstPage();
       }
     }
-  // }
+  }
 } 
