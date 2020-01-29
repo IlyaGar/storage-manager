@@ -2,10 +2,8 @@
     <div>
         <mat-form-field id="only" appearance="outline">
             <mat-label  *ngIf="selectedSearchParameter == 'article'"> Артикул </mat-label>
-            <mat-label *ngIf="selectedSearchParameter == 'barcode'"> Штрихкод </mat-label>
-            <mat-label *ngIf="selectedSearchParameter == 'name'"> Наименование </mat-label>
             <mat-label *ngIf="selectedSearchParameter == 'place'"> Место хранения </mat-label>
-            <mat-label *ngIf="selectedSearchParameter == 'provider'"> Поставщик </mat-label>
+            <mat-label *ngIf="selectedSearchParameter == 'worker'"> Кладовщик </mat-label>
             <input matInput placeholder="Поиск" [(ngModel)]="searchValue" data-placement="bottom" matTooltip="Поле ввода">
         </mat-form-field>
     </div>
@@ -22,9 +20,9 @@
             <mat-button-toggle value="place" data-toggle="tooltip" data-placement="bottom" matTooltip="Место хранения">
                 Место хранения
             </mat-button-toggle>
-            <!-- <mat-button-toggle value="worker" data-toggle="tooltip" data-placement="bottom" matTooltip="Работник">
+            <mat-button-toggle value="worker" data-toggle="tooltip" data-placement="bottom" matTooltip="Работник">
                 Кладовщик
-            </mat-button-toggle> -->
+            </mat-button-toggle>
         </mat-button-toggle-group>
     </div> 
 </div>
