@@ -34,7 +34,7 @@ export class CellHistoryFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  loadData(article, place, worker: string) {
+  loadData(article: string, place: string, worker: string) {
     this.wmsMapService.getHistory(new HistFind(this.tokenService.getToken(), article, place, worker)).subscribe(responce => {
       if(responce) {
         this.dataSource = new MatTableDataSource(responce.histdata);

@@ -42,20 +42,55 @@ input[type="date"] {
 .name-form {
     margin-left: 2em;
 }
-
-mat-card {
-    width: 20em;
-    height: 8em;
-
-    margin-right: 1em;
+table#t-main {
+    width: 100%;
 }
-.cards {
-    padding: 0.75em;
+.t-type {
+    margin-right: 0.5em;
 }
-.name-card {
-    font-size: 12px;
+.t-type tr {
+    border-bottom: 1px solid rgba(165, 159, 159, 0.5);
+}
+.t-type tr:last-child {
+    border-bottom: none;
+}
+.t-type td {
+    padding-right: 10px;
+}
 
-    position: relative;
-    bottom: 0.8em;
-    right: 0.8em;
+span {
+    margin: 0 1em;
+}
+td#t_td {
+    text-align: center;
+}
+.mat-column-user {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}   
+.mat-column-motivation {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 85% !important;
+    width: 85% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
