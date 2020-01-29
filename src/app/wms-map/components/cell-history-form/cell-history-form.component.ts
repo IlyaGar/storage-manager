@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TokenService } from 'src/app/common/services/token.service';
 import { WmsMapService } from '../../services/wms-map.service';
 import { SnackbarService } from 'src/app/common/services/snackbar.service';
+import { HistFind } from '../../models/history-find';
+import { MatTableDataSource } from '@angular/material/table';
+import { HistData } from '../../models/history-data';
 
 @Component({
   selector: 'app-cell-history-form',
@@ -10,11 +13,12 @@ import { SnackbarService } from 'src/app/common/services/snackbar.service';
 })
 export class CellHistoryFormComponent implements OnInit {
 
-  dataSource: any;
-  displayedColumns: Array<string> = ['article', 'barcode', 'name', 'count', 'place', 'history'];
+  dataSource: MatTableDataSource<HistData>;
+  displayedColumns: Array<string> = ['article', 'barcode', 'name', 'place', 'count', 'history'];
 
   selectedSearchParameter: any = 'article';
   searchValue: string = '';
+
 
   messageNoConnect = 'Нет соединения, попробуйте позже.';
   messageWrongCell= 'Ошибка сервера';
@@ -30,9 +34,10 @@ export class CellHistoryFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  loadData() {
-    this.wmsMapService.getErrorLog(null).subscribe(responce => {
+  loadData(article, place, worker: string) {
+    this.wmsMapService.getHistory(new HistFind(this.tokenService.getToken(), article, place, worker)).subscribe(responce => {
       if(responce) {
+        this.dataSource = new MatTableDataSource(responce.histdata);
       }
     },
     error => { 
@@ -46,6 +51,14 @@ export class CellHistoryFormComponent implements OnInit {
   }
 
   onSearch() {
-    
+    if(this.selectedSearchParameter === 'article') {
+      this.loadData(this.searchValue, '', '')
+    }
+    if(this.selectedSearchParameter === 'place') {
+      this.loadData('', this.searchValue, '')
+    }
+    if(this.selectedSearchParameter === 'worker') {
+      this.loadData('', '', this.searchValue)
+    }
   }
 }
