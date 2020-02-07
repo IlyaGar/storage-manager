@@ -1,4 +1,4 @@
-<div class="form-inline content">
+<div class="form-inline data-filter">
     <div>
         <mat-form-field id="only" appearance="outline">
             <mat-label  *ngIf="selectedSearchParameter == 'article'"> Артикул </mat-label>
@@ -26,6 +26,8 @@
         </mat-button-toggle-group>
     </div> 
 </div>
+
+<mat-divider></mat-divider>
 
 <div class="mat-elevation-z8 table-container">
     <table mat-table [dataSource]="dataSource" class="table-hover"> 

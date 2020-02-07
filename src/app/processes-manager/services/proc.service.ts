@@ -12,6 +12,8 @@ import { CurTask } from '../models/curtask';
 import { MainTask } from '../models/main-task';
 import { PrintTask } from '../models/print-task';
 import { PrintAnsw } from '../models/print-answ';
+import { RazgAnswer } from '../models/doc-unloading/razg-answer';
+import { RazgReq } from '../models/doc-unloading/raz-request';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +29,7 @@ export class ProcService {
   private url_get_tasks = environment.apiUrl + "/wms/currenttask/";
   private url_get_task_without = environment.apiUrl + "/wms/fcurrenttask/";
   private url_get_print_answt = environment.apiUrl + "/wms/printcomplate/";
+  private url_doc_unloading = environment.apiUrl + "/wms/razg/";
 
   constructor(private http: HttpClient) { }
 
@@ -64,5 +67,9 @@ export class ProcService {
 
   getPrintAnsw(data: PrintTask): Observable<Array<PrintAnsw>> {
     return this.http.post<Array<PrintAnsw>>(`${this.url_get_print_answt}`, data);
+  }
+
+  getDocUnloading(data: RazgReq): Observable<RazgAnswer> {
+    return this.http.post<RazgAnswer>(`${this.url_doc_unloading}`, data);
   }
 }

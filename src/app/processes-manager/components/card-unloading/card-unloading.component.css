@@ -1,0 +1,29 @@
+.card {
+    width: 20em;
+    height: 12em;
+}
+.card-header {
+    padding: 5px;
+}
+.card-body {
+    padding: 5px;
+}
+.card-header {
+    padding: 5px;
+}
+.card-footer {
+    padding: 5px;
+}
+.mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+    display: block;
+    height: 26px;
+    -webkit-tap-highlight-color: transparent;
+    width: 100%;
+    padding: 0;
+}
+mat-nav-list {
+    overflow: auto;
+
+    height: 100%;
+    flex-grow: 1;
+}

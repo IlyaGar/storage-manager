@@ -91,6 +91,8 @@ import { CellHistoryFormComponent } from './wms-map/components/cell-history-form
 import { StoragePlacesEditorComponent } from './product-manager/dialog-windows/storage-places-editor/storage-places-editor.component';
 import { PlaceListFormComponent } from './product-manager/dialog-windows/place-list-form/place-list-form.component';
 import { MotivationComponent } from './personal-manager/components/motivation/motivation.component';
+import { DocumentUnloadingFormComponent } from './processes-manager/components/document-unloading-form/document-unloading-form.component';
+import { CardUnloadingComponent } from './processes-manager/components/card-unloading/card-unloading.component';
 
 @NgModule({
   declarations: [
@@ -175,6 +177,8 @@ import { MotivationComponent } from './personal-manager/components/motivation/mo
     StoragePlacesEditorComponent,
     PlaceListFormComponent,
     MotivationComponent,
+    DocumentUnloadingFormComponent,
+    CardUnloadingComponent,
   ],
   imports: [
     FormsModule,

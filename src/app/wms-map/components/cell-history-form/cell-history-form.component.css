@@ -130,8 +130,10 @@ mat-grid-list {
     margin: 0.4em;
     padding: 0.4em;
 }
-.content {
+.data-filter {
     margin: 0.5em;
+
+    height: 3em;
 }
 .bt-tools {
     position: relative;

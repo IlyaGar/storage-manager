@@ -1,4 +1,4 @@
-<div class="form-inline date-filter">
+<div class="form-inline data-filter">
     <div class="form-inline date-start">
         <label class="lable-s" for="startDate" id="dateStartLable">Дата с:</label>
         <input type="date" name="startDate" id="startDate" class="form-control" [(ngModel)]="startDate"  aria-describedby="dateStartLable" />
@@ -10,6 +10,9 @@
     <button id="bt-search" mat-raised-button color="primary" (click)="onSearch()"> Поиск </button> 
     <button id="bt-clear" mat-raised-button (click)="onClear()"> Очистить </button> 
 </div>    
+
+<mat-divider></mat-divider>
+
 <div class="mat-elevation-z8 table-container">
     <table mat-table [dataSource]="dataSource" class="table-hover" matSort>
 

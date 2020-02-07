@@ -21,14 +21,18 @@
                                             isPathActiv('/motivation') || 
                                             isPathActiv('/staff')) && 
                                             (!isPathActiv('/tasks') || 
+                                            isPathActiv('/doc-unloading') ||
                                             isPathActiv('/list-doc'))">
                         <label> Внутрискладские процессы </label>
                     </ng-container>
                     <ng-container *ngIf="isPathActiv('/tasks')">
-                        <label class="select-item-menu" > Задания </label>
+                        <label class="select-item-menu"> Задания </label>
                     </ng-container>
                     <ng-container *ngIf="isPathActiv('/list-doc')">
-                        <label class="select-item-menu" > Список документов </label>
+                        <label class="select-item-menu"> Список документов </label>
+                    </ng-container>
+                    <ng-container *ngIf="isPathActiv('/doc-unloading')">
+                        <label class="select-item-menu"> Документы разгрузки </label>
                     </ng-container>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownOrders" >
@@ -37,6 +41,7 @@
                     <a class="dropdown-item" [routerLink]="['']"> Исходящий поток </a>
                     <a class="dropdown-item" [routerLink]="['']"> Внутренние процессы </a>
                     <a class="dropdown-item" [routerLink]="['list-doc']"> Список документов </a>
+                    <a class="dropdown-item" [routerLink]="['doc-unloading']"> Документы разгрузки </a>
                 </div>                
             </li>
             <li class="nav-item dropdown" (click)="isPersonal = false; isMap = true; isOrder = false;">
@@ -45,6 +50,7 @@
                 <ng-container *ngIf="(  isPathActiv('/product-group') || 
                                         isPathActiv('/tasks') || 
                                         isPathActiv('/list-doc') || 
+                                        isPathActiv('/doc-unloading') ||
                                         isPathActiv('/motivation') || 
                                         isPathActiv('/staff')) && 
                                         (!isPathActiv('/map') || 
@@ -82,6 +88,7 @@
                                         isPathActiv('/error-journal') || 
                                         isPathActiv('/history') || 
                                         isPathActiv('/list-doc') || 
+                                        isPathActiv('/doc-unloading') ||
                                         isPathActiv('/tasks')) && 
                                         (!isPathActiv('/staff') ||
                                         !isPathActiv('/motivation'))">
@@ -91,7 +98,7 @@
                     <label class="select-item-menu" > Управление персоналом </label>
                 </ng-container>
                 <ng-container *ngIf="isPathActiv('/motivation')">
-                    <label class="select-item-menu" > Управление персоналом </label>
+                    <label class="select-item-menu" > Мотивация </label>
                 </ng-container>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownStore">

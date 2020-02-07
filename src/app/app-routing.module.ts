@@ -10,6 +10,7 @@ import { ListDocFormComponent } from './processes-manager/components/list-doc-fo
 import { ErrorLogFormComponent } from './wms-map/components/error-log-form/error-log-form.component';
 import { CellHistoryFormComponent } from './wms-map/components/cell-history-form/cell-history-form.component';
 import { MotivationComponent } from './personal-manager/components/motivation/motivation.component';
+import { DocumentUnloadingFormComponent } from './processes-manager/components/document-unloading-form/document-unloading-form.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'error-journal', component: ErrorLogFormComponent },
   { path: 'history', component: CellHistoryFormComponent },
   { path: 'motivation', component: MotivationComponent },
+  { path: 'doc-unloading', component: DocumentUnloadingFormComponent },
 ];
 
 @NgModule({

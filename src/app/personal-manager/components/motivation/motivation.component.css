@@ -1,5 +1,7 @@
-.date-filter {
+.data-filter {
     margin: 0.5em;
+
+    height: 3em;
 }
 .date-start {
     margin-right: 2em;
@@ -10,14 +12,13 @@ input {
 button {
     width: 7em;
     margin-left: 1em;
+    font-size: 16px;
 }
 button#bt-clear {
     background-color: rgba(128, 128, 128, 0.5);
-    font-size: 16px;
 }
 button#bt-search {
     background-color: #673ab7;
-    font-size: 16px;
 }
 ::ng-deep .mat-form-field-flex > .mat-form-field-infix { 
     padding: 0.4em 0px !important;
@@ -57,7 +58,6 @@ table#t-main {
 .t-type td {
     padding-right: 10px;
 }
-
 span {
     margin: 0 1em;
 }

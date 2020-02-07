@@ -1,0 +1,14 @@
+<div class="card text-center">
+    <div class="card-header">
+        {{data.title}}
+    </div>
+    <div class="card-body">
+        <mat-nav-list>
+            <a mat-list-item *ngFor="let item of data.list"> {{ item }} </a>
+        </mat-nav-list>
+    </div>
+    <div class="card-footer text-muted">
+        <ng-container *ngIf="data.count"> {{data.count}} </ng-container>
+        <ng-container *ngIf="!data.count"> 0 </ng-container>
+    </div>
+</div>

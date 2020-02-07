@@ -77,7 +77,6 @@ export class LoginFormComponent implements OnInit {
       this.setCookie(this.cookieName, this.loginResponse);
       this.isLogin = true;
       this.tokenService.logEvent(true);
-      // this.tokenService.doLogin(true);
       this.router.navigate(['/product-group']);
     }
     else {

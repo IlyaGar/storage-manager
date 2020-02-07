@@ -1,5 +1,7 @@
-.date-filter {
+.data-filter {
     margin: 0.5em;
+
+    height: 3em;
 }
 .date-start {
     margin-right: 2em;
