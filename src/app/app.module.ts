@@ -93,6 +93,7 @@ import { PlaceListFormComponent } from './product-manager/dialog-windows/place-l
 import { MotivationComponent } from './personal-manager/components/motivation/motivation.component';
 import { DocumentUnloadingFormComponent } from './processes-manager/components/document-unloading-form/document-unloading-form.component';
 import { CardUnloadingComponent } from './processes-manager/components/card-unloading/card-unloading.component';
+import { PcTableComponent } from './processes-manager/components/pc-table/pc-table.component';
 
 @NgModule({
   declarations: [
@@ -179,6 +180,7 @@ import { CardUnloadingComponent } from './processes-manager/components/card-unlo
     MotivationComponent,
     DocumentUnloadingFormComponent,
     CardUnloadingComponent,
+    PcTableComponent,
   ],
   imports: [
     FormsModule,

@@ -84,8 +84,8 @@ table {
 .mat-column-name {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 10% !important;
-    width: 10% !important;
+    flex: 0 0 30% !important;
+    width: 30% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -99,8 +99,8 @@ table {
 .mat-column-count {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 10% !important;
-    width: 10% !important;
+    flex: 0 0 5% !important;
+    width: 5% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -111,11 +111,26 @@ table {
     -webkit-hyphens: auto;
     hyphens: auto;
 }   
-.mat-column-mesabbrev {
+/* .mat-column-mesabbrev {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 10% !important;
-    width: 10% !important;
+    flex: 0 0 5% !important;
+    width: 5% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}    */
+.mat-column-count_export {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 5% !important;
+    width: 5% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -129,8 +144,8 @@ table {
 .mat-column-ost_main {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 10% !important;
-    width: 10% !important;
+    flex: 0 0 5% !important;
+    width: 5% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -144,8 +159,8 @@ table {
 .mat-column-ost_braq {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 10% !important;
-    width: 10% !important;
+    flex: 0 0 5% !important;
+    width: 5% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -156,24 +171,26 @@ table {
     -webkit-hyphens: auto;
     hyphens: auto;
 }   
-.mat-column-count_export {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 10% !important;
-    width: 10% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  
-    word-break: break-word;
-  
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-}   
+
 .mat-column-place {
     word-wrap: break-word !important;
     white-space: unset !important;
+    flex: 0 0 25% !important;
+    width: 25% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}   
+
+.mat-column-count_main {
+    word-wrap: break-word !important;
+    white-space: unset !important;
     flex: 0 0 10% !important;
     width: 10% !important;
     overflow-wrap: break-word;
@@ -185,9 +202,53 @@ table {
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
-}   
+} 
+
+.mat-column-count_braq {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+} 
+.mat-column-count_ext {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 5% !important;
+    width: 5% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+} 
 tr.mat-header-row {
     border: 1px solid #e7e7e7;
     font-weight: bold;
     height: 2em !important;
+}
+
+#block1 {
+    float: left;
+    display: block;
+    width: 49.5%;
+    margin: 2px;
+}
+#block2 {
+    float: left;
+    display: block;
+    width: 49.5%;
+    margin: 2px;
 }

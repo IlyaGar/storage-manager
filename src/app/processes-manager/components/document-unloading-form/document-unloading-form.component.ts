@@ -21,8 +21,8 @@ export class DocumentUnloadingFormComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   displayedPcColumns = ['npc', 'zpc'];
-  displayedCurrentPcColumns = ['article', 'name', 'count', 'count_main', 'count_braq', 'place'];
-  displayedColumns = ['doc_num', 'article', 'name', 'count', 'mesabbrev', 'ost_main', 'ost_braq', 'count_export', 'place'];
+  displayedCurrentPcColumns = ['article', 'name', 'count', 'count_ext', 'count_main', 'count_braq', 'place'];
+  displayedColumns = ['doc_num', 'article', 'name', 'count', 'count_export', 'ost_main', 'ost_braq', 'place'];
   dataSource: MatTableDataSource<ProblemList>;
 
   listNpc: Array<NPCBody> = [];
@@ -49,7 +49,6 @@ export class DocumentUnloadingFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.cardSend = { title: "Отправлено", list: ['NPC123', 'NPC234', 'NPC345', 'NPC123', 'NPC234', 'NPC345'], count: 6 };
   }
 
   loadData(arrNpc: Array<string>, arrZpc: Array<string>) {
@@ -63,13 +62,13 @@ export class DocumentUnloadingFormComponent implements OnInit {
   }
 
   checkResponse(response: RazgAnswer) {
-    this.dataSource = new MatTableDataSource(response.BadSent);
+    this.dataSource = new MatTableDataSource(response.badSent);
     this.dataSource.sort = this.sort;
-    this.listNpc = response.NPCList;
-    this.listZpc = response.ZPCList;
-    this.cardSend = new CardData("Отправлено", response.Completely, response.CompletelyCount);
-    this.cardPart = new CardData("Частично", response.Partially, response.PartiallyCount);
-    this.cardNotData = new CardData("Нет данных", response.NotSent, response.NotSentCount);
+    this.listNpc = response.nPCList;
+    this.listZpc = response.zPCList;
+    this.cardSend = new CardData("Отправлено", response.completely, response.completelyCount);
+    this.cardPart = new CardData("Частично", response.partially, response.partiallyCount);
+    this.cardNotData = new CardData("Нет данных", response.notSent, response.notSentCount);
   }
 
   onSearch() {
@@ -82,7 +81,7 @@ export class DocumentUnloadingFormComponent implements OnInit {
 
   getArrayString(searchValue: string) : Array<string> {
     if(searchValue.length > 0) {
-      searchValue = searchValue.replace(/\W/g, ' ');
+      searchValue = searchValue.replace(/[^A-Za-z0-9а-яА-Я]/g, ' ');
       let arr = searchValue.split(' '); 
       arr = arr.filter(Boolean);
       return arr;

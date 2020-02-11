@@ -4,14 +4,14 @@ import { ZPCBody } from './zpc-body';
 
 export class RazgAnswer{
     constructor(       
-        public Completely: Array<string>,
-        public CompletelyCount: number,
-        public Partially: Array<string>,
-        public PartiallyCount: number,
-        public NotSent: Array<string>,
-        public NotSentCount: number,
-        public BadSent: Array<ProblemList>,
-        public NPCList: Array<NPCBody>,
-        public ZPCList: Array<ZPCBody>,
+        public completely: Array<string>,
+        public completelyCount: number,
+        public partially: Array<string>,
+        public partiallyCount: number,
+        public notSent: Array<string>,
+        public notSentCount: number,
+        public badSent: Array<ProblemList>,
+        public nPCList: Array<NPCBody>,
+        public zPCList: Array<ZPCBody>,
     ){}
 }

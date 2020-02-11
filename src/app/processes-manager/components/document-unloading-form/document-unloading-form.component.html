@@ -19,11 +19,11 @@
 
 <mat-divider></mat-divider>
 
-<div class="form-inline cards">
+<!-- <div class="form-inline cards">
     <app-card-unloading [data]="cardSend"></app-card-unloading>
     <app-card-unloading [data]="cardPart"></app-card-unloading>
     <app-card-unloading [data]="cardNotData"></app-card-unloading>
-</div>
+</div> -->
 
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" class="table-hover" matSort>
@@ -44,13 +44,13 @@
         </ng-container>
 
         <ng-container matColumnDef="count">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Количество </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Кол. </th>
             <td mat-cell *matCellDef="let element"> {{element.count}} </td>
         </ng-container>   
         
-        <ng-container matColumnDef="mesabbrev">
-            <th mat-header-cell *matHeaderCellDef> Ед. изм. </th>
-            <td mat-cell *matCellDef="let element"> {{element.mesabbrev}} </td>
+        <ng-container matColumnDef="count_export">
+            <th mat-header-cell *matHeaderCellDef> Не отгруж. </th>
+            <td mat-cell *matCellDef="let element"> {{element.count_export}} </td>
         </ng-container>
 
         <ng-container matColumnDef="ost_main">
@@ -63,11 +63,6 @@
             <td mat-cell *matCellDef="let element"> {{element.ost_braq}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="count_export">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Отгружено </th>
-            <td mat-cell *matCellDef="let element"> {{element.count_export}} </td>
-        </ng-container>
-
         <ng-container matColumnDef="place">
             <th mat-header-cell *matHeaderCellDef> Место хранения </th>
             <td mat-cell *matCellDef="let element"> {{element.place}} </td>
@@ -78,116 +73,128 @@
             
     </table>
 </div>
-
 <div class="mat-elevation-z8">
     <table mat-table class="table-hover">
 
         <ng-container matColumnDef="npc">
-            <th mat-header-cell *matHeaderCellDef> НПЦ </th>
-            <td mat-cell *matCellDef="let element"> 
-                <mat-accordion>
-                    <mat-expansion-panel *ngFor="let npc of listNpc">
-                        <mat-expansion-panel-header>
-                            {{npc.NPC_NAME}}
-                        </mat-expansion-panel-header>
-                        {{npc.ANY_DATA1}} - {{npc.ANY_DATA2}} - {{npc.NY_DATA3}}
-                        <div class="mat-elevation-z8">
-                            <table mat-table [dataSource]="npc.Body" class="table-hover">
-
-                                <ng-container matColumnDef="article">
-                                    <th mat-header-cell *matHeaderCellDef> НПЦ </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.article}} </td>
-                                </ng-container>   
-                                
-                                <ng-container matColumnDef="name">
-                                    <th mat-header-cell *matHeaderCellDef> Дата </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                                </ng-container>
-
-                                <ng-container matColumnDef="count">
-                                    <th mat-header-cell *matHeaderCellDef> Откуда </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.count}} </td>
-                                </ng-container>
-
-                                <ng-container matColumnDef="count_main">
-                                    <th mat-header-cell *matHeaderCellDef> Куда </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.count_main}} </td>
-                                </ng-container>
-
-                                <ng-container matColumnDef="count_braq">
-                                    <th mat-header-cell *matHeaderCellDef> Куда </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.count_braq}} </td>
-                                </ng-container>
-
-                                <ng-container matColumnDef="place">
-                                    <th mat-header-cell *matHeaderCellDef> Куда </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.place}} </td>
-                                </ng-container>
-                        
-                                <tr mat-header-row *matHeaderRowDef="displayedCurrentPcColumns; sticky: true"></tr>
-                                <tr mat-row *matRowDef="let row; columns: displayedCurrentPcColumns;"></tr>
-                                    
-                            </table>
-                        </div>
-                    </mat-expansion-panel>
-                </mat-accordion>
-            </td>
+            <th mat-header-cell *matHeaderCellDef>НПЦ </th>
+            <td mat-cell *matCellDef="let element"> </td>
         </ng-container>   
         
         <ng-container matColumnDef="zpc">
             <th mat-header-cell *matHeaderCellDef> ЗПЦ </th>
-            <td mat-cell *matCellDef="let element"> 
-                <mat-accordion>
-                    <mat-expansion-panel *ngFor="let zpc of listZpc">
-                        <mat-expansion-panel-header>
-                            {{npc.NPC_NAME}}
-                        </mat-expansion-panel-header>
-                        {{npc.ANY_DATA1}} - {{npc.ANY_DATA2}} - {{npc.NY_DATA3}}
-                        <div class="mat-elevation-z8">
-                            <table mat-table [dataSource]="zpc.Body" class="table-hover">
-
-                                <ng-container matColumnDef="article">
-                                    <th mat-header-cell *matHeaderCellDef> НПЦ </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.article}} </td>
-                                </ng-container>   
-                                
-                                <ng-container matColumnDef="name">
-                                    <th mat-header-cell *matHeaderCellDef> Дата </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                                </ng-container>
-
-                                <ng-container matColumnDef="count">
-                                    <th mat-header-cell *matHeaderCellDef> Откуда </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.count}} </td>
-                                </ng-container>
-
-                                <ng-container matColumnDef="count_main">
-                                    <th mat-header-cell *matHeaderCellDef> Куда </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.count_main}} </td>
-                                </ng-container>
-
-                                <ng-container matColumnDef="count_braq">
-                                    <th mat-header-cell *matHeaderCellDef> Куда </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.count_braq}} </td>
-                                </ng-container>
-
-                                <ng-container matColumnDef="place">
-                                    <th mat-header-cell *matHeaderCellDef> Куда </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.place}} </td>
-                                </ng-container>
-                        
-                                <tr mat-header-row *matHeaderRowDef="displayedCurrentPcColumns; sticky: true"></tr>
-                                <tr mat-row *matRowDef="let row; columns: displayedCurrentPcColumns;"></tr>
-                                    
-                            </table>
-                        </div>
-                    </mat-expansion-panel>
-                </mat-accordion>
-            </td>
+            <td mat-cell *matCellDef="let element"> {{element.article}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedPcColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedPcColumns;"></tr>
             
     </table>
+</div>
+<div id="block1">
+
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let npc of listNpc">
+            <mat-expansion-panel-header>
+                {{npc.nPC_NAME}}
+            </mat-expansion-panel-header>
+            {{npc.aNY_DATA1}} - {{npc.aNY_DATA2}} - {{npc.aNY_DATA3}}
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="npc.body" class="table-hover">
+
+                    <ng-container matColumnDef="article">
+                        <th mat-header-cell *matHeaderCellDef> НПЦ </th>
+                        <td mat-cell *matCellDef="let element"> {{element.article}} </td>
+                    </ng-container>   
+                    
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Наименование </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="count">
+                        <th mat-header-cell *matHeaderCellDef> Кол. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.count}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="count_ext">
+                        <th mat-header-cell *matHeaderCellDef> Не отгруж. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.count_ext}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="count_main">
+                        <th mat-header-cell *matHeaderCellDef> Остаток осн. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.count_main}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="count_braq">
+                        <th mat-header-cell *matHeaderCellDef> Остаток брак </th>
+                        <td mat-cell *matCellDef="let element"> {{element.count_braq}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="place">
+                        <th mat-header-cell *matHeaderCellDef> Места храниения </th>
+                        <td mat-cell *matCellDef="let element"> {{element.place}} </td>
+                    </ng-container>
+            
+                    <tr mat-header-row *matHeaderRowDef="displayedCurrentPcColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedCurrentPcColumns;"></tr>
+                        
+                </table>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+<div id="block2">
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let zpc of listZpc">
+            <mat-expansion-panel-header>
+                {{zpc.zPC_NAME}}
+            </mat-expansion-panel-header>
+            {{zpc.aNY_DATA1}} - {{zpc.aNY_DATA2}} - {{zpc.aNY_DATA3}}
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="zpc.body" class="table-hover">
+
+                    <ng-container matColumnDef="article">
+                        <th mat-header-cell *matHeaderCellDef> ЗПЦ </th>
+                        <td mat-cell *matCellDef="let element"> {{element.article}} </td>
+                    </ng-container>   
+                    
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Наименование </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="count">
+                        <th mat-header-cell *matHeaderCellDef> Кол. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.count}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="count_ext">
+                        <th mat-header-cell *matHeaderCellDef> Не отгруж. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.count_ext}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="count_main">
+                        <th mat-header-cell *matHeaderCellDef> Остаток осн.  </th>
+                        <td mat-cell *matCellDef="let element"> {{element.count_main}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="count_braq">
+                        <th mat-header-cell *matHeaderCellDef> Остаток брак </th>
+                        <td mat-cell *matCellDef="let element"> {{element.count_braq}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="place">
+                        <th mat-header-cell *matHeaderCellDef> Места храниения </th>
+                        <td mat-cell *matCellDef="let element"> {{element.place}} </td>
+                    </ng-container>
+            
+                    <tr mat-header-row *matHeaderRowDef="displayedCurrentPcColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedCurrentPcColumns;"></tr>
+                        
+                </table>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
 </div>
