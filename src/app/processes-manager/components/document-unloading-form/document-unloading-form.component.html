@@ -1,6 +1,7 @@
 <div class="data-filter form-inline">
     <div class="bts-search">
-        <button id="bt-search" mat-raised-button color="primary" (click)="onSearch()"> Поиск </button> 
+        <button id="bt-search" mat-raised-button color="primary" (click)="onSearch()" #btSearch
+        [ngClass]="{ 'bt-search-activ': !btSearchDisabled, 'bt-search-disabled': btSearchDisabled }"> Поиск </button> 
         <br>
         <button id="bt-clear" mat-raised-button (click)="onClear()"> Очистить </button> 
     </div>
@@ -18,12 +19,6 @@
 </div>    
 
 <mat-divider></mat-divider>
-
-<!-- <div class="form-inline cards">
-    <app-card-unloading [data]="cardSend"></app-card-unloading>
-    <app-card-unloading [data]="cardPart"></app-card-unloading>
-    <app-card-unloading [data]="cardNotData"></app-card-unloading>
-</div> -->
 
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" class="table-hover" matSort>
@@ -69,7 +64,8 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        [ngClass]="{ 'row-yellow': row.count_export > '0' }"></tr>
             
     </table>
 </div>
@@ -95,7 +91,7 @@
 
     <mat-accordion>
         <mat-expansion-panel *ngFor="let npc of listNpc">
-            <mat-expansion-panel-header>
+            <mat-expansion-panel-header [ngClass]="{ 'row-yellow': npc.style === 'yellow' }">
                 {{npc.nPC_NAME}}
             </mat-expansion-panel-header>
             {{npc.aNY_DATA1}} - {{npc.aNY_DATA2}} - {{npc.aNY_DATA3}}
@@ -138,7 +134,8 @@
                     </ng-container>
             
                     <tr mat-header-row *matHeaderRowDef="displayedCurrentPcColumns; sticky: true"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedCurrentPcColumns;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedCurrentPcColumns;"
+                    [ngClass]="{ 'row-yellow': row.count_ext > '0' }"></tr>
                         
                 </table>
             </div>
@@ -148,7 +145,7 @@
 <div id="block2">
     <mat-accordion>
         <mat-expansion-panel *ngFor="let zpc of listZpc">
-            <mat-expansion-panel-header>
+            <mat-expansion-panel-header [ngClass]="{ 'row-yellow': zpc.style === 'yellow' }">
                 {{zpc.zPC_NAME}}
             </mat-expansion-panel-header>
             {{zpc.aNY_DATA1}} - {{zpc.aNY_DATA2}} - {{zpc.aNY_DATA3}}
@@ -191,7 +188,8 @@
                     </ng-container>
             
                     <tr mat-header-row *matHeaderRowDef="displayedCurrentPcColumns; sticky: true"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedCurrentPcColumns;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedCurrentPcColumns;"
+                    [ngClass]="{ 'row-yellow': row.count_ext > '0' }"></tr>
                         
                 </table>
             </div>

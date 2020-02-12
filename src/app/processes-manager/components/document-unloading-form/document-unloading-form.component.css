@@ -31,10 +31,16 @@ button#bt-clear {
     font-size: 16px;
 }
 button#bt-search {
-    background-color: #673ab7;
+
     font-size: 16px;
 
     margin-bottom: 0.8em;
+}
+.bt-search-activ {
+    background-color: #673ab7;
+}
+.bt-search-disabled {
+    background-color: rgba(207, 204, 204, 0.5);
 }
 .search-input {
     width: calc(100vw - 10.5em);
@@ -111,21 +117,6 @@ table {
     -webkit-hyphens: auto;
     hyphens: auto;
 }   
-/* .mat-column-mesabbrev {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 5% !important;
-    width: 5% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  
-    word-break: break-word;
-  
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-}    */
 .mat-column-count_export {
     word-wrap: break-word !important;
     white-space: unset !important;
@@ -251,4 +242,7 @@ tr.mat-header-row {
     display: block;
     width: 49.5%;
     margin: 2px;
+}
+.row-yellow {
+    background-color: rgba(255, 255, 0, 0.5);
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ProcService } from '../../services/proc.service';
 import { TokenService } from 'src/app/common/services/token.service';
 import { SnackbarService } from 'src/app/common/services/snackbar.service';
@@ -19,6 +19,7 @@ import { ZPCBody } from '../../models/doc-unloading/zpc-body';
 export class DocumentUnloadingFormComponent implements OnInit {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild('btSearch', { read: ElementRef, static: false }) btSearch: ElementRef; 
 
   displayedPcColumns = ['npc', 'zpc'];
   displayedCurrentPcColumns = ['article', 'name', 'count', 'count_ext', 'count_main', 'count_braq', 'place'];
@@ -38,6 +39,8 @@ export class DocumentUnloadingFormComponent implements OnInit {
   arrNpc: Array<string> = [];
   arrZpc: Array<string> = [];
 
+  btSearchDisabled = false;
+
   messageNoConnect = 'Нет соединения, попробуйте позже.';
   action = 'Ok';
   styleNoConnect = 'red-snackbar';
@@ -53,6 +56,7 @@ export class DocumentUnloadingFormComponent implements OnInit {
 
   loadData(arrNpc: Array<string>, arrZpc: Array<string>) {
     this.procService.getDocUnloading(new RazgReq(this.tokenService.getToken(), arrNpc, arrZpc)).subscribe(response => {
+      this.setButtonSearchAble();
       this.checkResponse(response); 
     }, 
     error => { 
@@ -64,8 +68,8 @@ export class DocumentUnloadingFormComponent implements OnInit {
   checkResponse(response: RazgAnswer) {
     this.dataSource = new MatTableDataSource(response.badSent);
     this.dataSource.sort = this.sort;
-    this.listNpc = response.nPCList;
-    this.listZpc = response.zPCList;
+    this.listNpc = this.getListItemPcColor(response.nPCList);
+    this.listZpc = this.getListItemPcColor(response.zPCList);
     this.cardSend = new CardData("Отправлено", response.completely, response.completelyCount);
     this.cardPart = new CardData("Частично", response.partially, response.partiallyCount);
     this.cardNotData = new CardData("Нет данных", response.notSent, response.notSentCount);
@@ -75,6 +79,7 @@ export class DocumentUnloadingFormComponent implements OnInit {
     let arrNpc = this.getArrayString(this.searchNpc);
     let arrZpc = this.getArrayString(this.searchZpc);
     if(arrNpc.length > 0 || arrZpc.length > 0) {
+      this.setButtonSearchDisable();
       this.loadData(arrNpc, arrZpc);
     }
   }
@@ -89,8 +94,32 @@ export class DocumentUnloadingFormComponent implements OnInit {
     else return [];
   }
 
+  getListItemPcColor(list: Array<any>) : Array<any> {
+    list.map(function(item) {
+      item.body.map(function(itemBody) {
+        if(+itemBody.count_ext > 0) {
+          item.style = 'yellow';
+          return;
+      }});
+      return item;
+    });
+    return list;
+  }
+
   onClear() {
     this.searchNpc = '';
     this.searchZpc = '';
+
+    this.setButtonSearchAble();
+  }
+  
+  setButtonSearchDisable() {
+    this.btSearchDisabled = true; 
+    this.btSearch.nativeElement.disable = true;
+  }
+
+  setButtonSearchAble() {
+    this.btSearchDisabled = false;
+    this.btSearch.nativeElement.disable = false;
   }
 }
