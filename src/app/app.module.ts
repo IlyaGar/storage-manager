@@ -94,6 +94,7 @@ import { MotivationComponent } from './personal-manager/components/motivation/mo
 import { DocumentUnloadingFormComponent } from './processes-manager/components/document-unloading-form/document-unloading-form.component';
 import { CardUnloadingComponent } from './processes-manager/components/card-unloading/card-unloading.component';
 import { PcTableComponent } from './processes-manager/components/pc-table/pc-table.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -199,7 +200,8 @@ import { PcTableComponent } from './processes-manager/components/pc-table/pc-tab
   ],
   providers: [
     HttpClient,
-    CookieService
+    CookieService,
+    DatePipe
   ],
   entryComponents: [
     AttentionFormComponent,

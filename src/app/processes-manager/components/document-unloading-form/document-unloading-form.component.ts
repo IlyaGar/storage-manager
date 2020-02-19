@@ -6,10 +6,16 @@ import { RazgReq } from '../../models/doc-unloading/raz-request';
 import { RazgAnswer } from '../../models/doc-unloading/razg-answer';
 import { ProblemList } from '../../models/doc-unloading/problem-list';
 import { MatTableDataSource } from '@angular/material/table';
-import { CardData } from '../../models/doc-unloading/card-data';
 import { MatSort } from '@angular/material/sort';
 import { NPCBody } from '../../models/doc-unloading/npc-body';
 import { ZPCBody } from '../../models/doc-unloading/zpc-body';
+
+// import * as Excel from "exceljs/dist/exceljs.min.js";
+// import * as ExcelProper from "exceljs";
+
+import { Workbook, Worksheet } from 'exceljs';
+import * as fs from 'file-saver';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-document-unloading-form',
@@ -23,22 +29,21 @@ export class DocumentUnloadingFormComponent implements OnInit {
 
   displayedPcColumns = ['npc', 'zpc'];
   displayedCurrentPcColumns = ['article', 'name', 'count', 'count_ext', 'count_main', 'count_braq', 'place'];
-  displayedColumns = ['doc_num', 'article', 'name', 'count', 'count_export', 'ost_main', 'ost_braq', 'place'];
+  displayedColumns = ['doc_num', 'article', 'name', 'count', 'count_export', 'ost_main', 'ost_braq', 'place', 'action'];
   dataSource: MatTableDataSource<ProblemList>;
 
+  problemList: Array<ProblemList> = [];
+ 
   listNpc: Array<NPCBody> = [];
   listZpc: Array<ZPCBody> = [];
 
-  searchNpc: string = '';
-  searchZpc: string = '';
-
-  cardSend: CardData;
-  cardPart: CardData;
-  cardNotData: CardData;
+  searchNpc: string = 'НПЦ1905489';
+  searchZpc: string = `ЗП1936310  ЗП1936365 ЗП1936366  ЗП1936482  ЗП1936491  ЗП1936492  ЗП1936503  ЗП1936511  ЗП1936541  ЗП1936587  ЗП1936626  ЗП1936648`;
 
   arrNpc: Array<string> = [];
   arrZpc: Array<string> = [];
 
+  disabledValue = true;
   btSearchDisabled = false;
 
   messageNoConnect = 'Нет соединения, попробуйте позже.';
@@ -46,6 +51,7 @@ export class DocumentUnloadingFormComponent implements OnInit {
   styleNoConnect = 'red-snackbar';
 
   constructor(
+    private datePipe: DatePipe,
     private procService: ProcService,
     private tokenService: TokenService,
     private snackbarService: SnackbarService,
@@ -56,8 +62,10 @@ export class DocumentUnloadingFormComponent implements OnInit {
 
   loadData(arrNpc: Array<string>, arrZpc: Array<string>) {
     this.procService.getDocUnloading(new RazgReq(this.tokenService.getToken(), arrNpc, arrZpc)).subscribe(response => {
-      this.setButtonSearchAble();
-      this.checkResponse(response); 
+      if(response) {
+        this.setButtonSearchAble();
+        this.checkResponse(response); 
+      }
     }, 
     error => { 
       console.log(error);
@@ -67,12 +75,10 @@ export class DocumentUnloadingFormComponent implements OnInit {
 
   checkResponse(response: RazgAnswer) {
     this.dataSource = new MatTableDataSource(response.badSent);
+    this.problemList = response.badSent;
     this.dataSource.sort = this.sort;
     this.listNpc = this.getListItemPcColor(response.nPCList);
     this.listZpc = this.getListItemPcColor(response.zPCList);
-    this.cardSend = new CardData("Отправлено", response.completely, response.completelyCount);
-    this.cardPart = new CardData("Частично", response.partially, response.partiallyCount);
-    this.cardNotData = new CardData("Нет данных", response.notSent, response.notSentCount);
   }
 
   onSearch() {
@@ -114,12 +120,163 @@ export class DocumentUnloadingFormComponent implements OnInit {
   }
   
   setButtonSearchDisable() {
+    this.disabledValue = true;
     this.btSearchDisabled = true; 
     this.btSearch.nativeElement.disable = true;
   }
 
   setButtonSearchAble() {
+    this.disabledValue = false;
     this.btSearchDisabled = false;
     this.btSearch.nativeElement.disable = false;
+  }
+
+  exportToExcel() {
+    let workbook = new Workbook();
+    let worksheet = workbook.addWorksheet('Документ');
+
+    const title = 'Документ разгрузки';
+    const header = ['№ Документа', 'Артикул', 'Наим.', 'Кол.', 'Не отгр.', 'Ост. основной', 'Ост. брак', 'Места хранения'];
+    
+    // Add new row
+    let titleRow = worksheet.addRow([title]);
+    // Set font, size and style in title row.
+    titleRow.font = { name: 'Comic Sans MS', family: 4, size: 16, underline: 'double', bold: true };
+    worksheet.mergeCells('A1:C1');
+    // Blank Row
+    worksheet.addRow([]);
+    //Add row with current date
+    let subTitleRow = worksheet.addRow(['Date : ' + this.datePipe.transform(new Date(), 'yyyy-MM-dd')]);
+
+    //Add Header Row
+    let headerRow = worksheet.addRow(header);
+    // Cell Style : Fill and Border
+    headerRow.eachCell((cell, number) => {
+      cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } }
+    });
+
+    // Add Data and Conditional Formatting
+    this.problemList.forEach(element => {
+      let data = [element.doc_num, element.article, element.name, element.count, element.count_export, element.ost_main, element.ost_braq, element.place.toString()];
+      let row = worksheet.addRow(data);
+      let count_export = row.getCell(5);
+      if (+count_export.value > 0) {
+        row.eachCell((cell, number) => { 
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFFF00' }, bgColor: { argb: 'FF0000FF' }
+          }
+        });
+      }
+      row.eachCell((cell, number) => { 
+        cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } }
+      });
+    });
+
+    // Set width and wrap text
+    worksheet.getColumn(1).width = 20;
+    worksheet.getColumn(3).alignment = { wrapText: true };
+    worksheet.getColumn(3).width = 40;
+    worksheet.getColumn(8).alignment = { wrapText: true };
+    worksheet.getColumn(8).width = 40;
+
+    this.setWorkSheetNpc(this.listNpc, worksheet, 'НПЦ');
+    this.setWorkSheetZpc(this.listZpc, worksheet, 'ЗПЦ');
+
+    this.listNpc.forEach(element => {
+      workbook = this.addWorkSheetNpc(element, workbook);
+    });
+
+    this.listZpc.forEach(element => {
+      workbook = this.addWorkSheetZpc(element, workbook);
+    });
+
+    workbook.xlsx.writeBuffer().then((data) => {
+      let blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      fs.saveAs(blob, `Док ${this.datePipe.transform(new Date(), 'yyyy-MM-dd')}.xlsx`);
+    });
+  }
+
+  setWorkSheetNpc(list: Array<NPCBody>, worksheet: Worksheet, pc: string) : Worksheet {
+    worksheet.addRow([]);
+    worksheet.addRow([pc]);
+    list.forEach(element => {
+      let row = worksheet.addRow([element.nPC_NAME]);
+      if (element.style === 'yellow') {
+        row.eachCell((cell, number) => { 
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFFF00' }, bgColor: { argb: 'FF0000FF' }
+          }
+        });
+      }
+      row.eachCell((cell, number) => { 
+        cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } }
+      });
+    });
+    return worksheet;
+  }
+
+  setWorkSheetZpc(list: Array<ZPCBody>, worksheet: Worksheet, pc: string) : Worksheet {
+    worksheet.addRow([]);
+    worksheet.addRow([pc]);
+    list.forEach(element => {
+      let row = worksheet.addRow([element.zPC_NAME]);
+      if (element.style === 'yellow') {
+        row.eachCell((cell, number) => { 
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFFF00' }, bgColor: { argb: 'FF0000FF' }
+          }
+        });
+      }
+      row.eachCell((cell, number) => { 
+        cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } }
+      });
+    });
+    return worksheet;
+  }
+
+  addWorkSheetNpc(data: NPCBody, workbook: Workbook) : Workbook {
+    let worksheet = workbook.addWorksheet(data.nPC_NAME);
+
+    worksheet = this.createTablePc(data.body, data.nPC_NAME, worksheet);
+
+    return workbook;
+  }
+
+  addWorkSheetZpc(data: ZPCBody, workbook: Workbook) : Workbook {
+    let worksheet = workbook.addWorksheet(data.zPC_NAME);
+
+    worksheet = this.createTablePc(data.body, data.zPC_NAME, worksheet);
+
+    return workbook;
+  }
+  
+  createTablePc(data: Array<any>, title: string, worksheet: Worksheet) : Worksheet {
+    let titleRow = worksheet.addRow([title]);
+    titleRow.font = { name: 'Comic Sans MS', family: 4, size: 16, underline: 'double', bold: true };
+    worksheet.mergeCells('A1:B1');
+    const header = ['Артикул', 'Наименование', 'Кол.', 'Не отгр.', 'Ост. основной', 'Ост. брак', 'Места хранения'];
+    let headerRow = worksheet.addRow(header);
+
+    headerRow.eachCell((cell, number) => {
+      cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } }
+    });
+    data.forEach(element => { 
+      let data = [element.article, element.name, element.count, element.count_ext, element.count_main, element.count_braq, element.place.toString()];
+      let row = worksheet.addRow(data);
+      row.eachCell((cell, number) => { 
+        if(+element.count_ext > 0) {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFFF00' }, bgColor: { argb: 'FF0000FF' }};
+        }
+        cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } };
+      });
+    });
+
+    for(let i = 1; i <= worksheet.columns.length; i++) {
+      worksheet.getColumn(i).width = 20;
+    }
+
+    worksheet.getColumn(2).width = 40;
+    worksheet.getColumn(2).alignment = { wrapText: true };
+    worksheet.getColumn(7).width = 40;
+    worksheet.getColumn(7).alignment = { wrapText: true };
+
+    return worksheet;
   }
 }

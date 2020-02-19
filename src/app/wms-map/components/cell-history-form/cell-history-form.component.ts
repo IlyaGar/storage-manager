@@ -19,7 +19,6 @@ export class CellHistoryFormComponent implements OnInit {
   selectedSearchParameter: any = 'article';
   searchValue: string = '';
 
-
   messageNoConnect = 'Нет соединения, попробуйте позже.';
   messageWrongCell= 'Ошибка сервера';
   action = 'Ok';
