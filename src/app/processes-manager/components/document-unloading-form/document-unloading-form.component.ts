@@ -37,8 +37,8 @@ export class DocumentUnloadingFormComponent implements OnInit {
   listNpc: Array<NPCBody> = [];
   listZpc: Array<ZPCBody> = [];
 
-  searchNpc: string = 'НПЦ1905489';
-  searchZpc: string = `ЗП1936310  ЗП1936365 ЗП1936366  ЗП1936482  ЗП1936491  ЗП1936492  ЗП1936503  ЗП1936511  ЗП1936541  ЗП1936587  ЗП1936626  ЗП1936648`;
+  searchNpc: string = '';
+  searchZpc: string = '';
 
   arrNpc: Array<string> = [];
   arrZpc: Array<string> = [];
