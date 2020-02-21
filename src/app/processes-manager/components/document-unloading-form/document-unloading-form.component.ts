@@ -146,13 +146,15 @@ export class DocumentUnloadingFormComponent implements OnInit {
     // Blank Row
     worksheet.addRow([]);
     //Add row with current date
-    let subTitleRow = worksheet.addRow(['Date : ' + this.datePipe.transform(new Date(), 'yyyy-MM-dd')]);
+    let subTitleRow = worksheet.addRow(['Дата : ' + this.datePipe.transform(new Date(), 'yyyy-MM-dd')]);
 
     //Add Header Row
     let headerRow = worksheet.addRow(header);
     // Cell Style : Fill and Border
+    var font = { bold: true, size: 12 };
     headerRow.eachCell((cell, number) => {
-      cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } }
+      cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } },
+      cell.font = font
     });
 
     // Add Data and Conditional Formatting
@@ -172,7 +174,9 @@ export class DocumentUnloadingFormComponent implements OnInit {
     });
 
     // Set width and wrap text
-    worksheet.getColumn(1).width = 20;
+    for(let i = 1; i <= worksheet.columns.length; i++) {
+      worksheet.getColumn(i).width = 20;
+    }
     worksheet.getColumn(3).alignment = { wrapText: true };
     worksheet.getColumn(3).width = 40;
     worksheet.getColumn(8).alignment = { wrapText: true };
@@ -232,7 +236,9 @@ export class DocumentUnloadingFormComponent implements OnInit {
   }
 
   addWorkSheetNpc(data: NPCBody, workbook: Workbook) : Workbook {
-    let worksheet = workbook.addWorksheet(data.nPC_NAME);
+    let color = data.style === 'yellow' ? 'FFFF00' : 'FFFFFF';  
+
+    let worksheet = workbook.addWorksheet(data.nPC_NAME, { properties: { tabColor: { argb: color }}});
 
     worksheet = this.createTablePc(data.body, data.nPC_NAME, worksheet);
 
@@ -240,7 +246,9 @@ export class DocumentUnloadingFormComponent implements OnInit {
   }
 
   addWorkSheetZpc(data: ZPCBody, workbook: Workbook) : Workbook {
-    let worksheet = workbook.addWorksheet(data.zPC_NAME);
+    let color = data.style === 'yellow' ? 'FFFF00' : 'FFFFFF';  
+
+    let worksheet = workbook.addWorksheet(data.zPC_NAME, { properties: { tabColor: { argb: color }}});
 
     worksheet = this.createTablePc(data.body, data.zPC_NAME, worksheet);
 
@@ -251,11 +259,14 @@ export class DocumentUnloadingFormComponent implements OnInit {
     let titleRow = worksheet.addRow([title]);
     titleRow.font = { name: 'Comic Sans MS', family: 4, size: 16, underline: 'double', bold: true };
     worksheet.mergeCells('A1:B1');
+
     const header = ['Артикул', 'Наименование', 'Кол.', 'Не отгр.', 'Ост. основной', 'Ост. брак', 'Места хранения'];
     let headerRow = worksheet.addRow(header);
 
+    var font = { bold: true, size: 12 };
     headerRow.eachCell((cell, number) => {
-      cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } }
+      cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } },
+      cell.font = font
     });
     data.forEach(element => { 
       let data = [element.article, element.name, element.count, element.count_ext, element.count_main, element.count_braq, element.place.toString()];
