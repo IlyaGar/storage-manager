@@ -19,7 +19,8 @@
       </mat-form-field>
   </form>
   
-  <button id="bt-search" mat-raised-button color="primary" (click)="onSearch()"> Поиск </button> 
+  <button id="bt-search" mat-raised-button color="primary" (click)="onSearch()"#btSearch
+    [ngClass]="{ 'bt-search-activ': !btSearchDisabled, 'bt-search-disabled': btSearchDisabled }"> Поиск </button> 
   <button id="bt-clear" mat-raised-button (click)="onClear()"> Очистить </button> 
   <ng-container *ngIf="dataSource">
     <button
@@ -29,10 +30,14 @@
       color="primary" 
       [printStyle]="{ th: {'border': '1px solid black'}, td: {'border': '1px solid black'}, table: {'border-collapse': 'collapse', 'width': '100%'}}"
       printSectionId="print-section"  
+      data-placement="bottom" matTooltip="Печать мотивации"
       ngxPrint>  
       Печать
     </button>
+
+    <button mat-raised-button color="primary" data-placement="bottom" matTooltip="Сумма позиций" (click)="onCalculatePositions(dataSource.data)"> Позиции </button> 
   </ng-container>
+
 </div>   
 
 <mat-divider></mat-divider>

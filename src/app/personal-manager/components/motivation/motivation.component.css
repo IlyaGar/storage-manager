@@ -18,7 +18,13 @@ button#bt-clear {
     background-color: rgba(128, 128, 128, 0.5);
 }
 button#bt-search {
+    width: 7em;
+}
+.bt-search-activ {
     background-color: #673ab7;
+}
+.bt-search-disabled {
+    background-color: rgba(207, 204, 204, 0.5);
 }
 ::ng-deep .mat-form-field-flex > .mat-form-field-infix { 
     padding: 0.4em 0px !important;
@@ -93,4 +99,9 @@ td#t_td {
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
+}
+.position {
+    font-size: small;
+
+    margin-left: 0.5em;
 }

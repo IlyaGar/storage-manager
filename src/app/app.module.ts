@@ -95,6 +95,7 @@ import { DocumentUnloadingFormComponent } from './processes-manager/components/d
 import { CardUnloadingComponent } from './processes-manager/components/card-unloading/card-unloading.component';
 import { PcTableComponent } from './processes-manager/components/pc-table/pc-table.component';
 import { DatePipe } from '@angular/common';
+import { MotinateSumPositionFormComponent } from './personal-manager/dialog-windows/motinate-sum-position-form/motinate-sum-position-form.component';
 
 @NgModule({
   declarations: [
@@ -182,6 +183,7 @@ import { DatePipe } from '@angular/common';
     DocumentUnloadingFormComponent,
     CardUnloadingComponent,
     PcTableComponent,
+    MotinateSumPositionFormComponent,
   ],
   imports: [
     FormsModule,
@@ -225,6 +227,7 @@ import { DatePipe } from '@angular/common';
     NameDocFormComponent,
     StoragePlacesEditorComponent,
     PlaceListFormComponent,
+    MotinateSumPositionFormComponent,
   ],
   bootstrap: [AppComponent]
 })

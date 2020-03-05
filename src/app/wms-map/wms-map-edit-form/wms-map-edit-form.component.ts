@@ -139,65 +139,6 @@ export class WmsMapEditFormComponent implements OnInit {
 
   checkResponse(response) {
     this.tab_map = response.stillageItem;
-    let count = 0;
-    this.tab_map.forEach(element => {
-      element.forEach(element => {
-        if(element.element === 'ver-3-4') {
-          count += 12;
-        }
-        if(element.element === 'hor-3-4') {
-          count += 12;
-        }
-        if(element.element === 'ver-3-3') {
-          count += 9;
-        }
-        if(element.element === 'hor-3-3') {
-          count += 9;
-        }
-        if(element.element === 'ver-3-2') {
-          count += 6;
-        }
-        if(element.element === 'hor-3-2') {
-          count += 6;
-        }
-        if(element.element === 'ver-3-5') {
-          count += 15;
-        }
-
-        if(element.element === 'hor-3-5') {
-          count += 15;
-        }
-        if(element.element === 'ver-2-5') {
-          count += 10;
-        }
-        if(element.element === 'hor-2-5') {
-          count += 10;
-        }
-        if(element.element === 'ver-2-4') {
-          count += 8;
-        }
-        if(element.element === 'hor-2-4') {
-          count += 8;
-        }
-        if(element.element === 'long-3-1-5') {
-          count += 7;
-        }
-        if(element.element === 'long-2-3-4') {
-          count += 8;
-        }
-
-        if(element.element === 'long-3-5') {
-          count += 15;
-        }
-        if(element.element === 'long-3-4') {
-          count += 12;
-        }
-        if(element.element === 'ver-2-3') {
-          count += 6;
-        }
-      });
-    });
-
     this.y_height = response.y;
     this.x_width = response.x;
     if(this.tab_map) {
@@ -208,6 +149,69 @@ export class WmsMapEditFormComponent implements OnInit {
       this.createNewMap();
     }
     this.cloneMap();
+  }
+
+  calculateAllCells() {
+    let count = 0;
+    this.tab_map.forEach(element => {
+      element.forEach(element => {
+
+        if(element.element === 'ver-3-4') {
+          count += 12;
+        }
+        if(element.element === 'ver-3-4r') {
+          count += 12;
+        }
+        if(element.element === 'ver-3-3') {
+          count += 9;
+        }
+        if(element.element === 'ver-3-3r') {
+          count += 9;
+        }
+        if(element.element === 'ver-3-2') {
+          count += 6;
+        }
+        if(element.element === 'ver-3-2r') {
+          count += 6;
+        }
+        if(element.element === 'ver-3-5') {
+          count += 15;
+        }
+        if(element.element === 'ver-3-5r') {
+          count += 15;
+        }
+        if(element.element === 'ver-2-5') {
+          count += 10;
+        }
+        if(element.element === 'ver-2-5r') {
+          count += 10;
+        }
+        if(element.element === 'ver-2-4') {
+          count += 8;
+        }
+        if(element.element === 'ver-2-4r') {
+          count += 8;
+        }
+        if(element.element === 'long-3-1-5') {
+          count += 7;
+        }
+        if(element.element === 'long-2-3-4') {
+          count += 8;
+        }
+        if(element.element === 'long-3-5') {
+          count += 15;
+        }
+        if(element.element === 'long-3-4') {
+          count += 12;
+        }
+        if(element.element === 'ver-2-3') {
+          count += 6;
+        }
+        if(element.element === 'zona-storage-pallet') {
+          count += 2;
+        }
+      });
+    });
   }
 
   createNewMap() {
