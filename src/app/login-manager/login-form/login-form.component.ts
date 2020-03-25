@@ -86,7 +86,7 @@ export class LoginFormComponent implements OnInit {
 
   setCookie(nameCookie: string, loginResponse: LoginResponse) {
     let loginJson = JSON.stringify(loginResponse);
-    this.cookieService.set(nameCookie, loginJson, 365);
+    this.cookieService.set(nameCookie, loginJson, 365, null, null, null, 'Strict');
   }
 
   openAttentionDialog(status: string) {
