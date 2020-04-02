@@ -13,6 +13,11 @@
 
 <mat-divider></mat-divider>
 
+<mat-form-field class="filter">
+    <mat-label> Фильтр </mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Значение">
+</mat-form-field>
+
 <div class="mat-elevation-z8 table-container">
     <table mat-table [dataSource]="dataSource" class="table-hover" matSort>
 

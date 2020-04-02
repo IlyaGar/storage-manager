@@ -57,6 +57,8 @@ export class LoginFormComponent implements OnInit {
     else {
       if(response.status as string) {
         if(response.status != 'true') {
+          this.loginQuery.login = '';
+          this.loginQuery.password = '';
           this.openAttentionDialog(response.status);
         }
         else {

@@ -111,3 +111,6 @@ button#bt-search {
     -webkit-hyphens: auto;
     hyphens: auto;
 }   
+.filter {
+    margin-left: 0.5em;
+}

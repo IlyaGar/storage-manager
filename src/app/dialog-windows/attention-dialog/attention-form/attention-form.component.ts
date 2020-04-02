@@ -16,4 +16,7 @@ export class AttentionFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  onOkClick() {
+    this.dialogRef.close();
+  }
 }
