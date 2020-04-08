@@ -14,10 +14,10 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOrders" 
                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <ng-container *ngIf="(  isPathActiv('/product-group') || 
-                                            isPathActiv('/map') || 
-                                            isPathActiv('/map-edit') || 
-                                            isPathActiv('/error-journal') || 
-                                            isPathActiv('/history') ||
+                                            isPathActiv('/map/view') || 
+                                            isPathActiv('/map/edit') || 
+                                            isPathActiv('/map/error-journal') || 
+                                            isPathActiv('/map/history') ||
                                             isPathActiv('/motivation') || 
                                             isPathActiv('/staff')) && 
                                             (!isPathActiv('/tasks') || 
@@ -73,10 +73,10 @@
                 </ng-container>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownTerminal">
-                    <a class="dropdown-item" [routerLink]="['map']"> Карта склада </a>
-                    <a class="dropdown-item" [routerLink]="['map-edit']"> Редактирование склада </a>
-                    <a class="dropdown-item" [routerLink]="['error-journal']"> Журнал </a>
-                    <a class="dropdown-item" [routerLink]="['history']"> История </a>
+                    <a class="dropdown-item" [routerLink]="['map/view']"> Карта склада </a>
+                    <a class="dropdown-item" [routerLink]="['map/edit']"> Редактирование склада </a>
+                    <a class="dropdown-item" [routerLink]="['map/error-journal']"> Журнал </a>
+                    <a class="dropdown-item" [routerLink]="['map/history']"> История </a>
                 </div>                
             </li>
             <li class="nav-item dropdown" (click)="isPersonal = true; isMap = false; isOrder = false;">
