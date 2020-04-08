@@ -53,8 +53,6 @@ import { LongThreeOneFiveActionComponent } from 'src/app/stillages/long-three-on
 import { VerticalTwoThreeActionComponent } from 'src/app/stillages/vertical-two-three-action/vertical-two-three-action.component';
 import { VerticalTwoFourActionComponent } from 'src/app/stillages/vertical-two-four-action/vertical-two-four-action.component';
 import { VerticalTwoFiveActionComponent } from 'src/app/stillages/vertical-two-five-action/vertical-two-five-action.component';
-import { DetailDocFormComponent } from 'src/app/processes-manager/dialog-windows/detail-doc-form/detail-doc-form.component';
-import { StoragePlacesEditorComponent } from 'src/app/product-manager/dialog-windows/storage-places-editor/storage-places-editor.component';
 import { DemoMaterialModule } from 'src/app/common/models/material-module';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
 import { FormsModule } from '@angular/forms';
@@ -131,9 +129,7 @@ import { NgxPrintModule } from 'ngx-print';
     DetailViewCellComponent,
     InventoryDialogFormComponent,
     SelectCellFormComponent,
-    DetailDocFormComponent,
     StillgeDialogFormComponent,
-    StoragePlacesEditorComponent,
   ]
 })
 export class MapModule { }
