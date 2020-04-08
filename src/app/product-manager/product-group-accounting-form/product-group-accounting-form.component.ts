@@ -151,12 +151,12 @@ export class ProductGroupAccountingFormComponent implements OnInit {
           this.listDelivers.push(element);
         });
       }
-      if(this.listPlaces[this.listPlaces.length - 1].length == 0) {
-        this.listPlaces.pop();
-      }
-      if(this.listDelivers[this.listDelivers.length - 1].length == 0) {
-        this.listDelivers.pop();
-      }
+      if(this.listPlaces.length > 0)
+        if(this.listPlaces[this.listPlaces.length - 1].length == 0)
+          this.listPlaces.pop();
+      if(this.listDelivers.length > 0)    
+        if(this.listDelivers[this.listDelivers.length - 1].length == 0)
+          this.listDelivers.pop();
     }
   }
 
