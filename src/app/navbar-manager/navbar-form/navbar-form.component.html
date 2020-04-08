@@ -53,22 +53,22 @@
                                         isPathActiv('/doc-unloading') ||
                                         isPathActiv('/motivation') || 
                                         isPathActiv('/staff')) && 
-                                        (!isPathActiv('/map') || 
-                                        !isPathActiv('/map-edit') ||
-                                        !isPathActiv('/history') ||
-                                        !isPathActiv('/error-journal'))">
+                                        (!isPathActiv('/map/view') || 
+                                        !isPathActiv('/map/edit') ||
+                                        !isPathActiv('/map/history') ||
+                                        !isPathActiv('/map/error-journal'))">
                     <label> Топология склада </label>
                 </ng-container>
-                <ng-container *ngIf="isPathActiv('/map')">
+                <ng-container *ngIf="isPathActiv('/map/view')">
                     <label class="select-item-menu" > Карта склада </label>
                 </ng-container>
-                <ng-container *ngIf="isPathActiv('/map-edit')">
+                <ng-container *ngIf="isPathActiv('/map/edit')">
                     <label class="select-item-menu" > Редактирование склада </label>
                 </ng-container>
-                <ng-container *ngIf="isPathActiv('/error-journal')">
+                <ng-container *ngIf="isPathActiv('/map/error-journal')">
                     <label class="select-item-menu" > Журнал </label>
                 </ng-container>
-                <ng-container *ngIf="isPathActiv('/history')">
+                <ng-container *ngIf="isPathActiv('/map/history')">
                     <label class="select-item-menu" > История </label>
                 </ng-container>
                 </a>
@@ -83,10 +83,10 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownStore" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <ng-container *ngIf="(  isPathActiv('/product-group') || 
-                                        isPathActiv('/map') || 
-                                        isPathActiv('/map-edit') || 
-                                        isPathActiv('/error-journal') || 
-                                        isPathActiv('/history') || 
+                                        isPathActiv('/map/view') || 
+                                        isPathActiv('/map/edit') || 
+                                        isPathActiv('/map/error-journal') || 
+                                        isPathActiv('/map/history') || 
                                         isPathActiv('/list-doc') || 
                                         isPathActiv('/doc-unloading') ||
                                         isPathActiv('/tasks')) && 
