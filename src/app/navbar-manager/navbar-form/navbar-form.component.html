@@ -20,37 +20,37 @@
                                             isPathActiv('/map/history') ||
                                             isPathActiv('/motivation') || 
                                             isPathActiv('/staff')) && 
-                                            (!isPathActiv('/tasks') || 
-                                            isPathActiv('/doc-unloading') ||
-                                            isPathActiv('/list-doc'))">
+                                            (!isPathActiv('/task/tasks') || 
+                                            isPathActiv('/task/doc-unloading') ||
+                                            isPathActiv('/task/list-doc'))">
                         <label> Внутрискладские процессы </label>
                     </ng-container>
-                    <ng-container *ngIf="isPathActiv('/tasks')">
+                    <ng-container *ngIf="isPathActiv('/task/tasks')">
                         <label class="select-item-menu"> Задания </label>
                     </ng-container>
-                    <ng-container *ngIf="isPathActiv('/list-doc')">
+                    <ng-container *ngIf="isPathActiv('/task/list-doc')">
                         <label class="select-item-menu"> Список документов </label>
                     </ng-container>
-                    <ng-container *ngIf="isPathActiv('/doc-unloading')">
+                    <ng-container *ngIf="isPathActiv('/task/doc-unloading')">
                         <label class="select-item-menu"> Документы разгрузки </label>
                     </ng-container>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownOrders" >
-                    <a class="dropdown-item" [routerLink]="['tasks']"> Задания </a>
-                    <a class="dropdown-item" [routerLink]="['']"> Входящий поток </a>
+                    <a class="dropdown-item" [routerLink]="['task/tasks']"> Задания </a>
+                    <!-- <a class="dropdown-item" [routerLink]="['']"> Входящий поток </a>
                     <a class="dropdown-item" [routerLink]="['']"> Исходящий поток </a>
-                    <a class="dropdown-item" [routerLink]="['']"> Внутренние процессы </a>
-                    <a class="dropdown-item" [routerLink]="['list-doc']"> Список документов </a>
-                    <a class="dropdown-item" [routerLink]="['doc-unloading']"> Документы разгрузки </a>
+                    <a class="dropdown-item" [routerLink]="['']"> Внутренние процессы </a> -->
+                    <a class="dropdown-item" [routerLink]="['task/list-doc']"> Список документов </a>
+                    <a class="dropdown-item" [routerLink]="['task/doc-unloading']"> Документы разгрузки </a>
                 </div>                
             </li>
             <li class="nav-item dropdown" (click)="isPersonal = false; isMap = true; isOrder = false;">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTerminal" role="button" data-toggle="dropdown" 
                 aria-haspopup="true" aria-expanded="false">
                 <ng-container *ngIf="(  isPathActiv('/product-group') || 
-                                        isPathActiv('/tasks') || 
-                                        isPathActiv('/list-doc') || 
-                                        isPathActiv('/doc-unloading') ||
+                                        isPathActiv('/task/tasks') || 
+                                        isPathActiv('/task/list-doc') || 
+                                        isPathActiv('/task/doc-unloading') ||
                                         isPathActiv('/motivation') || 
                                         isPathActiv('/staff')) && 
                                         (!isPathActiv('/map/view') || 
@@ -87,9 +87,9 @@
                                         isPathActiv('/map/edit') || 
                                         isPathActiv('/map/error-journal') || 
                                         isPathActiv('/map/history') || 
-                                        isPathActiv('/list-doc') || 
-                                        isPathActiv('/doc-unloading') ||
-                                        isPathActiv('/tasks')) && 
+                                        isPathActiv('/task/list-doc') || 
+                                        isPathActiv('/task/doc-unloading') ||
+                                        isPathActiv('/task/tasks')) && 
                                         (!isPathActiv('/staff') ||
                                         !isPathActiv('/motivation'))">
                     <label> Управление ресрсами и персоналом </label>
@@ -103,8 +103,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownStore">
                     <a class="dropdown-item" [routerLink]="['staff']"> Управление персоналом </a>
-                    <a class="dropdown-item" [routerLink]="['']"> Управление штабелерами </a>
-                    <a class="dropdown-item" [routerLink]="['']"> Складской учет в разрезах </a>
+                    <!-- <a class="dropdown-item" [routerLink]="['']"> Управление штабелерами </a>
+                    <a class="dropdown-item" [routerLink]="['']"> Складской учет в разрезах </a> -->
                     <a class="dropdown-item" [routerLink]="['motivation']"> Мотивация </a>
                 </div>                
             </li>
